@@ -35,6 +35,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: 安装取色依赖（Pillow，用于主视觉主色预计算）
+        run: python -m pip install --quiet --disable-pip-version-check Pillow
+
       - name: 适配器自检（破版预警，不阻断）
         continue-on-error: true
         run: python tools/adapters.py 稻香 周杰伦
@@ -43,9 +46,10 @@ jobs:
         env:
           PROBES_LIMIT: ${{ github.event.inputs.probes }}
           SRC_IDS: ${{ github.event.inputs.src_ids }}
+          HERO_N: "24"
         run: python tools/build.py
 
-      - name: 产出校验（必须有可播源 + 非空歌库）
+      - name: 产出校验（必须有可播源 + 非空歌库 + 主视觉≥20）
         run: python tools/validate.py
 
       - name: 入库并发布
@@ -64,7 +68,7 @@ jobs:
       - name: 刷新 jsDelivr 缓存（让 App 立刻拿到新池）
         continue-on-error: true
         run: |
-          for f in pool.json charts.json library.json; do
+          for f in pool.json charts.json library.json artists.json mv.json hero.json; do
             curl -sS --max-time 25 "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/$f" -o /dev/null \
               && echo "purged $f" || echo "purge failed $f"
           done

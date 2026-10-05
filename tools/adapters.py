@@ -482,22 +482,39 @@ QQ_TOPLISTS = [
 
 
 def qq_toplist(topid, name, limit=100):
-    u = ("https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?topid=" + topid +
-         f"&format=json&page=detail&type=top&song_begin=0&song_num={limit}")
-    j = jload(http(u, {"Referer": "https://y.qq.com/"})) or {}
-    out = []
-    for x in (j.get("songlist") or []):
-        d = x.get("data") or {}
-        mid = d.get("albummid") or (d.get("album") or {}).get("mid") or ""
-        singers = d.get("singer") or []
-        out.append({"title": d.get("songname", ""),
-                    "singer": "/".join(g.get("name", "") for g in singers),
-                    "singers": [{"name": g.get("name"), "mid": g.get("mid")} for g in singers],
-                    "album": d.get("albumname") or (d.get("album") or {}).get("name", ""),
-                    "duration": d.get("interval"),
-                    "cover": f"https://y.gtimg.cn/music/photo_new/T002R500x500M000{mid}.jpg" if mid else "",
-                    "mid": d.get("songmid"), "albummid": mid, "vid": d.get("vid") or "",
-                    "rank": x.get("cur_count") or len(out) + 1})
+    """榜单抓取（分页聚合版，2026-10-06）。
+    为什么分页：云端（GitHub Actions 海外出口）实测被 QQ 风控降级——单次请求 song_num=300
+    只回 50 条；本地家宽同请求回全量。分页 song_begin=0,50,100… 每页小请求 + 去重合并，
+    云端也能凑回接近全量的榜单；本地则第一页就够、后续页去重后自然收敛。"""
+    u0 = ("https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?topid=" + topid +
+          "&format=json&page=detail&type=top&song_begin={begin}&song_num={num}")
+    out, seen_mid = [], set()
+    PAGE = 50
+    for begin in range(0, max(limit, PAGE), PAGE):
+        j = jload(http(u0.format(begin=begin, num=PAGE), {"Referer": "https://y.qq.com/"})) or {}
+        songs = j.get("songlist") or []
+        if not songs:
+            break
+        for x in songs:
+            d = x.get("data") or {}
+            mid = d.get("songmid")
+            if not mid or mid in seen_mid:
+                continue
+            seen_mid.add(mid)
+            albummid = d.get("albummid") or (d.get("album") or {}).get("mid") or ""
+            singers = d.get("singer") or []
+            out.append({"title": d.get("songname", ""),
+                        "singer": "/".join(g.get("name", "") for g in singers),
+                        "singers": [{"name": g.get("name"), "mid": g.get("mid")} for g in singers],
+                        "album": d.get("albumname") or (d.get("album") or {}).get("name", ""),
+                        "duration": d.get("interval"),
+                        "cover": f"https://y.gtimg.cn/music/photo_new/T002R500x500M000{albummid}.jpg" if albummid else "",
+                        "mid": mid, "albummid": albummid, "vid": d.get("vid") or "",
+                        "rank": x.get("cur_count") or len(out) + 1})
+            if len(out) >= limit:
+                return {"topid": topid, "name": name, "count": len(out), "songs": out}
+        if len(songs) < PAGE:      # 不足一页 = 已到底
+            break
     return {"topid": topid, "name": name, "count": len(out), "songs": out}
 
 
@@ -510,6 +527,166 @@ def qq_hotkeys():
     j = jload(http("https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg",
                    {"Referer": "https://y.qq.com/"})) or {}
     return [{"k": h.get("k", "").strip(), "n": h.get("n")} for h in (j.get("data") or {}).get("hotkey", [])][:20]
+
+
+# --------------------------------------------------------------- 分类（照大牌逻辑：语种/流派/主题/心情/场景）
+# 标签体系取自 QQ 音乐官方歌单分类配置（实测可用，2026-10-05），数据自持：我们抓下来规范化成自己的 categories.json
+DISS_TAG_CONF = ("https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_tag_conf.fcg?format=json"
+                 "&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0")
+DISS_BY_TAG = ("https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg?picmid=1&rnd=0.1&g_tk=5381"
+               "&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0"
+               "&platform=yqq.json&needNewCode=0&categoryId={cid}&sortId={sort}&sin=0&ein={ein}")
+DISS_SONGS = "https://u.y.qq.com/cgi-bin/musicu.fcg?data="
+
+
+def _diss_songs_url(dissid, n=40):
+    payload = {"comm": {"ct": 24, "cv": 0},
+               "req": {"module": "music.srfDissInfo.DissInfo", "method": "CgiGetDiss",
+                       "param": {"disstid": int(dissid or 0), "dirid": 0, "tag": 1,
+                                 "song_begin": 0, "song_num": int(n), "userinfo": 0}}}
+    return DISS_SONGS + urllib.parse.quote(json.dumps(payload, ensure_ascii=False))
+
+
+def qq_diss_tags():
+    """官方分类分组：[{group:语种, cats:[{name, id}]}...]（剔除「热门/全部」）"""
+    import html as _html
+    j = jload(http(DISS_TAG_CONF, {"Referer": "https://y.qq.com/"})) or {}
+    out = []
+    for g in ((j.get("data") or {}).get("categories") or []):
+        name = g.get("categoryGroupName", "")
+        if name in ("热门",):
+            continue
+        cats = [{"name": _html.unescape(i.get("categoryName", "")), "id": i.get("categoryId")}
+                for i in (g.get("items") or []) if i.get("categoryId")]
+        if cats:
+            out.append({"group": name, "cats": cats})
+    return out
+
+
+def qq_diss_list(cid, sort=3, n=10):
+    """某分类下最热门的歌单（dissid/名称/播放量）"""
+    j = jload(http(DISS_BY_TAG.format(cid=cid, sort=sort, ein=max(n - 1, 0)),
+                   {"Referer": "https://y.qq.com/"})) or {}
+    return [{"dissid": x.get("dissid"), "name": x.get("dissname", ""),
+             "play": x.get("listennum"), "pic": x.get("imgurl") or x.get("picurl") or ""}
+            for x in ((j.get("data") or {}).get("list") or [])[:n]]
+
+
+def qq_diss_songs(dissid, n=40):
+    """歌单内的歌曲 → 规范化成与榜单一致的结构"""
+    j = jload(http(_diss_songs_url(dissid, n), {"Referer": "https://y.qq.com/"})) or {}
+    r = (j.get("req") or {}).get("data") or {}
+    out = []
+    for d in (r.get("songlist") or [])[:n]:
+        d = d.get("data") if isinstance(d, dict) and isinstance(d.get("data"), dict) else d
+        mid = d.get("albummid") or (d.get("album") or {}).get("mid") or ""
+        singers = d.get("singer") or []
+        out.append({"title": d.get("title") or d.get("songname", ""),
+                    "singer": "/".join(g.get("name", "") for g in singers),
+                    "album": (d.get("album") or {}).get("name", "") if isinstance(d.get("album"), dict) else d.get("album", ""),
+                    "duration": d.get("interval"),
+                    "cover": f"https://y.gtimg.cn/music/photo_new/T002R300x300M000{mid}.jpg" if mid else "",
+                    "mid": d.get("mid") or d.get("songmid"), "albummid": mid})
+    return out
+
+
+# --------------------------------------------------------------- 真播放：为每首歌匹配"可直接播放的长效直链"
+WY_OUTER = "https://music.163.com/song/media/outer/url?id=%s.mp3"
+
+
+def wy_candidates(title, singer, limit=10):
+    """网易云候选（未校验）"""
+    kw = ("%s %s" % (title, singer)).strip()
+    u = ("https://music.163.com/api/search/get?s=" + urllib.parse.quote(kw) +
+         "&type=1&limit=%d&offset=0" % max(6, limit))
+    j = jload(http(u, {"Referer": "https://music.163.com/"})) or {}
+    return [{"id": s.get("id"), "name": s.get("name", ""),
+             "artist": "/".join(a.get("name", "") for a in (s.get("artists") or [])),
+             "dur": int((s.get("duration") or 0) / 1000)}
+            for s in (((j.get("result") or {}).get("songs")) or [])]
+
+
+def wy_match(title, singer, tries=5):
+    """给一首歌找**实测能播**的网易云 id（多个候选依次校验，优中选优）。
+    返回 {id,name,artist,native,dur} 或 None。native=歌名与歌手都吻合（即原唱/正规版）。"""
+    cands = wy_candidates(title, singer, limit=max(8, tries + 3))
+    if not cands:
+        return None
+    nt, ns = norm(title), norm(singer)
+    # 排序：标题吻合 > 歌手吻合 > 少劣质词 > 时长接近
+    def key(c):
+        nm, ar = norm(c["name"]), norm(c["artist"])
+        r = 0
+        if nt and nm == nt:
+            r -= 10
+        elif nt and (nt in nm or nm in nt):
+            r -= 5
+        if ns and (ns in ar or ar in ns):
+            r -= 7
+        r += 3 * badness(c["name"]) + 2 * badness(c["artist"])
+        return r
+    cands = sorted(cands, key=key)[:max(1, tries)]
+    for c in cands:
+        ok, note, ext = verify_playable(WY_OUTER % c["id"], "https://music.163.com/", 2048)
+        if ok:
+            c["native"] = (norm(c["name"]) == nt) and bool(ns) and (ns in norm(c["artist"]))
+            c["note"] = note
+            return c
+    return None
+
+
+# --------------------------------------------------------------- 歌词（LRC）与评论
+def qq_lyric(mid):
+    """QQ 官方歌词（LRC 原文 + 翻译）。mid 为 QQ songmid。"""
+    if not mid:
+        return None
+    u = ("https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?songmid=" +
+         urllib.parse.quote(str(mid)) + "&format=json&nobase64=1&g_tk=5381")
+    j = jload(http(u, {"Referer": "https://y.qq.com/portal/player.html"})) or {}
+    if j.get("retcode") != 0:
+        return None
+    ly = (j.get("lyric") or "").strip()
+    if not ly:
+        return None
+    return {"lyric": ly, "trans": (j.get("trans") or "").strip()}
+
+
+def wy_lyric(sid):
+    """网易云歌词（LRC 原文 + 翻译），按网易云歌曲 id。"""
+    if not sid:
+        return None
+    u = "https://music.163.com/api/song/lyric?id=%s&lv=1&kv=0&tv=-1" % sid
+    j = jload(http(u, {"Referer": "https://music.163.com/"})) or {}
+    lrc = ((j.get("lrc") or {}).get("lyric") or "").strip()
+    if not lrc:
+        return None
+    return {"lyric": lrc, "trans": ((j.get("tlyric") or {}).get("lyric") or "").strip()}
+
+
+def wy_comments(sid, n=20):
+    """网易云热评 + 最新评论（真数据）"""
+    if not sid:
+        return None
+    u = "https://music.163.com/api/v1/resource/comments/R_SO_4_%s?limit=%d&offset=0" % (sid, n)
+    j = jload(http(u, {"Referer": "https://music.163.com/song?id=%s" % sid})) or {}
+    if j.get("code") != 200:
+        return None
+
+    def pack(lst):
+        out = []
+        for c in lst or []:
+            txt = (c.get("content") or "").replace("\n", " ").replace("\r", " ").strip()
+            if not txt:
+                continue
+            ts = c.get("time") or 0
+            out.append({"u": (c.get("user") or {}).get("nickname", ""), "c": txt[:300],
+                        "l": c.get("likedCount") or 0,
+                        "d": time.strftime("%Y-%m-%d", time.localtime(ts / 1000)) if ts else ""})
+        return out
+    hot, new = pack(j.get("hotComments")), pack(j.get("comments"))
+    if not hot and not new:
+        return None
+    return {"total": j.get("total") or 0, "hot": hot[:12], "new": new[:12]}
 
 
 if __name__ == "__main__":

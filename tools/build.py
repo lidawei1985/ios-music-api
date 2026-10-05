@@ -189,8 +189,31 @@ def build_library(old_lib, chart_songs, hits):
                {"mid": s.get("mid")} if s.get("mid") else None, "qq", verified=False)
         added += 1
 
+    # 2c. 海报主色沉淀（增量：只补缺 hue 的歌，缓存进库越跑越全；App 播放谁就用谁的主色）
+    hue_done = 0
+    need = [e for e in songs.values() if e.get("cov") and e.get("hue") is None]
+    if need and HUE_BUDGET_S > 0:
+        from concurrent.futures import ThreadPoolExecutor as _TPE
+        tH = time.time()
+        need.sort(key=lambda x: -x.get("seen", 0))          # 常听的先配色
+        with _TPE(max_workers=6) as ex:
+            futs = {ex.submit(dominant_hue, hd_cover(e["cov"])): e for e in need}
+            for fu in as_completed(futs):
+                if time.time() - tH > HUE_BUDGET_S:
+                    break
+                e = futs[fu]
+                try:
+                    h = fu.result()
+                except Exception:
+                    h = None
+                if h is not None:
+                    e["hue"] = h
+                    hue_done += 1
+    hue_total = sum(1 for e in songs.values() if e.get("hue") is not None)
+
     return {"updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "count": len(songs), "chart_scanned": added, "chart_new": len(songs) - before,
+            "hue_new": hue_done, "hue_total": hue_total,
             "songs": sorted(songs.values(), key=lambda x: (-x.get("seen", 0), x.get("t", "")))}
 
 
@@ -297,7 +320,355 @@ def build_mv(chart_songs):
             "note": "取流关键: fnval=4048&fourk=1&qn=127&try_look=1（否则匿名只回 480P）"}
 
 
+# ------------------------------------------------------------------ 2d) 主视觉轮播（高清海报 + 预计算主色）
+HERO_N = int(os.environ.get("HERO_N") or "24")               # 主视觉海报数（硬要求 ≥20）
+HERO_BUDGET_S = int(os.environ.get("HERO_BUDGET_S") or "300")
+HUE_BUDGET_S = int(os.environ.get("HUE_BUDGET_S") or "240")  # 歌库主色增量预算（秒/轮，越跑越全）
+
+
+def hd_cover(url):
+    """QQ 封面升到 800×800 高清（实测 R1080 不存在、R800 可用；约 128KB/张）"""
+    if not url:
+        return ""
+    u = url.replace("/500x500/", "/800x800/").replace("/300x300/", "/800x800/")
+    for tag in ("T002R500x500M000", "T002R300x300M000", "T002R150x150M000"):
+        u = u.replace(tag, "T002R800x800M000")
+    return u
+
+
+def dominant_hue(url):
+    """取封面主色相（0-359），供 App 背景/主题跟随变色。阈值由 24 张真实海报实测标定：
+    彩色像素占比 <12% 或 最佳 45° 色相窗占全图 <6% → 判为「无可信主色」返回 None
+    （周杰伦《我不难过》窗口 19.6%、Dear You 75.2% 通过；《异想天开》2.1%、《甲乙丙丁》0.1% 剔除）。
+    色相一律取自「窗内像素平均色」而非桶 key，保证与真实观感一致。"""
+    try:
+        import io as _io, colorsys, urllib.request
+        from PIL import Image
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0",
+                                                   "Referer": "https://y.qq.com/"})
+        raw = urllib.request.urlopen(req, timeout=12).read()
+        im = Image.open(_io.BytesIO(raw)).convert("RGB").resize((36, 36))
+        px = list(im.getdata())
+        total = len(px)
+        hist = [0.0] * 24
+        srgb = [[0, 0, 0, 0] for _ in range(24)]
+        valid = 0
+        for r, g, b in px:
+            h, s, v = colorsys.rgb_to_hsv(r / 255, g / 255, b / 255)
+            if s < 0.16 or v < 0.14 or v > 0.95:      # 近灰/近黑/近白不计
+                continue
+            i = int(h * 24) % 24
+            hist[i] += s                              # 按饱和度加权（灰调自动降权）
+            a = srgb[i]; a[0] += r; a[1] += g; a[2] += b; a[3] += 1
+            valid += 1
+        if valid == 0 or valid / total < 0.12:
+            return None
+        bi, bw = 0, -1.0
+        for i in range(24):
+            w = hist[i] + hist[(i - 1) % 24] + hist[(i + 1) % 24]   # 3 桶环形窗(45°)抗噪
+            if w > bw:
+                bi, bw = i, w
+        if bw / total < 0.06:
+            return None
+        rs = gs = bs = c = 0
+        for k in ((bi - 1) % 24, bi, (bi + 1) % 24):
+            a = srgb[k]; rs += a[0]; gs += a[1]; bs += a[2]; c += a[3]
+        if not c:
+            return None
+        h, s, v = colorsys.rgb_to_hsv(rs / c / 255, gs / c / 255, bs / c / 255)
+        return int(h * 360) % 360
+    except Exception:
+        return None
+
+
+def build_hero(charts):
+    """主视觉：跨榜单轮流取「有专辑封面」的头部曲目 → 800×800 高清海报 + 预计算主色"""
+    t0 = time.time()
+    seen_album, items = set(), []
+    cols = [c.get("songs") or [] for c in charts]
+    depth = 0
+    while len(items) < HERO_N and cols and depth < 80:
+        for ci, songs in enumerate(cols):
+            if len(items) >= HERO_N:
+                break
+            if depth >= len(songs):
+                continue
+            s = songs[depth]
+            am = (s.get("albummid") or "").strip()
+            cov = (s.get("cover") or "").strip()
+            if not cov or not am or am in seen_album:
+                continue
+            seen_album.add(am)
+            items.append({"t": s.get("title", ""), "s": s.get("singer", ""),
+                          "a": s.get("album", ""), "cov": hd_cover(cov),
+                          "dur": s.get("duration") or 0, "mid": s.get("mid", ""),
+                          "albummid": am, "chart": charts[ci].get("name", ""),
+                          "rank": s.get("rank", ""), "hue": None})
+        depth += 1
+
+    ok = 0
+    for it in items:
+        if time.time() - t0 > HERO_BUDGET_S:
+            break
+        h = dominant_hue(it["cov"])
+        if h is not None:
+            it["hue"] = h
+            ok += 1
+    print("  主视觉 %s 张高清海报（%s 张已取主色）" % (len(items), ok))
+    return {"updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "count": len(items), "hue_ok": ok, "items": items,
+            "note": "海报 800×800 高清；hue=该海报主色相，App 背景/主题跟随变色（缺失按标题哈希兜底）"}
+
+
+# ------------------------------------------------------------------ 2e) 歌库分类（照大牌逻辑：语种/流派/主题/心情/场景）
+CAT_BUDGET_S = int(os.environ.get("CAT_BUDGET_S") or "420")   # 分类抓取时间预算
+CAT_PLAYLISTS = int(os.environ.get("CAT_PLAYLISTS") or "2")   # 每分类取几个歌单
+CAT_MAX_SONGS = int(os.environ.get("CAT_MAX_SONGS") or "60")  # 每分类最多歌曲数
+
+
+def build_categories():
+    """官方分类体系（语种9/流派16/主题17/心情9/场景13）→ 每类取热门歌单 → 规范化歌曲。
+    数据全部落成我们自己的 data/categories.json，App 离线可浏览（含 DJ/伤感/开车/睡前 等直达分类）。"""
+    from concurrent.futures import ThreadPoolExecutor
+    t0 = time.time()
+    groups = A.qq_diss_tags()
+    jobs = [(g["group"], c["name"], c["id"]) for g in groups for c in g["cats"]]
+    print("  分类标签 %s 组 %s 类" % (len(groups), len(jobs)))
+
+    def one(group, cname, cid):
+        try:
+            pls = A.qq_diss_list(cid, sort=3, n=CAT_PLAYLISTS)
+        except Exception:
+            return group, cname, []
+        seen, songs = set(), []
+        for p in pls:
+            if len(songs) >= CAT_MAX_SONGS:
+                break
+            try:
+                ss = A.qq_diss_songs(p["dissid"], 40)
+            except Exception:
+                continue
+            for s in ss:
+                k = (A.norm(s["title"]), A.norm(s["singer"]))
+                if not k[0] or k in seen:
+                    continue
+                seen.add(k)
+                songs.append({"t": s["title"], "s": s["singer"], "a": s["album"],
+                              "cov": s["cover"], "dur": s["duration"] or 0,
+                              "mid": s.get("mid") or "", "albummid": s.get("albummid") or ""})
+                if len(songs) >= CAT_MAX_SONGS:
+                    break
+        return group, cname, songs
+
+    out, done = {g["group"]: {} for g in groups}, 0
+    with ThreadPoolExecutor(max_workers=6) as ex:
+        futs = {ex.submit(one, g, c, cid): (g, c) for g, c, cid in jobs}
+        for fu in as_completed(futs):
+            g, c = futs[fu]
+            try:
+                _, cname, songs = fu.result()
+            except Exception:
+                continue
+            done += 1
+            if songs:
+                out[g][c] = songs
+            if done % 16 == 0:
+                print("    分类进度 %s/%s  %.0fs" % (done, len(jobs), time.time() - t0))
+            if time.time() - t0 > CAT_BUDGET_S:
+                print("    分类预算用尽，提前收尾 %s/%s" % (done, len(jobs)))
+                break
+
+    groups_out = [{"name": g, "count": sum(len(v) for v in out[g].values()),
+                   "cats": [{"name": k, "count": len(v), "songs": v} for k, v in out[g].items()]}
+                  for g in out]
+    total = sum(x["count"] for x in groups_out)
+    print("  分类完成：%s 组 %s 类，共 %s 首（%.0fs）" % (len(groups_out), sum(len(x["cats"]) for x in groups_out), total, time.time() - t0))
+    return {"updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "groups": groups_out, "count": total,
+            "note": "分类体系照 QQ 音乐官方（语种/流派/主题/心情/场景）；每类取热门歌单规范化入库"}
+
+
 # ------------------------------------------------------------------ main
+# =========================================================== 真播放：可播直链映射（把"能搜到"变成"真能放"）
+STREAM_BUDGET_S = int(os.environ.get("STREAM_BUDGET_S") or "1500")  # 匹配预算（秒/轮，增量续跑）
+STREAM_WORKERS = int(os.environ.get("STREAM_WORKERS") or "8")
+LYRIC_TOP = int(os.environ.get("LYRIC_TOP") or "320")               # 抓歌词的曲目数（按热度）
+COMMENT_TOP = int(os.environ.get("COMMENT_TOP") or "160")           # 抓评论的曲目数
+TXT_BUDGET_S = int(os.environ.get("TXT_BUDGET_S") or "900")
+MISS_MAX = 4                                                        # 连败 N 轮后不再重试（省时间/防封）
+
+
+def _skey(title, singer):
+    return (A.norm(title) or "")[:40] + "|" + (A.norm(singer) or "")[:30]
+
+
+def _collect_songs(charts, cats, hero, lib):
+    """全站曲目去重成 {skey: {...}}，热度高的优先"""
+    acc = {}
+
+    def put(t, s, cov="", dur=0, mid="", seen=0):
+        if not t:
+            return
+        k = _skey(t, s)
+        if k == "|":
+            return
+        e = acc.get(k)
+        if e is None:
+            acc[k] = {"t": t, "s": s, "cov": cov or "", "dur": dur or 0, "mid": mid or "", "seen": seen or 0}
+        else:
+            e["seen"] = max(e["seen"], seen or 0)
+            if mid and not e["mid"]:
+                e["mid"] = mid
+            if cov and not e["cov"]:
+                e["cov"] = cov
+    for s in ((lib or {}).get("songs") or []):
+        put(s.get("t"), s.get("s"), s.get("cov"), s.get("dur"),
+            ((s.get("ids") or {}).get("qq") or {}).get("mid"), s.get("seen"))
+    for l in ((charts or {}).get("lists") or []):
+        for s in (l.get("songs") or []):
+            put(s.get("title"), s.get("singer"), s.get("cover"), s.get("duration"), s.get("mid"), 1)
+    for g in ((cats or {}).get("groups") or []):
+        for c in (g.get("cats") or []):
+            for s in (c.get("songs") or []):
+                put(s.get("t"), s.get("s"), s.get("cov"), s.get("dur"), s.get("mid"), 1)
+    for s in ((hero or {}).get("items") or []):
+        put(s.get("t"), s.get("s"), s.get("cov"), s.get("dur"), s.get("mid"), 99)
+    return acc
+
+
+def build_streams(charts, cats, hero, lib):
+    """给每首歌匹配**实测能播**的长效直链 id（增量：已匹配的不重测）"""
+    old = load(os.path.join(DATA, "streams.json"), {})
+    omap = dict(old.get("map") or {})
+    miss = dict(old.get("miss") or {})
+    acc = _collect_songs(charts, cats, hero, lib)
+    todo = [k for k in acc if k not in omap and miss.get(k, 0) < MISS_MAX]
+    todo.sort(key=lambda k: -acc[k]["seen"])
+    print("  曲目去重 %s 首；已可播 %s 首；本轮待匹配 %s 首（冷却中 %s）"
+          % (len(acc), sum(1 for k in acc if k in omap), len(todo),
+             sum(1 for k in acc if k not in omap and miss.get(k, 0) >= MISS_MAX)))
+    t0 = time.time(); done = 0; newmiss = []
+    if todo:
+        from concurrent.futures import ThreadPoolExecutor as _TPE, as_completed as _ac
+        with _TPE(max_workers=STREAM_WORKERS) as ex:
+            futs = {ex.submit(A.wy_match, acc[k]["t"], acc[k]["s"]): k for k in todo}
+            for fu in _ac(futs):
+                if time.time() - t0 > STREAM_BUDGET_S:
+                    for f2 in futs:
+                        f2.cancel()
+                    break
+                k = futs[fu]
+                try:
+                    m = fu.result()
+                except Exception:
+                    m = None
+                if m:
+                    omap[k] = {"wy": m["id"], "n": m["name"], "a": m["artist"],
+                               "native": 1 if m.get("native") else 0, "dur": m.get("dur") or 0}
+                    done += 1
+                else:
+                    newmiss.append(k)
+    for k in newmiss:
+        miss[k] = miss.get(k, 0) + 1
+    for k in list(omap):
+        if k not in acc:
+            omap.pop(k)                      # 已不在曲库里的旧键清掉，防膨胀
+    miss = {k: v for k, v in miss.items() if k in acc}
+    hit = sum(1 for k in acc if k in omap)
+    out = {"updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+           "count": len(acc), "hit": hit, "rate": round(100.0 * hit / max(1, len(acc)), 1),
+           "native": sum(1 for k, v in omap.items() if v.get("native")),
+           "miss": miss,
+           "note": ("key = 归一化(歌名)|归一化(歌手)。App 拼 https://music.163.com/song/media/outer/url?id=<wy>.mp3 "
+                    "即为实测可播的长效直链（Range 取回真音频，无需签名）。native=1 表示歌名歌手都吻合。"),
+           "map": omap}
+    print("  真可播 %s/%s = %s%%（原唱 %s，本轮新增 %s，累计放弃 %s）"
+          % (hit, len(acc), out["rate"], out["native"], done,
+             sum(1 for k in acc if miss.get(k, 0) >= MISS_MAX)))
+    return out
+
+
+def build_lyrics(acc, streams):
+    """抓真歌词（LRC）：优先 QQ 官方词（有 mid），其次网易云词（有 wy id）"""
+    old = load(os.path.join(DATA, "lyrics.json"), {})
+    lmap = dict(old.get("map") or {})
+    smap = (streams or {}).get("map") or {}
+    keys = [k for k in acc if k not in lmap]
+    keys.sort(key=lambda k: -acc[k]["seen"])
+    keys = keys[:LYRIC_TOP]
+    t0 = time.time(); ok = 0
+    print("  待抓歌词 %s 首（已有 %s 首）" % (len(keys), len(lmap)))
+
+    def one(k):
+        e = acc[k]
+        if e.get("mid"):
+            r = A.qq_lyric(e["mid"])
+            if r:
+                return k, {"l": r["lyric"], "t": r.get("trans") or "", "src": "qq"}
+        sid = (smap.get(k) or {}).get("wy")
+        if sid:
+            r = A.wy_lyric(sid)
+            if r:
+                return k, {"l": r["lyric"], "t": r.get("trans") or "", "src": "wy"}
+        return k, None
+
+    if keys:
+        from concurrent.futures import ThreadPoolExecutor as _TPE, as_completed as _ac
+        with _TPE(max_workers=6) as ex:
+            futs = [ex.submit(one, k) for k in keys]
+            for fu in _ac(futs):
+                if time.time() - t0 > TXT_BUDGET_S:
+                    break
+                try:
+                    k, v = fu.result()
+                except Exception:
+                    continue
+                if v:
+                    lmap[k] = v
+                    ok += 1
+    for k in list(lmap):
+        if k not in acc:
+            lmap.pop(k)
+    print("  真歌词 %s 首（本轮新增 %s）" % (len(lmap), ok))
+    return {"updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "count": len(lmap), "note": "按 key 索引，l=LRC 原文、t=翻译、src=来源",
+            "map": lmap}
+
+
+def build_comments(acc, streams):
+    """抓真评论（网易云热评）"""
+    old = load(os.path.join(DATA, "comments.json"), {})
+    cmap = dict(old.get("map") or {})
+    smap = (streams or {}).get("map") or {}
+    keys = [k for k in acc if k not in cmap and (smap.get(k) or {}).get("wy")]
+    keys.sort(key=lambda k: -acc[k]["seen"])
+    keys = keys[:COMMENT_TOP]
+    t0 = time.time(); ok = 0
+    print("  待抓评论 %s 首（已有 %s 首）" % (len(keys), len(cmap)))
+    if keys:
+        from concurrent.futures import ThreadPoolExecutor as _TPE, as_completed as _ac
+        with _TPE(max_workers=6) as ex:
+            futs = {ex.submit(A.wy_comments, (smap.get(k) or {}).get("wy"), 20): k for k in keys}
+            for fu in _ac(futs):
+                if time.time() - t0 > TXT_BUDGET_S:
+                    break
+                k = futs[fu]
+                try:
+                    v = fu.result()
+                except Exception:
+                    v = None
+                if v:
+                    cmap[k] = v
+                    ok += 1
+    for k in list(cmap):
+        if k not in acc:
+            cmap.pop(k)
+    print("  真评论 %s 首（本轮新增 %s）" % (len(cmap), ok))
+    return {"updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "count": len(cmap), "note": "按 key 索引；hot=热评 new=最新，l=点赞数",
+            "map": cmap}
+
+
 def main():
     os.makedirs(DATA, exist_ok=True)
     prev = load(os.path.join(DATA, "pool.json"), {})
@@ -359,6 +730,20 @@ def main():
         except Exception:
             print(traceback.format_exc())
 
+    print("  —— 主视觉（高清海报轮播）——")
+    try:
+        hero = build_hero(charts)
+    except Exception:
+        print(traceback.format_exc())
+        hero = {}
+
+    print("  —— 歌库分类 ——")
+    try:
+        cats = build_categories()
+    except Exception:
+        print(traceback.format_exc())
+        cats = {}
+
     active = sorted([h for h in results if h["status"] == "active"], key=lambda x: -x["score"])
     # 试源顺序：高保真曲库源（按分）→ 视频兜底源（按分）。App 依次试，首个可播即播。
     hifi = [h["id"] for h in active if h["role"] == "hifi"]
@@ -384,16 +769,52 @@ def main():
     save(os.path.join(DATA, "artists.json"), arts, indent=None)
     if mv:
         save(os.path.join(DATA, "mv.json"), mv, indent=None)
+    if hero:
+        save(os.path.join(DATA, "hero.json"), hero, indent=None)
+    if cats:
+        save(os.path.join(DATA, "categories.json"), cats, indent=None)
+
+    print("  —— 真播放链路（可播直链 / 歌词 / 评论）——")
+    streams, lyrics, comments = {}, {}, {}
+    try:
+        streams = build_streams(charts, cats, hero, lib)
+    except Exception:
+        print(traceback.format_exc())
+    if streams.get("map"):
+        acc = _collect_songs(charts, cats, hero, lib)
+        try:
+            lyrics = build_lyrics(acc, streams)
+        except Exception:
+            print(traceback.format_exc())
+        try:
+            comments = build_comments(acc, streams)
+        except Exception:
+            print(traceback.format_exc())
+    if streams:
+        save(os.path.join(DATA, "streams.json"), streams, indent=None)
+    if lyrics:
+        save(os.path.join(DATA, "lyrics.json"), lyrics, indent=None)
+    if comments:
+        save(os.path.join(DATA, "comments.json"), comments, indent=None)
 
     summary = ", ".join("%s(%s/%s)" % (h["id"], h["role"], h["score"]) for h in active)
     print("\n试源顺序: " + " → ".join(order) + "   [高保真 " + summary + "]")
-    print("自有歌库: %s 首（榜单扫描 %s，新入库 %s）；歌手头像 %s 个；补给日志 %s"
-          % (lib["count"], lib["chart_scanned"], lib["chart_new"], arts["count"], replenish))
+    print("自有歌库: %s 首（榜单扫描 %s，新入库 %s）；歌手头像 %s 个；海报主色 %s 个（本轮新增 %s）；补给日志 %s"
+          % (lib["count"], lib["chart_scanned"], lib["chart_new"], arts["count"],
+             lib.get("hue_total"), lib.get("hue_new"), replenish))
     if mv:
         print("MV/演唱会: %s 条（%s 个合集，实测取流通过 %s 条 %s）"
               % (mv["count"], len(mv["collections"]), mv["verified"], mv["verified_quality"]))
+    if hero:
+        print("主视觉: %s 张 800×800 高清海报（主色 %s 张）" % (hero["count"], hero["hue_ok"]))
+    if streams:
+        print("真播放: %s/%s 首可播 = %s%%（原唱 %s）；真歌词 %s 首；真评论 %s 首"
+              % (streams["hit"], streams["count"], streams["rate"], streams["native"],
+                 lyrics.get("count", 0), comments.get("count", 0)))
     print("已写 data/pool.json / data/charts.json / data/library.json / data/artists.json"
-          + (" / data/mv.json" if mv else ""))
+          + (" / data/mv.json" if mv else "") + (" / data/hero.json" if hero else "")
+          + (" / data/categories.json" if cats else "")
+          + (" / data/streams.json / data/lyrics.json / data/comments.json" if streams else ""))
 
 
 if __name__ == "__main__":
