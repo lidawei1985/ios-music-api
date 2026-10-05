@@ -1,0 +1,71 @@
+name: pool
+
+# 源池自动维护（无人值守 · 全公网）
+#   每 2 小时：体检所有源 → 打分分档 → 自动升降权 → 沉淀自有歌库 → 产出 pool/charts/library
+#   产出物走本仓 + jsDelivr，App 只认自家地址；与本地电脑是否开机无关。
+on:
+  workflow_dispatch:
+    inputs:
+      probes:
+        description: "探针曲数量（默认全部）"
+        required: false
+        default: ""
+      src_ids:
+        description: "参与体检的源（逗号分隔，默认全部）"
+        required: false
+        default: ""
+  schedule:
+    - cron: "17 */2 * * *"     # UTC，每 2 小时第 17 分（避开整点高峰）
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pool-maintenance
+  cancel-in-progress: false
+
+jobs:
+  maintain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 适配器自检（破版预警，不阻断）
+        continue-on-error: true
+        run: python tools/adapters.py 稻香 周杰伦
+
+      - name: 源池维护流水线
+        env:
+          PROBES_LIMIT: ${{ github.event.inputs.probes }}
+          SRC_IDS: ${{ github.event.inputs.src_ids }}
+        run: python tools/build.py
+
+      - name: 产出校验（必须有可播源 + 非空歌库）
+        run: python tools/validate.py
+
+      - name: 入库并发布
+        run: |
+          git config user.name "music-pool-bot"
+          git config user.email "music-pool-bot@users.noreply.github.com"
+          ROUND=$(python -c "import json;print(json.load(open('data/pool.json',encoding='utf-8'))['round'])")
+          git add -A data
+          if git diff --cached --quiet; then
+            echo "无变更"
+          else
+            git commit -m "pool: round ${ROUND} $(date -u '+%Y-%m-%d %H:%M')"
+            git push
+          fi
+
+      - name: 刷新 jsDelivr 缓存（让 App 立刻拿到新池）
+        continue-on-error: true
+        run: |
+          for f in pool.json charts.json library.json; do
+            curl -sS --max-time 25 "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/$f" -o /dev/null \
+              && echo "purged $f" || echo "purge failed $f"
+          done
+          curl -sS --max-time 25 "https://cdn.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/pool.json" | head -c 400

@@ -1,0 +1,450 @@
+{
+ "updated": "2026-10-05T06:42:06Z",
+ "round": 3,
+ "probes": [
+  {
+   "title": "稻香",
+   "singer": "周杰伦"
+  },
+  {
+   "title": "晴天",
+   "singer": "周杰伦"
+  },
+  {
+   "title": "告白气球",
+   "singer": "周杰伦"
+  },
+  {
+   "title": "夜曲",
+   "singer": "周杰伦"
+  },
+  {
+   "title": "小苹果",
+   "singer": "筷子兄弟"
+  },
+  {
+   "title": "海阔天空",
+   "singer": "BEYOND"
+  }
+ ],
+ "order": [
+  "wy",
+  "migu",
+  "bili"
+ ],
+ "hifi": [
+  "wy",
+  "migu"
+ ],
+ "backstop": [
+  "bili"
+ ],
+ "sources": [
+  {
+   "id": "migu",
+   "name": "咪咕音乐",
+   "kind": "platform",
+   "homepage": "https://music.migu.cn/",
+   "role": "hifi",
+   "chain_ok": 0.5,
+   "search_ok": 1.0,
+   "match_ok": 1.0,
+   "latency_ms": 380,
+   "quality_score": 1.0,
+   "ok_count": 3,
+   "total": 6,
+   "note": "VIP 受限（咪咕匿名仅免费曲；回 200002）",
+   "details": [
+    {
+     "t": "告白气球",
+     "s": "周杰伦",
+     "ok": true,
+     "q": "SQ",
+     "ms": 323,
+     "note": "HTTP 206 4096B mp3"
+    },
+    {
+     "t": "夜曲",
+     "s": "周杰伦",
+     "ok": false,
+     "q": null,
+     "ms": 0,
+     "note": "VIP 受限（咪咕匿名仅免费曲；回 200002）"
+    },
+    {
+     "t": "小苹果",
+     "s": "筷子兄弟",
+     "ok": true,
+     "q": "SQ",
+     "ms": 380,
+     "note": "HTTP 206 4096B mp3"
+    },
+    {
+     "t": "晴天",
+     "s": "周杰伦",
+     "ok": false,
+     "q": null,
+     "ms": 0,
+     "note": "VIP 受限（咪咕匿名仅免费曲；回 200002）"
+    },
+    {
+     "t": "海阔天空",
+     "s": "BEYOND",
+     "ok": false,
+     "q": null,
+     "ms": 0,
+     "note": "VIP 受限（咪咕匿名仅免费曲；回 200002）"
+    },
+    {
+     "t": "稻香",
+     "s": "周杰伦",
+     "ok": true,
+     "q": "SQ",
+     "ms": 419,
+     "note": "HTTP 206 4096B mp3"
+    }
+   ],
+   "score": 72.1,
+   "status": "active",
+   "history": [
+    [
+     1791182336,
+     68.6
+    ],
+    [
+     1791182389,
+     84.0
+    ],
+    [
+     1791182512,
+     72.1
+    ]
+   ]
+  },
+  {
+   "id": "bili",
+   "name": "哔哩哔哩",
+   "kind": "platform",
+   "homepage": "https://www.bilibili.com/",
+   "role": "backstop",
+   "chain_ok": 1.0,
+   "search_ok": 1.0,
+   "match_ok": 1.0,
+   "latency_ms": 839,
+   "quality_score": 0.6,
+   "ok_count": 6,
+   "total": 6,
+   "note": "",
+   "details": [
+    {
+     "t": "告白气球",
+     "s": "周杰伦",
+     "ok": true,
+     "q": "319kbps",
+     "ms": 582,
+     "note": "HTTP 206 4096B m4a"
+    },
+    {
+     "t": "夜曲",
+     "s": "周杰伦",
+     "ok": true,
+     "q": "161kbps",
+     "ms": 1066,
+     "note": "HTTP 206 4096B m4a"
+    },
+    {
+     "t": "小苹果",
+     "s": "筷子兄弟",
+     "ok": true,
+     "q": "66kbps",
+     "ms": 731,
+     "note": "HTTP 206 4096B m4a"
+    },
+    {
+     "t": "晴天",
+     "s": "周杰伦",
+     "ok": true,
+     "q": "183kbps",
+     "ms": 989,
+     "note": "HTTP 206 4096B m4a"
+    },
+    {
+     "t": "海阔天空",
+     "s": "BEYOND",
+     "ok": true,
+     "q": "103kbps",
+     "ms": 636,
+     "note": "HTTP 206 4096B m4a"
+    },
+    {
+     "t": "稻香",
+     "s": "周杰伦",
+     "ok": true,
+     "q": "85kbps",
+     "ms": 947,
+     "note": "HTTP 206 4096B m4a"
+    }
+   ],
+   "score": 89.4,
+   "status": "active",
+   "history": [
+    [
+     1791182338,
+     86.2
+    ],
+    [
+     1791182394,
+     90.1
+    ],
+    [
+     1791182513,
+     89.4
+    ]
+   ]
+  },
+  {
+   "id": "wy",
+   "name": "网易云音乐",
+   "kind": "platform",
+   "homepage": "https://music.163.com/",
+   "role": "hifi",
+   "chain_ok": 0.8333333333333334,
+   "search_ok": 1.0,
+   "match_ok": 1.0,
+   "latency_ms": 517,
+   "quality_score": 0.7,
+   "ok_count": 5,
+   "total": 6,
+   "note": "VIP/版权受限（outer 无跳转）",
+   "details": [
+    {
+     "t": "告白气球",
+     "s": "周杰伦",
+     "ok": true,
+     "q": "mp3",
+     "ms": 622,
+     "note": "HTTP 206 4096B mp3"
+    },
+    {
+     "t": "夜曲",
+     "s": "周杰伦",
+     "ok": false,
+     "q": null,
+     "ms": 447,
+     "note": "VIP/版权受限（outer 无跳转）"
+    },
+    {
+     "t": "小苹果",
+     "s": "筷子兄弟",
+     "ok": true,
+     "q": "mp3",
+     "ms": 517,
+     "note": "HTTP 206 4096B mp3"
+    },
+    {
+     "t": "晴天",
+     "s": "周杰伦",
+     "ok": true,
+     "q": "mp3",
+     "ms": 346,
+     "note": "HTTP 206 4096B mp3"
+    },
+    {
+     "t": "海阔天空",
+     "s": "BEYOND",
+     "ok": true,
+     "q": "mp3",
+     "ms": 670,
+     "note": "HTTP 206 4096B mp3"
+    },
+    {
+     "t": "稻香",
+     "s": "周杰伦",
+     "ok": true,
+     "q": "mp3",
+     "ms": 348,
+     "note": "HTTP 206 4096B mp3"
+    }
+   ],
+   "score": 81.8,
+   "status": "active",
+   "history": [
+    [
+     1791182339,
+     79.9
+    ],
+    [
+     1791182398,
+     72.5
+    ],
+    [
+     1791182514,
+     81.8
+    ]
+   ]
+  },
+  {
+   "id": "qq",
+   "name": "QQ音乐",
+   "kind": "platform",
+   "homepage": "https://y.qq.com/",
+   "role": "auth",
+   "chain_ok": 0.0,
+   "search_ok": 1.0,
+   "match_ok": 1.0,
+   "latency_ms": null,
+   "quality_score": 0.0,
+   "ok_count": 0,
+   "total": 6,
+   "note": "result=104003（未登录/需账号）",
+   "details": [
+    {
+     "t": "告白气球",
+     "s": "周杰伦",
+     "ok": false,
+     "q": null,
+     "ms": 621,
+     "note": "result=104003（未登录/需账号）"
+    },
+    {
+     "t": "夜曲",
+     "s": "周杰伦",
+     "ok": false,
+     "q": null,
+     "ms": 475,
+     "note": "取链失败"
+    },
+    {
+     "t": "小苹果",
+     "s": "筷子兄弟",
+     "ok": false,
+     "q": null,
+     "ms": 730,
+     "note": "取链失败"
+    },
+    {
+     "t": "晴天",
+     "s": "周杰伦",
+     "ok": false,
+     "q": null,
+     "ms": 633,
+     "note": "result=104003（未登录/需账号）"
+    },
+    {
+     "t": "海阔天空",
+     "s": "BEYOND",
+     "ok": false,
+     "q": null,
+     "ms": 705,
+     "note": "result=104003（未登录/需账号）"
+    },
+    {
+     "t": "稻香",
+     "s": "周杰伦",
+     "ok": false,
+     "q": null,
+     "ms": 566,
+     "note": "result=104003（未登录/需账号）"
+    }
+   ],
+   "score": 0.2,
+   "status": "needs_auth",
+   "history": [
+    [
+     1791182345,
+     9.0
+    ],
+    [
+     1791182413,
+     1.4
+    ],
+    [
+     1791182520,
+     0.2
+    ]
+   ]
+  },
+  {
+   "id": "kg",
+   "name": "酷狗音乐",
+   "kind": "platform",
+   "homepage": "https://www.kugou.com/",
+   "role": "auth",
+   "chain_ok": 0.0,
+   "search_ok": 1.0,
+   "match_ok": 1.0,
+   "latency_ms": null,
+   "quality_score": 0.0,
+   "ok_count": 0,
+   "total": 6,
+   "note": "err=None（需登录 token）",
+   "details": [
+    {
+     "t": "告白气球",
+     "s": "周杰伦",
+     "ok": false,
+     "q": null,
+     "ms": 764,
+     "note": "err=None（需登录 token）"
+    },
+    {
+     "t": "夜曲",
+     "s": "周杰伦",
+     "ok": false,
+     "q": null,
+     "ms": 736,
+     "note": "err=None（需登录 token）"
+    },
+    {
+     "t": "小苹果",
+     "s": "筷子兄弟",
+     "ok": false,
+     "q": null,
+     "ms": 1054,
+     "note": "err=None（需登录 token）"
+    },
+    {
+     "t": "晴天",
+     "s": "周杰伦",
+     "ok": false,
+     "q": null,
+     "ms": 2205,
+     "note": "err=None（需登录 token）"
+    },
+    {
+     "t": "海阔天空",
+     "s": "BEYOND",
+     "ok": false,
+     "q": null,
+     "ms": 1090,
+     "note": "err=None（需登录 token）"
+    },
+    {
+     "t": "稻香",
+     "s": "周杰伦",
+     "ok": false,
+     "q": null,
+     "ms": 932,
+     "note": "err=None（需登录 token）"
+    }
+   ],
+   "score": 0.2,
+   "status": "needs_auth",
+   "history": [
+    [
+     1791182346,
+     9.0
+    ],
+    [
+     1791182417,
+     1.4
+    ],
+    [
+     1791182522,
+     0.2
+    ]
+   ]
+  }
+ ],
+ "replenish_log": []
+}

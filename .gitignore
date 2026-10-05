@@ -2,3 +2,6 @@
 /probe_result.json
 __pycache__/
 *.pyc
+
+# 一次性诊断脚本（本地取证用，不入库）
+tools/dbg_*.py
