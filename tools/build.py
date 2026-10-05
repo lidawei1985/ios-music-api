@@ -777,11 +777,12 @@ def main():
     print("  —— 真播放链路（可播直链 / 歌词 / 评论）——")
     streams, lyrics, comments = {}, {}, {}
     try:
-        streams = build_streams(charts, cats, hero, lib)
+        # 注意：charts 在 main 里是 list（榜单数组），_collect_songs 需要 {"lists": [...]} 形态
+        streams = build_streams({"lists": charts}, cats, hero, lib)
     except Exception:
         print(traceback.format_exc())
     if streams.get("map"):
-        acc = _collect_songs(charts, cats, hero, lib)
+        acc = _collect_songs({"lists": charts}, cats, hero, lib)
         try:
             lyrics = build_lyrics(acc, streams)
         except Exception:
