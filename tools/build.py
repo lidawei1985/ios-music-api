@@ -364,10 +364,15 @@ def main():
     hifi = [h["id"] for h in active if h["role"] == "hifi"]
     back = [h["id"] for h in active if h["role"] != "hifi"]
     order = hifi + back
+    # 云端机房出口被地域风控时探测会全灭；此时回落到本地家宽实测过的默认序（设备端解析用）。
+    if not order:
+        order = ["wy", "migu", "bili"]
+        print("WARN: 云端探测无 active 源（地域风控），order 回落默认序 " + " -> ".join(order))
     save(os.path.join(DATA, "pool.json"), {
         "updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "round": rnd, "probes": [{"title": t, "singer": s} for t, s in PROBES],
         "order": order,                                   # App 按这个顺序试源（优质优先）
+        "order_source": "probe" if hifi or back else "fallback",
         "hifi": hifi, "backstop": back,
         "sources": results, "replenish_log": replenish,
     })
