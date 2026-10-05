@@ -225,6 +225,78 @@ def build_artists(old, songs, hits):
             "artists": sorted(arts.values(), key=lambda x: (-x.get("seen", 0), x.get("n", "")))}
 
 
+# ------------------------------------------------------------------ 2c) MV / 演唱会
+MV_BUDGET_S = int(os.environ.get("MV_BUDGET_S") or "300")
+# 演唱会/现场 固定关键词（大牌优先，人工精选但由机器执行）
+MV_LIVE_KEYWORDS = ["周杰伦 演唱会 官方", "五月天 演唱会 官方", "陈奕迅 演唱会 官方",
+                    "邓紫棋 演唱会 官方", "林俊杰 演唱会 官方", "TFBOYS 演唱会 官方"]
+
+
+def build_mv(chart_songs):
+    """MV/演唱会类别：B站音乐分区(tid=3)搜索 → 元数据入库 → 抽样验证真能出 1080P 流"""
+    b = A.Bili()
+    t0 = time.time()
+    st = {"budget": 0, "verified": 0, "q": {}}
+
+    def search_all(keywords, limit):
+        seen, items = set(), []
+        for kw in keywords:
+            if time.time() - t0 > MV_BUDGET_S:
+                break
+            try:
+                res = b.search_mv(kw, limit=limit)
+            except Exception:
+                continue
+            for it in res:
+                bv = it["raw"]["bvid"]
+                if bv in seen:
+                    continue
+                seen.add(bv)
+                items.append(it)
+        return items
+
+    def verify(items, n=3):
+        for it in items[:n]:
+            if st["budget"] >= 12 or time.time() - t0 > MV_BUDGET_S:
+                return
+            st["budget"] += 1
+            try:
+                r = b.resolve_mv(it)
+            except Exception:
+                r = None
+            if r:
+                it["q"] = r["quality"]
+                it["wh"] = f"{r['width']}x{r['height']}"
+                st["verified"] += 1
+                st["q"][r["quality"]] = st["q"].get(r["quality"], 0) + 1
+
+    def pack(name, keywords, per_kw, limit=12, verify_n=3):
+        items = search_all(keywords, limit=per_kw)
+        verify(items, verify_n)
+        items = items[:limit]
+        flat = [{"t": x["title"], "a": x["author"], "cov": x["cover"], "dur": x["dur"],
+                 "play": x["play"], "bv": x["raw"]["bvid"], "q": x.get("q", ""), "wh": x.get("wh", "")}
+                for x in items]
+        print(f"  MV[{name}] {len(flat)} 条")
+        return {"name": name, "count": len(flat), "items": flat}
+
+    cols = []
+    if chart_songs:
+        cols.append(pack("热门 MV",
+                         [f"{s['title']} {s['singer'].split('/')[0]} MV" for s in chart_songs[:8]],
+                         per_kw=4, limit=14, verify_n=4))
+        cols.append(pack("现场 LIVE",
+                         [f"{s['title']} {s['singer'].split('/')[0]} 现场 live" for s in chart_songs[8:16]],
+                         per_kw=4, limit=12, verify_n=2))
+    cols.append(pack("演唱会现场", MV_LIVE_KEYWORDS, per_kw=5, limit=16, verify_n=4))
+
+    flat = [x for c in cols for x in c["items"]]
+    return {"updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "collections": cols, "count": len(flat),
+            "verified": st["verified"], "verified_quality": st["q"],
+            "note": "取流关键: fnval=4048&fourk=1&qn=127&try_look=1（否则匿名只回 480P）"}
+
+
 # ------------------------------------------------------------------ main
 def main():
     os.makedirs(DATA, exist_ok=True)
@@ -279,6 +351,13 @@ def main():
 
     lib = build_library(load(os.path.join(DATA, "library.json"), {}), chart_songs[:LIB_MAX], all_hits)
     arts = build_artists(load(os.path.join(DATA, "artists.json"), {}), chart_songs[:LIB_MAX], all_hits)
+    mv = {}
+    if os.environ.get("WITH_MV", "1") != "0":
+        print("  —— MV / 演唱会 ——")
+        try:
+            mv = build_mv(chart_songs[:LIB_MAX])
+        except Exception:
+            print(traceback.format_exc())
 
     active = sorted([h for h in results if h["status"] == "active"], key=lambda x: -x["score"])
     # 试源顺序：高保真曲库源（按分）→ 视频兜底源（按分）。App 依次试，首个可播即播。
@@ -298,12 +377,18 @@ def main():
     })
     save(os.path.join(DATA, "library.json"), lib, indent=None)
     save(os.path.join(DATA, "artists.json"), arts, indent=None)
+    if mv:
+        save(os.path.join(DATA, "mv.json"), mv, indent=None)
 
     summary = ", ".join("%s(%s/%s)" % (h["id"], h["role"], h["score"]) for h in active)
     print("\n试源顺序: " + " → ".join(order) + "   [高保真 " + summary + "]")
     print("自有歌库: %s 首（榜单扫描 %s，新入库 %s）；歌手头像 %s 个；补给日志 %s"
           % (lib["count"], lib["chart_scanned"], lib["chart_new"], arts["count"], replenish))
-    print("已写 data/pool.json / data/charts.json / data/library.json / data/artists.json")
+    if mv:
+        print("MV/演唱会: %s 条（%s 个合集，实测取流通过 %s 条 %s）"
+              % (mv["count"], len(mv["collections"]), mv["verified"], mv["verified_quality"]))
+    print("已写 data/pool.json / data/charts.json / data/library.json / data/artists.json"
+          + (" / data/mv.json" if mv else ""))
 
 
 if __name__ == "__main__":

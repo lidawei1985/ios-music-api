@@ -247,7 +247,8 @@ class Bili:
         if not cid:
             self.last_reason = "无 cid（稿件不可取）"
             return None
-        p = jload(http(f"https://api.bilibili.com/x/player/playurl?bvid={bvid}&cid={cid}&fnval=16&fourk=1", hdr)) or {}
+        p = jload(http(f"https://api.bilibili.com/x/player/playurl?bvid={bvid}&cid={cid}"
+                       "&fnval=4048&fourk=1&qn=127&try_look=1", hdr)) or {}
         au = ((p.get("data") or {}).get("dash") or {}).get("audio") or []
         if not au:
             self.last_reason = "无音频流（仅视频/需登录）"
@@ -258,6 +259,61 @@ class Bili:
             if ok:
                 return {"url": u, "quality": f"{int(a.get('bandwidth', 0)/1000)}kbps", "ext": ext or "m4a", "note": note}
         self.last_reason = "音频流均不可播"
+        return None
+
+    # ---------------------------------------------------------- MV / 演唱会（视频分区）
+    def search_mv(self, keyword, limit=20):
+        """音乐分区(tid=3)搜 MV/现场；返回视频候选（含 bvid/封面/时长/播放量）"""
+        u = ("https://api.bilibili.com/x/web-interface/search/type?search_type=video&tids=3&keyword="
+             + urllib.parse.quote(keyword))
+        vids = ((jload(http(u, self._hdr())) or {}).get("data") or {}).get("result") or []
+        out = []
+        for v in vids[:limit]:
+            pic = v.get("pic") or ""
+            out.append({"src": self.id, "kind": "mv", "title": re.sub(r"<[^>]+>", "", v.get("title") or ""),
+                        "author": v.get("author") or "", "album": "",
+                        "cover": ("https:" + pic) if pic.startswith("//") else pic,
+                        "dur": v.get("duration"), "play": v.get("play"),
+                        "raw": {"bvid": v.get("bvid")}})
+        return out
+
+    # MV 清晰度优先级（数字越大越高）
+    MV_QN = {120: "4K", 116: "1080P60", 112: "1080P+", 80: "1080P", 74: "720P60",
+             64: "720P", 32: "480P", 16: "360P", 6: "240P"}
+    # 取高清晰度的关键：try_look=1（否则匿名只回 480P）
+    MV_FNVAL = "fnval=4048&fourk=1&qn=127&try_look=1"
+
+    def resolve_mv(self, item, min_h=720):
+        """取 MV 视频+音频双流（匿名实测可到 1080P）。返回 video/audio 两个地址。"""
+        hdr = self._hdr()
+        bvid = item["raw"].get("bvid")
+        v = jload(http(f"https://api.bilibili.com/x/web-interface/view?bvid={bvid}", hdr)) or {}
+        d = v.get("data") or {}
+        cid = d.get("cid")
+        if not cid:
+            self.last_reason = "无 cid"
+            return None
+        p = jload(http(f"https://api.bilibili.com/x/player/playurl?bvid={bvid}&cid={cid}&{self.MV_FNVAL}", hdr)) or {}
+        dash = (p.get("data") or {}).get("dash") or {}
+        vs = sorted(dash.get("video") or [], key=lambda x: (x.get("id", 0), x.get("bandwidth", 0)), reverse=True)
+        au = sorted(dash.get("audio") or [], key=lambda x: x.get("bandwidth", 0), reverse=True)
+        if not vs or not au:
+            self.last_reason = "无 DASH 流"
+            return None
+        for vv in vs:
+            if vv.get("id", 0) < (80 if min_h >= 1080 else 64):
+                continue
+            vu = vv.get("baseUrl") or vv.get("base_url")
+            r = http(vu, {"Range": "bytes=0-4095", "Referer": "https://www.bilibili.com/"}, read=4096)
+            if r["status"] in (200, 206) and (r["body"][4:8] == b"ftyp" or len(r["body"]) > 1024):
+                a = au[0]
+                auu = a.get("baseUrl") or a.get("base_url")
+                return {"video": vu, "audio": auu,
+                        "quality": self.MV_QN.get(vv.get("id"), str(vv.get("id"))),
+                        "width": vv.get("width"), "height": vv.get("height"),
+                        "dur": d.get("duration"), "cover": d.get("pic", ""),
+                        "note": f"HTTP {r['status']} {self.MV_QN.get(vv.get('id'),'?')}"}
+        self.last_reason = "无达标清晰度流"
         return None
 
 
@@ -431,15 +487,16 @@ def qq_toplist(topid, name, limit=100):
     out = []
     for x in (j.get("songlist") or []):
         d = x.get("data") or {}
-        alb = d.get("album") or {}
-        mid = alb.get("mid") or ""
+        mid = d.get("albummid") or (d.get("album") or {}).get("mid") or ""
         singers = d.get("singer") or []
         out.append({"title": d.get("songname", ""),
                     "singer": "/".join(g.get("name", "") for g in singers),
                     "singers": [{"name": g.get("name"), "mid": g.get("mid")} for g in singers],
-                    "album": alb.get("name", ""), "duration": d.get("interval"),
+                    "album": d.get("albumname") or (d.get("album") or {}).get("name", ""),
+                    "duration": d.get("interval"),
                     "cover": f"https://y.gtimg.cn/music/photo_new/T002R500x500M000{mid}.jpg" if mid else "",
-                    "mid": d.get("songmid"), "rank": x.get("cur_count") or len(out) + 1})
+                    "mid": d.get("songmid"), "albummid": mid, "vid": d.get("vid") or "",
+                    "rank": x.get("cur_count") or len(out) + 1})
     return {"topid": topid, "name": name, "count": len(out), "songs": out}
 
 
