@@ -1,0 +1,271 @@
+{
+ "dns": {
+  "c.y.qq.com": {
+   "ok": true,
+   "ips": [
+    "129.226.103.11",
+    "129.226.103.212"
+   ],
+   "ms": 210
+  },
+  "u.y.qq.com": {
+   "ok": true,
+   "ips": [
+    "203.205.255.185"
+   ],
+   "ms": 331
+  },
+  "y.gtimg.cn": {
+   "ok": true,
+   "ips": [
+    "23.209.84.25",
+    "23.209.84.53"
+   ],
+   "ms": 444
+  },
+  "dl.stream.qqmusic.qq.com": {
+   "ok": true,
+   "ips": [
+    "116.162.172.55",
+    "124.163.205.192",
+    "211.93.212.116",
+    "218.25.106.139"
+   ],
+   "ms": 832
+  },
+  "isure.stream.qqmusic.qq.com": {
+   "ok": true,
+   "ips": [
+    "101.33.21.193"
+   ],
+   "ms": 281
+  },
+  "ws.stream.qqmusic.qq.com": {
+   "ok": true,
+   "ips": [
+    "101.33.21.193"
+   ],
+   "ms": 281
+  },
+  "mobilecdn.kugou.com": {
+   "ok": true,
+   "ips": [
+    "101.33.20.158",
+    "101.33.20.216",
+    "43.146.100.60",
+    "43.146.100.78"
+   ],
+   "ms": 660
+  },
+  "m.kugou.com": {
+   "ok": true,
+   "ips": [
+    "38.84.164.133",
+    "38.84.164.134"
+   ],
+   "ms": 1107
+  },
+  "music.163.com": {
+   "ok": true,
+   "ips": [
+    "103.135.240.77",
+    "103.135.240.78"
+   ],
+   "ms": 425
+  },
+  "api.bilibili.com": {
+   "ok": true,
+   "ips": [
+    "148.153.45.10",
+    "148.153.46.90",
+    "148.153.56.162",
+    "148.153.56.163"
+   ],
+   "ms": 121
+  }
+ },
+ "http": [
+  {
+   "name": "qq-search",
+   "status": 500,
+   "ms": 5865,
+   "err": null,
+   "bytes": 0,
+   "head": ""
+  },
+  {
+   "name": "qq-chart",
+   "status": 200,
+   "ms": 898,
+   "err": null,
+   "bytes": 9142,
+   "head": " {\"code\":0,\"color\":0,\"comment_num\":54135,\"cur_song_num\":10,\"date\":\"2026-10-05\",\"day_of_year\":\"278\",\"song_begin"
+  },
+  {
+   "name": "qq-hotkey",
+   "status": 200,
+   "ms": 865,
+   "err": null,
+   "bytes": 824,
+   "head": "{\"code\":0,\"data\":{\"hotkey\":[{\"k\":\"我们的歌 \",\"n\":765562},{\"k\":\"冰雪奇缘2 \",\"n\":587404},{\"k\":\"张杰 \",\"n\":323823},{\"k\":\"桥边"
+  },
+  {
+   "name": "qq-lyric",
+   "status": 200,
+   "ms": 839,
+   "err": null,
+   "bytes": 1359,
+   "head": "{\"retcode\":0,\"code\":0,\"subcode\":0,\"lyric\":\"[ti:告白气球]\\n[ar:周杰伦]\\n[al:周杰伦的床边故事]\\n[by:]\\n[offset:0]\\n[00:00.00]告白"
+  },
+  {
+   "name": "qq-uapi",
+   "status": 200,
+   "ms": 890,
+   "err": null,
+   "bytes": 88,
+   "head": "{\"code\":500001,\"ts\":1791181528227,\"start_ts\":1791181528227,\"traceid\":\"77604e59866d493e\"}"
+  },
+  {
+   "name": "kg-search",
+   "status": 200,
+   "ms": 733,
+   "err": null,
+   "bytes": 6861,
+   "head": "{\"status\":1,\"errcode\":0,\"data\":{\"timestamp\":1791181527,\"tab\":\"全部\",\"forcecorrection\":0,\"correctiontype\":0,\"tota"
+  },
+  {
+   "name": "kg-singer",
+   "status": 200,
+   "ms": 838,
+   "err": null,
+   "bytes": 471,
+   "head": "{\"status\":1,\"errcode\":0,\"data\":[{\"singername\":\"周杰伦\",\"singerid\":3520},{\"singername\":\"十分想见周杰伦\",\"singerid\":735128"
+  },
+  {
+   "name": "wy-search",
+   "status": 200,
+   "ms": 1024,
+   "err": null,
+   "bytes": 2216,
+   "head": "{\"result\":{\"songs\":[{\"album\":{\"publishTime\":1732636800000,\"size\":1,\"artist\":{\"img1v1Url\":\"https://p2.music.126"
+  },
+  {
+   "name": "bilisearch",
+   "status": 412,
+   "ms": 445,
+   "err": null,
+   "bytes": 1954,
+   "head": "<!DOCTYPE html> <html lang=\"zh-cn\">  <head>     <meta http-equiv=\"Access-Control-Allow-Origin\" content=\"*\" /> "
+  },
+  {
+   "name": "migu",
+   "status": 200,
+   "ms": 1980,
+   "err": null,
+   "bytes": 1602,
+   "head": "<!doctype html><html lang=zh-CN><head><meta charset=utf-8><meta http-equiv=Expires content=0><meta http-equiv="
+  },
+  {
+   "name": "jsdelivr",
+   "status": 200,
+   "ms": 1622,
+   "err": null,
+   "bytes": 722,
+   "head": "# ios-tv-api — IOS3APP 自有电视剧公网 API  **架构铁律（用户钦定 2026-09-20）**：第三方 CMS 资源站只是原料，必须经本引擎采集→过滤→归一后 以自有 API 发布；App 端"
+  },
+  {
+   "name": "purge",
+   "status": 200,
+   "ms": 905,
+   "err": null,
+   "bytes": 266,
+   "head": "{   \"id\": \"KtxwxqxbwiWw4HO2\",   \"status\": \"finished\",   \"timestamp\": \"2026-10-05T06:25:28.144Z\",   \"paths\": { "
+  }
+ ],
+ "chain": {
+  "QQ": {
+   "steps": [
+    {
+     "step": "search",
+     "status": 500,
+     "ms": 5718,
+     "err": null
+    }
+   ]
+  },
+  "酷狗": {
+   "steps": [
+    {
+     "step": "search",
+     "status": 200,
+     "ms": 363,
+     "err": null
+    },
+    {
+     "step": "getSongInfo",
+     "status": 200,
+     "ms": 739,
+     "url": "",
+     "keys": [
+      "authors",
+      "hash",
+      "author_name",
+      "imgUrl",
+      "status",
+      "audio_id",
+      "ctype",
+      "errcode"
+     ]
+    },
+    {
+     "step": "yy/getdata",
+     "status": 200,
+     "ms": 5430,
+     "url": "",
+     "keys": [
+      "data",
+      "status",
+      "err_code"
+     ]
+    }
+   ],
+   "song": {
+    "hash": "8909e1809908cd8e3bf6cf85d98b93f0",
+    "title": "稻香",
+    "singer": "周杰伦",
+    "album_id": "960399",
+    "album_img": ""
+   }
+  },
+  "网易云": {
+   "steps": [
+    {
+     "step": "search",
+     "status": 200,
+     "ms": 832,
+     "err": null
+    },
+    {
+     "step": "player/url(匿名)",
+     "status": 200,
+     "ms": 663,
+     "url": "None",
+     "code": 404,
+     "reason": null
+    }
+   ],
+   "song": {
+    "id": 2651425710,
+    "name": "稻香(深情版)",
+    "singer": "Lucky小爱"
+   }
+  }
+ },
+ "summary": {
+  "dns_ok": 10,
+  "dns_total": 10,
+  "http_ok": 10,
+  "http_total": 12,
+  "direct_link_ok": []
+ }
+}
