@@ -1,0 +1,4 @@
+# 运行时产物（根目录副本不入库，正式产物在 data/）
+/probe_result.json
+__pycache__/
+*.pyc

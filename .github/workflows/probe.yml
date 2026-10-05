@@ -1,0 +1,33 @@
+name: probe
+
+# 一次性/手动触发的公网连通性 & 真取链验证。不参与日常维护。
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 公网连通性 & 真取链验证（纯标准库）
+        run: python tools/probe.py
+
+      - name: 结果入库
+        run: |
+          git config user.name "music-pool-bot"
+          git config user.email "music-pool-bot@users.noreply.github.com"
+          mkdir -p data
+          cp probe_result.json data/probe_result.json
+          git add data/probe_result.json
+          git diff --cached --quiet && echo "no changes" && exit 0
+          git commit -m "probe: $(date -u '+%Y-%m-%d %H:%M')"
+          git push
