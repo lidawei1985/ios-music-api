@@ -15,7 +15,11 @@ on:
         required: false
         default: ""
   schedule:
-    - cron: "17 */2 * * *"     # UTC，每 2 小时第 17 分（避开整点高峰）
+    # UTC，每 2 小时窗口内挂 3 个偏移：GitHub 定时投递实测只有 ~1/6 命中，
+    # 单偏移会漏轮（10-06 00:11Z 后连续 6 小时无轮次）。冗余偏移 + 新鲜度守卫防重复。
+    - cron: "17 */2 * * *"
+    - cron: "37 */2 * * *"
+    - cron: "57 */2 * * *"
 
 permissions:
   contents: write
@@ -42,7 +46,26 @@ jobs:
         continue-on-error: true
         run: python tools/adapters.py 稻香 周杰伦
 
+      - name: 新鲜度守卫（上轮数据 <70 分钟则跳过本轮，防冗余偏移重复跑）
+        id: fresh
+        run: |
+          python - <<'PY'
+          import json, os, datetime
+          skip = False
+          try:
+              u = json.load(open('data/streams.json', encoding='utf-8')).get('updated', '')
+              t = datetime.datetime.strptime(u, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=datetime.timezone.utc)
+              age = (datetime.datetime.now(datetime.timezone.utc) - t).total_seconds() / 60
+              skip = age < 70
+              print(f'上轮数据 {age:.0f} 分钟前 -> {"跳过" if skip else "开跑"}')
+          except Exception as e:
+              print('守卫读取失败，照常跑:', e)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write('skip=%s\n' % ('true' if skip else 'false'))
+          PY
+
       - name: 源池维护流水线
+        if: github.event_name == 'workflow_dispatch' || steps.fresh.outputs.skip != 'true'
         env:
           PROBES_LIMIT: ${{ github.event.inputs.probes }}
           SRC_IDS: ${{ github.event.inputs.src_ids }}
@@ -50,6 +73,7 @@ jobs:
         run: python tools/build.py
 
       - name: 产出校验（必须有可播源 + 非空歌库 + 主视觉≥20）
+        if: github.event_name == 'workflow_dispatch' || steps.fresh.outputs.skip != 'true'
         run: python tools/validate.py
 
       - name: 入库并发布
