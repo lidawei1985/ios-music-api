@@ -5,3 +5,8 @@ __pycache__/
 
 # 一次性诊断脚本（本地取证用，不入库）
 tools/dbg_*.py
+
+# harvest 运行时状态（几百 MB，绝不入库；打包产物 shard/idx/manifest 才入库）
+data/catalog/_*.json
+data/catalog/_songs.jsonl
+data/catalog/_songs_raw.jsonl

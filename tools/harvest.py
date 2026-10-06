@@ -33,9 +33,16 @@ HDR = {"User-Agent": UA, "Referer": "https://music.163.com/",
 
 WORKERS = int(os.environ.get("HV_WORKERS") or "8")
 PAGES = int(os.environ.get("HV_PAGES") or "12")
-MIN_PL_TRACKS = int(os.environ.get("HV_MIN_TRACKS") or "50")
-MAX_PLAYLISTS = int(os.environ.get("HV_MAX_PLAYLISTS") or "9000")
-TARGET_IDS = int(os.environ.get("HV_TARGET_IDS") or "260000")
+# ★ 2026-10-06 修正（实测证据）：原 MIN_PL_TRACKS=50 会把「陈奕迅精选 35 首」这类
+#   高质量歌单整条过滤掉，只留下曲目数最多的「有声书合辑 / 素材库」（Bookstream 一家 1800 首）。
+#   降到 20 后热门精选歌单才进得来 —— 热门池实测热度≥40 占比 73%（旧池仅 10%）。
+MIN_PL_TRACKS = int(os.environ.get("HV_MIN_TRACKS") or "20")
+MAX_PLAYLISTS = int(os.environ.get("HV_MAX_PLAYLISTS") or "50000")
+# 参与枚举的排序：hot=按播放量（真热门歌单），new=最新（兜底新鲜度）
+ENUM_ORDERS = [o for o in (os.environ.get("HV_ENUM_ORDERS") or "hot").split(",") if o]
+# ★ 同上：必须先按 playCount 选，再按曲目数；旧的 (-n, -play) 等于优先选垃圾合辑
+SORT_BY_PLAY = (os.environ.get("HV_SORT") or "play").lower() == "play"
+TARGET_IDS = int(os.environ.get("HV_TARGET_IDS") or "600000")
 
 
 def log(*a):
@@ -80,9 +87,13 @@ def cmd_enum():
         n = s.get("name") if isinstance(s, dict) else str(s)
         if n and n not in subs:
             subs.append(n)
-    log("分类数 =", len(subs))
+    only = os.environ.get("HV_CATS")
+    if only:
+        want = [x.strip() for x in only.split(",") if x.strip()]
+        subs = [s for s in subs if s in want] or want
+    log("分类数 =", len(subs), "排序 =", ENUM_ORDERS)
 
-    jobs = [(sub, order, off) for sub in subs for order in ("hot", "new")
+    jobs = [(sub, order, off) for sub in subs for order in ENUM_ORDERS
             for off in range(0, PAGES * 60, 60)]
     log("枚举页数 = %d" % len(jobs))
     seen, pls = set(), []
@@ -99,11 +110,31 @@ def cmd_enum():
             if len(pls) >= MAX_PLAYLISTS:
                 break
 
-    pls.sort(key=lambda x: (-x["n"], -x["play"]))
+    # 与已有池合并（不丢历史歌单，其 trackIds 已入库）
+    old = {}
+    if os.path.exists(PL_FILE):
+        try:
+            for p in json.load(open(PL_FILE, encoding="utf-8")).get("playlists") or []:
+                old[p["id"]] = p
+        except Exception:
+            pass
+    for p in pls:
+        old.setdefault(p["id"], p)
+    hist_cnt = len(old)
+    merged = list(old.values())
+    merged.sort(key=(lambda x: (-x.get("play", 0), -x.get("n", 0))) if SORT_BY_PLAY
+                else (lambda x: (-x.get("n", 0), -x.get("play", 0))))
+
+    plays = sorted(p.get("play", 0) for p in merged)
+    q = lambda p: plays[min(len(plays) - 1, int(len(plays) * p))] if plays else 0
     json.dump({"updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-               "count": len(pls), "playlists": pls},
+               "count": len(merged), "sortedBy": "play" if SORT_BY_PLAY else "tracks",
+               "playlists": merged},
               open(PL_FILE, "w", encoding="utf-8"), ensure_ascii=False)
-    log("歌单池 %d 个，曲目理论上限 %d → %.0fs" % (len(pls), sum(p["n"] for p in pls), time.time() - t0))
+    log("歌单池 %d 个（本轮枚举 %d，历史 %d）曲目理论上限 %d"
+        % (len(merged), len(pls), hist_cnt, sum(p["n"] for p in merged)))
+    log("播放量分位 p10=%d p50=%d p90=%d ｜ 排序依据=%s ｜ %.0fs"
+        % (q(.1), q(.5), q(.9), "播放量" if SORT_BY_PLAY else "曲目数", time.time() - t0))
 
 
 # ---------------------------------------------------------------- ids
@@ -278,8 +309,11 @@ SKIP_FEE = {1, 4}       # 1=VIP 专享、4=需购买专辑：匿名不可播，�
 SHARD = 1000            # 每片 1000 首（按需拉取粒度）
 IDX_CHUNK = 40000       # 每个索引块 4 万行
 SEP = "\u0001"          # 行内分隔符（不可打印，不会出现在歌名里）
-KEEP = int(os.environ.get("HV_KEEP") or "250000")   # 只保留评分最高的 N 首
-MIN_POP = int(os.environ.get("HV_MIN_POP") or "0")  # 热度硬地板（0 = 只按相对排名截断）
+KEEP = int(os.environ.get("HV_KEEP") or "260000")   # 只保留评分最高的 N 首
+# ★ 2026-10-06 实测：热度地板必须 >0，否则灌进来的是「有声书/播客/白噪音/素材库」深水。
+#   实测 pop=5~9 的 8 万首抽样：Bookstream 有声书一家 1800 首、Power Yoga Nature Sounds、
+#   X-Ray Dog 素材库 1571 首 —— 无一是歌。地板 10 时抽样 20 首全为真歌（林忆莲/甄妮/Lenka…）。
+MIN_POP = int(os.environ.get("HV_MIN_POP") or "10")  # 热度硬地板
 MIN_DUR = 30000         # 30 秒以下多为过场/语音，不是歌
 MAX_DUR = int(os.environ.get("HV_MAX_DUR") or "900000")   # 15 分钟以上多为组曲/有声书
 NAME_MAX = 80           # 歌名超长的多是「曲目+选段+指挥+乐团」全堆一块的灌水
@@ -289,10 +323,18 @@ ARTIST_MAX = 60
 # 翻唱/伴奏/DJ 版/铃声/助眠白噪音/清唱哼唱……一律不要；
 # 实力歌手（候选池里有 >= STRONG_N 首 pop>=30 的歌）全碟收录（pop>=POP_EST），
 # 陌生歌手必须 pop>=POP_NEW（爆款才给进门）——宁缺毋滥。
+# 2026-10-06 追加「非歌曲内容」一档：有声书/播客/朗读/电台剧/瑜伽冥想/素材库配乐。
+#   证据：线上 13 万曲库 61% 是 pop=5~9，抽样 25 首里 20 首是德语有声书
+#   （Kapitel 1: … Teil 188 — Audio Media Digital Hörbücher）与助眠/冥想音轨；
+#   而 pop≥70 抽样 15 首全是真歌（周笔畅/山下達郎/Olivia Rodrigo）——所以非歌曲必须单独挡。
 JUNK_RE = re.compile(
     r"翻唱|cover|伴奏|instrumental|dj版|抖音|铃声|纯音乐|钢琴版|吉他版|尤克里里|八音盒|"
     r"口琴|陶笛|葫芦丝|萨克斯|二胡|古筝|电子琴|哼唱|清唱|翻自|ktv|慢速|加速|降调|升调|"
-    r"remix|八轨|和声版|消音|立体声环绕|睡眠|白噪音|胎教|助眠|asmr|钢琴曲|轻音乐", re.I)
+    r"remix|八轨|和声版|消音|立体声环绕|睡眠|白噪音|胎教|助眠|asmr|钢琴曲|轻音乐|"
+    r"audiobook|audio\s*book|bookstream|朗读|有声书|有声剧|播客|podcast|广播剧|"
+    r"chapter\s*\d|kapitel\s*\d|teil\s*\d|episode\s*\d|电台剧|朗读版|"
+    r"nature\s*sound|yoga|meditation|spa\s*music|white\s*noise|rain\s*sound|"
+    r"素材|production\s*music|trailer\s*music|背景音乐|彩铃", re.I)
 STRONG_N = int(os.environ.get("HV_STRONG_N") or "5")
 POP_EST = int(os.environ.get("HV_POP_EST") or "10")
 POP_NEW = int(os.environ.get("HV_POP_NEW") or "40")
@@ -323,7 +365,8 @@ def _norm(s):
     return "".join(ch for ch in s if ch not in " \t\r\n-_（）()[]【】·,.，。'\"!！?？~～&")
 
 
-def cmd_pack():
+def load_candidates():
+    """读 _songs.jsonl → 去重 + 剔除不可播（VIP/无版权/过短）。返回 {id: song}"""
     songs, drop = {}, {"字段不全": 0, "付费不可播": 0, "无版权下架": 0, "时长过短": 0, "热度不足": 0}
     for line in open(SONGS_FILE, encoding="utf-8"):
         try:
@@ -349,16 +392,17 @@ def cmd_pack():
                 continue
             if sid not in songs or (s.get("pop") or 0) > (songs[sid].get("pop") or 0):
                 songs[sid] = s
-    log("候选唯一曲目 %d ｜ 已剔除：%s"
-        % (len(songs), "、".join("%s %d" % (k, v) for k, v in drop.items() if v)))
+    return songs, drop
 
-    # ---- 质量闸门：歌手实力分档 + 翻唱/伴奏黑名单 ----
+
+def apply_gate(songs):
+    """质量闸门：歌手实力分档 + 垃圾黑名单。返回 (通过的歌, 实力歌手集合, 剔除明细)"""
     strong_cnt = {}
     for s in songs.values():
         if (s.get("pop") or 0) >= 30:
             strong_cnt[s["a"]] = strong_cnt.get(s["a"], 0) + 1
     strong = {a for a, c in strong_cnt.items() if c >= STRONG_N}
-    songs2, drop2 = {}, {"翻唱伴奏黑名单": 0, "无名低热": 0, "时长超限": 0, "名字异常": 0}
+    out, drop2 = {}, {"翻唱伴奏黑名单": 0, "无名低热": 0, "时长超限": 0, "名字异常": 0}
     for sid, s in songs.items():
         t, a = s.get("n") or "", s.get("a") or ""
         if JUNK_RE.search(t) or JUNK_RE.search(a):
@@ -374,7 +418,39 @@ def cmd_pack():
         if (s.get("pop") or 0) < floor:
             drop2["无名低热"] += 1
             continue
-        songs2[sid] = s
+        out[sid] = s
+    return out, strong, drop2
+
+
+def cmd_stat():
+    """只统计不打包：给 CI 判断「是否长够了新料」。结果同时写 GITHUB_OUTPUT"""
+    songs, drop = load_candidates()
+    kept, strong, drop2 = apply_gate(songs)
+    man = {}
+    try:
+        man = json.load(open(os.path.join(CAT, "manifest.json"), encoding="utf-8"))
+    except Exception:
+        pass
+    cur = man.get("count") or 0
+    log("候选 %d ｜ 过闸门 %d 首 ｜ 线上现有 %d 首 ｜ 增量 %d"
+        % (len(songs), len(kept), cur, len(kept) - cur))
+    log("剔除：%s ｜ %s"
+        % ("、".join("%s %d" % (k, v) for k, v in drop.items() if v),
+           "、".join("%s %d" % (k, v) for k, v in drop2.items() if v)))
+    out = os.environ.get("GITHUB_OUTPUT")
+    if out:
+        with open(out, "a") as f:
+            f.write("pass=%d\n" % len(kept))
+            f.write("current=%d\n" % cur)
+            f.write("grown=%d\n" % (len(kept) - cur))
+
+
+def cmd_pack():
+    songs, drop = load_candidates()
+    log("候选唯一曲目 %d ｜ 已剔除：%s"
+        % (len(songs), "、".join("%s %d" % (k, v) for k, v in drop.items() if v)))
+
+    songs2, strong, drop2 = apply_gate(songs)
     log("质量闸门：%d → %d 首（实力歌手 %d 人；剔除：%s）"
         % (len(songs), len(songs2), len(strong),
            "、".join("%s %d" % (k, v) for k, v in drop2.items() if v)))
@@ -394,6 +470,11 @@ def cmd_pack():
         log("入库 %d 首 ｜ 热度分位 p10=%d p50=%d p90=%d ｜ 近一年新歌 %d 首"
             % (len(arr), q(0.10), q(0.50), q(0.90),
                sum(1 for x in arr if (now_ms - (x.get("pt") or 0)) < 365.25 * 24 * 3600 * 1000)))
+        band = lambda lo, hi: sum(1 for p in pops if lo <= p < hi)
+        log("分层：热门(pop≥70) %d ｜ 40-69 %d ｜ 25-39 %d ｜ 10-24 %d"
+            % (band(70, 101), band(40, 70), band(25, 40), band(10, 25)))
+        log("歌手 %d 位 ｜ 曲库容量 %.1f MB(预估)"
+            % (len({x["a"] for x in arr}), len(arr) * 215 / 1048576))
 
     os.makedirs(CAT, exist_ok=True)
     for old in os.listdir(CAT):
@@ -453,4 +534,4 @@ def cmd_pack():
 if __name__ == "__main__":
     cmd = (sys.argv[1] if len(sys.argv) > 1 else "enum").lower()
     {"enum": cmd_enum, "ids": cmd_ids, "artists": cmd_artists,
-     "songs": cmd_songs, "pack": cmd_pack}[cmd]()
+     "songs": cmd_songs, "pack": cmd_pack, "stat": cmd_stat}[cmd]()

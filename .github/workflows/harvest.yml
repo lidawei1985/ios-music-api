@@ -1,0 +1,177 @@
+name: harvest
+
+# 曲库自动扩容 + 自愈（无人值守 · 全 GitHub 侧，与本地电脑是否开机无关）
+#
+# 实测依据（2026-10-06）：
+#   1) 网易云接口从 GitHub runner **完全可达**（分类 70 / 歌单列表 / trackIds / song-detail 全通）；
+#   2) 真正的垃圾来源是「按歌单曲目数选歌单」——有声书合辑/素材库曲目最多。
+#      改按**播放量**选歌单后：热门池热度≥40 占比 73%（旧池仅 10%），垃圾命中 4%（旧池 13%）。
+#   3) 线上 13 万库里 61% 是 pop=5~9（有声书/播客/白噪音/素材库），体检不过 → 本流水线会自愈重打包。
+#
+# 每轮的活：枚举热门歌单 → 拉 trackIds → 拉元数据 → 统计 → 体检（不合格或长够料才重打包）→ 入库
+on:
+  workflow_dispatch:
+    inputs:
+      force_pack:
+        description: "强制重新打包（忽略增长阈值）"
+        required: false
+        default: "false"
+      pages:
+        description: "每分类枚举页数（每页 60 个歌单）"
+        required: false
+        default: "8"
+  schedule:
+    - cron: "23 */6 * * *"
+    - cron: "53 */6 * * *"
+
+permissions:
+  contents: write
+  actions: write          # 清理旧 cache 需要
+
+concurrency:
+  group: pool-maintenance  # 与 pool 同组串行，避免同时 push 互相撞车
+  cancel-in-progress: false
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      HV_WORKERS: "12"
+      HV_PAGES: ${{ github.event.inputs.pages || '8' }}
+      HV_ENUM_ORDERS: "hot"          # 只取热门排序（真歌来源）
+      HV_MIN_TRACKS: "20"            # 歌单门槛 20 首（50 会漏掉精选歌单）
+      HV_MAX_PLAYLISTS: "20000"
+      HV_SORT: "play"
+      HV_KEEP: "260000"
+      HV_MIN_POP: "10"               # 热度地板：实测 pop=5 全是有声书/白噪音
+      HV_STRONG_N: "5"
+      HV_POP_EST: "10"
+      HV_POP_NEW: "40"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 恢复 harvest 采集状态（歌单池 / trackIds / 元数据）
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/catalog/_playlists.json
+            data/catalog/_ids.json
+            data/catalog/_songs.jsonl
+            data/catalog/_artist_ids.json
+          key: harvest-state-v2-${{ github.run_id }}
+          restore-keys: |
+            harvest-state-v2-
+
+      - name: 采集状态盘点（缓存是否命中）
+        run: |
+          for f in _playlists.json _ids.json _songs.jsonl; do
+            p="data/catalog/$f"
+            if [ -f "$p" ]; then echo "$f $(du -h $p | cut -f1)"; else echo "$f 缺失（首次全量）"; fi
+          done
+
+      - name: 接口可达性自检（破版预警，不阻断）
+        continue-on-error: true
+        run: |
+          python - <<'PY'
+          import json, urllib.request, ssl
+          ctx = ssl.create_default_context(); ctx.check_hostname=False; ctx.verify_mode=ssl.CERT_NONE
+          H = {"User-Agent": "Mozilla/5.0", "Referer": "https://music.163.com/"}
+          req = urllib.request.Request("https://music.163.com/api/playlist/catalogue", headers=H)
+          d = json.load(urllib.request.urlopen(req, timeout=25, context=ctx))
+          print("网易云可达，分类数 =", len(d.get("sub") or []))
+          PY
+
+      - name: ① 枚举热门歌单（按播放量）
+        run: python tools/harvest.py enum
+
+      - name: ② 拉全量 trackIds
+        run: python tools/harvest.py ids
+
+      - name: ③ 拉曲目元数据（热度/发行时间/封面/付费标记）
+        run: python tools/harvest.py songs
+
+      - name: ④ 统计增量（过闸门多少首 vs 线上现有）
+        id: stat
+        run: python tools/harvest.py stat
+
+      - name: ⑤ 决定是否需要重打包（现有库体检不过 → 自愈；或长够新料 → 增量）
+        id: need
+        run: |
+          set +e
+          python tools/catalog_verify.py data/catalog > /tmp/verify.log 2>&1
+          V=$?
+          echo "----- 现有库体检（退出码 $V）-----"; cat /tmp/verify.log
+          P="${{ steps.stat.outputs.pass }}"; C="${{ steps.stat.outputs.current }}"
+          P=${P:-0}; C=${C:-0}
+          D=$((P - C))
+          PACK=0
+          if [ "$V" -ne 0 ]; then
+            echo "结论：现有库体检不通过 → 触发自愈重打包"
+            PACK=1
+          elif [ "$D" -ge 3000 ]; then
+            echo "结论：过闸门 $P 首 vs 线上 $C 首（+$D）→ 增量重打包"
+            PACK=1
+          elif [ "${{ github.event.inputs.force_pack }}" = "true" ]; then
+            echo "结论：手动强制重打包"
+            PACK=1
+          else
+            echo "结论：仅积累采集状态（增量 $D < 3000），本轮不发布"
+          fi
+          echo "pack=$PACK" >> $GITHUB_OUTPUT
+
+      - name: ⑥ 打包曲库（归一 + 质量闸门 + 分片 + 搜索索引）
+        if: steps.need.outputs.pack == '1'
+        run: python tools/harvest.py pack
+
+      - name: ⑦ 发布前体检（不合格直接阻断）
+        if: steps.need.outputs.pack == '1'
+        run: python tools/catalog_verify.py data/catalog
+
+      - name: ⑧ 入库并发布
+        if: steps.need.outputs.pack == '1'
+        run: |
+          git config user.name "music-pool-bot"
+          git config user.email "music-pool-bot@users.noreply.github.com"
+          CNT=$(python -c "import json;print(json.load(open('data/catalog/manifest.json',encoding='utf-8'))['count'])")
+          git add -A data/catalog
+          if git diff --cached --quiet; then
+            echo "曲库无变更"
+          else
+            git commit -m "曲库 ${CNT} 首：热门歌单扩容 + 质量闸门（p50 热度见体检）$(date -u '+%Y-%m-%d %H:%M')"
+            git push
+            echo "已发布 ${CNT} 首"
+          fi
+
+      - name: ⑨ 刷新 jsDelivr 缓存（让 App 立刻拿到新曲库）
+        if: steps.need.outputs.pack == '1'
+        continue-on-error: true
+        run: |
+          curl -sS --max-time 30 "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/catalog/" -o /dev/null \
+            && echo "purged catalog/" || echo "purge dir failed"
+          for f in data/catalog/manifest.json data/catalog/manifest.js; do
+            [ -f "$f" ] || continue
+            curl -sS --max-time 20 "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/${f}" -o /dev/null \
+              && echo "purged $f" || echo "purge failed $f"
+          done
+          N=0
+          for f in data/catalog/shard-*.json data/catalog/idx-*.txt; do
+            curl -sS --max-time 20 "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/${f}" -o /dev/null || true
+            N=$((N+1))
+          done
+          echo "已刷新 $N 个分片/索引"
+
+      - name: ⑩ 清理 7 天前的旧采集缓存（防止 10GB 配额被占满）
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          CUT=$(date -u -d '7 days ago' '+%Y-%m-%dT%H:%M:%SZ')
+          gh api "repos/${GITHUB_REPOSITORY}/actions/caches?per_page=100" \
+            --jq ".actions_caches[] | select(.created_at < \"$CUT\") | .id" \
+          | while read id; do gh api -X DELETE "repos/${GITHUB_REPOSITORY}/actions/caches/$id" && echo "删除旧缓存 $id"; done
