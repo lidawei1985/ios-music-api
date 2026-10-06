@@ -33,7 +33,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
+      # ★★★ 用 deploy key 检出（与 ios 仓同一改动，2026-10-06）：
+      #   实测 GITHUB_TOKEN 推送的提交**不触发 jsDelivr 的 push webhook** ——
+      #   CDN 只能等分支缓存 12 小时自然过期（实测 @main 卡在旧内容）；
+      #   真凭据（SSH deploy key）推送则秒级回源（实测推完立即取到新 count）。
+      #   本仓是端上「推送后想立刻看到」的主体（曲库/索引/封面），所以这里收益最大。
+      #   ssh-key 为空时 checkout 自动回落 https，不会因缺 secret 失败
+      #   （但那样数据更新要等 12 小时才可见）。
       - uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.API_DEPLOY_KEY }}
 
       - uses: actions/setup-python@v5
         with:
