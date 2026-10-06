@@ -625,11 +625,27 @@ def build_lyrics(acc, streams):
                     continue
                 if v:
                     lmap[k] = v
+                    # 2026-10-06 修「词不同步不对版」：内核取流按网易云 id、取词却按「歌名|歌手」，
+                    # 两把尺子量同一首歌 → VIP/翻唱版拿到别人的词，时间轴天然错位。
+                    # 这里额外写一份 "i:<wyid>" 键，让内核能用同一把尺子取到「这版音频的词」。
+                    wid = (smap.get(k) or {}).get("wy")
+                    if wid:
+                        v2 = dict(v); v2["n"] = k          # 记下名字键，便于回溯
+                        lmap["i:" + str(wid)] = v2
                     ok += 1
+    # 清理孤儿：名字键必须还在 acc；id 键必须还能在 streams 里反查到
+    live_ids = set()
+    for n in acc:
+        w = (smap.get(n) or {}).get("wy")
+        if w:
+            live_ids.add(str(w))
     for k in list(lmap):
-        if k not in acc:
+        if k.startswith("i:"):
+            if k[2:] not in live_ids:
+                lmap.pop(k)
+        elif k not in acc:
             lmap.pop(k)
-    print("  真歌词 %s 首（本轮新增 %s）" % (len(lmap), ok))
+    print("  真歌词 %s 条（本轮新增 %s）" % (len(lmap), ok))
     return {"updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "count": len(lmap), "note": "按 key 索引，l=LRC 原文、t=翻译、src=来源",
             "map": lmap}

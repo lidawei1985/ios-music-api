@@ -70,6 +70,13 @@ jobs:
           PROBES_LIMIT: ${{ github.event.inputs.probes }}
           SRC_IDS: ${{ github.event.inputs.src_ids }}
           HERO_N: "24"
+          # 2026-10-06 扩歌词覆盖：主人点名「词不同步不对版」。
+          # 原为默认 320 首/轮，攒了多轮才 1290 首（覆盖率 1.2%），
+          # 绝大多数歌只能靠运行时实时拉取 —— 一旦桥不稳就是「没词/错词」。
+          # 上调到 1200 首/轮 + 预算 1500s，让离线库稳定追上曲库规模。
+          LYRIC_TOP: "1200"
+          COMMENT_TOP: "400"
+          TXT_BUDGET_S: "1500"
         run: python tools/build.py
 
       - name: 产出校验（必须有可播源 + 非空歌库 + 主视觉≥20）
