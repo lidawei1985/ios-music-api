@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-05T11:54:25Z",
- "count": 130000,
+ "updated": "2026-10-06T06:54:53Z",
+ "count": 101256,
  "shardSize": 1000,
  "shards": [
   {
@@ -409,130 +409,17 @@
   },
   {
    "file": "shard-0101.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0102.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0103.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0104.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0105.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0106.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0107.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0108.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0109.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0110.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0111.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0112.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0113.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0114.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0115.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0116.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0117.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0118.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0119.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0120.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0121.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0122.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0123.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0124.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0125.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0126.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0127.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0128.json",
-   "count": 1000
-  },
-  {
-   "file": "shard-0129.json",
-   "count": 1000
+   "count": 256
   }
  ],
  "idx": {
   "chunks": [
    "idx-00.txt",
    "idx-01.txt",
-   "idx-02.txt",
-   "idx-03.txt"
+   "idx-02.txt"
   ],
   "chunkSize": 40000,
-  "total": 130000,
+  "total": 101256,
   "sep": "\u0001",
   "fields": [
    "nameN",
