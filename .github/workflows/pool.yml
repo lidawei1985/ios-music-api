@@ -46,6 +46,38 @@ jobs:
         continue-on-error: true
         run: python tools/adapters.py 稻香 周杰伦
 
+      # ★ 2026-10-06 新增：图片本地化沉淀（增量）。
+      #   「把别人的 URL 变成自己的 WebP」—— 上游改域名/加防盗链与我们无关。
+      #   分层策略：CV_LIB_TOP 控制曲库封面覆盖到热度第几名。
+      #   实测：4 万首 → 33306 张唯一封面 ≈ 485MB（WebP 均值 14.9KB/张），
+      #   压在 asset_guard 的 700MB 安全线内。
+      #   ★ 为什么不走 Releases：实测 Releases 直链下载只有 228B/s~4.6KB/s，
+      #     端上刷不出图；而 gcore.jsdelivr 实测 22KB/s 可用 → 热图必须走仓库。
+      - name: 图片本地化沉淀（增量：头像 / KV / 封面 / 分类 / 曲库分层）
+        continue-on-error: true
+        env:
+          CV_LIB_TOP: "40000"        # 曲库封面覆盖热度前 4 万首（约 485MB）
+          LZ_WORKERS: "16"
+          LZ_MAX_NEW: "6000"         # 每轮新增上限，攒量靠多轮
+          LZ_BUDGET_S: "1500"        # 单轮时间预算（不超过 job 40 分钟上限）
+        run: python tools/localize.py localize
+
+      # ★ 补一份 JS 版索引：端上是 file:// 页面，WebView 拦 fetch/XHR、不拦 <script>，
+      #   索引只给 .json 的话端上永远拿不到（图下好了也认不出文件名）。
+      #   localize 自己也会写，这里再跑一次只为「本轮 localize 因故早退」时兜底 —— 幂等、秒级。
+      - name: 导出端上可用的 JS 版图片索引（assets/*.js）
+        continue-on-error: true
+        run: python tools/localize.py mkjs
+
+      # ★ 契约门禁：端上 app.html 的 skey() 与采集器 localize.py 的 _js_skey()
+      #   必须**逐字符一致** —— 一旦哪边改歪，键全体错位、图下好了端上一张也查不到
+      #   （现象只是"封面没变本地图"，不报错不崩溃，极难排查）。
+      #   实现来源：本机跑时现场从 kernel/app.html 抽真身；云端只 checkout 了 cloud 仓，
+      #   于是退回 tools/skey_contract.json 快照（内核那三行 + 内核指纹，入库）。
+      #   用例 15 条含 emoji / 非 BMP / 超长 / 空值。不一致 → 阻断发布。
+      - name: skey 契约回归（封面键能不能对上）
+        run: python tools/verify_skey.py
+
       - name: 新鲜度守卫（上轮数据 <70 分钟则跳过本轮，防冗余偏移重复跑）
         id: fresh
         run: |
@@ -83,6 +115,15 @@ jobs:
         if: github.event_name == 'workflow_dispatch' || steps.fresh.outputs.skip != 'true'
         run: python tools/validate.py
 
+      # ★ 2026-10-06 新增：图片沉淀体量守卫。
+      #   本流水线每轮会往 data/assets/ 落 WebP（头像/KV/封面/曲库封面），
+      #   而 GitHub 仓库硬限 1GB **超了直接拒 push**，届时整轮成果全丢且很难排查
+      #   （表面现象只是"数据不更新了"）。这里在 push 前把住，超限就阻断本轮发布，
+      #   线上保持上一版可用数据 —— 宁可这轮不发，也不能把仓库搞废。
+      - name: 图片沉淀体量守卫（防仓库爆仓）
+        if: github.event_name == 'workflow_dispatch' || steps.fresh.outputs.skip != 'true'
+        run: python tools/asset_guard.py
+
       - name: 入库并发布
         run: |
           git config user.name "music-pool-bot"
@@ -96,10 +137,24 @@ jobs:
             git push
           fi
 
-      - name: 刷新 jsDelivr 缓存（让 App 立刻拿到新池）
+      - name: 刷新 jsDelivr 缓存（★ 对分支无效，见下方说明 —— 实为安慰剂）
         continue-on-error: true
         run: |
-          for f in pool.json charts.json library.json artists.json mv.json hero.json; do
+          # ★★ 2026-10-06 实证结论：purge **对分支引用无效**。
+          #   依据 jsDelivr 官方文档："Valid semver releases must be used for purge to work"，
+          #   且 "Branches - 12 hours"（分支引用硬缓存 12 小时，到期自然过期）。
+          #   实测：对 @main 打 purge 回 200，但 20 分钟后 gcore 节点仍在发两代前的版本
+          #   （同一时刻 cdn 节点已是新版）→ 这几行一直是安慰剂，留作痕迹、不再指望它。
+          #
+          # ★ 那么端上何时能看到新数据/新封面？—— 最坏 12 小时（分支缓存自然过期）。
+          #   这对「图片沉淀」是可接受的：诉求是「图要在我们自己这儿、永不因上游挂掉而白屏」，
+          #   不是「分钟级可见」。且端上取图有 <img> 直连 + 上游 URL 兜底，不会白屏。
+          #   若将来要把数据也压到分钟级：本流水线改成每轮 `gh release create`
+          #   顶一个新 semver release，再把端上 kernel/app.html 里的 CDN 常量从 @main
+          #   换成 @latest（必须保留 @main 兜底，理由见内核 KUP 注释）。此项未做，登记待办。
+          for f in pool.json charts.json library.json artists.json mv.json hero.json \
+                   assets/av.json assets/kv.json assets/cv.json assets/manifest.json \
+                   assets/av.js assets/kv.js assets/cv.js; do
             curl -sS --max-time 25 "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/$f" -o /dev/null \
               && echo "purged $f" || echo "purge failed $f"
           done

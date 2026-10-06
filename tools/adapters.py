@@ -415,6 +415,75 @@ class QQ:
         return {"url": u, "quality": "128k", "ext": ext or "mp3", "note": note} if ok else None
 
 
+# =============================================================== 酷我（★ 2026-10-06 实测可用）
+class Kuwo:
+    """酷我音乐适配器 —— 实测**唯一免登录就能拿到真实音频直链**的国内大平台。
+
+    为什么加它（血案实证 2026-10-06）：
+      主人点名「查走在冷风中原唱必须排第一」+「VIP也想办法能到」。
+      网易云免签 outer/url 对 VIP/付费歌返回 `4515 bytes + text/html`（HTML 下载页）→
+      我们的音频闸门判它 dead → **伍佰《泪桥》等原唱被整片误杀，只剩免费翻唱**。
+      酷我这两条接口匿名可用、无需 token：
+        · 搜索  http://search.kuwo.cn/r.s?all=<kw>            （实测 180~3755 条命中）
+        · 直链  http://antiserver.kuwo.cn/anti.s?type=convert_url&rid=MUSIC_<id>&format=mp3&response=url
+      实测 6 首（含周杰伦/蔡依林/林俊杰等网易云 VIP 大户）→ 5 首 `200 audio/mpeg`，
+      伍佰《浪人情歌》4.35MB、蔡依林《倒带》cover 4.10MB 全是完整曲。
+    ★ 但酷我**搜索排序很脏**（第一条常是 DJ版/cover），所以本适配器只负责"给候选"，
+      选曲交给 `multi_match` 用 badness + 歌手吻合 + 时长 三重判据挑，绝不无脑取第一条。
+    """
+    id = "kw"; name = "酷我音乐"; kind = "platform"; homepage = "https://www.kuwo.cn/"
+    QUALITY_RANK = {"flac": 1.0, "320k": 0.9, "128k": 0.6}
+
+    def __init__(self):
+        self.last_reason = ""
+
+    def search(self, title, singer):
+        kw = urllib.parse.quote(("%s %s" % (title or "", singer or "")).strip())
+        u = ("http://search.kuwo.cn/r.s?all=" + kw +
+             "&ft=music&itemset=web_2013&client=kt&pn=0&rn=20&rformat=json&encoding=utf8")
+        r = http(u, {"Referer": "https://www.kuwo.cn/"})
+        txt = r["body"].decode("utf-8", "replace").replace("'", '"')
+        try:
+            d = json.loads(txt)
+        except Exception:
+            return []
+        out = []
+        for x in (d.get("abslist") or []):
+            rid = x.get("DC_TARGETID") or x.get("MUSICRID") or ""
+            rid = str(rid).replace("MUSIC_", "").strip()
+            if not rid:
+                continue
+            out.append({"src": self.id,
+                        "title": re.sub(r"&nbsp;?", " ", x.get("SONGNAME") or "").strip(),
+                        "singer": re.sub(r"&nbsp;?", " ", x.get("ARTIST") or "").strip(),
+                        "album": re.sub(r"&nbsp;?", " ", x.get("ALBUM") or "").strip(),
+                        "cover": "", "qualitys": ["128k"],
+                        "raw": {"rid": rid, "dur": x.get("DURATION") or 0,
+                                "fmt": x.get("FORMATS") or ""}})
+        return out
+
+    def resolve(self, item):
+        rid = (item.get("raw") or {}).get("rid")
+        if not rid:
+            self.last_reason = "无 rid"
+            return None
+        u = ("http://antiserver.kuwo.cn/anti.s?type=convert_url&rid=MUSIC_%s"
+             "&format=mp3&response=url" % rid)
+        r = http(u, {"Referer": "https://www.kuwo.cn/"})
+        if r["status"] != 200:
+            self.last_reason = "convert_url HTTP %s" % r["status"]
+            return None
+        url = r["body"].decode("utf-8", "replace").strip()
+        if not url.startswith("http"):
+            self.last_reason = "非直链回复：%s" % url[:60]
+            return None
+        ok, note, ext = verify_playable(url, "https://www.kuwo.cn/")
+        if ok:
+            return {"url": url, "quality": "128k", "ext": ext or "mp3", "note": note}
+        self.last_reason = "verify 失败：" + note
+        return None
+
+
 # =============================================================== 酷狗（签名已自研；播放口需 token）
 class Kugou:
     id = "kg"; name = "酷狗音乐"; kind = "platform"; homepage = "https://www.kugou.com/"
@@ -464,7 +533,7 @@ class Kugou:
 
 
 # =============================================================== 注册表（可插拔）
-ALL = [Migu, Bili, Netease, QQ, Kugou]
+ALL = [Migu, Bili, Netease, QQ, Kugou, Kuwo]
 BY_ID = {c.id: c for c in ALL}
 
 
@@ -728,12 +797,124 @@ def wy_comments(sid, n=20):
     return {"total": j.get("total") or 0, "hot": hot[:12], "new": new[:12]}
 
 
+# =============================================== 多源选曲（★ 2026-10-06 核心）
+# 主人两个硬要求都落在这个函数里：
+#   ① 「原唱必须排第一，不能出现翻唱」→ 歌手吻合 + badness 降权 + 原唱标记三重判据
+#   ② 「VIP 也想办法能到」            → 网易云拿不到时按优先链路回退到酷我/咪咕/B站
+#
+# 顺序为什么这样排（实测依据）：
+#   wy  → 音质最好、有 oct 原唱标记、歌词最全；**但 VIP/付费歌拿不到**（4515+text/html）
+#   kw  → ★ 匿名唯一稳出真音频的大平台（实测 5/6，含周杰伦等 VIP 大户）；音质 128k
+#   mg  → 咪咕匿名只出免费曲，VIP 回 200002；作补充
+#   bili→ 兜底最广（翻唱/稀缺资源都有），但**必须靠 UP 主标题判原唱**，误配风险高 → 放最后
+MULTI_ORDER = ("wy", "kw", "mg", "bili")
+
+
+def _score_cand(c, nt, ns, want_dur_ms=0):
+    """给候选打分（越小越好）。判据全部来自实测血案：
+      · 歌手必须吻合（否则"同名不同人"错配 —— 历史的 倒数/xjish、honey/桐生千弘）
+      · badness（dj/cover/伴奏/live…）重罚 —— 酷我搜索第一条常是 DJ 版
+      · 原唱标记 oct=1 加分、oct=2 重罚 —— 网易云白送，权威判据
+      · 时长差越小越好 —— 防"试听片段"和"串烧合集"
+    """
+    nm, ar = norm(c.get("title")), norm(c.get("singer"))
+    if not nt or not nm:
+        return None
+    if not _title_close(nt, nm) and not (nt in nm or nm in nt):
+        return None                                   # 标题不相关 → 直接毙
+    if ns and not (ns in ar or ar in ns):
+        return None                                   # ★ 歌手对不上 → 直接毙（宁缺毋滥）
+    r = 0
+    r += 4 * badness(c.get("title"))
+    r += 2 * badness(c.get("singer"))
+    oct_ = c.get("oct")
+    if oct_ == 1:
+        r -= 8                                        # 网易云标了"原曲" → 大加分
+    elif oct_ == 2:
+        r += 12                                       # 网易云标了"翻唱" → 重罚
+    d = c.get("dur") or 0
+    if want_dur_ms and d:
+        diff = abs(int(d) - int(want_dur_ms)) / 1000.0
+        if diff > 25:
+            r += 6                                    # 时长差太多 → 大概率不是同一版
+        r += min(diff, 25) * 0.2
+    r += len(nm) * 0.01                               # 同分取短标题（更贴近原始曲名）
+    return r
+
+
+def multi_match(title, singer, dur_ms=0, order=MULTI_ORDER, per_src=8, want_try=3):
+    """多源找**实测能播**的直链。返回 {id, src, url, quality, ext, name, artist, oct} 或 None。
+
+    ★ 只返回**长效 id（wy id / kw rid）**给调用方存库，不存临时直链（带签名会过期）。
+    调用方拿到 id 后自己拼：
+      wy → https://music.163.com/song/media/outer/url?id=<id>.mp3
+      kw → 需运行时调 antiserver（见 Kuwo.resolve）
+    """
+    nt, ns = norm(title), norm(singer)
+    srcs = instantiate()
+    tried = []
+
+    # 网易云优先：先拿官方原唱标记（oct），再选曲
+    wy = srcs.get("wy")
+    if wy and "wy" in order:
+        try:
+            cands = wy_candidates(title, singer, limit=max(8, per_src + 4))
+            ranked = []
+            for c in cands:
+                sc = _score_cand(c, nt, ns, dur_ms)
+                if sc is not None:
+                    ranked.append((sc, c))
+            ranked.sort(key=lambda x: x[0])
+            for _, c in ranked[:want_try]:
+                ok, note, ext = verify_playable(WY_OUTER % c["id"], "https://music.163.com/", 2048)
+                tried.append(("wy", c.get("name"), note))
+                if ok:
+                    return {"id": c["id"], "src": "wy", "url": WY_OUTER % c["id"],
+                            "quality": "128k", "ext": ext or "mp3",
+                            "name": c.get("name"), "artist": c.get("artist"),
+                            "oct": c.get("oct") or 0, "note": note}
+        except Exception as e:
+            tried.append(("wy", "-", "异常 %s" % e))
+
+    # 其余源依次回退
+    for sid in order:
+        if sid == "wy":
+            continue
+        ad = srcs.get(sid)
+        if not ad:
+            continue
+        try:
+            items = ad.search(title, singer) or []
+        except Exception as e:
+            tried.append((sid, "-", "搜索异常 %s" % e))
+            continue
+        ranked = []
+        for c in items:
+            sc = _score_cand(c, nt, ns, dur_ms)
+            if sc is not None:
+                ranked.append((sc, c))
+        ranked.sort(key=lambda x: x[0])
+        for _, c in ranked[:want_try]:
+            try:
+                r = ad.resolve(c)
+            except Exception as e:
+                r = None
+                tried.append((sid, c.get("title"), "解析异常 %s" % e))
+            if r:
+                return {"id": (c.get("raw") or {}).get("rid") or c.get("id"),
+                        "src": sid, "url": r.get("url"), "quality": r.get("quality"),
+                        "ext": r.get("ext"), "name": c.get("title"), "artist": c.get("singer"),
+                        "oct": 0, "note": r.get("note")}
+            tried.append((sid, c.get("title"), getattr(ad, "last_reason", "无直链")))
+    return None
+
+
 if __name__ == "__main__":
     import sys
-    title, singer = (sys.argv[1:3] + ["稻香", "周杰伦"])[:2]
+    title, singer = (sys.argv[1:3] + ["走在冷风中", "刘思涵"])[:2]
     print(f"自研适配器自检：{title} / {singer}")
     srcs = instantiate()
-    for sid in ("migu", "bili", "wy", "qq", "kg"):
+    for sid in ("migu", "bili", "wy", "qq", "kg", "kw"):
         s = srcs[sid]
         try:
             t0 = time.time()
@@ -749,3 +930,6 @@ if __name__ == "__main__":
                   f"{'✓ ' + str(r.get('quality')) if r else '✗'} {int((time.time()-t1)*1000)}ms  {note}")
         except Exception as e:
             print(f"  {s.name:<8} 异常 {type(e).__name__}: {e}")
+    print("—— 多源选曲 multi_match ——")
+    m = multi_match(title, singer)
+    print(" ", m if not m else {k: (v[:70] if k == "url" else v) for k, v in m.items()})

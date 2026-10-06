@@ -1,0 +1,25 @@
+{
+ "updated": "2026-10-06T15:05:21Z",
+ "kinds": {
+  "av": {
+   "count": 551,
+   "fail": 7,
+   "deferred": 0,
+   "bytes": 1506018
+  },
+  "kv": {
+   "count": 24,
+   "fail": 0,
+   "deferred": 0,
+   "bytes": 1272700
+  },
+  "cv": {
+   "count": 77585,
+   "fail": 328,
+   "deferred": 0,
+   "bytes": 670423240
+  }
+ },
+ "elapsed_s": 2306,
+ "total_bytes": 673201958
+}

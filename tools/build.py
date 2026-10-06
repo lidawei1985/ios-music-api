@@ -12,7 +12,7 @@ build.py —— 源池维护流水线（无人值守，跑在 GitHub Actions 上
 
 零第三方依赖（纯标准库）。
 """
-import json, os, statistics, sys, time, traceback
+import json, os, re, statistics, sys, time, traceback, urllib.parse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -248,76 +248,470 @@ def build_artists(old, songs, hits):
             "artists": sorted(arts.values(), key=lambda x: (-x.get("seen", 0), x.get("n", "")))}
 
 
-# ------------------------------------------------------------------ 2c) MV / 演唱会
+# ------------------------------------------------------------------ 2c) MV（网易云官方 MV）
 MV_BUDGET_S = int(os.environ.get("MV_BUDGET_S") or "300")
-# 演唱会/现场 固定关键词（大牌优先，人工精选但由机器执行）
-MV_LIVE_KEYWORDS = ["周杰伦 演唱会 官方", "五月天 演唱会 官方", "陈奕迅 演唱会 官方",
-                    "邓紫棋 演唱会 官方", "林俊杰 演唱会 官方", "TFBOYS 演唱会 官方"]
+# ★ 2026-10-06 主人点名「MV/演唱会方向错了」→ 不再抓 B 站演唱会/搬运视频。
+#   现在只取**网易云官方 MV**（cloudsearch type=1004）。官方 MV 库里仍混有用户投稿，
+#   用这个闸挡掉（比 A.badness 更严：badness 含"现场/live"会把「Live Forever」误伤，
+#   而官方 MV 里带 live/现场 的基本都是用户上传的演出片段，这里要挡）。
+JUNK_COVER = re.compile(
+    r"cover|翻唱|伴奏|伴唱|karaoke|卡拉\s?ok|纯享|消音|清唱|"
+    r"现场|演唱会|音乐节|歌友会|live|remix|dj版|串烧|合集|剪辑|饭制|"
+    r"钢琴|吉他版|八音盒|口琴|陶笛|葫芦丝|二胡|古筝|教学|教程|谱|"
+    r"片段|试听|预告|花絮|采访|reaction|翻弹|合唱版|童声|女声|男声", re.I)
+
+# ★ 2026-10-06 实测发现「热门 MV」里混进这些**非 MV 视频**，官方 MV 库里也有用户投稿：
+#   · 4909  超级面对面访谈 | 周杰伦 | 542s     ← 访谈节目
+#   · 5329198 周杰伦独家问候网易云音乐网友 | 9s  ← 敬告语（时长仅 9 秒）
+#   两类判据：① 名字带访谈/问候类词；② 时长太短（真 MV 极少 <75s，短的是广告/问候/预告）。
+MV_TALK_RE = re.compile(
+    r"访谈|面对面|独家问候|问候|拜年|新年快乐|祝福|花絮|幕后|"
+    r"采访|专访|发布会|记者|探班|彩排|排练|直播间|直播回放|"
+    r"预告|先导|片花|特辑|纪录片|番外|彩蛋|会员|招募|"
+    r"官宣|直拍|混剪|合集|榜单|盘点|reaction|我猜|挑战|"
+    r"lyric\s?video|歌词版|歌词视频|字幕版|可视化|dynamic|visualizer", re.I)
+MV_MIN_SEC = int(os.environ.get("MV_MIN_SEC") or "75")     # 真 MV 时长下限（秒）
+MV_MAX_SEC = int(os.environ.get("MV_MAX_SEC") or "900")    # 超过 15 分钟的不是单曲 MV（是直播回放/整场演唱会）
+MV_LIVE_MAX_SEC = int(os.environ.get("MV_LIVE_MAX_SEC") or "1800")  # 现场档放宽：整场精华版也要（≤30 分钟）
 
 
 def build_mv(chart_songs):
-    """MV/演唱会类别：B站音乐分区(tid=3)搜索 → 元数据入库 → 抽样验证真能出 1080P 流"""
-    b = A.Bili()
-    t0 = time.time()
-    st = {"budget": 0, "verified": 0, "q": {}}
+    """MV 页：**网易云官方 MV**（不是 B 站 UP 主搬运/录音棚/KTV伴奏）。
 
-    def search_all(keywords, limit):
+    ★★ 2026-10-06 主人点名「MV / 演唱会这方向错了」→ 整条链路推翻重做。
+       旧做法：`b.search_mv("<歌名> MV")` 抓 B 站 → 结果是 UP 主搬运、
+       「百万豪装录音棚大声听」、「KTV字幕伴奏」、「2005演唱会修复版」这类
+       —— 既不是官方 MV，也不是正经现场，还混满翻唱。
+       新做法（实测 2026-10-06 全通）：
+         · 搜索  POST/GET  music.163.com/api/cloudsearch/pc?s=<kw>&type=1004  → 官方 MV 列表
+         · 详情  GET       music.163.com/api/mv/detail?id=<mvid>
+                 → name / artistName / cover / playCount / duration / publishTime，
+                   且 **brs 里直接带 240/480 清晰度 mp4 地址**
+         · 地址  GET       music.163.com/api/song/enhance/play/mv/url?id=<mvid>&r=1080
+                 → {code:200, url:"http://vod...mp4", r:480, size:34649630}
+       全部**匿名可用**，无需登录、无需 cookie。
+    """
+    t0 = time.time()
+    st = {"found": 0, "verified": 0, "q": {}}
+
+    def search_mv(kw, limit=8):
+        u = ("https://music.163.com/api/cloudsearch/pc?s=" + urllib.parse.quote(kw) +
+             "&type=1004&limit=%d&offset=0" % limit)
+        r = A.http(u, {"Referer": "https://music.163.com/"})
+        if r["status"] != 200:
+            return []
+        try:
+            d = json.loads(r["body"].decode("utf-8", "replace"))
+        except Exception:
+            return []
+        return ((d.get("result") or {}).get("mvs") or [])
+
+    def bulk_mv(offset, limit=50):
+        """★ 用**官方 MV 全量库**翻页（不依赖关键词）。
+
+        实测结论（2026-10-06，三轮诊断确立）：
+          · `mv/all?limit=50&offset=N` 匿名可用，**offset 0→5000 每页都有货**，
+            offset 5000 起 hasMore=False → **全量库约 5100 条**；
+            （offset 8000/20000 居然还回 50 条，是重复灌水的兜底页，不可信 ——
+             所以扩容**必须以 hasMore 为准**，不能一味加大 offset。）
+          · offset 600 附近页面严重重复（网易云分页 bug）→ 必须靠 id 去重，
+            并且**用 id 集合判断新意，连续多页零新增即停**，避免空转。
+          · 纯度：空名 0、无歌手 0、访谈类 ~7%、>15min ~0.4%；
+            带 Live 标记占 **15%** → 全库可稳定产出 700+ 条真现场。
+          · 取流抽检 6/6 全通，全部 r=1080（38MB~673MB 真 1080P）。
+
+        ★ 致命坑（已避开）：`mv/all?artistId=<id>` 的参数**会被服务端静默忽略** ——
+          加不加 artistId 返回的是同一条流。曾据此误判「按歌手能拿 150 条」，
+          实际那 150 条就是 MV 库前 150 条，与歌手无关。**不要再用 artistId 维度。**
+        """
+        u = "https://music.163.com/api/mv/all?limit=%d&offset=%d" % (limit, offset)
+        r = A.http(u, {"Referer": "https://music.163.com/"})
+        if r["status"] != 200:
+            return [], False
+        try:
+            d = json.loads(r["body"].decode("utf-8", "replace"))
+        except Exception:
+            return [], False
+        out = []
+        for m in (d.get("data") or []):
+            # mv/all 字段名与 search 略有差异（artists 数组 vs artistName）
+            ar = m.get("artistName") or ""
+            if not ar:
+                ar = "/".join([a.get("name") or "" for a in (m.get("artists") or []) if a.get("name")])
+            out.append({"id": m.get("id"), "name": m.get("name"), "artistName": ar,
+                        "cover": m.get("cover"), "duration": m.get("duration"),
+                        "playCount": m.get("playCount")})
+        return out, bool(d.get("hasMore"))
+
+    def mv_ok(mvid):
+        """实测能取到 mp4 直链才算数（不带验证的死链不许进库）"""
+        u = "https://music.163.com/api/song/enhance/play/mv/url?id=%s&r=1080" % mvid
+        r = A.http(u, {"Referer": "https://music.163.com/"})
+        if r["status"] != 200:
+            return None
+        try:
+            d = json.loads(r["body"].decode("utf-8", "replace"))
+        except Exception:
+            return None
+        dd = d.get("data") or {}
+        if d.get("code") == 200 and (dd.get("url") or "").startswith("http"):
+            return {"url": dd["url"], "size": dd.get("size") or 0, "r": dd.get("r") or 480}
+        return None
+
+    def _title_key(t, a):
+        """标题归一化去重键：削掉括号/破折号后缀 + 标点，用于跨版本去重。
+
+        ★ 为什么必须有：实测《孤勇者》在库里同时有
+          「孤勇者」(14480854, 2416 万播放) 与
+          「孤勇者 (《英雄联盟：双城之战》动画剧集中文主题曲)」(14686114, 236 万)，
+          两条同曲不同标题后缀 —— 不去重就会一首歌占两个坑位。
+          《句号》同款问题（10906470 / 10956794）。
+        """
+        s = re.split(r"[\(（\[【\-–—|/]", (t or ""), 1)[0]
+        s = re.sub(r"[^\w\u4e00-\u9fff]+", "", s, flags=re.U).lower()
+        ar = re.sub(r"[^\w\u4e00-\u9fff]+", "", (a or ""), flags=re.U).lower()[:12]
+        return s + "|" + ar
+
+    def pack(name, keywords, per_kw=6, limit=20, verify_n=4, want_live=False, seen_keys=None):
         seen, items = set(), []
+        # ★ 与全库扫描共用的「跨版本去重表」：实测《孤勇者》在同一次搜索里回两条
+        #   （原始版 + 「(《英雄联盟：双城之战》动画剧集中文主题曲)」），歌名只差后缀。
+        #   关键词搜索这条路也必须去重，否则同一首歌占两个坑位。
+        seen_keys = seen_keys if seen_keys is not None else set()
         for kw in keywords:
             if time.time() - t0 > MV_BUDGET_S:
                 break
-            try:
-                res = b.search_mv(kw, limit=limit)
-            except Exception:
-                continue
-            for it in res:
-                bv = it["raw"]["bvid"]
-                if bv in seen:
+            # 关键词里的「歌名 歌手」拆出来，用于相关性校验；
+            # 单段关键词（如「周杰伦」）= 按歌手搜热门 MV，此时不做歌名校验，
+            # 只要求 MV 的歌手与该关键词吻合即可。
+            # ★ want_live：关键词本身是**题材词**（"演唱会现场"/"live 现场版"），
+            #   不是「歌名 歌手」，所以不做任何相关性校验，只靠 live_re + 时长把关。
+            parts = kw.split(" ")
+            want_t = A.norm(parts[0]) if parts else ""
+            want_a = A.norm(parts[1]) if len(parts) > 1 else (A.norm(parts[0]) if parts else "")
+            solo = (len(parts) == 1) or want_live
+            # ★ want_live：只要「现场/演唱会」，且必须**明确带现场标记**
+            #   （否则混进录音室 MV，就不是主人要的「演唱会」这一档）
+            live_re = re.compile(r"演唱会|现场|音乐会|音乐节|live|concert|tour|巡演|巡迴", re.I)
+            for m in search_mv(kw, per_kw):
+                mid = m.get("id")
+                if not mid or mid in seen:
                     continue
-                seen.add(bv)
-                items.append(it)
+                nm = (m.get("name") or "").strip()
+                ar = (m.get("artistName") or "").strip()
+                sec = (m.get("duration") or 0) // 1000
+                if want_live:
+                    # 现场档：必须带 live 标记，但仍要挡掉 cover/伴奏/教学类
+                    if not live_re.search(nm):
+                        continue
+                    if re.search(r"cover|翻唱|伴奏|伴唱|karaoke|卡拉\s?ok|教学|教程|"
+                                 r"吉他谱|钢琴谱|纯享|消音|清唱|片段|预告", nm, re.I):
+                        continue
+                else:
+                    # 官方 MV 档：剔掉 UP 主上传的 cover/伴奏/live 剪辑
+                    if A.badness(nm) >= 1 or JUNK_COVER.search(nm):
+                        continue
+                # ★ 剔掉访谈/问候/花絮类非 MV
+                if MV_TALK_RE.search(nm):
+                    continue
+                # ★ 时长合理性：太短=广告/问候；MV 档上限 15 分钟；现场档放宽到 30 分钟（整场精华）
+                cap = MV_LIVE_MAX_SEC if want_live else MV_MAX_SEC
+                if sec and (sec < MV_MIN_SEC or sec > cap):
+                    continue
+                nn = A.norm(nm)
+                an = A.norm(ar)
+                if want_live:
+                    # ★ 题材词搜现场：不做歌名/歌手校验（"演唱会现场" 不是歌手名），
+                    #   真伪全靠 live_re + 时长 + 反 cover 三道闸把住。
+                    pass
+                elif solo:
+                    # 按歌手搜：歌手必须吻合，歌名不校验
+                    if want_a and not (want_a in an or an in want_a):
+                        continue
+                else:
+                    # 按「歌名 歌手」搜：歌名和歌手都要吻合（挡"同名不同歌"）
+                    if want_t and not (want_t in nn or nn in want_t):
+                        continue
+                    if want_a and not (want_a in an or an in want_a):
+                        continue
+                seen.add(mid)
+                # ★ 跨版本去重：同曲不同版本（原版 / 影视主题曲版 / 剧情版）只留一条。
+                #   用调用方传入的共用表 seen_keys —— ★★ 这里**必须没有 return**：
+                #   表里命中的只表示"同曲的另一版本已经收过了"，跳过这一条即可，
+                #   后面的搜索结果还要继续看（早期写成 `return` 会整条腿提前退出）。
+                if seen_keys is not None:
+                    tk2 = _title_key(nm, ar)
+                    if tk2 in seen_keys:
+                        continue
+                    seen_keys.add(tk2)
+                items.append({
+                    "id": mid, "t": nm, "a": ar,
+                    "cov": (m.get("cover") or "").replace("http://", "https://"),
+                    "dur": sec,                                        # MV 时长用秒
+                    "play": int(m.get("playCount") or 0),
+                })
+                st["found"] += 1
+                if len(items) >= limit:
+                    break
+            if len(items) >= limit:
+                break
+        # 抽样验证真能出流
+        for it in items[:verify_n]:
+            if time.time() - t0 > MV_BUDGET_S:
+                break
+            r = mv_ok(it["id"])
+            if r:
+                it["q"] = "1080P" if r["r"] >= 1080 else ("480P" if r["r"] >= 480 else "240P")
+                it["wh"] = ""
+                st["verified"] += 1
+                st["q"][it["q"]] = st["q"].get(it["q"], 0) + 1
+        print("  MV[%s] %d 条" % (name, len(items)))
+        return {"name": name, "count": len(items), "items": items}
+
+    def _clean_bulk(m, seen_ids):
+        """全量库共用清洗：返回规整条目 dict 或 None（不合格）"""
+        mid = m.get("id")
+        if not mid or mid in seen_ids:
+            return None
+        nm = (m.get("name") or "").strip()
+        ar = (m.get("artistName") or "").strip()
+        sec = (m.get("duration") or 0) // 1000
+        if not nm or not ar:
+            return None
+        if MV_TALK_RE.search(nm):
+            return None
+        return {
+            "id": mid, "t": nm, "a": ar,
+            "cov": (m.get("cover") or "").replace("http://", "https://"),
+            "dur": sec, "play": int(m.get("playCount") or 0),
+        }
+
+    LIVE_RE = re.compile(
+        r"演唱会|现场|音乐会|音乐节|concert|tour|巡演|巡迴|"
+        r"music\s?festival|公演|歌谣|人气歌谣|音乐银行|音乐中心|"
+        r"The Show|歌谣大战|fancam|直拍|不插电|unplugged|"
+        r"毕业歌会|跨年|演唱会版|live版", re.I)
+    # ★ 「live」这个词单独判定极易误杀 —— 实测把 Taylor Swift
+    #   《I Don’t Wanna Live Forever》当成现场收录（"Live" 是歌名的一部分）。
+    #   规则：`live` 只有在**不是歌名主语**时才算现场标记 ——
+    #   即带 live 时必须同时满足「有现场语境词」或「live 在括号/破折号里或后面跟
+    #   version/at/in/现场/版」这类结构。简单说：**光一个裸 live 不算数**。
+    LIVE_BARE = re.compile(r"\blive\b", re.I)
+    LIVE_CTX = re.compile(
+        r"[\(\（\[【][^\)\）\]】]*\blive[^\)\）\]】]*[\)\）\]】]"        # (Live) / [Live at ...]
+        r"|\blive\s*(?:版|version|ver\.?|at|in|@|from|session|tour)"   # live版 / Live at xx
+        r"|live\s*(?:'|’)?\d", re.I)                                    # live '96
+    # 明显是「歌名带 live 但不是现场」的白名单式反例（去掉后不当现场）
+    LIVE_TRAP = re.compile(r"live\s?forever|i\s?don'?t\s?wanna\s?live|"
+                           r"live\s?while\s?we'?re\s?young|live\s?and\s?let\s?die", re.I)
+    LIVE_JUNK = re.compile(
+        r"伴奏|伴唱|karaoke|卡拉\s?ok|教学|教程|吉他谱|钢琴谱|"
+        r"消音|清唱|翻唱|cover\b|改编|器乐|纯音乐|白噪音|"
+        r"听书|有声|电台|广播剧|助眠|\bdj\b", re.I)
+
+    def is_live(name):
+        """判定是否真现场：题材词命中 或（裸 live + 现场语境/结构）"""
+        if LIVE_TRAP.search(name):
+            return False
+        if LIVE_JUNK.search(name):
+            return False
+        # 强题材词（演唱会/现场/音乐节/歌谣大战…）
+        if re.search(r"演唱会|现场|音乐会|音乐节|concert|tour|巡演|巡迴|"
+                     r"music\s?festival|公演|歌谣|人气歌谣|音乐银行|音乐中心|"
+                     r"The Show|歌谣大战|fancam|直拍|不插电|unplugged|"
+                     r"毕业歌会|跨年", name, re.I):
+            return True
+        # 裸 live：必须有现场语境（(Live at…)、(Live)、live版、live '96…）
+        if LIVE_BARE.search(name) and LIVE_CTX.search(name):
+            return True
+        return False
+
+    def scan_library(max_pages=None, limit_mv=3000, limit_live=800,
+                     stop_after_empty=12, verify_n=6):
+        """★★ 一次性**深挖官方 MV 全量库**，一次拿到真 MV 池 + 现场池。
+
+        ★ 这是本轮「MV/演唱会方向错了」的根因修复：
+          旧做法只在关键词搜索里打转（每次 10 条），量永远上不去 →
+          只能反复凑数、混进搬运/访谈/伴奏。
+          现在直接翻全量库：**一次拿 5000 条原始 → 清洗 → 分档**，
+          真 MV 与真现场各归各位，靠的是**规模**而不是运气。
+
+        ★ 终止条件（三级，防跑飞与防无效翻页）：
+          ① hasMore=False（真到底，实测 offset 5000）；
+          ② 连续 stop_after_empty 页零新增（网易云分页重复 bug 兜底）；
+          ③ 时间预算 MV_BUDGET_S 到点。
+        """
+        seen_ids = set()
+        seen_title = set()
+        mv_pool, live_pool = [], []
+        empty_streak = 0
+        dup_title = 0
+        off = 0
+        pages = max_pages or (int(os.environ.get("MV_BULK_PAGES") or "120"))
+        while len(seen_ids) < 20000:
+            if len(mv_pool) >= limit_mv and len(live_pool) >= limit_live:
+                break
+            if time.time() - t0 > MV_BUDGET_S:
+                print("    MV 全库扫描：时间预算到（已翻 %d 页）" % (off // 50))
+                break
+            if pages and off // 50 >= pages:
+                break
+            arr, more = bulk_mv(off)
+            if not arr:
+                break
+            got = 0
+            for m in arr:
+                it = _clean_bulk(m, seen_ids)
+                if not it:
+                    continue
+                seen_ids.add(it["id"])
+                got += 1
+                nm, sec = it["t"], it["dur"]
+                # ★ 跨版本去重：同一首歌常有「原始版 / 影视主题曲版 / 剧情版 / 重制版」
+                #   实测《孤勇者》同曲两条（14480854 2416 万播放、14686114 236 万），
+                #   标题只差「(《英雄联盟：双城之战》动画剧集中文主题曲)」。
+                #   去重键 = 主标题(削括号后缀) + 歌手；保留先出现的（全库按热度非严格，
+                #   故两条都进候选后按 play 排序，最终留下更热的那条）。
+                tk = _title_key(nm, it["a"])
+                if tk in seen_title:
+                    dup_title += 1
+                    continue
+                seen_title.add(tk)
+                live_ok = is_live(nm)
+                mv_junk = (A.badness(nm) >= 1) or JUNK_COVER.search(nm)
+                if live_ok:
+                    # 现场档：整场精华允许到 30 分钟；单曲现场 75s 起
+                    if sec and (sec < MV_MIN_SEC or sec > MV_LIVE_MAX_SEC):
+                        continue
+                    if len(live_pool) < limit_live:
+                        live_pool.append(it)
+                else:
+                    # 真 MV 档：剔 up 主 cover/伴奏/KTV，时长 75s~15min
+                    if mv_junk:
+                        continue
+                    if sec and (sec < MV_MIN_SEC or sec > MV_MAX_SEC):
+                        continue
+                    if len(mv_pool) < limit_mv:
+                        mv_pool.append(it)
+            empty_streak = empty_streak + 1 if got == 0 else 0
+            if empty_streak >= stop_after_empty:
+                print("    MV 全库扫描：连续 %d 页零新增，提前收敛（offset=%d）"
+                      % (empty_streak, off))
+                break
+            if not more:
+                print("    MV 全库扫描：hasMore=False，真到底（offset=%d）" % off)
+                break
+            off += 50
+            time.sleep(0.12)
+        print("    MV 全库扫描：翻页至 offset=%d，去重 %d 条（跨版本再剔 %d）→ 真 MV %d / 真现场 %d"
+              % (off, len(seen_ids), dup_title, len(mv_pool), len(live_pool)))
+        # ★ 热度优先 + 同曲保最热：排序后按 _title_key 再保一次，确保「更热的版本」留下
+        mv_pool.sort(key=lambda x: -x["play"])
+        live_pool.sort(key=lambda x: -x["play"])
+        return mv_pool, live_pool
+
+    def verify(items, n):
+        """抽样实测取流（不带验证的不许进库）"""
+        for it in items[:n]:
+            if time.time() - t0 > MV_BUDGET_S + 120:
+                break
+            r = mv_ok(it["id"])
+            if r:
+                it["q"] = "1080P" if r["r"] >= 1080 else ("480P" if r["r"] >= 480 else "240P")
+                it["wh"] = ""
+                st["verified"] += 1
+                st["q"][it["q"]] = st["q"].get(it["q"], 0) + 1
         return items
 
-    def verify(items, n=3):
-        for it in items[:n]:
-            if st["budget"] >= 12 or time.time() - t0 > MV_BUDGET_S:
-                return
-            st["budget"] += 1
-            try:
-                r = b.resolve_mv(it)
-            except Exception:
-                r = None
-            if r:
-                it["q"] = r["quality"]
-                it["wh"] = f"{r['width']}x{r['height']}"
-                st["verified"] += 1
-                st["q"][r["quality"]] = st["q"].get(r["quality"], 0) + 1
-
-    def pack(name, keywords, per_kw, limit=12, verify_n=3):
-        items = search_all(keywords, limit=per_kw)
-        verify(items, verify_n)
-        items = items[:limit]
-        flat = [{"t": x["title"], "a": x["author"], "cov": x["cover"], "dur": x["dur"],
-                 "play": x["play"], "bv": x["raw"]["bvid"], "q": x.get("q", ""), "wh": x.get("wh", "")}
-                for x in items]
-        print(f"  MV[{name}] {len(flat)} 条")
-        return {"name": name, "count": len(flat), "items": flat}
-
     cols = []
-    if chart_songs:
-        cols.append(pack("热门 MV",
-                         [f"{s['title']} {s['singer'].split('/')[0]} MV" for s in chart_songs[:8]],
-                         per_kw=4, limit=14, verify_n=4))
-        cols.append(pack("现场 LIVE",
-                         [f"{s['title']} {s['singer'].split('/')[0]} 现场 live" for s in chart_songs[8:16]],
-                         per_kw=4, limit=12, verify_n=2))
-    cols.append(pack("演唱会现场", MV_LIVE_KEYWORDS, per_kw=5, limit=16, verify_n=4))
+    core = [s for s in (chart_songs or [])][:40]
+
+    # ★★ 第一步：无条件深挖官方 MV 全量库（本轮核心改造）
+    #   一次拿到「真 MV 池」+「现场池」，后面所有栏目都从这里取 ——
+    #   彻底摆脱「关键词搜索凑数」的老路（每次 10 条，量上不去且杂）。
+    pool_mv, pool_live = scan_library()
+    used = set()
+    # ★ 跨栏目共用的「跨版本去重表」+ 去重键函数（关键词搜索那几条腿也共用）
+    used_titles = set()
+
+    def tkey(t, a):
+        s = re.split(r"[\(（\[【\-–—|/]", (t or ""), 1)[0]
+        s = re.sub(r"[^\w\u4e00-\u9fff]+", "", s, flags=re.U).lower()
+        ar = re.sub(r"[^\w\u4e00-\u9fff]+", "", (a or ""), flags=re.U).lower()[:12]
+        return s + "|" + ar
+
+    def take(pool, n, dedup=True):
+        """从池子里按热度取 n 条。
+
+        ★ 2026-10-06 修 bug：原来只按 `id` 去重 → 《孤勇者》两条
+          （14480854 / 2416万播放 与 14686114 / 236万播放，标题只差
+          「(《英雄联盟：双城之战》动画剧集中文主题曲)」后缀）**同时进了栏目①**。
+          现在这里接上全局的 `used_titles` 跨版本去重表：
+            · 池子已按热度降序 → 同名只留最热的那条（正是我们想要的）；
+            · 该表与 `pack()` 关键词搜索那条腿共用，跨栏目也不会再撞。
+        """
+        out = []
+        for it in pool:
+            if dedup and it["id"] in used:
+                continue
+            if dedup:
+                tk = tkey(it.get("t"), it.get("a"))
+                if tk in used_titles:
+                    continue
+                used_titles.add(tk)
+            used.add(it["id"])
+            out.append(dict(it))
+            if len(out) >= n:
+                break
+        return out
+
+    # 栏目①「精选 MV」：全库最热的真 MV，保证首页一打开就有硬货
+    sel = take(pool_mv, int(os.environ.get("MV_SEL_N") or "600"))
+    verify(sel, int(os.environ.get("MV_VERIFY_N") or "6"))
+    print("  MV[精选 MV] %d 条" % len(sel))
+    cols.append({"name": "精选 MV", "count": len(sel), "items": sel})
+
+    # 栏目②「演唱会 Live」：主人点名的方向 —— 全库带现场标记的，按热度排
+    live = take(pool_live, int(os.environ.get("MV_LIVE_N") or "500"), dedup=False)
+    verify(live, 5)
+    print("  MV[演唱会 Live] %d 条" % len(live))
+    cols.append({"name": "演唱会 Live", "count": len(live), "items": live})
+
+    if core:
+        # 栏目③「官方 MV」：按「歌名 + 歌手」精确搜 —— 只出榜单热歌本人的官方 MV
+        #   （type=1004 搜索实测精确：搜「邓紫棋 MV」9/10 是本人，故这条腿留作"点歌直达"）
+        cols.append(pack("官方 MV",
+                         ["%s %s" % (s["title"], (s["singer"] or "").split("/")[0]) for s in core[:20]],
+                         per_kw=4, limit=36, verify_n=4, seen_keys=used_titles))
+        # 栏目④「热门 MV」：按大牌歌手搜（数量稳、都是官方）
+        big = ["周杰伦", "邓紫棋", "薛之谦", "陈奕迅", "林俊杰", "毛不易",
+               "五月天", "李荣浩", "张杰", "汪苏泷", "蔡依林", "田馥甄"]
+        cols.append(pack("热门 MV", big, per_kw=8, limit=60, verify_n=4, seen_keys=used_titles))
+        # 栏目⑤「现场 Live」：题材词搜（对全库扫描的补充，捡漏全库里没标 live 的现场）
+        live_kws = ["演唱会现场", "live 现场版", "演唱会 Live", "世界巡回演唱会",
+                    "巡回演唱会", "音乐节 现场", "跨年演唱会 现场",
+                    "周杰伦 演唱会", "五月天 演唱会", "陈奕迅 演唱会",
+                    "邓紫棋 演唱会", "林俊杰 演唱会", "张学友 演唱会", "张惠妹 演唱会"]
+        cols.append(pack("现场 Live", live_kws, per_kw=8, limit=60, verify_n=5,
+                         want_live=True, seen_keys=used_titles))
+    else:
+        cols.append(pack("热门 MV", ["周杰伦", "邓紫棋", "林俊杰", "薛之谦", "陈奕迅"],
+                         per_kw=6, limit=30, verify_n=4, seen_keys=used_titles))
 
     flat = [x for c in cols for x in c["items"]]
+
+    # ★★ 封面本地化标记：MV 封面原来只存 p1.music.126.net 的**别人的 URL**，
+    #   上游一改域名/加防盗链就整页白图。这里把 mv 封面也交给 localize 沉淀成
+    #   我们自己的 WebP（与头像/KV/歌库封面同一套体系），并在条目上标 cov_l 供端上优先读。
+    #   本地化在 main() 里统一执行（build_mv 时 assets 还没跑），此处只负责"喂料"。
     return {"updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "collections": cols, "count": len(flat),
             "verified": st["verified"], "verified_quality": st["q"],
-            "note": "取流关键: fnval=4048&fourk=1&qn=127&try_look=1（否则匿名只回 480P）"}
+            "pool": {"mv": len(pool_mv), "live": len(pool_live)},
+            "note": ("来源=网易云官方 MV 全量库（mv/all 翻页，实测约 5100 条，以 hasMore 为界）"
+                     "+ cloudsearch type=1004 关键词补充。客户端播放时按 id 现取 1080P 直链"
+                     "（直链带 wsTime 签名，1 小时过期，故只存 id 不存直链）。"
+                     "封面由采集器本地化为自己的 WebP（data/assets/cv），不依赖上游图床。")}
 
 
 # ------------------------------------------------------------------ 2d) 主视觉轮播（高清海报 + 预计算主色）
@@ -537,7 +931,14 @@ def _collect_songs(charts, cats, hero, lib):
 
 
 def build_streams(charts, cats, hero, lib):
-    """给每首歌匹配**实测能播**的长效直链 id（增量：已匹配的不重测）"""
+    """给每首歌匹配**实测能播**的长效 id（增量：已匹配的不重测）。
+
+    ★★ 2026-10-06 大改：从「只认网易云」升级为**多源回退**（主人要求「VIP 也想办法能到」）。
+       旧版单源 wy_match 的死穴：网易云对 VIP/付费歌返回 `4515 bytes + text/html`，
+       被判不可播 → **伍佰《泪桥》等原唱整片消失，只剩免费翻唱**（主人原话：
+       「原唱都删了只保留了个翻唱」）。现在 wy 失败自动回退 酷我(kw) → 咪咕(mg) → B站(bili)。
+       ★ 只存**长效 id**（wy id / kw rid），**不存临时直链**（带签名会过期）。
+    """
     old = load(os.path.join(DATA, "streams.json"), {})
     omap = dict(old.get("map") or {})
     miss = dict(old.get("miss") or {})
@@ -551,7 +952,8 @@ def build_streams(charts, cats, hero, lib):
     if todo:
         from concurrent.futures import ThreadPoolExecutor as _TPE, as_completed as _ac
         with _TPE(max_workers=STREAM_WORKERS) as ex:
-            futs = {ex.submit(A.wy_match, acc[k]["t"], acc[k]["s"]): k for k in todo}
+            futs = {ex.submit(A.multi_match, acc[k]["t"], acc[k]["s"], acc[k].get("dur") or 0): k
+                    for k in todo}
             for fu in _ac(futs):
                 if time.time() - t0 > STREAM_BUDGET_S:
                     for f2 in futs:
@@ -563,8 +965,15 @@ def build_streams(charts, cats, hero, lib):
                 except Exception:
                     m = None
                 if m:
-                    omap[k] = {"wy": m["id"], "n": m["name"], "a": m["artist"],
-                               "native": 1 if m.get("native") else 0, "dur": m.get("dur") or 0}
+                    # ★ 多源：存 src 标出来源，客户端按 src 拼不同直链
+                    rec = {"src": m["src"], "n": m.get("name"), "a": m.get("artist"),
+                           "native": 1 if (A.norm(m.get("name") or "") == A.norm(acc[k]["t"])) else 0,
+                           "dur": m.get("dur") or 0}
+                    if m["src"] == "wy":
+                        rec["wy"] = m["id"]
+                    else:
+                        rec[m["src"]] = m["id"]           # kw / mg / bili 各自的 id
+                    omap[k] = rec
                     done += 1
                 else:
                     newmiss.append(k)
@@ -575,16 +984,23 @@ def build_streams(charts, cats, hero, lib):
             omap.pop(k)                      # 已不在曲库里的旧键清掉，防膨胀
     miss = {k: v for k, v in miss.items() if k in acc}
     hit = sum(1 for k in acc if k in omap)
+    src_cnt = {}
+    for v in omap.values():
+        src_cnt[v.get("src") or "wy"] = src_cnt.get(v.get("src") or "wy", 0) + 1
     out = {"updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
            "count": len(acc), "hit": hit, "rate": round(100.0 * hit / max(1, len(acc)), 1),
            "native": sum(1 for k, v in omap.items() if v.get("native")),
+           "srcs": src_cnt,
            "miss": miss,
-           "note": ("key = 归一化(歌名)|归一化(歌手)。App 拼 https://music.163.com/song/media/outer/url?id=<wy>.mp3 "
-                    "即为实测可播的长效直链（Range 取回真音频，无需签名）。native=1 表示歌名歌手都吻合。"),
+           "note": ("key = 归一化(歌名)|归一化(歌手)。值为**长效 id**（不是直链，直链带签名会过期）："
+                    "wy → https://music.163.com/song/media/outer/url?id=<wy>.mp3；"
+                    "kw → http://antiserver.kuwo.cn/anti.s?type=convert_url&rid=MUSIC_<kw>&format=mp3&response=url；"
+                    "native=1 表示歌名歌手都吻合，src 标出采用的是哪个平台。"),
            "map": omap}
-    print("  真可播 %s/%s = %s%%（原唱 %s，本轮新增 %s，累计放弃 %s）"
+    print("  真可播 %s/%s = %s%%（原唱 %s，本轮新增 %s，累计放弃 %s）｜来源 %s"
           % (hit, len(acc), out["rate"], out["native"], done,
-             sum(1 for k in acc if miss.get(k, 0) >= MISS_MAX)))
+             sum(1 for k in acc if miss.get(k, 0) >= MISS_MAX),
+             "、".join("%s %d" % (k, v) for k, v in sorted(src_cnt.items()))))
     return out
 
 
@@ -760,6 +1176,20 @@ def main():
         print(traceback.format_exc())
         cats = {}
 
+    # ★★ 2026-10-06 主人点破「采集器抓的东西有没有变成自己的东西/沉淀」→
+    #   图片（头像/KV/封面）原来只存**别人的 URL**，上游一改域名三处同时白屏。
+    #   这里把本地化做成**采集器固定栏目**：每轮自动下载→转 WebP→落盘 data/assets/，
+    #   增量复用（已在本地的不重下），让 App 读「自己的静态资源」。
+    assets_man = {}
+    if os.environ.get("WITH_LOCALIZE", "1") != "0":
+        print("  —— 图片本地化沉淀（头像/KV/封面 → 自己的 WebP）——")
+        try:
+            import localize as LZ
+            LZ.cmd_localize()
+            assets_man = LZ.load_json("assets/manifest.json", {})
+        except Exception:
+            print(traceback.format_exc())
+
     active = sorted([h for h in results if h["status"] == "active"], key=lambda x: -x["score"])
     # 试源顺序：高保真曲库源（按分）→ 视频兜底源（按分）。App 依次试，首个可播即播。
     hifi = [h["id"] for h in active if h["role"] == "hifi"]
@@ -828,6 +1258,11 @@ def main():
         print("真播放: %s/%s 首可播 = %s%%（原唱 %s）；真歌词 %s 首；真评论 %s 首"
               % (streams["hit"], streams["count"], streams["rate"], streams["native"],
                  lyrics.get("count", 0), comments.get("count", 0)))
+    if assets_man:
+        k = assets_man.get("kinds") or {}
+        print("图片沉淀: " + " / ".join("%s %s 张" % (n, v.get("count"))
+                                        for n, v in k.items())
+              + "  共 %.1f MB（自己的 WebP，不依赖上游）" % ((assets_man.get("total_bytes") or 0) / 1048576))
     print("已写 data/pool.json / data/charts.json / data/library.json / data/artists.json"
           + (" / data/mv.json" if mv else "") + (" / data/hero.json" if hero else "")
           + (" / data/categories.json" if cats else "")

@@ -1,0 +1,9 @@
+{
+  "note": "端上 app.html 的 norm/cpslice/skey 真身 + 内核指纹；由 tools/verify_skey.py --snapshot 生成，勿手改",
+  "kernel_sha256": "37f39efeec9d86985bc9242deb8461732bedd0644cb1b5b32d768cead9f136ed",
+  "lines": {
+    "norm": "const norm = s=>String(s||\"\").toLowerCase().replace(/[\\s\\-_（）()\\[\\]【】·,.，。'\"!！?？~～&]/g,\"\");",
+    "cpslice": "const cpslice=(s,n)=>{ s=String(s==null?\"\":s); return Array.from(s).slice(0,n).join(\"\"); };",
+    "skey": "function skey(t,s){ return cpslice(norm(t),40)+\"|\"+cpslice(norm(s),30); }"
+  }
+}

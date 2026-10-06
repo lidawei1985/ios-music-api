@@ -10,3 +10,31 @@ tools/dbg_*.py
 data/catalog/_*.json
 data/catalog/_songs.jsonl
 data/catalog/_songs_raw.jsonl
+
+# ------------------------------------------------------------------ 备份 / 临时（绝不入库）
+# 血案教训：data/ 下放过一堆 _bak_* 目录，动辄几十上百 MB，
+# 一旦被 git add -A 扫进去，仓库体量瞬间失控。这里一次性挡住。
+data/_bak_*/
+data/_bak_*.json
+data/_catalog_*_bak/
+data/_dbg_*.json
+data/_songs_run.log
+_cdn/
+_songs_run.log
+out/
+*.tar.gz
+tools/_dbg_*.py
+
+# catalog 体检产出的丢弃清单（运行时诊断，产物是 shard/idx/manifest）
+data/catalog/_*_dropped.txt
+
+# ------------------------------------------------------------------ 本机救援脚本的运行日志
+# tools/recover_assets.bat 连续跑多轮 localize 时的输出（每次几十万行，且只对本机有意义）
+tools/_recover.log
+
+# ------------------------------------------------------------------ 内核热更（已改走 iOS 仓库，这里挡住避免两份真源）
+# 现状：内核 KUP.base 指向 gcore.jsdelivr.net/gh/lidawei1985/ios-music-app@main/kernel/
+#   —— iOS CI（build-ipa.yml）打壳后自动发布 kernel/dist.html + kernel.json。
+# 这里曾是早期通道（publish_kernel.py：本机发到 cloud 的 data/kernel/）。
+# 两份真源并存会让人分不清「手机到底拉哪份」，故不再跟踪；脚本保留作备用通道。
+data/kernel/

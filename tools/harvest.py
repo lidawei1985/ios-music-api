@@ -354,15 +354,26 @@ JUNK_RE = re.compile(
     r"chapter\s*\d|kapitel\s*\d|teil\s*\d|episode\s*\d|电台剧|朗读版|"
     r"nature\s*sound|yoga|meditation|spa\s*music|white\s*noise|rain\s*sound|"
     r"素材|production\s*music|trailer\s*music|背景音乐|彩铃", re.I)
+# ★ 2026-10-06 主人点名「不要有演唱会那种的」→ 单独一条 live/现场闸。
+#   为什么单独写、收得这么紧：LIVE 是个**正常英文词**（Live Forever / Live and Learn
+#   是正经作品），裸匹配 live 会误杀。所以只认三类**明确是"某场演出"的信号**：
+#     ① 中文场景词：演唱会 / 现场版 / 音乐会 / 音乐节 / 歌友会 / 巡回 / 巡演 / 见面会
+#     ② 「(Live)」「（现场）」这种**带括号的版本标注**（Spotify/网易云的标准做法）
+#     ③ 中文名尾部的 live（孤勇者live）
+#   注意：`(Live)` 必须带括号 —— Rihanna《Live Your Life》不带括号不会中招。
+LIVE_RE = re.compile(
+    r"演唱会|现场版|音乐会|音乐节|歌友会|巡回|巡演|见面会|跨年|春晚|颁奖|盛典|"
+    r"[（(\[【][^）)\]】]{0,10}(?:live|现场)[^）)\]】]{0,10}[）)\]】]|"
+    r"[\u4e00-\u9fa5]\s*(?:live|现场)\s*$", re.I)
 # dj 收紧版：只认「中文名尾部」的 dj（光年之外dj / 孤勇者 dj版），放过 Dj Snake 这类正版艺人
 JUNK_DJ_RE = re.compile(r"[\u4e00-\u9fa5]\s*dj\s*(?:版|mix|remix)?\s*$", re.I)
 
 
 def is_junk(*fields):
-    """统一垃圾判定：JUNK_RE + 收紧版 dj。所有调用点都走这里，避免新增规则漏改。"""
+    """统一垃圾判定：JUNK_RE + LIVE_RE + 收紧版 dj。所有调用点都走这里，避免新增规则漏改。"""
     for s in fields:
         s = s or ""
-        if JUNK_RE.search(s) or JUNK_DJ_RE.search(s):
+        if JUNK_RE.search(s) or LIVE_RE.search(s) or JUNK_DJ_RE.search(s):
             return True
     return False
 STRONG_N = int(os.environ.get("HV_STRONG_N") or "5")
@@ -571,28 +582,35 @@ def audio_gate(arr, tag="pack"):
     return keep, stat
 
 
-# ============================================================ 原唱闸门
-# ★ 2026-10-06 主人两次点名「不是原唱是别人翻唱的人声分离过的」「必须解决」后加的闸。
+# ============================================================ 原唱/翻唱标注
+# ★★ 2026-10-06 主人第三轮点名后的**方案反转**（前两轮我做错了，这里改正）：
 #
-# 为什么音频闸门管不了这件事：音频闸门只看「能不能播、是不是完整曲」，
-# 一首**完整的翻唱**在它眼里完全合格。实测曲库 13 万首随机 300 首：
-#   oct=0 原创 242 ｜ oct=1 其他版本 36 ｜ oct=2 **明确翻唱 20（6.7%）** ｜ oct=3 2
-# 但**点名歌手是重灾区**（385 首里仅 94 首是原版录音室版）：
-#   周杰伦 33→6 ｜ 张杰 74→16 ｜ 凤凰传奇 10→1 ｜ 伍佰 13→2 ｜ 汪苏泷 33→1（26 首是翻唱）
-# 根因：我们主干的「歌单」里塞满了综艺 live 版与翻唱投稿 —— 打开歌手页反倒干净。
+#   主人原话：「你是真厉害原唱都删了只保留了个翻唱伍佰的还有很多都是这样」
+#             「剩一个翻唱剩什么呵呵」
+#             「**不是翻唱不能有 是不能和原唱混 原唱就是原唱翻唱就是翻唱**」
 #
-# 判据只用**网易云自己标的 originCoverType**（`v3/song/detail` 白送，不额外开销）：
-#   0 = 原创      → 留
-#   2 = 翻唱      → **剔**（实测带 originSongSimpleData 时能直接看到「原唱是别人」，
-#                   如 稻香(深情版)/Lucky小爱 → 原唱 稻香/周杰伦 id=185709）
-#   1 = 其他版本  → **留**（★ 抽样 2000 验过：oct=1 里 95% 名字无任何版本标记，
-#                   且例子全是正经原唱 —— 莫文蔚《阴天》许冠杰《学生哥》蔡国庆《北京的桥》
-#                   少女时代《DIVINE》。删 oct=1 会误杀约 10% 真原唱，属"错治"，故不删）
-#   3 / 缺失      → 留（不认识就不动）
+# 我上一轮的错法：把 oct=2（翻唱）**整条删掉**。后果是**灾难性的**：
+#   · 伍佰《泪桥》原唱（id=156736/156356）恰好是 VIP 歌 → 被**音频闸门**判 dead 剔掉；
+#     留下来能过的都是**免费翻唱** → 最后歌手页只剩翻唱，比不删还糟。
+#   · 大量「歌单里本来就只有翻唱版」的歌，一删就是**整首歌消失**（用户原话「剩一个翻唱剩什么」）。
 #
-# 再补一条**只砍确定非原版**的名字闸（补 oct 漏判的蹭名投稿：稻香(治愈版)/周杰伦./街道办GDC
-# 这条 oct=0，网易没标出来）。要求版本标记必须**在括号里 or 名字结尾**，
-# 否则会误杀《Live Forever》《现场》这类正经原创 —— 实测 2000 抽样里这类误杀为 0。
+# 主人指出的正法：**翻唱可以有，但不能和原唱混**。
+#   → 所以这里**不再删任何翻唱**，改成三件事：
+#     ① 打标：每条曲目带 `cv`（1=原唱 / 2=翻唱 / 0=未知），索引里带上原唱指针；
+#     ② 原唱回填：发现翻唱时，把它指的**原唱 id 拉进来**（ensure_oct 已经在攒 origin 池），
+#        让「原唱本尊」和「翻唱」**同场竞争**而不是只剩翻唱；
+#     ③ 排序：客户端按 (歌名|歌手) 聚合时 **oct=1 原唱置顶**，翻唱挂「翻唱」角标，
+#        并显示「原唱：XXX」—— 主人要的「原唱就是原唱 翻唱就是翻唱」就落在这里。
+#
+# 判据仍用**网易云自己标的 originCoverType**（`v3/song/detail` 白送，零额外开销）：
+#   oct=0 = 未知/原创 → cv=0（不标，也不降权）
+#   oct=1 = 原曲/原唱 → cv=1（**置顶**）
+#   oct=2 = 翻唱      → cv=2（**保留**，挂角标；ov = 它指向的原唱 songId）
+#   oct=3 = 未知类型  → cv=0
+#
+# 名字闸 VER_RE 同样**只做标注不做删除**（live/伴奏/dj 版挂标降权，仍可搜到）。
+OCT_FILE = os.path.join(CAT, "_oct.json")
+OCT_WORKERS = int(os.environ.get("HV_OCT_WORKERS") or "8")
 OCT_FILE = os.path.join(CAT, "_oct.json")
 OCT_WORKERS = int(os.environ.get("HV_OCT_WORKERS") or "8")
 VER_RE = re.compile(
@@ -685,34 +703,41 @@ def ensure_oct(ids):
 
 
 def original_gate(arr, tag="pack"):
-    """对曲目列表做原唱体检，返回 (通过的曲目, 统计明细)。arr 元素需含 i / n / a / d。"""
+    """给每条曲目**标注**原唱/翻唱（★ 不再删除任何一条）。
+
+    返回 (标注后的 arr, 统计明细)。arr 元素需含 i / n / a。
+    产出字段：`cv`（0 未知 / 1 原唱 / 2 翻唱）与 `ov`（翻唱指向的原唱 songId，无则不带）。
+
+    为什么改成标注（血案复盘 2026-10-06）：
+      上一版把 oct=2 直接 drop，结果伍佰《泪桥》**原唱是 VIP** 被音频闸门剔掉，
+      免费翻唱反而留下 —— 主人看到的就是「原唱都删了只保留了个翻唱」。
+      正确做法是「同场竞争 + 角标区分」，删除只会让翻唱变成唯一幸存者。
+    """
     if (os.environ.get("HV_ORIGIN_GATE") or "1") == "0":
-        return arr, {"原唱闸门": "已跳过"}
+        return arr, {"原唱标注": "已跳过"}
     oct = ensure_oct([s["i"] for s in arr])
-    keep, stat = [], {"翻唱版": 0, "非原版名字": 0, "未知放行": 0}
-    drop_ids = []
+    stat = {"原唱": 0, "翻唱": 0, "未知": 0, "名字带版本标": 0}
     for s in arr:
-        v = oct.get(int(s["i"]))
-        if v and v[0] == 2:
-            stat["翻唱版"] += 1
-            drop_ids.append(s["i"])
-            continue
+        v = oct.get(int(s["i"])) or [0, 0]
+        t = int(v[0] or 0)
+        if t == 1:
+            s["cv"] = 1
+            stat["原唱"] += 1
+        elif t == 2:
+            s["cv"] = 2
+            if v[1]:
+                s["ov"] = int(v[1])          # 原唱指针：客户端可显示「原唱：XXX」
+            stat["翻唱"] += 1
+        else:
+            s["cv"] = 0
+            stat["未知"] += 1
+        # 名字带 live/伴奏/dj 等版本标记的，**降权但不删**（cv 保持，额外挂一个标记）
         if VER_RE.search(s.get("n") or ""):
-            stat["非原版名字"] += 1
-            drop_ids.append(s["i"])
-            continue
-        if not v:
-            stat["未知放行"] += 1
-        keep.append(s)
-    log("[%s] 原唱闸门：%d → %d 首 ｜ 剔除 %d（%s）"
-        % (tag, len(arr), len(keep), len(arr) - len(keep),
-           "、".join("%s %d" % (k, v) for k, v in stat.items() if v)))
-    if drop_ids:
-        p = os.path.join(CAT, "_origin_dropped.txt")
-        with open(p, "a", encoding="utf-8") as fh:
-            for i in drop_ids:
-                fh.write("%s\n" % i)
-    return keep, stat
+            s["vm"] = 1
+            stat["名字带版本标"] += 1
+    log("[%s] 原唱标注：%d 首 ｜ %s"
+        % (tag, len(arr), "、".join("%s %d" % (k, v) for k, v in stat.items() if v)))
+    return arr, stat
 
 
 def _fresh_bonus(pt, now_ms):
@@ -847,13 +872,23 @@ def cmd_pack():
            "、".join("%s %d" % (k, v) for k, v in drop2.items() if v)))
     songs = songs2
 
-    # ★ 原唱闸门（放在排序截断之前：让「原版」优先占满 26 万个名额，
-    #   而不是先按热度塞满翻唱再被剔掉）
+    # ★ 原唱/翻唱**标注**（放在排序截断之前：让原唱带着 cv=1 进入排序，
+    #   截断时用 rank key 把原唱顶到前面，而不是先塞满翻唱再删掉）
     arr0, _og = original_gate(list(songs.values()), "pack")
     songs = {s["i"]: s for s in arr0}
 
     now_ms = int(time.time() * 1000)
-    arr = sorted(songs.values(), key=lambda x: -((x.get("pop") or 0) + _fresh_bonus(x.get("pt"), now_ms)))
+
+    def _rank(x):
+        """排序键：原唱 > 未知 > 翻唱；同档内再比热度+新鲜度。
+        主人要求「原唱就是原唱 翻唱就是翻唱」—— 翻唱不是不要，是**排后面**。"""
+        cv = x.get("cv") or 0
+        pen = 0 if cv == 1 else (2 if cv == 0 else 6)     # 翻唱降 6 分
+        if x.get("vm"):
+            pen += 4                                       # 名字带 live/伴奏再降 4 分
+        return -(((x.get("pop") or 0) + _fresh_bonus(x.get("pt"), now_ms)) - pen * 8)
+
+    arr = sorted(songs.values(), key=_rank)
     if KEEP and len(arr) > KEEP:
         cut = (arr[KEEP - 1].get("pop") or 0)
         arr = arr[:KEEP]
@@ -899,15 +934,19 @@ def _write_catalog(arr):
     #   · 手机端只保存原始字符串（无 JSON.parse、无逐条对象）→ 内存 ≈ 文本体积；
     #   · 检索用 indexOf 直接在字符串上滑，命中才切那一行 → 零额外分配。
     # 行格式：归一化歌名 \u0001 归一化歌手 \u0001 歌曲id \u0001 片号 \u0001 原名 \u0001 原歌手
+    #   \u0001 原唱标记(cv) \u0001 原唱id(ov)
     #   —— 前两段用内核同款 norm() 规则（小写+去空白/标点），用户输入什么都能搜到；
     #      后两段只用于「显示」，因为 norm 会吃掉空格与标点，不能拿它当标题给用户看。
+    #      cv：1=原唱 / 2=翻唱 / 0=未知（客户端据此置顶原唱、给翻唱挂角标，见 kernel isCv）
+    #      ov：翻唱指向的原唱 songId（0/空 = 无）→ 客户端可显示「原唱：XXX」
     lines = []
     si = 0
     for n, s in enumerate(arr):
         if n and n % SHARD == 0:
             si += 1
         lines.append(SEP.join((_norm(s["n"]), _norm(s["a"]), str(s["i"]), str(si),
-                               _safe(s["n"]), _safe(s["a"]))))
+                               _safe(s["n"]), _safe(s["a"]),
+                               str(s.get("cv") or 0), str(s.get("ov") or 0))))
 
     idx_files = []
     for i in range(0, len(lines), IDX_CHUNK):
@@ -986,10 +1025,18 @@ def cmd_verify():
         arr.extend(d if isinstance(d, list) else (d.get("songs") or []))
     log("现有曲库 %d 首（%d 片）→ 开始三重体检" % (len(arr), len(files)))
     arr = meta_gate(arr, "verify")
-    keep, _ = original_gate(arr, "verify")
-    keep, _ = audio_gate(keep, "verify")
+    arr, _og = original_gate(arr, "verify")        # ★ 只标注，不再删翻唱
+    keep, _ = audio_gate(arr, "verify")
     now_ms = int(time.time() * 1000)
-    keep.sort(key=lambda x: -((x.get("pop") or 0) + _fresh_bonus(x.get("pt"), now_ms)))
+
+    def _rank(x):
+        cv = x.get("cv") or 0
+        pen = 0 if cv == 1 else (2 if cv == 0 else 6)
+        if x.get("vm"):
+            pen += 4
+        return -(((x.get("pop") or 0) + _fresh_bonus(x.get("pt"), now_ms)) - pen * 8)
+
+    keep.sort(key=_rank)
     log("重写曲库：%d → %d 首" % (len(arr), len(keep)))
     _write_catalog(keep)
 

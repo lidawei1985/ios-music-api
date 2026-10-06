@@ -1,0 +1,13 @@
+# 图片资源（采集器本地化产物）一律按二进制处理，不做换行/文本转换
+data/assets/**/*.webp binary
+data/assets/**/*.jpg  binary
+data/assets/**/*.png  binary
+
+# 图片索引与总账是紧凑 JSON，diff 时当作二进制避免巨行爆屏
+data/assets/*.json binary
+
+# ★ 端上索引的 JS 版（window.__DWG_ASSETS_xx={...}，整份挤在一行）
+#   以及曲库分块（cat-idx-NN.js 单文件 4MB 只有一行）—— 不标 binary 的话
+#   每次 diff 都会把整行吐进终端，且 git 需要额外内存做行扫描。
+data/assets/*.js binary
+data/catalog/js/*.js binary

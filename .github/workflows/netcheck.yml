@@ -1,0 +1,110 @@
+name: netcheck
+
+# 一次性探针：验证 GitHub 云 runner 能否直连网易云接口
+#
+# ★ 2026-10-06 修 bug：原来 heredoc 里的 Python 是**带缩进的**（跟着 YAML 的 6 空格走），
+#   而 `python - <<'PY'` 会把 stdin 原样交给解释器 → 必然
+#   `IndentationError: unexpected indent`。这个探针**从来没成功跑过**。
+#   现在改成「写临时文件 → 执行」，并输出可判定的结论行。
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: 网易云接口可达性探针
+        run: |
+          cat > /tmp/probe.py <<'PY'
+          import json, ssl, urllib.parse, urllib.request
+
+          CTX = ssl.create_default_context()
+          CTX.check_hostname = False
+          CTX.verify_mode = ssl.CERT_NONE
+          UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
+          H = {"User-Agent": UA, "Referer": "https://music.163.com/",
+               "Accept": "application/json, text/plain, */*",
+               "Accept-Language": "zh-CN,zh;q=0.9"}
+          verdict = []
+
+
+          def get(url, data=None, timeout=25):
+              req = urllib.request.Request(url, data=data, headers=H)
+              with urllib.request.urlopen(req, timeout=timeout, context=CTX) as r:
+                  return json.loads(r.read().decode("utf-8", "replace"))
+
+
+          def probe(name, fn):
+              try:
+                  ok, extra = fn()
+                  print("SMOKE %-18s %s %s" % (name, "OK" if ok else "FAIL", extra), flush=True)
+              except Exception as e:
+                  ok = False
+                  print("SMOKE %-18s FAIL %s: %s" % (name, type(e).__name__, e), flush=True)
+              verdict.append((name, ok))
+
+
+          def _catalogue():
+              d = get("https://music.163.com/api/playlist/catalogue")
+              subs = [s.get("name") for s in (d.get("sub") or [])]
+              return bool(subs), "分类数=%d %s" % (len(subs), subs[:5])
+
+
+          def _plist():
+              d = get("https://music.163.com/api/playlist/list?cat=%s&order=hot&limit=60&offset=0"
+                      % urllib.parse.quote("华语"))
+              pls = d.get("playlists") or []
+              _plist.pid = (pls or [{}])[0].get("id")
+              return bool(pls), "歌单=%d 首个id=%s" % (len(pls), getattr(_plist, "pid", None))
+
+
+          def _pdetail():
+              pid = getattr(_plist, "pid", None)
+              if not pid:
+                  return False, "无可用歌单 id（上一步失败）"
+              d = get("https://music.163.com/api/v6/playlist/detail?id=%d&n=1000&s=8" % pid)
+              p = d.get("playlist") or {}
+              ids = len(p.get("trackIds") or [])
+              return ids > 0, "id=%s trackIds=%d tracks字段=%d" % (
+                  pid, ids, len(p.get("tracks") or []))
+
+
+          def _sdetail():
+              body = "c=" + urllib.parse.quote(
+                  json.dumps([{"id": 347230}], separators=(",", ":")))
+              d = get("https://music.163.com/api/v3/song/detail", data=body.encode())
+              songs = d.get("songs") or []
+              s = (songs or [{}])[0]
+              ar = [a.get("name") for a in (s.get("ar") or [])]
+              return bool(songs), "%s | %s" % (s.get("name"), ar)
+
+
+          def _mvall():
+              d = get("https://music.163.com/api/mv/all?limit=5&offset=0")
+              mvs = d.get("mvs") or []
+              return bool(mvs), "MV=%d" % len(mvs)
+
+
+          probe("catalogue", _catalogue)
+          probe("playlist/list", _plist)
+          probe("playlist/detail", _pdetail)
+          probe("song/detail", _sdetail)
+          probe("mv/all", _mvall)
+
+          try:
+              with urllib.request.urlopen("https://api.ipify.org", timeout=15) as r:
+                  print("SMOKE 出口IP =", r.read().decode(), flush=True)
+          except Exception as e:
+              print("SMOKE 出口IP FAIL:", type(e).__name__, e, flush=True)
+
+          ok = sum(1 for _, v in verdict if v)
+          print("SMOKE === 判定 %d/%d 接口可用 ===" % (ok, len(verdict)), flush=True)
+          if ok == len(verdict):
+              print("SMOKE 》结论：云 runner 可直连网易云，采集可全自动上云", flush=True)
+          else:
+              print("SMOKE 》结论：云 runner 出口受限（%d/%d），采集需本机跑后推产物" % (ok, len(verdict)), flush=True)
+          PY
+          python3 /tmp/probe.py
