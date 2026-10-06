@@ -120,6 +120,15 @@ jobs:
           TXT_BUDGET_S: "1500"
         run: python tools/build.py
 
+      # ★★★ 2026-10-06 补齐关键一环：把 data/<n>.json 同步导出 data/<n>.js。
+      #   端上是 file:// 页面，iOS WebView **拦 fetch / XHR，只放行 <script>**；
+      #   内核 fetchLive() 已改走 <script> 注入 window.__DWG_DB_<NAME>。
+      #   少了这一步，CI 里新产出的曲库/榜单**端上永远拉不到**（图下好了也没数据）。
+      - name: 导出端上可用的 JS 版数据（data/*.js）
+        if: github.event_name == 'workflow_dispatch' || steps.fresh.outputs.skip != 'true'
+        continue-on-error: true
+        run: python tools/mkdata_js.py
+
       - name: 产出校验（必须有可播源 + 非空歌库 + 主视觉≥20）
         if: github.event_name == 'workflow_dispatch' || steps.fresh.outputs.skip != 'true'
         run: python tools/validate.py
@@ -134,6 +143,7 @@ jobs:
         run: python tools/asset_guard.py
 
       - name: 入库并发布
+        id: publish
         run: |
           git config user.name "music-pool-bot"
           git config user.email "music-pool-bot@users.noreply.github.com"
@@ -145,25 +155,50 @@ jobs:
             git commit -m "pool: round ${ROUND} $(date -u '+%Y-%m-%d %H:%M')"
             git push
           fi
+          # 无论本轮有没有新提交，都把「当前 main 的 sha」作为时效锚点对外发布
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
-      - name: 刷新 jsDelivr 缓存（★ 对分支无效，见下方说明 —— 实为安慰剂）
+      # ★★★ 时效锚点：把刚推上去的数据提交 sha 写成一个「10 分钟窗口命名」的小文件。
+      #   为什么非要它（实测判决）：
+      #     jsDelivr **按 URL 缓存** —— @main 这类老 URL 吃 12 小时分支硬缓存，
+      #     purge / ?t= 全部打不动；而**全新 URL**（新文件名 / 新 commit sha）立即回源。
+      #     端上要拿「刚推的 sha」，可拿 sha 本身也要一个能秒到的 URL ——
+      #     用每 10 分钟换一次的窗口文件名破局：data/win/202610070000.js。
+      #   必须**两段提交**：锚点里写的是数据提交的 sha，而 sha 提交完才知道（先有鸡先有蛋）。
+      #   端上探到 sha → 索引/数据切到 @<sha>（秒级）；探不到 → 回落 @main（慢 12 小时，功能不受影响）。
+      - name: 发布时效锚点（data/win/<10分钟窗口>.js）
+        if: steps.publish.outputs.sha != ''
+        run: |
+          git config user.name "music-pool-bot"
+          git config user.email "music-pool-bot@users.noreply.github.com"
+          python tools/mktide.py --sha "${{ steps.publish.outputs.sha }}" --prune
+          git add -A data/win
+          if git diff --cached --quiet; then
+            echo "锚点无变化（同窗口内重复跑，URL 相同、内容相同）"
+          else
+            git commit -m "tide: anchor @$(echo ${{ steps.publish.outputs.sha }} | cut -c1-10) $(date -u '+%Y-%m-%d %H:%M')"
+            git push
+          fi
+          echo "锚点已发布：https://gcore.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/win/<窗口>.js"
+
+      - name: 刷新 jsDelivr 缓存（★ 对分支无效 —— 留作痕迹，数据时效已由锚点解决）
         continue-on-error: true
         run: |
           # ★★ 2026-10-06 实证结论：purge **对分支引用无效**。
           #   依据 jsDelivr 官方文档："Valid semver releases must be used for purge to work"，
           #   且 "Branches - 12 hours"（分支引用硬缓存 12 小时，到期自然过期）。
           #   实测：对 @main 打 purge 回 200，但 20 分钟后 gcore 节点仍在发两代前的版本
-          #   （同一时刻 cdn 节点已是新版）→ 这几行一直是安慰剂，留作痕迹、不再指望它。
+          #   （同一时刻 cdn 节点已是新版）→ 这几行一直是安慰剂，留着只为「万一将来官方改行为」。
           #
-          # ★ 那么端上何时能看到新数据/新封面？—— 最坏 12 小时（分支缓存自然过期）。
-          #   这对「图片沉淀」是可接受的：诉求是「图要在我们自己这儿、永不因上游挂掉而白屏」，
-          #   不是「分钟级可见」。且端上取图有 <img> 直连 + 上游 URL 兜底，不会白屏。
-          #   若将来要把数据也压到分钟级：本流水线改成每轮 `gh release create`
-          #   顶一个新 semver release，再把端上 kernel/app.html 里的 CDN 常量从 @main
-          #   换成 @latest（必须保留 @main 兜底，理由见内核 KUP 注释）。此项未做，登记待办。
+          # ★★★ 端上「推完马上就能看到新数据」靠的**不是 purge，而是时效锚点**：
+          #   上一步发布的 data/win/<窗口>.js，URL 天生是新的 → 必然回源；
+          #   端上 probeTide() 拿到 sha 后，索引/数据整体切到 @<sha>（全新 URL → 秒级）。
+          #   图片仍走 @main：诉求是「图要在我们自己这儿、永不因上游挂掉而白屏」，
+          #   不是「分钟级可见」，且端上有 <img> 直连 + 上游 URL 兜底，不会白屏。
           for f in pool.json charts.json library.json artists.json mv.json hero.json \
                    assets/av.json assets/kv.json assets/cv.json assets/manifest.json \
-                   assets/av.js assets/kv.js assets/cv.js; do
+                   assets/av.js assets/kv.js assets/cv.js \
+                   pool.js charts.js library.js artists.js mv.js hero.js; do
             curl -sS --max-time 25 "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/$f" -o /dev/null \
               && echo "purged $f" || echo "purge failed $f"
           done
