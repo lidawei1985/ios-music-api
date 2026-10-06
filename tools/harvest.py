@@ -392,8 +392,17 @@ POP_NEW = int(os.environ.get("HV_POP_NEW") or "40")
 AUDIO_GATE = (os.environ.get("HV_AUDIO_GATE") or "1") != "0"
 AUDIO_WORKERS = int(os.environ.get("HV_AUDIO_WORKERS") or "24")
 AUDIO_MIN_BYTES = 20000          # 低于此必是 HTML 错误页/占位符
-AUDIO_KBPS_LO = 70               # 128k 正常曲；64k 以下只可能是「按比例缩水的试听片段」
+# ★ 2026-10-06 实测修正：原阈值 70 kbps 是**误杀源**。
+#   匿名实测（15 首热歌）发现网易云免签外链存在三类响应：
+#     · 3.3~5.2MB / audio/mpeg  = 128k 完整版      → keep
+#     · 481115 / 720813 bytes   = **低码率完整版**（11~22 kbps）→ 也是能听的真歌！
+#     · 4515 / text/html        = 不可播（HTML 下载页）→ dead
+#   旧逻辑用 70kbps 卡，会把中间那类**低码率正常歌整片误判成「试听片段」剔掉**。
+#   而「试听片段」的本质不是码率低，是**字节数装不下它宣称的时长**。
+#   故改判据：由 (字节/码率区间) 改为 (字节能覆盖的时长 vs 元数据时长的比例)。
+AUDIO_KBPS_LO = int(os.environ.get("HV_KBPS_LO") or "8")     # 仅作下界兜底：低于 8kbps 必然不是歌
 AUDIO_KBPS_HI = 450              # 320k/无损上限
+AUDIO_COVER_MIN = float(os.environ.get("HV_CLIP_COVER") or "0.75")  # 字节能覆盖的时长 < 元数据时长*0.75 → 判试听片段
 AUDIO_MAX_PER_RUN = int(os.environ.get("HV_AUDIO_MAX") or "0")   # 0=不限
 AUDIO_CACHE_FILE = os.path.join(CAT, "_audio_gate.json")
 OUTER_HDR = {"User-Agent": ("Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) "
@@ -402,25 +411,34 @@ OUTER_HDR = {"User-Agent": ("Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS
 
 
 def _outer_bytes(sid, timeout=8, retry=2):
-    """HEAD 网易云免签外链，只取 Content-Length。返回字节数；-1 = 网络失败（未知）。"""
+    """HEAD 网易云免签外链，返回 (bytes, ctype)。
+
+    ★ 2026-10-06 血案修复（云端把 5.6 万首砍到 1.6 万，剔掉 4 万"死链"）：
+      旧实现只读 Content-Length，且把 **任何 4xx 的 body 长度** 当成真实字节数返回；
+      云端 runner 的 IP 一旦被网易云风控，HEAD 会被成批拒掉 —— 那些 4xx 的错误页
+      长度往往很小，于是被判成「死链」，把**本来能播的歌整片误杀**。
+      病根有二，一并修：
+        ① 4xx 不再当作「确定死链」，而是当作「测不到」（-1）→ 上层放行（宁可不治不能错治）；
+        ② 网易云对**不可播**的歌会 302 到 HTML 下载页并返回 **200 + text/html**，
+           仅凭「长度 < 20000」是巧合式判据（错误页一旦变大就会放行死歌）。
+           这里改为**看 Content-Type**：真音频是 audio/*，HTML 一律判 dead —— 语义级判据。
+    """
     url = "https://music.163.com/song/media/outer/url?id=%d.mp3" % int(sid)
     for i in range(retry):
         try:
             req = urllib.request.Request(url, headers=OUTER_HDR, method="HEAD")
             with urllib.request.urlopen(req, timeout=timeout, context=CTX) as r:
                 cl = r.headers.get("Content-Length")
-                return int(cl) if cl else 0
-        except urllib.error.HTTPError as e:            # 有些情况服务端用 4xx 带 body
-            try:
-                cl = e.headers.get("Content-Length")
-                return int(cl) if cl else 0
-            except Exception:
-                return 0
+                ct = (r.headers.get("Content-Type") or "").lower()
+                return (int(cl) if cl else 0), ct
+        except urllib.error.HTTPError as e:
+            # 4xx/5xx = 被拒/风控，**不是**「这首歌是死链」，交给上层当 unknown 放行
+            return -1, ""
         except Exception:
             if i == retry - 1:
-                return -1
+                return -1, ""
             time.sleep(0.25 + random.random() * 0.25)
-    return -1
+    return -1, ""
 
 
 def _load_audio_cache():
@@ -443,17 +461,39 @@ def _save_audio_cache(d):
         log("  ! 可播缓存写入失败：%s" % e)
 
 
-def _verdict(cl, dur_ms):
-    """按字节数 + 元数据时长判定：keep / dead / clip / unknown"""
+def _verdict(cl, dur_ms, ctype=""):
+    """判定 keep / dead / clip / unknown。
+
+    判据（按可靠性从高到低）：
+      ① Content-Type：text/html / application/json = 网易云的「不可播」下载页 → dead
+         （★ 语义级判据。实测该页固定 200 + 4515 字节，只靠长度判是巧合式的）
+      ② 字节数装不下宣称时长 → clip（真正意义上的「试听片段」）
+      ③ 字节数 < 20KB → dead（残缺/占位）
+      ④ 测不到（-1）或 0 字节旧缓存 → unknown（放行，宁可不治不能错治）
+    """
     if cl is None or cl < 0:
         return "unknown"
+    ct = (ctype or "").lower()
+    # 旧缓存兼容：旧版 _outer_bytes 遇到 4xx 会返回 0，而 0 正是「风控误杀」的产物。
+    # 这类「0 字节且无 Content-Type」的记录不可信，一律当测不到放行，绝不据此剔歌。
+    if cl == 0 and not ct:
+        return "unknown"
+    if "text/html" in ct or "application/json" in ct:
+        return "dead"                      # 明确的错误页/占位页：判死
+    if ct and not ct.startswith("audio/"):
+        return "unknown"                   # 非 audio 也非已知错误页 → 测不准，放行
     if cl < AUDIO_MIN_BYTES:
         return "dead"
     dur = (dur_ms or 0) / 1000.0
     if dur <= 0:
-        return "keep"
+        return "keep"                      # 没有时长元数据 → 无从比对，放行
     kbps = cl * 8 / dur / 1000.0
-    return "keep" if AUDIO_KBPS_LO <= kbps <= AUDIO_KBPS_HI else "clip"
+    if kbps > AUDIO_KBPS_HI:
+        return "keep"                      # 异常高码率（无损/多轨）不受下界约束
+    # ★ 试听片段的本质：字节数只够放「宣称时长的一部分」。
+    #   用最低可信码率（AUDIO_KBPS_LO）反算「这些字节能撑多久」，与宣称时长比。
+    cover = (cl * 8 / AUDIO_KBPS_LO / 1000.0) / dur
+    return "keep" if cover >= AUDIO_COVER_MIN else "clip"
 
 
 def audio_gate(arr, tag="pack"):
@@ -480,7 +520,7 @@ def audio_gate(arr, tag="pack"):
                 try:
                     cache[str(s["i"])] = fut.result()
                 except Exception:
-                    cache[str(s["i"])] = -1
+                    cache[str(s["i"])] = (-1, "")
                 done += 1
                 if done % 5000 == 0:
                     left = (len(todo) - done) * (time.time() - t0) / max(1, done)
@@ -491,8 +531,14 @@ def audio_gate(arr, tag="pack"):
     keep, stat = [], {"死链/占位": 0, "试听片段": 0, "网络未测": 0}
     drop_ids = []
     for s in arr:
-        cl = cache.get(str(s["i"]))
-        v = _verdict(cl, s.get("d"))
+        entry = cache.get(str(s["i"]))
+        # 兼容旧缓存（纯 bytes）与新缓存（(bytes, ctype) 二元组）
+        if isinstance(entry, (list, tuple)):
+            cl = entry[0] if len(entry) > 0 else -1
+            ct = entry[1] if len(entry) > 1 else ""
+        else:
+            cl, ct = entry, ""
+        v = _verdict(cl, s.get("d"), ct)
         if v == "keep":
             keep.append(s)
         elif v == "dead":
@@ -504,6 +550,16 @@ def audio_gate(arr, tag="pack"):
         else:
             stat["网络未测"] += 1
             keep.append(s)          # 测不到就放行（宁可不治也不能错治：别误杀）
+
+    # ★ 2026-10-06 风控熔断：云端 IP 被网易云成批拒绝时，「网络未测」会占比极高。
+    #   此时继续按 dead 剔歌是危险的（上一轮就是这样把 5.6 万砍到 1.6 万）。
+    #   判据：未测占比 > 40% → 判定本轮探测不可信，**整体放行、不剔任何歌**。
+    total = len(arr)
+    if total and stat["网络未测"] / total > 0.40:
+        log("[%s] ⚠ 风控熔断：网络未测 %d/%d（%.0f%%）超过 40%% → 本轮音频闸门整体放行，不剔除任何曲目"
+            % (tag, stat["网络未测"], total, 100.0 * stat["网络未测"] / total))
+        return arr, {"音频闸门": "风控熔断·整体放行", "网络未测": stat["网络未测"]}
+
     log("[%s] 音频闸门：%d → %d 首 ｜ 剔除 %d（%s）"
         % (tag, len(arr), len(keep), len(arr) - len(keep),
            "、".join("%s %d" % (k, v) for k, v in stat.items() if v)))

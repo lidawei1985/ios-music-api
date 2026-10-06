@@ -61,7 +61,8 @@ jobs:
           python-version: "3.12"
 
       - name: 恢复 harvest 采集状态（歌单池 / trackIds / 元数据）
-        uses: actions/cache@v4
+        id: hcache
+        uses: actions/cache/restore@v4
         with:
           path: |
             data/catalog/_playlists.json
@@ -144,6 +145,25 @@ jobs:
         if: steps.need.outputs.pack == '1'
         run: python tools/harvest.py pack
 
+      # ★ 2026-10-06 血案修复：采集状态缓存必须「尽早且必然」落盘。
+      #   旧写法依赖 actions/cache 的 post 阶段保存 —— 但 job 一旦失败，post 会被 skip，
+      #   于是缓存丢失 → 下一轮从零全量重算 5.6 万首（85 分钟）→ 又超时/冲突失败 → 死循环。
+      #   这里在打包后立刻显式保存，并用 if: always() 保证「哪怕后续步骤全挂」也存下来。
+      #   key 带 run_id 确保每轮都是新缓存；restore 的 restore-keys 前缀会命中最近一次。
+      - name: ⑥-b 立即保存采集状态（无论后续成败，避免下轮全量重算）
+        if: always()
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            data/catalog/_playlists.json
+            data/catalog/_ids.json
+            data/catalog/_songs.jsonl
+            data/catalog/_artist_ids.json
+            data/catalog/_audio_gate.json
+            data/catalog/_oct.json
+          key: harvest-state-v2-${{ github.run_id }}-${{ github.run_attempt }}
+
       - name: ⑦ 发布前体检（不合格直接阻断）
         if: steps.need.outputs.pack == '1'
         run: |
@@ -183,8 +203,30 @@ jobs:
             echo "曲库无变更"
           else
             git commit -m "曲库 ${CNT} 首：热门歌单扩容 + 质量闸门（p50 热度见体检）$(date -u '+%Y-%m-%d %H:%M')"
-            git push
-            echo "已发布 ${CNT} 首"
+            # ★ 2026-10-06 血案修复：本流程可能跑 1~2 小时，期间 pool.yml 的定时任务
+            #   很可能往 main 推了新提交 → 直接 git push 会被 "[rejected] (fetch first)" 拒掉，
+            #   整轮 2 小时的采集成果全部白费（本地 commit 随 runner 一起销毁）。
+            #   这里改为「rebase 到最新 main 后重推」，最多重试 4 次（指数退避）。
+            #   用 --autostash：工作区可能还有缓存等未跟踪改动，先 stash 再 rebase。
+            ok=0
+            for i in 1 2 3 4; do
+              if git push 2>/tmp/push.err; then ok=1; break; fi
+              echo "----- 第 $i 次 push 失败 -----"; cat /tmp/push.err
+              echo "拉取远端最新 main 后 rebase 重试…"
+              git fetch origin main || true
+              if ! git rebase --autostash origin/main; then
+                echo "rebase 冲突，放弃本次发布"
+                git rebase --abort 2>/dev/null || true
+                break
+              fi
+              sleep $((i * 5))
+            done
+            if [ "$ok" = "1" ]; then
+              echo "已发布 ${CNT} 首"
+            else
+              echo "❌ push 连续失败，本轮不发布（线上曲库保持不变）"
+              exit 1
+            fi
           fi
 
       - name: ⑨ 刷新 jsDelivr 缓存（让 App 立刻拿到新曲库）
