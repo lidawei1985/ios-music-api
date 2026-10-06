@@ -340,13 +340,31 @@ ARTIST_MAX = 60
 #   （Kapitel 1: … Teil 188 — Audio Media Digital Hörbücher）与助眠/冥想音轨；
 #   而 pop≥70 抽样 15 首全是真歌（周笔畅/山下達郎/Olivia Rodrigo）——所以非歌曲必须单独挡。
 JUNK_RE = re.compile(
-    r"翻唱|cover|伴奏|instrumental|dj版|抖音|铃声|纯音乐|钢琴版|吉他版|尤克里里|八音盒|"
+    # ★ 2026-10-06 补两处漏网（实测点名），但都收窄过，避免误杀：
+    #   · dj —— 只剔「作为后缀出现」的 dj（光年之外dj / xxx dj版），
+    #     不能裸匹配：Dj Snake、DJ Got Us Fallin In Love 是正版艺人/作品（实测会误杀）
+    #     → 用 (?<=[\u4e00-\u9fa5\s])dj(?:版|版|mix)?\s*$ 只认中文名尾部
+    #   · 器乐改编版（宿命洞箫版 原本漏网）—— 换乐器演奏不是原唱，
+    #     且歌词时间轴对不上（用户抱怨的「词不对版」来源之一）
+    r"翻唱|cover|伴奏|instrumental|抖音|铃声|纯音乐|钢琴版|吉他版|尤克里里|八音盒|"
     r"口琴|陶笛|葫芦丝|萨克斯|二胡|古筝|电子琴|哼唱|清唱|翻自|ktv|慢速|加速|降调|升调|"
     r"remix|八轨|和声版|消音|立体声环绕|睡眠|白噪音|胎教|助眠|asmr|钢琴曲|轻音乐|"
+    r"洞箫|笛子版|琵琶版|箫版|筝版|埙|笙版|唢呐|扬琴|马头琴|手风琴|"
     r"audiobook|audio\s*book|bookstream|朗读|有声书|有声剧|播客|podcast|广播剧|"
     r"chapter\s*\d|kapitel\s*\d|teil\s*\d|episode\s*\d|电台剧|朗读版|"
     r"nature\s*sound|yoga|meditation|spa\s*music|white\s*noise|rain\s*sound|"
     r"素材|production\s*music|trailer\s*music|背景音乐|彩铃", re.I)
+# dj 收紧版：只认「中文名尾部」的 dj（光年之外dj / 孤勇者 dj版），放过 Dj Snake 这类正版艺人
+JUNK_DJ_RE = re.compile(r"[\u4e00-\u9fa5]\s*dj\s*(?:版|mix|remix)?\s*$", re.I)
+
+
+def is_junk(*fields):
+    """统一垃圾判定：JUNK_RE + 收紧版 dj。所有调用点都走这里，避免新增规则漏改。"""
+    for s in fields:
+        s = s or ""
+        if JUNK_RE.search(s) or JUNK_DJ_RE.search(s):
+            return True
+    return False
 STRONG_N = int(os.environ.get("HV_STRONG_N") or "5")
 POP_EST = int(os.environ.get("HV_POP_EST") or "10")
 POP_NEW = int(os.environ.get("HV_POP_NEW") or "40")
@@ -722,7 +740,7 @@ def apply_gate(songs):
     out, drop2 = {}, {"翻唱伴奏黑名单": 0, "无名低热": 0, "时长超限": 0, "名字异常": 0}
     for sid, s in songs.items():
         t, a = s.get("n") or "", s.get("a") or ""
-        if JUNK_RE.search(t) or JUNK_RE.search(a):
+        if is_junk(t, a):
             drop2["翻唱伴奏黑名单"] += 1
             continue
         if len(t) > NAME_MAX or len(a) > ARTIST_MAX:
@@ -883,8 +901,7 @@ def meta_gate(arr, tag="verify"):
     a = _apply(a, "无版权下架", lambda x: not x.get("nrc"))
     a = _apply(a, "时长越界", lambda x: MIN_DUR <= (x.get("d") or 0) <= MAX_DUR)
     a = _apply(a, "热度不足", lambda x: (x.get("pop") or 0) >= MIN_POP)
-    a = _apply(a, "垃圾命名", lambda x: not (JUNK_RE.search(x.get("n") or "")
-                                           or JUNK_RE.search(x.get("a") or "")))
+    a = _apply(a, "垃圾命名", lambda x: not is_junk(x.get("n"), x.get("a")))
     log("[%s] 元数据闸门：%d → %d 首 ｜ 剔除 %s"
         % (tag, len(arr), len(a),
            "、".join("%s %d" % (k, v) for k, v in drop.items()) or "无"))

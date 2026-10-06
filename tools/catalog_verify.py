@@ -22,13 +22,24 @@ MIN_DUR, MAX_DUR = 30000, 900000
 MIN_P50_POP = 10          # 中位热度下限（防垃圾回灌；实测干净库 p50≈35~85）
 MIN_HOT_PCT = 20          # 热门(pop≥40)占比下限 %
 JUNK_RE = re.compile(
-    r"翻唱|cover|伴奏|instrumental|dj版|抖音|铃声|纯音乐|钢琴版|吉他版|尤克里里|八音盒|"
+    r"翻唱|cover|伴奏|instrumental|抖音|铃声|纯音乐|钢琴版|吉他版|尤克里里|八音盒|"
     r"口琴|陶笛|葫芦丝|萨克斯|二胡|古筝|电子琴|哼唱|清唱|翻自|ktv|慢速|加速|降调|升调|"
     r"remix|八轨|和声版|消音|立体声环绕|睡眠|白噪音|胎教|助眠|asmr|钢琴曲|轻音乐|"
+    r"洞箫|笛子版|琵琶版|箫版|筝版|埙|笙版|唢呐|扬琴|马头琴|手风琴|"
     r"audiobook|audio\s*book|bookstream|朗读|有声书|有声剧|播客|podcast|广播剧|"
     r"chapter\s*\d|kapitel\s*\d|teil\s*\d|episode\s*\d|电台剧|朗读版|"
     r"nature\s*sound|yoga|meditation|spa\s*music|white\s*noise|rain\s*sound|"
     r"素材|production\s*music|trailer\s*music|背景音乐|彩铃", re.I)
+# dj 收紧版（与 harvest.py 同口径）：只认中文名尾部，放过 Dj Snake 这类正版艺人
+JUNK_DJ_RE = re.compile(r"[\u4e00-\u9fa5]\s*dj\s*(?:版|mix|remix)?\s*$", re.I)
+
+
+def is_junk(*fields):
+    for s in fields:
+        s = s or ""
+        if JUNK_RE.search(s) or JUNK_DJ_RE.search(s):
+            return True
+    return False
 
 bad = []
 warn = []
@@ -101,9 +112,10 @@ check(nrc == 0, "无版权下架曲目（%d 条）" % nrc)
 check(durbad == 0, "时长均在 30s~15min（越界 %d 条）" % durbad)
 
 # ---------- C 干净 ----------
-junk = [x for x in arr if JUNK_RE.search(x.get("n") or "") or JUNK_RE.search(x.get("a") or "")][:5]
+_junkall = [x for x in arr if is_junk(x.get("n"), x.get("a"))]
+junk = _junkall[:5]
 check(not junk, "无翻唱/伴奏/有声书/白噪音等垃圾（命中 %d 条，例：%s）"
-      % (len([x for x in arr if JUNK_RE.search(x.get("n") or "") or JUNK_RE.search(x.get("a") or "")]),
+      % (len(_junkall),
          "；".join("%s—%s" % (x["n"][:16], x["a"][:12]) for x in junk[:2])))
 
 # ---------- D 成色 ----------
