@@ -1,0 +1,65 @@
+name: netcheck
+
+# 一次性探针：验证 GitHub 云 runner 能否直连网易云接口（决定 harvest 能否全自动化）
+on:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: 网易云接口可达性探针
+        run: |
+          python - <<'PY'
+          import json, urllib.request, urllib.parse, ssl, time
+          CTX = ssl.create_default_context(); CTX.check_hostname=False; CTX.verify_mode=ssl.CERT_NONE
+          UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
+          H = {"User-Agent": UA, "Referer": "https://music.163.com/",
+               "Accept": "application/json, text/plain, */*", "Accept-Language": "zh-CN,zh;q=0.9"}
+          def get(url, data=None, timeout=25):
+              req = urllib.request.Request(url, data=data, headers=H)
+              with urllib.request.urlopen(req, timeout=timeout, context=CTX) as r:
+                  return json.loads(r.read().decode('utf-8','replace'))
+          # 1) 分类目录
+          try:
+              d = get("https://music.163.com/api/playlist/catalogue")
+              subs = [s.get('name') for s in (d.get('sub') or [])]
+              print("SMOKE catalogue 分类数 =", len(subs), subs[:5], flush=True)
+          except Exception as e:
+              print("SMOKE catalogue FAIL:", type(e).__name__, e, flush=True)
+          # 2) 歌单列表一页
+          try:
+              d = get("https://music.163.com/api/playlist/list?cat=%s&order=hot&limit=60&offset=0"
+                      % urllib.parse.quote("华语"))
+              print("SMOKE playlist/list 返回歌单 =", len(d.get('playlists') or []), flush=True)
+              pid = (d.get('playlists') or [{}])[0].get('id')
+          except Exception as e:
+              pid = None
+              print("SMOKE playlist/list FAIL:", type(e).__name__, e, flush=True)
+          # 3) 歌单 trackIds（扩库主干的关键接口）
+          if pid:
+              try:
+                  d = get("https://music.163.com/api/v6/playlist/detail?id=%d&n=1000&s=8" % pid)
+                  p = d.get('playlist') or {}
+                  print("SMOKE playlist/detail id=%s trackIds=%d tracksField=%d"
+                        % (pid, len(p.get('trackIds') or []), len(p.get('tracks') or [])), flush=True)
+              except Exception as e:
+                  print("SMOKE playlist/detail FAIL:", type(e).__name__, e, flush=True)
+          # 4) 批量元数据
+          try:
+              body = "c=" + urllib.parse.quote(json.dumps([{"id": 347230}], separators=(',',':')))
+              d = get("https://music.163.com/api/v3/song/detail", data=body.encode())
+              s = (d.get('songs') or [{}])[0]
+              print("SMOKE song/detail 命中 =", len(d.get('songs') or []),
+                    "|", s.get('name'), "|", [a.get('name') for a in (s.get('ar') or [])], flush=True)
+          except Exception as e:
+              print("SMOKE song/detail FAIL:", type(e).__name__, e, flush=True)
+          # 5) 出网出口
+          try:
+              with urllib.request.urlopen("https://api.ipify.org", timeout=15) as r:
+                  print("SMOKE runner 出口 IP =", r.read().decode(), flush=True)
+          except Exception as e:
+              print("SMOKE ipify FAIL:", type(e).__name__, e, flush=True)
+          PY
