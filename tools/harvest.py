@@ -15,7 +15,7 @@
   songs  批量取元数据      → data/catalog/_songs.jsonl
   pack   归一+去重+分片    → data/catalog/manifest.json / shard-NNN.json / search.json
 """
-import json, os, sys, time, ssl, re, urllib.request, urllib.parse, random
+import json, os, sys, time, ssl, re, urllib.request, urllib.error, urllib.parse, random
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -202,13 +202,19 @@ def _songs_batch(ids):
                     "f": t.get("fee") if t.get("fee") is not None else -1,
                     "pop": int(t.get("pop") or 0),
                     "pt": int(t.get("publishTime") or 0),
-                    "nrc": 1 if t.get("noCopyrightRcmd") else 0})
+                    "nrc": 1 if t.get("noCopyrightRcmd") else 0,
+                    # ★ 原唱标记（同一请求白送）：0 原创 / 1 其他版本 / 2 翻唱
+                    #   ov = 翻唱所指向的原唱 songId（原唱线索，供下一轮扩库）
+                    "oct": int(t.get("originCoverType") or 0),
+                    "ov": int((t.get("originSongSimpleData") or {}).get("songId") or 0)})
     return out, aids, None
 
 
 def cmd_songs():
     store = json.load(open(IDS_FILE, encoding="utf-8"))
-    pool = list(store.get("playlists", {}).values()) + list(store.get("artists", {}).values())
+    pool = (list(store.get("playlists", {}).values())
+            + list(store.get("artists", {}).values())
+            + [store.get("origin") or []])          # ★ 翻唱指出的原唱，一并取元数据
     ids = sorted({i for v in pool for i in v})
     done = set()
     if os.path.exists(SONGS_FILE):
@@ -268,7 +274,13 @@ def _artist_songs(aid):
 
 def cmd_artists():
     MAXA = int(os.environ.get("HV_MAX_ARTISTS") or "0")
-    aids = json.load(open(ART_FILE, encoding="utf-8"))
+    # ★ 冷启动防御：CI 的 actions/cache 从未命中过（实测 Cache not found），
+    #   每轮都是全套重采。此时 _artist_ids.json 由上一步 songs 现写现用；
+    #   万一 songs 没跑或没产出，这里也不能直接崩 —— 空池就当无事发生。
+    aids = json.load(open(ART_FILE, encoding="utf-8")) if os.path.exists(ART_FILE) else []
+    if not aids:
+        log("按歌手扩库：_artist_ids.json 为空（冷启动首轮属正常）→ 跳过")
+        return
     store = json.load(open(IDS_FILE, encoding="utf-8"))
     done = store.setdefault("artists", {})
     base = {i for v in store.get("playlists", {}).values() for i in v}
@@ -340,6 +352,295 @@ POP_EST = int(os.environ.get("HV_POP_EST") or "10")
 POP_NEW = int(os.environ.get("HV_POP_NEW") or "40")
 
 
+# ============================================================ 音频级可播闸门
+# ★ 2026-10-06 主人口述「好多歌时长不够还不是原唱」「必须解决」后加的最后一闸。
+#
+# 为什么元数据闸门（上面那些）不够用 —— 三条实测铁证：
+#   1) **fee 字段不可信**。周杰伦《稻香》i=185709 fee=0（标称免费），outer 实际回
+#      4515 字节 HTML；《烟花易冷》《青花瓷》《夜曲》同批 33 首里 28 首如此。
+#   2) **VIP 试听片段伪装成真音频**。伍佰《泪桥》i=156736 回 481115 字节的
+#      `audio/mpeg`（Content-Type 完全正常），前 2KB 也是标准 `\xff\xfb` MP3 帧头 ——
+#      **二进制嗅探 100% 认不出**。实为 30 秒试听（原曲 225 秒）。
+#   3) **唯一可靠判据 = Content-Length 反算时长**。
+#      免费完整曲：Samson et Dalila 302s→302s、Calm and Relaxed 155s→155s（误差 0 秒）；
+#      试听片段：泪桥 481115B / 225s = **17 kbps**（正常 128 kbps）。
+#
+# 做法对齐业界（已核对源码）：
+#   · lx-music  `isEqualsInterval`: |目标时长-候选时长| <= 5 秒才放行；
+#   · spotDL    `calc_time_match`: exp(-0.1*Δ)，time_match<25 直接淘汰；
+#   · UnblockNeteaseMusic: 「读前 8KB 验码率剔除死链」。
+# 这里取等价且更省流量的形式：HEAD 拿 Content-Length → 反算实际码率 → 落在
+# 合理区间才算「真的是这首完整曲」。全程不发 GET，不下载音频。
+AUDIO_GATE = (os.environ.get("HV_AUDIO_GATE") or "1") != "0"
+AUDIO_WORKERS = int(os.environ.get("HV_AUDIO_WORKERS") or "24")
+AUDIO_MIN_BYTES = 20000          # 低于此必是 HTML 错误页/占位符
+AUDIO_KBPS_LO = 70               # 128k 正常曲；64k 以下只可能是「按比例缩水的试听片段」
+AUDIO_KBPS_HI = 450              # 320k/无损上限
+AUDIO_MAX_PER_RUN = int(os.environ.get("HV_AUDIO_MAX") or "0")   # 0=不限
+AUDIO_CACHE_FILE = os.path.join(CAT, "_audio_gate.json")
+OUTER_HDR = {"User-Agent": ("Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) "
+                            "AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"),
+             "Referer": "https://music.163.com/"}
+
+
+def _outer_bytes(sid, timeout=8, retry=2):
+    """HEAD 网易云免签外链，只取 Content-Length。返回字节数；-1 = 网络失败（未知）。"""
+    url = "https://music.163.com/song/media/outer/url?id=%d.mp3" % int(sid)
+    for i in range(retry):
+        try:
+            req = urllib.request.Request(url, headers=OUTER_HDR, method="HEAD")
+            with urllib.request.urlopen(req, timeout=timeout, context=CTX) as r:
+                cl = r.headers.get("Content-Length")
+                return int(cl) if cl else 0
+        except urllib.error.HTTPError as e:            # 有些情况服务端用 4xx 带 body
+            try:
+                cl = e.headers.get("Content-Length")
+                return int(cl) if cl else 0
+            except Exception:
+                return 0
+        except Exception:
+            if i == retry - 1:
+                return -1
+            time.sleep(0.25 + random.random() * 0.25)
+    return -1
+
+
+def _load_audio_cache():
+    try:
+        with open(AUDIO_CACHE_FILE, encoding="utf-8") as fh:
+            d = json.load(fh)
+        return d if isinstance(d, dict) else {}
+    except Exception:
+        return {}
+
+
+def _save_audio_cache(d):
+    try:
+        os.makedirs(CAT, exist_ok=True)
+        tmp = AUDIO_CACHE_FILE + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as fh:
+            json.dump(d, fh, separators=(",", ":"))
+        os.replace(tmp, AUDIO_CACHE_FILE)
+    except Exception as e:
+        log("  ! 可播缓存写入失败：%s" % e)
+
+
+def _verdict(cl, dur_ms):
+    """按字节数 + 元数据时长判定：keep / dead / clip / unknown"""
+    if cl is None or cl < 0:
+        return "unknown"
+    if cl < AUDIO_MIN_BYTES:
+        return "dead"
+    dur = (dur_ms or 0) / 1000.0
+    if dur <= 0:
+        return "keep"
+    kbps = cl * 8 / dur / 1000.0
+    return "keep" if AUDIO_KBPS_LO <= kbps <= AUDIO_KBPS_HI else "clip"
+
+
+def audio_gate(arr, tag="pack"):
+    """对 arr（曲目 dict 列表）做音频级可播体检，返回 (通过的曲目, 统计明细)。
+
+    结果按 song id 缓存到 _audio_gate.json，重跑只补新歌 → 增量且可中断续跑。
+    """
+    if not AUDIO_GATE:
+        return arr, {"音频闸门": "已跳过"}
+    cache = _load_audio_cache()
+    known = {str(s["i"]) for s in arr if str(s["i"]) in cache}
+    todo = [s for s in arr if str(s["i"]) not in cache]
+    if AUDIO_MAX_PER_RUN:
+        todo = todo[:AUDIO_MAX_PER_RUN]
+    log("音频可播体检：待测 %d 首（缓存命中 %d 首）｜%d 并发"
+        % (len(todo), len(known), AUDIO_WORKERS))
+    t0 = time.time()
+    if todo:
+        done = 0
+        with ThreadPoolExecutor(AUDIO_WORKERS) as ex:
+            futs = {ex.submit(_outer_bytes, s["i"]): s for s in todo}
+            for fut in as_completed(futs):
+                s = futs[fut]
+                try:
+                    cache[str(s["i"])] = fut.result()
+                except Exception:
+                    cache[str(s["i"])] = -1
+                done += 1
+                if done % 5000 == 0:
+                    left = (len(todo) - done) * (time.time() - t0) / max(1, done)
+                    log("  … %d/%d 已测（剩约 %.0f 分钟）" % (done, len(todo), left / 60))
+                    _save_audio_cache(cache)
+        _save_audio_cache(cache)
+
+    keep, stat = [], {"死链/占位": 0, "试听片段": 0, "网络未测": 0}
+    drop_ids = []
+    for s in arr:
+        cl = cache.get(str(s["i"]))
+        v = _verdict(cl, s.get("d"))
+        if v == "keep":
+            keep.append(s)
+        elif v == "dead":
+            stat["死链/占位"] += 1
+            drop_ids.append(s["i"])
+        elif v == "clip":
+            stat["试听片段"] += 1
+            drop_ids.append(s["i"])
+        else:
+            stat["网络未测"] += 1
+            keep.append(s)          # 测不到就放行（宁可不治也不能错治：别误杀）
+    log("[%s] 音频闸门：%d → %d 首 ｜ 剔除 %d（%s）"
+        % (tag, len(arr), len(keep), len(arr) - len(keep),
+           "、".join("%s %d" % (k, v) for k, v in stat.items() if v)))
+    if drop_ids:
+        p = os.path.join(CAT, "_audio_dropped.txt")
+        with open(p, "a", encoding="utf-8") as fh:
+            for i in drop_ids:
+                fh.write("%s\n" % i)
+    return keep, stat
+
+
+# ============================================================ 原唱闸门
+# ★ 2026-10-06 主人两次点名「不是原唱是别人翻唱的人声分离过的」「必须解决」后加的闸。
+#
+# 为什么音频闸门管不了这件事：音频闸门只看「能不能播、是不是完整曲」，
+# 一首**完整的翻唱**在它眼里完全合格。实测曲库 13 万首随机 300 首：
+#   oct=0 原创 242 ｜ oct=1 其他版本 36 ｜ oct=2 **明确翻唱 20（6.7%）** ｜ oct=3 2
+# 但**点名歌手是重灾区**（385 首里仅 94 首是原版录音室版）：
+#   周杰伦 33→6 ｜ 张杰 74→16 ｜ 凤凰传奇 10→1 ｜ 伍佰 13→2 ｜ 汪苏泷 33→1（26 首是翻唱）
+# 根因：我们主干的「歌单」里塞满了综艺 live 版与翻唱投稿 —— 打开歌手页反倒干净。
+#
+# 判据只用**网易云自己标的 originCoverType**（`v3/song/detail` 白送，不额外开销）：
+#   0 = 原创      → 留
+#   2 = 翻唱      → **剔**（实测带 originSongSimpleData 时能直接看到「原唱是别人」，
+#                   如 稻香(深情版)/Lucky小爱 → 原唱 稻香/周杰伦 id=185709）
+#   1 = 其他版本  → **留**（★ 抽样 2000 验过：oct=1 里 95% 名字无任何版本标记，
+#                   且例子全是正经原唱 —— 莫文蔚《阴天》许冠杰《学生哥》蔡国庆《北京的桥》
+#                   少女时代《DIVINE》。删 oct=1 会误杀约 10% 真原唱，属"错治"，故不删）
+#   3 / 缺失      → 留（不认识就不动）
+#
+# 再补一条**只砍确定非原版**的名字闸（补 oct 漏判的蹭名投稿：稻香(治愈版)/周杰伦./街道办GDC
+# 这条 oct=0，网易没标出来）。要求版本标记必须**在括号里 or 名字结尾**，
+# 否则会误杀《Live Forever》《现场》这类正经原创 —— 实测 2000 抽样里这类误杀为 0。
+OCT_FILE = os.path.join(CAT, "_oct.json")
+OCT_WORKERS = int(os.environ.get("HV_OCT_WORKERS") or "8")
+VER_RE = re.compile(
+    # ① 括号里的版本标记：允许标记前后各带一点修饰（「江苏卫视2015新年**演唱会**版」
+    #    「合唱**伴奏**」「Cover 陆二胡」），但**必须落在括号内** —— 这样
+    #    《Live Forever》《现场之王》这类正经原创不会被误杀（实测 2000 抽样误杀 0）
+    r"[（(\[【][^）)\]】]{0,14}?"
+    r"(?:live|现场|演唱会|音乐会|音乐节|歌友会|深情版|治愈版|女声版|男声版|"
+    r"童声版|烟嗓版|温柔版|伤感版|女版|男版|纯享|合唱伴奏|伴奏|清唱|卡拉\s?ok|ktv|"
+    r"翻唱|翻自|改编|remix|cover|acoustic|unplugged|demo|instrumental|karaoke|"
+    r"dj版|慢摇|降调|升调|变速|倍速|加速版|减速版|钢琴版|吉他版|尤克里里|八音盒|"
+    r"口琴版|葫芦丝|陶笛|二胡版|古筝版|纯音乐)"
+    r"[^）)\]】]{0,14}?[）)\]】]"
+    # ② 无括号但挂在名字结尾的版本标记（「夜曲 伴奏版」「你好 慢摇版」）
+    r"|(?:live|现场版|演唱会版|音乐节版|深情版|治愈版|女声版|男声版|童声版|纯享版|"
+    r"伴奏版|清唱版|翻唱版|dj版|慢摇版|降调版|升调版|二倍速|变速版)\s*$", re.I)
+
+
+def _oct_load():
+    try:
+        with open(OCT_FILE, encoding="utf-8") as fh:
+            d = json.load(fh)
+        return {int(k): v for k, v in d.items()} if isinstance(d, dict) else {}
+    except Exception:
+        return {}
+
+
+def _oct_save(m):
+    try:
+        os.makedirs(CAT, exist_ok=True)
+        tmp = OCT_FILE + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as fh:
+            json.dump({str(k): v for k, v in m.items()}, fh, separators=(",", ":"))
+        os.replace(tmp, OCT_FILE)
+    except Exception as e:
+        log("  ! 原唱缓存写入失败：%s" % e)
+
+
+def _oct_fetch(ids):
+    """批量取 originCoverType / 原唱 id。一次 1000 个（实测 974 命中 / 3.7s）"""
+    out = {}
+    body = "c=" + urllib.parse.quote(json.dumps([{"id": i} for i in ids], separators=(",", ":")))
+    d = get("https://music.163.com/api/v3/song/detail", data=body.encode(), timeout=60)
+    if not d or d.get("__err__"):
+        return out
+    for t in (d.get("songs") or []):
+        if not t.get("id"):
+            continue
+        ov = t.get("originSongSimpleData") or {}
+        out[int(t["id"])] = [int(t.get("originCoverType") or 0), int(ov.get("songId") or 0)]
+    return out
+
+
+def ensure_oct(ids):
+    """确保 ids 的 originCoverType 都已就位（增量缓存 _oct.json，可中断续跑）。
+
+    顺手把「翻唱条目指出的原唱 id」记进 _ids.json['origin'] —— 那些原唱我们大多还没有，
+    下一轮 songs 会连它们的元数据一起拉，用真原唱去顶掉翻唱，而不是简单删空了事。
+    """
+    m = _oct_load()
+    if _OCT_SEED:
+        m.update({k: v for k, v in _OCT_SEED.items() if k not in m})
+    want = [int(i) for i in dict.fromkeys(ids)]
+    miss = [i for i in want if i not in m]
+    log("原唱体检：待取 %d 首（缓存命中 %d 首）｜%d 并发" % (len(miss), len(want) - len(miss), OCT_WORKERS))
+    if miss:
+        t0, batches = time.time(), [miss[i:i + 1000] for i in range(0, len(miss), 1000)]
+        with ThreadPoolExecutor(OCT_WORKERS) as ex:
+            for k, r in enumerate(ex.map(_oct_fetch, batches), 1):
+                m.update(r)
+                if k % 10 == 0:
+                    _oct_save(m)
+                    log("  … %d/%d 批（已取 %d 首，%.0fs）" % (k, len(batches), len(m), time.time() - t0))
+        _oct_save(m)
+
+    # 翻唱指出的原唱 id → 攒进采集池，供下一轮拉元数据
+    orig = {v[1] for v in (m.get(i) for i in want) if v and v[0] == 2 and v[1]}
+    if orig:
+        try:
+            store = json.load(open(IDS_FILE, encoding="utf-8")) if os.path.exists(IDS_FILE) else {}
+            have = set(store.get("origin") or [])
+            add = sorted(orig - have)
+            if add:
+                store["origin"] = sorted(have | orig)
+                json.dump(store, open(IDS_FILE, "w", encoding="utf-8"), separators=(",", ":"))
+                log("原唱线索：新增 %d 个原唱 id 待采集（累计 %d）" % (len(add), len(store["origin"])))
+        except Exception as e:
+            log("  ! 原唱线索写入失败：%s" % e)
+    return m
+
+
+def original_gate(arr, tag="pack"):
+    """对曲目列表做原唱体检，返回 (通过的曲目, 统计明细)。arr 元素需含 i / n / a / d。"""
+    if (os.environ.get("HV_ORIGIN_GATE") or "1") == "0":
+        return arr, {"原唱闸门": "已跳过"}
+    oct = ensure_oct([s["i"] for s in arr])
+    keep, stat = [], {"翻唱版": 0, "非原版名字": 0, "未知放行": 0}
+    drop_ids = []
+    for s in arr:
+        v = oct.get(int(s["i"]))
+        if v and v[0] == 2:
+            stat["翻唱版"] += 1
+            drop_ids.append(s["i"])
+            continue
+        if VER_RE.search(s.get("n") or ""):
+            stat["非原版名字"] += 1
+            drop_ids.append(s["i"])
+            continue
+        if not v:
+            stat["未知放行"] += 1
+        keep.append(s)
+    log("[%s] 原唱闸门：%d → %d 首 ｜ 剔除 %d（%s）"
+        % (tag, len(arr), len(keep), len(arr) - len(keep),
+           "、".join("%s %d" % (k, v) for k, v in stat.items() if v)))
+    if drop_ids:
+        p = os.path.join(CAT, "_origin_dropped.txt")
+        with open(p, "a", encoding="utf-8") as fh:
+            for i in drop_ids:
+                fh.write("%s\n" % i)
+    return keep, stat
+
+
 def _fresh_bonus(pt, now_ms):
     """越新越加分，让「新歌」有资格顶掉等价热度的老歌"""
     if not pt:
@@ -365,6 +666,20 @@ def _norm(s):
     return "".join(ch for ch in s if ch not in " \t\r\n-_（）()[]【】·,.，。'\"!！?？~～&")
 
 
+def _safe(t):
+    """索引是「一行一条」的纯文本格式，原始字段里混进换行/行内分隔符会把行结构撑坏。
+
+    ★ 实测血案（2026-10-06）：id=1317603367 的《Rigoletto: paraphrase de concert
+      \\n  transcription by Franz Lizst》歌名里带 \\n，导致 idx-02.txt 凭空多出一行
+      —— 索引 120360 行 vs 曲目 120359 首，客户端按行切分检索会错位。
+      _norm() 会吃掉换行，但索引后两段要放**原名**给用户看，所以必须单独消毒。
+    """
+    return (t or "").replace("\n", " ").replace("\r", " ").replace(SEP, " ").strip()
+
+
+_OCT_SEED = {}          # 从 _songs.jsonl 顺手捡到的 originCoverType（省一次网络请求）
+
+
 def load_candidates():
     """读 _songs.jsonl → 去重 + 剔除不可播（VIP/无版权/过短）。返回 {id: song}"""
     songs, drop = {}, {"字段不全": 0, "付费不可播": 0, "无版权下架": 0, "时长过短": 0, "热度不足": 0}
@@ -375,6 +690,8 @@ def load_candidates():
             continue
         for s in rec.get("songs") or []:
             sid = s.get("i")
+            if "oct" in s:                       # 新版记录自带原唱标记 → 喂给原唱闸门
+                _OCT_SEED[int(sid)] = [int(s.get("oct") or 0), int(s.get("ov") or 0)]
             if not sid or not s.get("n") or not s.get("a") or not s.get("p"):
                 drop["字段不全"] += 1
                 continue
@@ -456,6 +773,11 @@ def cmd_pack():
            "、".join("%s %d" % (k, v) for k, v in drop2.items() if v)))
     songs = songs2
 
+    # ★ 原唱闸门（放在排序截断之前：让「原版」优先占满 26 万个名额，
+    #   而不是先按热度塞满翻唱再被剔掉）
+    arr0, _og = original_gate(list(songs.values()), "pack")
+    songs = {s["i"]: s for s in arr0}
+
     now_ms = int(time.time() * 1000)
     arr = sorted(songs.values(), key=lambda x: -((x.get("pop") or 0) + _fresh_bonus(x.get("pt"), now_ms)))
     if KEEP and len(arr) > KEEP:
@@ -476,6 +798,14 @@ def cmd_pack():
         log("歌手 %d 位 ｜ 曲库容量 %.1f MB(预估)"
             % (len({x["a"] for x in arr}), len(arr) * 215 / 1048576))
 
+    # ★ 音频级可播闸门（放在截断之后：只对真正要发布的集合发 HEAD，省流量）
+    arr, _av = audio_gate(arr, "pack")
+
+    _write_catalog(arr)
+
+
+def _write_catalog(arr):
+    """把最终曲目列表写成 分片 + 索引 + manifest（pack / verify 共用）"""
     os.makedirs(CAT, exist_ok=True)
     for old in os.listdir(CAT):
         if old.startswith("shard-") or old.startswith("idx-") or old in ("manifest.json", "search.json"):
@@ -502,7 +832,8 @@ def cmd_pack():
     for n, s in enumerate(arr):
         if n and n % SHARD == 0:
             si += 1
-        lines.append(SEP.join((_norm(s["n"]), _norm(s["a"]), str(s["i"]), str(si), s["n"], s["a"])))
+        lines.append(SEP.join((_norm(s["n"]), _norm(s["a"]), str(s["i"]), str(si),
+                               _safe(s["n"]), _safe(s["a"]))))
 
     idx_files = []
     for i in range(0, len(lines), IDX_CHUNK):
@@ -531,7 +862,72 @@ def cmd_pack():
         % (shard_bytes / 1048576, idx_bytes / 1048576, (shard_bytes + idx_bytes) / 1048576))
 
 
+def meta_gate(arr, tag="verify"):
+    """对**已有**曲目列表套用「元数据质量闸门」（与 pack 同款标准）。
+
+    为什么必须补这一步（实测证据 2026-10-06）：
+      catalog_verify.py 会硬卡「p50 热度 ≥10、垃圾命名 0 命中、时长 30s~15min、
+      无 VIP 付费、无版权下架」，而 cmd_verify 原先只做「原唱 + 音频」双闸。
+      结果洗完的库照样过不了自家体检：13 万 → 12 万，p50 仍是 5、垃圾命名仍 2.87 万条
+      —— 等于「洗了个寂寞」。把同款标准搬进来，wash 的产物才真正可直接发布。
+    """
+    drop = {}
+
+    def _apply(a, name, ok):
+        keep = [x for x in a if ok(x)]
+        if len(keep) != len(a):
+            drop[name] = len(a) - len(keep)
+        return keep
+
+    a = _apply(arr, "付费不可播", lambda x: x.get("f") not in SKIP_FEE)
+    a = _apply(a, "无版权下架", lambda x: not x.get("nrc"))
+    a = _apply(a, "时长越界", lambda x: MIN_DUR <= (x.get("d") or 0) <= MAX_DUR)
+    a = _apply(a, "热度不足", lambda x: (x.get("pop") or 0) >= MIN_POP)
+    a = _apply(a, "垃圾命名", lambda x: not (JUNK_RE.search(x.get("n") or "")
+                                           or JUNK_RE.search(x.get("a") or "")))
+    log("[%s] 元数据闸门：%d → %d 首 ｜ 剔除 %s"
+        % (tag, len(arr), len(a),
+           "、".join("%s %d" % (k, v) for k, v in drop.items()) or "无"))
+    return a
+
+
+def cmd_verify():
+    """对**现有** catalog 做「元数据 + 原唱 + 音频可播」三重体检并原地重写。
+
+    为什么要独立一条：线上 13 万曲库是按元数据闸门打包的（fee 可用性靠猜），
+    实测混进了三类不该有的东西：
+      · 「标称免费、实际 VIP」的死链与试听片段（周杰伦 33 首里 28 首）；
+      · **别人的翻唱**（点名歌手 385 首里只有 94 首是原版录音室版）；
+      · live/综艺版 —— 歌词时间轴与原唱版对不上，主人听到的就是「词不同步不对版」。
+    本命令不重新采集，只对已发布的分片逐首复核，剔除不合格项后重写分片/索引/manifest
+    —— 一次把存量洗一遍。
+    """
+    files = sorted(f for f in os.listdir(CAT) if f.startswith("shard-") and f.endswith(".json"))
+    if not files:
+        log("× 没有找到 shard-*.json，先跑 pack")
+        return
+    arr = []
+    for f in files:
+        with open(os.path.join(CAT, f), encoding="utf-8") as fh:
+            d = json.load(fh)
+        arr.extend(d if isinstance(d, list) else (d.get("songs") or []))
+    log("现有曲库 %d 首（%d 片）→ 开始三重体检" % (len(arr), len(files)))
+    arr = meta_gate(arr, "verify")
+    keep, _ = original_gate(arr, "verify")
+    keep, _ = audio_gate(keep, "verify")
+    now_ms = int(time.time() * 1000)
+    keep.sort(key=lambda x: -((x.get("pop") or 0) + _fresh_bonus(x.get("pt"), now_ms)))
+    log("重写曲库：%d → %d 首" % (len(arr), len(keep)))
+    _write_catalog(keep)
+
+
+def cmd_wash():
+    """verify 的别名：把存量曲库按「原唱 + 可播」重洗一遍（本地手动触发用）"""
+    cmd_verify()
+
+
 if __name__ == "__main__":
     cmd = (sys.argv[1] if len(sys.argv) > 1 else "enum").lower()
     {"enum": cmd_enum, "ids": cmd_ids, "artists": cmd_artists,
-     "songs": cmd_songs, "pack": cmd_pack, "stat": cmd_stat}[cmd]()
+     "songs": cmd_songs, "pack": cmd_pack, "stat": cmd_stat,
+     "verify": cmd_verify, "wash": cmd_wash}[cmd]()

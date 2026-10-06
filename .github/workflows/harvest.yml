@@ -48,6 +48,11 @@ jobs:
       HV_STRONG_N: "5"
       HV_POP_EST: "10"
       HV_POP_NEW: "40"
+      HV_AUDIO_WORKERS: "48"         # 音频可播体检并发（13 万首约 18 分钟）
+      HV_AUDIO_GATE: "1"             # 0=关闭音频闸门（仅排障用）
+      HV_ORIGIN_GATE: "1"            # 原唱闸门：剔翻唱（oct=1/2）与非原版命名
+      HV_OCT_WORKERS: "8"            # 原唱体检并发（走 _oct.json 缓存，约 40 秒）
+      HV_MAX_ARTISTS: "8000"         # 按歌手扩库单轮上限（防止撞 180 分钟超时）
     steps:
       - uses: actions/checkout@v4
 
@@ -63,6 +68,8 @@ jobs:
             data/catalog/_ids.json
             data/catalog/_songs.jsonl
             data/catalog/_artist_ids.json
+            data/catalog/_audio_gate.json
+            data/catalog/_oct.json
           key: harvest-state-v2-${{ github.run_id }}
           restore-keys: |
             harvest-state-v2-
@@ -95,6 +102,14 @@ jobs:
       - name: ③ 拉曲目元数据（热度/发行时间/封面/付费标记）
         run: python tools/harvest.py songs
 
+      # ★ 2026-10-06 追加：歌手页才是「本尊原版」的富矿（歌单只覆盖热门合辑）。
+      #   刻意放在 songs 之后 —— 本轮只往池子里攒 id，元数据下一轮再取，
+      #   既不会拉长本轮的采集时长，也不会因为超时把整条流水线带崩。
+      - name: ③-b 按歌手扩库（为下一轮积累本尊原版）
+        continue-on-error: true
+        timeout-minutes: 25
+        run: python tools/harvest.py artists
+
       - name: ④ 统计增量（过闸门多少首 vs 线上现有）
         id: stat
         run: python tools/harvest.py stat
@@ -123,6 +138,7 @@ jobs:
             echo "结论：仅积累采集状态（增量 $D < 3000），本轮不发布"
           fi
           echo "pack=$PACK" >> $GITHUB_OUTPUT
+          echo "oldpass=$([ "$V" -eq 0 ] && echo 1 || echo 0)" >> $GITHUB_OUTPUT
 
       - name: ⑥ 打包曲库（归一 + 质量闸门 + 分片 + 搜索索引）
         if: steps.need.outputs.pack == '1'
@@ -130,7 +146,31 @@ jobs:
 
       - name: ⑦ 发布前体检（不合格直接阻断）
         if: steps.need.outputs.pack == '1'
-        run: python tools/catalog_verify.py data/catalog
+        run: |
+          python tools/catalog_verify.py data/catalog
+
+      # ★ 2026-10-06 追加的规模回归闸门（血案驱动）：
+      #   catalog_verify.py 只查纯度与结构，**不查数量**。本地实测：采集状态不全时
+      #   pack 会把 13 万首砍到 2.4 万首，而纯度体检照样「通过」——差一步就把
+      #   缩水 80% 的曲库发到线上。
+      #   判据刻意做成有条件的：**旧库本来就不合格时，缩水是正当的自愈**（剔垃圾必然掉量），
+      #   只有「旧库合格却莫名缩水」才说明采集状态出问题 → 才阻断。
+      - name: ⑦-b 规模回归闸门（旧库合格却缩水 → 判定采集异常并阻断）
+        if: steps.need.outputs.pack == '1'
+        run: |
+          NEW=$(python -c "import json;print(json.load(open('data/catalog/manifest.json',encoding='utf-8'))['count'])")
+          OLD=$(git show HEAD:data/catalog/manifest.json 2>/dev/null | python -c "import json,sys;print(json.load(sys.stdin).get('count') or 0)" 2>/dev/null || echo 0)
+          OLDPASS="${{ steps.need.outputs.oldpass }}"
+          echo "线上 $OLD 首（体检：$([ "$OLDPASS" = "1" ] && echo 合格 || echo 不合格)）→ 本次打包 $NEW 首"
+          if [ "$NEW" -lt 1000 ]; then
+            echo "❌ 新库仅 $NEW 首，明显异常，禁止发布"
+            exit 1
+          fi
+          if [ "$OLDPASS" = "1" ] && [ "$OLD" -gt 0 ] && [ "$NEW" -lt $((OLD * 95 / 100)) ]; then
+            echo "❌ 旧库体检合格却缩水超过 5%（$OLD → $NEW）：判定采集状态异常，禁止发布"
+            exit 1
+          fi
+          echo "✅ 规模回归检查通过"
 
       - name: ⑧ 入库并发布
         if: steps.need.outputs.pack == '1'

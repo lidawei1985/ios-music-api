@@ -119,6 +119,55 @@ if pops:
     if hot_pct < 50:
         warn.append("热门占比偏低（%.1f%%）：库偏长尾" % hot_pct)
 
+# ---------- E 音频可播（抽样实测，2026-10-06 追加）----------
+# 为什么抽样而不全量：全量 HEAD 13 万首要 ~18 分钟，而这一步的目标是「防回归」，
+# 抽 240 首（95% 置信度下能发现 >1.2% 的劣化）已足够。
+# 判据与 harvest.audio_gate 完全一致：字节数 + 反算码率。
+# 背景：fee=0 的周杰伦《稻香》实测回 4515 字节 HTML；VIP 试听片段伪装成 audio/mpeg
+# （泪桥 481115B/225s = 17kbps），只有 Content-Length 能识别。
+if "--no-audio" not in sys.argv:
+    import ssl, urllib.request, urllib.error
+    _ctx = ssl.create_default_context(); _ctx.check_hostname = False; _ctx.verify_mode = ssl.CERT_NONE
+    _h = {"User-Agent": ("Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) "
+                         "AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"),
+          "Referer": "https://music.163.com/"}
+    import random
+    from concurrent.futures import ThreadPoolExecutor
+    random.seed(20261006)
+    _samp = random.sample(arr, min(240, len(arr)))
+
+    def _probe(x):
+        try:
+            r = urllib.request.Request(
+                "https://music.163.com/song/media/outer/url?id=%d.mp3" % int(x["i"]),
+                headers=_h, method="HEAD")
+            with urllib.request.urlopen(r, timeout=10, context=_ctx) as resp:
+                cl = int(resp.headers.get("Content-Length") or 0)
+        except urllib.error.HTTPError as e:
+            cl = int(e.headers.get("Content-Length") or 0)
+        except Exception:
+            return None                                  # 网络失败不计入分母
+        if cl < 20000:
+            return ("dead", x)
+        dur = (x.get("d") or 0) / 1000.0
+        if dur <= 0:
+            return ("keep", x)
+        kb = cl * 8 / dur / 1000.0
+        return (("keep" if 70 <= kb <= 450 else "clip"), x)
+
+    with ThreadPoolExecutor(24) as ex:
+        _res = [r for r in ex.map(_probe, _samp) if r]
+    _ok = sum(1 for k, _ in _res if k == "keep")
+    _dead = [x for k, x in _res if k == "dead"]
+    _clip = [x for k, x in _res if k == "clip"]
+    if _res:
+        _rate = 100.0 * _ok / len(_res)
+        check(_rate >= 98.0,
+              "音频可播率 %.1f%% ≥ 98%%（抽 %d 首实测：死链 %d、片段 %d）%s"
+              % (_rate, len(_res), len(_dead), len(_clip),
+                 "" if _rate >= 98 else "｜例：" + "；".join(
+                     "%s—%s" % (x["n"][:14], x["a"][:10]) for x in (_dead + _clip)[:2])))
+
 print("\n结论：%s" % ("❌ 体检不通过，禁止发布（%d 项）" % len(bad) if bad else "✅ 体检通过"))
 for w in warn:
     print("  ⚠ " + w)

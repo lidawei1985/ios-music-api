@@ -606,14 +606,38 @@ def wy_candidates(title, singer, limit=10):
             for s in (((j.get("result") or {}).get("songs")) or [])]
 
 
-def wy_match(title, singer, tries=5):
-    """给一首歌找**实测能播**的网易云 id（多个候选依次校验，优中选优）。
-    返回 {id,name,artist,native,dur} 或 None。native=歌名与歌手都吻合（即原唱/正规版）。"""
-    cands = wy_candidates(title, singer, limit=max(8, tries + 3))
+def _tail_ok(longer, shorter):
+    """longer 比 shorter 多出来的尾巴是不是"无害后缀"（纯英文/数字，如 rb、explicit、remastered）"""
+    tail = longer[len(shorter):]
+    return 0 < len(tail) <= 12 and all(ch.isascii() and (ch.isalnum()) for ch in tail)
+
+
+def _title_close(nt, nm):
+    """标题是否可视为同一首（容忍尾缀差异：'是非题rb'~'是非题'、'stormiiexplicit'~'stormii'）"""
+    if not nt or not nm:
+        return False
+    if nt == nm:
+        return True
+    if len(nm) >= 2 and nt.startswith(nm) and _tail_ok(nt, nm):
+        return True
+    if len(nt) >= 2 and nm.startswith(nt) and _tail_ok(nm, nt):
+        return True
+    return False
+
+
+def wy_match(title, singer, tries=12):
+    """给一首歌找**实测能播**的网易云 id。返回 {id,name,artist,native,dur,tier} 或 None。
+
+    旧版只试 5 个候选 → 大量"原版是 VIP/无版权(返回 HTML)，可播的 Live/正规版排在第 6+ 位"被漏掉；
+    新版扩到 12 个候选，并加**质量闸门**，只接受一类：
+      tier 0 = 标题相关 且 歌手吻合 → 原唱/正规版/Live
+    **歌手对不上的（无论标题多像）一律拒绝**——实测"标题一致但歌手不同"会大量错配成同名翻唱
+    （"倒数"→xjish、"honey"→桐生千弘、"我们的爱"→于潼），宁缺毋滥。"""
+    cands = wy_candidates(title, singer, limit=max(10, tries + 4))
     if not cands:
         return None
     nt, ns = norm(title), norm(singer)
-    # 排序：标题吻合 > 歌手吻合 > 少劣质词 > 时长接近
+
     def key(c):
         nm, ar = norm(c["name"]), norm(c["artist"])
         r = 0
@@ -625,12 +649,27 @@ def wy_match(title, singer, tries=5):
             r -= 7
         r += 3 * badness(c["name"]) + 2 * badness(c["artist"])
         return r
-    cands = sorted(cands, key=key)[:max(1, tries)]
+
+    rank = []
     for c in cands:
+        nm, ar = norm(c["name"]), norm(c["artist"])
+        t_exact = bool(nt) and _title_close(nt, nm)
+        t_rel = bool(nt) and (t_exact or nt in nm or nm in nt)
+        a_rel = bool(ns) and (ns in ar or ar in ns)
+        if not (t_rel and a_rel):
+            continue                      # 标题不相关 或 歌手对不上 → 拒绝
+        if badness(c["name"]) >= 2 or badness(c["artist"]) >= 2:
+            continue
+        rank.append((key(c), len(c["name"]), c))
+    rank.sort(key=lambda x: (x[0], x[1]))
+
+    for _, _, c in rank[:max(1, tries)]:
         ok, note, ext = verify_playable(WY_OUTER % c["id"], "https://music.163.com/", 2048)
         if ok:
-            c["native"] = (norm(c["name"]) == nt) and bool(ns) and (ns in norm(c["artist"]))
+            c["native"] = bool(_title_close(nt, norm(c["name"])) and ns
+                               and (ns in norm(c["artist"])))
             c["note"] = note
+            c["tier"] = 0
             return c
     return None
 
