@@ -183,14 +183,47 @@ jobs:
           git config user.email "music-pool-bot@users.noreply.github.com"
           ROUND=$(python -c "import json;print(json.load(open('data/pool.json',encoding='utf-8'))['round'])")
           git add -A data
+          PUSH_OK=1
           if git diff --cached --quiet; then
             echo "无变更"
           else
             git commit -m "pool: round ${ROUND} $(date -u '+%Y-%m-%d %H:%M')"
-            git push
+            # ★★★ 2026-10-07 血案修复（与 harvest.yml ⑧ 同款实现，两处保持一致）：
+            #   本流水线会跑 20~40 分钟，期间 harvest 很可能往 main 推了曲库 →
+            #   裸 `git push` 会被 "[rejected] (fetch first)" 拒掉，后果有两层：
+            #     ① 本轮 pool 成果白费；
+            #     ② **后面的「时效锚点」步骤被连带跳过** → 端上探不到新 sha →
+            #        回落 @main（分支 12 小时硬缓存，purge/`?t=` 实测都打不动）→
+            #        现象就是「数据早更新了，手机看到的还是旧曲库」。
+            #   实测证据（2026-10-07）：02:54 之后 pool 多轮 cancelled/failed，
+            #     最后一个成功锚点停在 03:34（ed8da18e @49d6cfd448）；
+            #     而曲库此时已从 31,681 涨到 68,903 → 端上只能看到旧库。
+            #   修法：rebase 到最新 main 后重推，最多 4 次（指数退避）。
+            PUSH_OK=0
+            for i in 1 2 3 4; do
+              if git push 2>/tmp/push.err; then PUSH_OK=1; break; fi
+              echo "----- 第 $i 次 push 失败 -----"; cat /tmp/push.err
+              echo "拉取远端最新 main 后 rebase 重试…"
+              git fetch origin main || true
+              if ! git rebase --autostash origin/main; then
+                echo "rebase 冲突，放弃本次发布"
+                git rebase --abort 2>/dev/null || true
+                break
+              fi
+              sleep $((i * 5))
+            done
           fi
-          # 无论本轮有没有新提交，都把「当前 main 的 sha」作为时效锚点对外发布
-          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          if [ "$PUSH_OK" = "0" ]; then
+            # 本轮不发布（线上保持上一版）：丢掉未推的本地提交，避免锚点提交把它捎带上去
+            echo "❌ push 连续失败：本轮数据不发布（线上保持上一版）"
+            git reset --hard origin/main 2>/dev/null || true
+          fi
+          # ★ 锚点必须指向「远端 main 上真实存在的提交」——即使本轮推送失败也要刷新锚点，
+          #   让端上切到「当前线上最新」而不是 @main 的 12 小时旧缓存（宁可慢，不能断）。
+          git fetch origin main >/dev/null 2>&1 || true
+          SHA=$(git rev-parse origin/main 2>/dev/null || git rev-parse HEAD)
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "push_ok=$PUSH_OK" >> "$GITHUB_OUTPUT"
 
       # ★★★ 时效锚点：把刚推上去的数据提交 sha 写成一个「10 分钟窗口命名」的小文件。
       #   为什么非要它（实测判决）：
@@ -216,7 +249,24 @@ jobs:
             echo "锚点无变化（同窗口内重复跑，URL 相同、内容相同）"
           else
             git commit -m "tide: anchor @$(echo ${{ steps.publish.outputs.sha }} | cut -c1-10) $(date -u '+%Y-%m-%d %H:%M')"
-            git push
+            # ★ 2026-10-07：锚点这一步是**端上能否立刻看到新数据的唯一命门**，
+            #   所以它的 push 也必须带 rebase 重试（原为裸 push，一被拒整步作废）。
+            TIDE_OK=0
+            for i in 1 2 3 4; do
+              if git push 2>/tmp/push.err; then TIDE_OK=1; break; fi
+              echo "----- 锚点第 $i 次 push 失败 -----"; cat /tmp/push.err
+              git fetch origin main || true
+              if ! git rebase --autostash origin/main; then
+                echo "锚点 rebase 冲突，放弃本次发布"
+                git rebase --abort 2>/dev/null || true
+                break
+              fi
+              sleep $((i * 5))
+            done
+            if [ "$TIDE_OK" != "1" ]; then
+              echo "❌ 时效锚点发布失败：端上本轮无法切到新数据（会回落 @main 旧缓存）"
+              exit 1
+            fi
           fi
           echo "锚点已发布：https://gcore.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/win/<窗口>.js"
 
@@ -242,3 +292,16 @@ jobs:
               && echo "purged $f" || echo "purge failed $f"
           done
           curl -sS --max-time 25 "https://cdn.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/pool.json" | head -c 400
+
+      # ★ 2026-10-07 新增：发布结果硬校验（禁止「静默失败」）
+      #   上面把 push 失败做成「不 abort、只记 push_ok=0」，好处是**后面的锚点步骤照样会跑**
+      #   （否则一次 push 被拒会把「刷新时效锚点」这步一起带走 → 端上直接失明、手机永远旧库）；
+      #   代价是这一轮看着像绿的 —— 所以在这里把它翻回红灯，绝不静默。
+      - name: 发布结果硬校验（本轮是否真的发布成功）
+        if: always()
+        run: |
+          if [ "${{ steps.publish.outputs.push_ok }}" != "1" ]; then
+            echo "❌ 本轮 pool 发布失败：push_ok=${{ steps.publish.outputs.push_ok }}（数据未上线，仅锚点已刷新）"
+            exit 1
+          fi
+          echo "✅ 本轮发布成功"

@@ -291,6 +291,57 @@ jobs:
           done
           echo "已刷新 $N 个分片/索引"
 
+      # ★★★ 2026-10-07 新增：锚点保鲜（治「数据早就更新了、手机还在看旧库」）
+      #   端上拿到新数据的路径是：探 data/win/<10 分钟窗口>.js 拿到「当前数据 sha」
+      #   → 整体切到 @<sha>（全新 URL，秒级回源）。**探不到就回落 @main，
+      #   而 @main 是分支 12 小时硬缓存，purge / `?t=` 实测全部打不动。**
+      #   实测事故：只有 pool.yml 会发布锚点，而 pool 自 10-07 02:54 起连续
+      #     cancelled/failed（push 被 "[rejected] (fetch first)" 拒掉），
+      #     锚点因而停在 03:34（@49d6cfd448）—— 曲库此时已从 31,681 涨到 68,903，
+      #     手机端却因为探不到新 sha 而一直显示旧库。
+      #   修法：谁发布数据谁兜底锚点。harvest 也是往 main 推数据的一方，
+      #     跑完若发现锚点过旧（>150 分钟）就补发一次（幂等；pool 正常时不会触发）。
+      - name: ⑨.5 锚点保鲜（端上靠它才能立刻看到新数据）
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "music-pool-bot"
+          git config user.email "music-pool-bot@users.noreply.github.com"
+          git fetch origin main || true
+          AGE=$(python - <<'PY'
+          import datetime, glob, os, re
+          ws = []
+          for p in glob.glob('data/win/*.js'):
+              m = re.search(r'(\d{12})\.js$', os.path.basename(p))
+              if m:
+                  ws.append(m.group(1))
+          if not ws:
+              print(9999)
+              raise SystemExit
+          t = datetime.datetime.strptime(max(ws), '%Y%m%d%H%M').replace(tzinfo=datetime.timezone.utc)
+          print(int((datetime.datetime.now(datetime.timezone.utc) - t).total_seconds() // 60))
+          PY
+          )
+          echo "最新锚点窗口：${AGE} 分钟前"
+          if [ "${AGE:-9999}" -lt 150 ]; then
+            echo "锚点仍新鲜（<150 分钟），无需补发"
+            exit 0
+          fi
+          python tools/mktide.py --sha "$(git rev-parse origin/main)" --back 18 --prune
+          git add -A data/win
+          if git diff --cached --quiet; then
+            echo "锚点内容无变化"
+            exit 0
+          fi
+          git commit -m "tide: anchor @$(git rev-parse origin/main | cut -c1-10) harvest兜底 $(date -u '+%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do
+            if git push; then echo "✅ 锚点已补发"; exit 0; fi
+            git fetch origin main || true
+            git rebase --autostash origin/main || { git rebase --abort 2>/dev/null || true; break; }
+            sleep $((i * 5))
+          done
+          echo "❌ 锚点补发失败"
+
       - name: ⑩ 清理 7 天前的旧采集缓存（防止 10GB 配额被占满）
         if: always()
         continue-on-error: true
