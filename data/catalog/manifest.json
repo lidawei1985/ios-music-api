@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-07T06:29:41Z",
- "count": 46957,
+ "updated": "2026-10-07T08:46:26Z",
+ "count": 68903,
  "shardSize": 1000,
  "shards": [
   {
@@ -189,7 +189,95 @@
   },
   {
    "file": "shard-0046.json",
-   "count": 957
+   "count": 1000
+  },
+  {
+   "file": "shard-0047.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0048.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0049.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0050.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0051.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0052.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0053.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0054.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0055.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0056.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0057.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0058.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0059.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0060.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0061.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0062.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0063.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0064.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0065.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0066.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0067.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0068.json",
+   "count": 903
   }
  ],
  "idx": {
@@ -198,7 +286,7 @@
    "idx-01.txt"
   ],
   "chunkSize": 40000,
-  "total": 46957,
+  "total": 68903,
   "sep": "\u0001",
   "fields": [
    "nameN",
