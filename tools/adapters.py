@@ -101,25 +101,107 @@ def norm(s):
     return re.sub(r"[\s\-_（）()\[\]【】·,.，。'\"!！?？~～&]", "", (s or "")).lower()
 
 
-# 劣质变体关键词：命中即降权（保证"优质优先"挑到正规原曲，而非翻唱/剪辑/二次创作）
-BAD_WORDS = ("翻唱", "cover", "伴奏", "remix", "remix版", "dj", "串烧", "铃声", "片段", "剪辑",
-             "纯音乐", "钢琴", "吉他", "教程", "教学", "简谱", "合唱", "现场", "live", "演唱会",
-             "私藏", "歌单", "合集", "mv", "无损音乐馆", "治愈", "睡前", "助眠", "慢速", "加速",
-             "八音盒", "口琴", "萨克斯", "二胡", "古筝", "铃声版", "字幕", "动态歌词", "完整版",
-             "鼓谱", "曲谱", "琴谱", "乐谱", "动态鼓谱", "谱", "示范", "伴奏版", "和声", "翻弹",
-             # ★★★ 2026-10-07 补充：**非音乐内容**（英语听力 / 考试真题 / 有声书 / 课文朗读）
-             #   来由：2026-10-06 深夜 harvest 被自己的发布前体检拦下，抽样坏例子是
-             #     「奥巴马会见格鲁吉亚总统(1/—英语听力；第三期 2006年6月真题 —英语听力」
-             #   这类内容既不是歌，录音码率又低，混进库会同时压低"热度成色"和"音频可播率"，
-             #   属于两头都踩雷的脏数据 —— 必须在**入库前**就挡掉，而不是等体检事后拦。
-             "听力", "真题", "英语", "四级", "六级", "雅思", "托福", "单词", "音标",
-             "课文", "朗读", "背诵", "有声书", "有声小说", "评书", "相声", "讲座",
-             "教材", "试卷", "考题", "口语", "语法", "课件")
+def dur_s(v):
+    """把各源千奇百怪的时长统一成**秒**（`_score_cand` 的时长硬毙全靠它）。
+
+      · QQ / 酷我 / 酷狗 回的是**秒**（interval / DURATION / duration）
+      · 咪咕回的是 **"mm:ss" 字符串**，部分字段回**毫秒**
+      · 网易云回**毫秒**
+    判据：字符串带 ":" → 按时间来解；数值 > 3600 → 当毫秒（1 小时以上的歌极少，
+    真到那个量级的数值只可能是毫秒）。
+    """
+    if v is None:
+        return 0
+    if isinstance(v, str):
+        v = v.strip()
+        if not v:
+            return 0
+        if ":" in v:
+            try:
+                p = [int(z) for z in v.split(":")]
+                while len(p) < 3:
+                    p.insert(0, 0)
+                return p[0] * 3600 + p[1] * 60 + p[2]
+            except Exception:
+                return 0
+        try:
+            v = float(v)
+        except Exception:
+            return 0
+    try:
+        n = float(v)
+    except Exception:
+        return 0
+    if n <= 0:
+        return 0
+    return int(n / 1000) if n > 3600 else int(n)
+
+
+# ── 劣质变体关键词（★ 2026-10-07 拆成「硬毙 / 软罚」两档）──────────────────────
+# 为什么拆（实测血案，驱动自主人第五轮质问「为什么就死盯着网易呢」）：
+#   QQ 热歌榜前 24 首试跑多源回退，酷我这一路挑出来的全是脏的：
+#     搜「江南 林俊杰」   → 《江南 (DJ 阿树版)》
+#     搜「我们俩 郭顶」   → 《我们俩 (原版伴奏)》
+#     搜「开始懂了 孙燕姿」→ 《开始懂了 (片段版)-2017"反正都精彩"浙江卫视》
+#     搜「红色高跟鞋 蔡健雅」→《红色高跟鞋 (DJ 咚鼓版)》
+#     搜「唯一 G.E.M.」   → 《唯一 (TRAP Remix)》
+#     B站搜「恋人 李荣浩」→ 《李荣浩⑧专5单《恋人》MV 现已正式上线》
+#   根因不是打分公式，而是**候选池里压根没有干净版本**，旧逻辑（4 分/词）照样
+#   把脏的选出来当"能播的替代"。这直接违反主人两条铁律：
+#     「翻唱尽量不要吧因为质量太差」+「宁可不治也不能错治」。
+#
+# HARD_BAD：候选指向的根本不是「这首歌的某个版本」，而是另一种东西 → **直接毙**。
+#   ⚠️ 必须硬毙而不是处罚：一旦放行，这歌在端上就变成"能播但播出来是伴奏/宣传片"，
+#      比"暂时播不了"糟糕得多（错治）。宁可这首歌这轮没有直链，等下一轮再说。
+HARD_BAD = ("伴奏", "纯音乐", "instrumental", "karaoke", "卡拉ok", "off vocal", "offvocal",
+            "片段", "试听", "铃声", "剪辑", "教学", "教程", "简谱", "琴谱", "曲谱",
+            "鼓谱", "乐谱", "动态鼓谱", "谱", "示范", "翻弹",
+            "钢琴曲", "吉他曲", "八音盒", "口琴", "萨克斯", "二胡", "古筝",
+            # ★ 二次加工（2026-10-07 第二轮收紧）：这些**不是原唱**，且实测酷我搜索
+            #   一池子全是这些（江南/演员/多远都要在一起/唯一 全被 DJ 版和 Remix 占满）。
+            #   主人：「翻唱尽量不要吧因为质量太差」——DJ/Remix 比翻唱还差，必须硬毙。
+            "dj", "remix", "remix版", "混音", "慢摇", "车载", "8d", "环绕", "广场舞",
+            "抖音", "串烧", "变速", "变调",
+            # 视频源的"歌"其实不是歌：MV 上线通稿 / 预告 / 花絮 / 采访
+            "上线", "首发", "预告", "花絮", "采访", "宣传片",
+            # 非音乐内容（英语听力 / 考试真题 / 有声书 / 课文朗读）
+            #   来由：2026-10-06 深夜 harvest 被自己的发布前体检拦下，抽样坏例子是
+            #     「奥巴马会见格鲁吉亚总统(1/—英语听力；第三期 2006年6月真题 —英语听力」
+            "听力", "真题", "英语", "四级", "六级", "雅思", "托福", "单词", "音标",
+            "课文", "朗读", "背诵", "有声书", "有声小说", "评书", "相声", "讲座",
+            "教材", "试卷", "考题", "口语", "语法", "课件")
+# SOFT_BAD：**还是原唱本人在唱**，只是非录音室原版 —— 能听，让位给干净版即可。
+#   ⚠️ 翻唱/cover 放这一档（不放硬毙）：主人明确「如果是好的翻唱也可以接受」。
+SOFT_BAD = ("翻唱", "cover", "合唱", "现场", "live", "演唱会", "巡演", "tour",
+            "encore", "演奏会", "音乐会", "私藏", "歌单", "合集", "mv", "无损音乐馆",
+            "治愈", "睡前", "助眠", "慢速", "加速", "字幕", "动态歌词", "完整版",
+            "和声", "改版", "新版", "铃声版")
+
+# 试听片段/副歌剪辑的判定下限：正常歌极少低于 90 秒
+MIN_CAND_DUR = 90
+# 与目标时长（QQ 榜单/原曲元数据）的容差：差超过 35% 或 45 秒 → 认定不是同一版
+DUR_TOL_ABS = 45
+DUR_TOL_REL = 0.35
+
+# 保留旧名（pick / pick_all 仍在用，语义 = 「命中即降权」）
+BAD_WORDS = tuple(dict.fromkeys(HARD_BAD + SOFT_BAD))
 
 
 def badness(text):
     t = (text or "").lower()
     return sum(1 for w in BAD_WORDS if w in t)
+
+
+def hard_bad(text):
+    """是否指向「根本不是这首歌」的内容（伴奏/片段/谱/教学/宣传片/非音乐）"""
+    t = (text or "").lower()
+    return any(w in t for w in HARD_BAD)
+
+
+def soft_bad(text):
+    """劣质变体命中数（DJ/Remix/演唱会/翻唱）—— 能用，但必须让位给干净版本"""
+    t = (text or "").lower()
+    return sum(1 for w in SOFT_BAD if w in t)
 
 
 def pick(items, title, singer, tf, sf):
@@ -189,10 +271,16 @@ class Migu:
             free = [f.get("formatType") for f in fmts
                     if not f.get("showTag") or "vip" not in (f.get("showTag") or [])]
             img = ((x.get("imgItems") or [{}])[0] or {}).get("img", "")
+            # ★ 2026-10-07：咪咕原来不给时长 → `_score_cand` 的时长硬毙在这一路完全失效，
+            #   实测漏出「爱错 (Live)」「开始懂了 (2000台北万人演唱会)」两个现场版。
+            dsec = dur_s(x.get("duration") or x.get("length"))
+            if not dsec and fmts:
+                dsec = dur_s((fmts[0] or {}).get("duration"))
             out.append({"src": self.id, "title": x.get("name", ""),
                         "singer": "/".join(s.get("name", "") for s in x.get("singers", [])),
                         "album": ((x.get("albums") or [{}])[0] or {}).get("name", ""),
                         "cover": img.replace("http://", "https://"),
+                        "dur": dsec,
                         "free": bool(free),
                         "qualitys": [q for q in ("SQ", "HQ", "PQ") if q in free] or ["PQ"],
                         "raw": {"copyrightId": x.get("copyrightId"), "contentId": x.get("contentId"),
@@ -461,13 +549,22 @@ class Kuwo:
             rid = str(rid).replace("MUSIC_", "").strip()
             if not rid:
                 continue
+            # ★ 2026-10-07：酷我搜索本身不吐完整封面 url，只给 web_albumpic_short
+            #   相对路径（如 120/54/1205492693.jpg）→ 必须自己拼，否则多源曲目
+            #   会因「无 cover」被 load_candidates 判成字段不全整批丢掉。
+            pic = (x.get("web_albumpic_short") or x.get("web_artistpic_short") or "").strip()
             out.append({"src": self.id,
                         "title": re.sub(r"&nbsp;?", " ", x.get("SONGNAME") or "").strip(),
                         "singer": re.sub(r"&nbsp;?", " ", x.get("ARTIST") or "").strip(),
                         "album": re.sub(r"&nbsp;?", " ", x.get("ALBUM") or "").strip(),
-                        "cover": "", "qualitys": ["128k"],
+                        "cover": ("https://img1.kuwo.cn/star/albumcover/" + pic) if pic else "",
+                        "qualitys": ["128k"],
                         "raw": {"rid": rid, "dur": x.get("DURATION") or 0,
-                                "fmt": x.get("FORMATS") or ""}})
+                                "fmt": x.get("FORMATS") or "",
+                                # ★ 酷我白送的原唱标记（对应网易云 originCoverType）
+                                #   实测值域待确认，先原样带出，由 _score_cand 决定怎么用
+                                "oct": x.get("originalsongtype"),
+                                "mvflag": x.get("MVFLAG")}})
         return out
 
     def resolve(self, item):
@@ -677,10 +774,17 @@ def wy_candidates(title, singer, limit=10):
     u = ("https://music.163.com/api/search/get?s=" + urllib.parse.quote(kw) +
          "&type=1&limit=%d&offset=0" % max(6, limit))
     j = jload(http(u, {"Referer": "https://music.163.com/"})) or {}
-    return [{"id": s.get("id"), "name": s.get("name", ""),
-             "artist": "/".join(a.get("name", "") for a in (s.get("artists") or [])),
-             "dur": int((s.get("duration") or 0) / 1000)}
-            for s in (((j.get("result") or {}).get("songs")) or [])]
+    out = []
+    for s in (((j.get("result") or {}).get("songs")) or []):
+        alb = s.get("album") or {}
+        out.append({"id": s.get("id"), "name": s.get("name", ""),
+                    "artist": "/".join(a.get("name", "") for a in (s.get("artists") or [])),
+                    "dur": int((s.get("duration") or 0) / 1000),
+                    "cover": (alb.get("picUrl") or "").replace("http://", "https://"),
+                    "album": alb.get("name") or "",
+                    # 搜索接口白送 originCoverType：0 未知 / 1 原曲 / 2 翻唱
+                    "oct": int(s.get("originCoverType") or 0)})
+    return out
 
 
 def _tail_ok(longer, shorter):
@@ -815,15 +919,19 @@ def wy_comments(sid, n=20):
 #   kw  → ★ 匿名唯一稳出真音频的大平台（实测 5/6，含周杰伦等 VIP 大户）；音质 128k
 #   mg  → 咪咕匿名只出免费曲，VIP 回 200002；作补充
 #   bili→ 兜底最广（翻唱/稀缺资源都有），但**必须靠 UP 主标题判原唱**，误配风险高 → 放最后
-MULTI_ORDER = ("wy", "kw", "mg", "bili")
+# ★ 2026-10-07 修：原写 "mg"，但 Migu.id = "migu"（见 class Migu），
+#   srcs.get("mg") 恒为 None → 咪咕这一路回退从来没有生效过。
+MULTI_ORDER = ("wy", "kw", "migu", "bili")
 
 
-def _score_cand(c, nt, ns, want_dur_ms=0):
+def _score_cand(c, nt, ns, want_dur_ms=0, strict=False):
     """给候选打分（越小越好）。判据全部来自实测血案：
       · 歌手必须吻合（否则"同名不同人"错配 —— 历史的 倒数/xjish、honey/桐生千弘）
-      · badness（dj/cover/伴奏/live…）重罚 —— 酷我搜索第一条常是 DJ 版
+      · ★ HARD_BAD 直接毙 —— 实测酷我第一条常是伴奏/片段/DJ 版，候选池里没干净的
+      · ★ SOFT_BAD 8 分/词重罚（原 4 分，实测罚不动）—— dj/remix/演唱会/翻唱
       · 原唱标记 oct=1 加分、oct=2 重罚 —— 网易云白送，权威判据
       · 时长差越小越好 —— 防"试听片段"和"串烧合集"
+      · ★ 标题比目标长太多 → 大概率是另一首（情歌 ≠ 情歌没有告诉你）
     """
     nm, ar = norm(c.get("title")), norm(c.get("singer"))
     if not nt or not nm:
@@ -832,31 +940,96 @@ def _score_cand(c, nt, ns, want_dur_ms=0):
         return None                                   # 标题不相关 → 直接毙
     if ns and not (ns in ar or ar in ns):
         return None                                   # ★ 歌手对不上 → 直接毙（宁缺毋滥）
+    # ★ 硬毙闸门①：标题+专辑里出现「伴奏/片段/谱/教学/宣传片/DJ/Remix/非音乐」
+    #   → 这不是这首歌（或其原唱版本）。宁可这歌没有直链，也不拿脏的顶。
+    blob = "%s %s" % (c.get("title") or "", c.get("album") or "")
+    if hard_bad(blob):
+        c["__rej"] = "HARD_BAD"
+        return None
+    # ★ 硬毙闸门②：时长异常。
+    #   实测漏网案例：`Always Online (2025 JJ20 F…` 只有 121s、`唯一 (TRAP Remix)` 只有 50s ——
+    #   全是试听片段/副歌剪辑，端上播出来是半首，比没有还糟。原来只 +6 分罚不动，改硬毙。
+    #   ⚠️ 四个适配器把时长放在不同位置（顶层 dur / raw.dur / "mm:ss" 字符串），
+    #      必须统一走 dur_s 归一化成秒，否则时长闸门形同虚设。
+    d = dur_s(c.get("dur") or (c.get("raw") or {}).get("dur"))
+    if d:
+        if d < MIN_CAND_DUR:
+            c["__rej"] = "TOO_SHORT"
+            return None
+        if want_dur_ms:
+            wd = int(want_dur_ms) / 1000.0
+            if abs(d - wd) > max(DUR_TOL_ABS, wd * DUR_TOL_REL):
+                c["__rej"] = "DUR_MISMATCH"
+                return None
+    # ★ 硬毙闸门③：标题长度差过大 → 大概率是「另一首同前缀的歌」
+    #   （情歌 ≠ 情歌没有告诉你；茶花开了，该回家了 ≠ 茶花开了）
+    #   容差 4 个字：「晴天」→「晴天 (深情版)」(差 3) 照过，差 6 的串名拦下。
+    #   strict 下收紧到 3（曲库多源采集用，见下）。
+    if abs(len(nm) - len(nt)) > (3 if strict else 4):
+        c["__rej"] = "TITLE_FAR"
+        return None
+    # ★ strict 模式（曲库多源采集专用）：任何 SOFT_BAD 版本标记都直接毙。
+    #   为什么必须这么狠：非网易曲目拿不到 originCoverType，身份完全靠标题判断。
+    #   一旦放进 Live/翻唱/DJ 版，端上就会「显示《情歌》、播出来是演唱会版」——
+    #   这比这首歌暂时没流糟糕得多（主人：「宁可不治也不能错治」）。
+    #   ⚠️ 存量 streams.json 生成仍走 strict=False，行为不变。
+    if strict and soft_bad(blob):
+        c["__rej"] = "SOFT_BAD_STRICT"
+        return None
     r = 0
-    r += 4 * badness(c.get("title"))
+    r += 8 * soft_bad(blob)                           # 劣质变体重罚（比原来的 4 分/词翻倍）
     r += 2 * badness(c.get("singer"))
     oct_ = c.get("oct")
     if oct_ == 1:
         r -= 8                                        # 网易云标了"原曲" → 大加分
     elif oct_ == 2:
         r += 12                                       # 网易云标了"翻唱" → 重罚
-    d = c.get("dur") or 0
-    if want_dur_ms and d:
-        diff = abs(int(d) - int(want_dur_ms)) / 1000.0
-        if diff > 25:
-            r += 6                                    # 时长差太多 → 大概率不是同一版
-        r += min(diff, 25) * 0.2
+    if want_dur_ms and d:                             # 过了硬毙闸门，剩下的按时长贴近度排序
+        r += min(abs(d - int(want_dur_ms) / 1000.0), DUR_TOL_ABS) * 0.4
     r += len(nm) * 0.01                               # 同分取短标题（更贴近原始曲名）
     return r
 
 
-def multi_match(title, singer, dur_ms=0, order=MULTI_ORDER, per_src=8, want_try=3):
-    """多源找**实测能播**的直链。返回 {id, src, url, quality, ext, name, artist, oct} 或 None。
+def _long_id(sid, raw, c):
+    """各源的「长效 id」藏在哪 —— 端上就拿这个 id + src 自己拼直链（见 kernel stRec/srcUrl）。
 
-    ★ 只返回**长效 id（wy id / kw rid）**给调用方存库，不存临时直链（带签名会过期）。
+    ★ 2026-10-07 血案：原来只认 `raw.rid`（酷我字段），结果**咪咕这一路 id 恒为 None**，
+      多源采集整批落不了库（实测 60 条候选 → 新增 0 条）。各源的真实字段：
+        kw   → raw.rid          （酷我 MUSIC_<rid>）
+        migu → raw.contentId    （端上 listenV2?contentId=<id>）
+        bili → raw.bvid         （B 站视频号）
+        kg   → raw.hash
+        wy   → c.id             （网易 songId）
+    """
+    if sid == "kw":
+        return raw.get("rid")
+    if sid == "migu":
+        return raw.get("contentId") or raw.get("copyrightId")
+    if sid == "bili":
+        return raw.get("bvid")
+    if sid == "kg":
+        return raw.get("hash")
+    return raw.get("rid") or c.get("id")
+
+
+def multi_match(title, singer, dur_ms=0, order=MULTI_ORDER, per_src=8, want_try=3, strict=False):
+    """多源找**实测能播**的直链。
+
+    strict=False（默认，存量行为）：HARD_BAD 硬毙 + SOFT_BAD 8 分/词降权。
+      —— 用于 build.py 给自有歌库补流：候选池小，能补上一条就比没有强。
+    strict=True（★ 曲库多源采集）：SOFT_BAD 也硬毙，只收「标题完全干净的原版」。
+      —— 用于把 QQ/酷狗/咪咕 的曲目并进曲库：身份只能靠标题判断，宁缺毋滥。
+
+    返回 {id, src, url, quality, ext, name, artist, cover, album, dur, oct, note} 或 None。
+      · id   = **长效 id**（wy songId / kw rid / migu contentId），不存临时直链（带签名会过期）
+      · src  = wy / kw / migu / bili —— 调用方落库时必须一起存，端上按它拼直链
+      · cover/album/dur = ★ 2026-10-07 新增：多源曲目要进曲库必须自带封面，
+        否则 load_candidates 会判「字段不全」整批丢弃
+
     调用方拿到 id 后自己拼：
-      wy → https://music.163.com/song/media/outer/url?id=<id>.mp3
-      kw → 需运行时调 antiserver（见 Kuwo.resolve）
+      wy   → https://music.163.com/song/media/outer/url?id=<id>.mp3
+      kw   → 需运行时调 antiserver（见 Kuwo.resolve）
+      migu → app.pd.nf.migu.cn listenV2?contentId=<id>&resourceType=2
     """
     nt, ns = norm(title), norm(singer)
     srcs = instantiate()
@@ -869,7 +1042,7 @@ def multi_match(title, singer, dur_ms=0, order=MULTI_ORDER, per_src=8, want_try=
             cands = wy_candidates(title, singer, limit=max(8, per_src + 4))
             ranked = []
             for c in cands:
-                sc = _score_cand(c, nt, ns, dur_ms)
+                sc = _score_cand(c, nt, ns, dur_ms, strict)
                 if sc is not None:
                     ranked.append((sc, c))
             ranked.sort(key=lambda x: x[0])
@@ -880,6 +1053,8 @@ def multi_match(title, singer, dur_ms=0, order=MULTI_ORDER, per_src=8, want_try=
                     return {"id": c["id"], "src": "wy", "url": WY_OUTER % c["id"],
                             "quality": "128k", "ext": ext or "mp3",
                             "name": c.get("name"), "artist": c.get("artist"),
+                            "cover": c.get("cover") or "", "album": c.get("album") or "",
+                            "dur": dur_s(c.get("dur")),
                             "oct": c.get("oct") or 0, "note": note}
         except Exception as e:
             tried.append(("wy", "-", "异常 %s" % e))
@@ -898,7 +1073,7 @@ def multi_match(title, singer, dur_ms=0, order=MULTI_ORDER, per_src=8, want_try=
             continue
         ranked = []
         for c in items:
-            sc = _score_cand(c, nt, ns, dur_ms)
+            sc = _score_cand(c, nt, ns, dur_ms, strict)
             if sc is not None:
                 ranked.append((sc, c))
         ranked.sort(key=lambda x: x[0])
@@ -909,9 +1084,14 @@ def multi_match(title, singer, dur_ms=0, order=MULTI_ORDER, per_src=8, want_try=
                 r = None
                 tried.append((sid, c.get("title"), "解析异常 %s" % e))
             if r:
-                return {"id": (c.get("raw") or {}).get("rid") or c.get("id"),
+                raw = c.get("raw") or {}
+                return {"id": _long_id(sid, raw, c),
                         "src": sid, "url": r.get("url"), "quality": r.get("quality"),
                         "ext": r.get("ext"), "name": c.get("title"), "artist": c.get("singer"),
+                        # ★ 2026-10-07：多源曲目要落进曲库，必须自带给封面/专辑/时长
+                        #   （load_candidates 会把没有 cover 的记录判成「字段不全」丢掉）
+                        "cover": c.get("cover") or "", "album": c.get("album") or "",
+                        "dur": dur_s(raw.get("dur") or c.get("dur")),
                         "oct": 0, "note": r.get("note")}
             tried.append((sid, c.get("title"), getattr(ad, "last_reason", "无直链")))
     return None

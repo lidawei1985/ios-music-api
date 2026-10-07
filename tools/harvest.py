@@ -44,6 +44,38 @@ ENUM_ORDERS = [o for o in (os.environ.get("HV_ENUM_ORDERS") or "hot").split(",")
 SORT_BY_PLAY = (os.environ.get("HV_SORT") or "play").lower() == "play"
 TARGET_IDS = int(os.environ.get("HV_TARGET_IDS") or "600000")
 
+# =============================================================== 多源扩充（★ 2026-10-07）
+# 主人第五轮质问：「我就没明白是不能做聚合吗？为什么就死盯着网易呢！全网什么叫全网？」
+#
+# 实测结证（2026-10-07 本地跑，全部有数据）：
+#   · 六个源**搜索接口全部匿名可用**：wy 220ms / kw 148ms / migu 527ms / bili 482ms
+#     / qq 2557ms / kg 256ms，各回 20 条。之前探针报的 needs_auth 只是**播放直链**要登录，
+#     跟「曲库采集」是两条路 —— 所以「不能聚合」这个前提根本不成立。
+#   · 真正的差别在**搜索质量**（同一 query「晴天 周杰伦」第 1 条）：
+#       QQ    晴天 / 周杰伦                        ✅ 干净
+#       酷狗  晴天 / 周杰伦                        ✅ 干净
+#       咪咕  晴天 / 周杰伦                        ✅ 干净
+#       网易  晴天(深情版) / Lucky小爱              ❌ 翻唱压原唱（主人抱怨的原样）
+#       酷我  20 条里没有一条原版（KTV伴奏/DJ版/串烧占满）  ❌❌ 只能当直链解析器
+#   · 音源优先级仍保持 wy → kw → migu（wy 音质最好；kw 匿名直链最稳；migu 补免费库）。
+#   · 旧流程为什么只盯网易：harvest 主干写死「网易云歌单」，重入子命令只有
+#     enum/ids/songs/pack/stat/verify/wash —— **压根没有任何多源入口**；
+#     adapters 里那套 QQ 榜单/64 分类歌单接口早就写好了，却只被 build.py 用来生成
+#     categories/charts/streams，**从未进过曲库采集**。这是流程没接，不是技术不行。
+MULTI_FILE = os.path.join(CAT, "_multi.jsonl")
+MULTI_ON = (os.environ.get("HV_MULTI") or "1") != "0"
+MULTI_MAX = int(os.environ.get("HV_MULTI_MAX") or "20000")       # 单轮最多补多少条
+# ★ 候选池上限必须**远大于** MULTI_MAX：否则第一个榜单就把池子填满，
+#   后面 QQ 歌单/酷狗榜根本没机会收（实测血案：HV_MULTI_MAX=60 时 QQ 榜单占满 74 条 →
+#   歌单收集直接 break，日志显示「0 分类 / 0 歌单」）。MULTI_MAX 只用来截断**待处理队列**。
+MULTI_POOL = int(os.environ.get("HV_MULTI_POOL") or str(max(MULTI_MAX * 4, 20000)))
+MULTI_WORKERS = int(os.environ.get("HV_MULTI_WORKERS") or "8")
+MULTI_PL_PER_CAT = int(os.environ.get("HV_MULTI_PL_PER_CAT") or "4")      # 每个 QQ 分类取几个歌单
+MULTI_SONGS_PER_PL = int(os.environ.get("HV_MULTI_SONGS_PER_PL") or "40")
+MULTI_KG_RANKS = int(os.environ.get("HV_MULTI_KG_RANKS") or "24")         # 取几个酷狗榜
+MULTI_KG_PER_RANK = int(os.environ.get("HV_MULTI_KG_PER_RANK") or "50")
+MULTI_QQ_PER_RANK = int(os.environ.get("HV_MULTI_QQ_PER_RANK") or "100")
+
 
 def log(*a):
     print(*a, flush=True)
@@ -524,12 +556,19 @@ def audio_gate(arr, tag="pack"):
     if not AUDIO_GATE:
         return arr, {"音频闸门": "已跳过"}
     cache = _load_audio_cache()
-    known = {str(s["i"]) for s in arr if str(s["i"]) in cache}
-    todo = [s for s in arr if str(s["i"]) not in cache]
+    # ★ 2026-10-07 多源免检（血案预防）：
+    #   _outer_bytes() 探的是**网易**的 outer/url，多源曲目（咪咕 contentId / 酷我 rid / bvid）
+    #   套这个 URL 必然探错对象 —— 运气好回 4xx → 判「测不到」放行；运气差回 200+text/html
+    #   → 被当**死链直接删掉**。而它们在采集阶段已经过 adapters.verify_playable()
+    #   （Range GET 拿真音频字节，唯一判据）实测可播。所以：不探、不缓存、原样放行。
+    wy = [s for s in arr if (s.get("src") or "wy") == "wy"]
+    other = [s for s in arr if (s.get("src") or "wy") != "wy"]
+    known = {str(s["i"]) for s in wy if str(s["i"]) in cache}
+    todo = [s for s in wy if str(s["i"]) not in cache]
     if AUDIO_MAX_PER_RUN:
         todo = todo[:AUDIO_MAX_PER_RUN]
-    log("音频可播体检：待测 %d 首（缓存命中 %d 首）｜%d 并发"
-        % (len(todo), len(known), AUDIO_WORKERS))
+    log("音频可播体检：待测 %d 首（缓存命中 %d 首）｜多源免检 %d 首｜%d 并发"
+        % (len(todo), len(known), len(other), AUDIO_WORKERS))
     t0 = time.time()
     if todo:
         done = 0
@@ -548,9 +587,9 @@ def audio_gate(arr, tag="pack"):
                     _save_audio_cache(cache)
         _save_audio_cache(cache)
 
-    keep, stat = [], {"死链/占位": 0, "试听片段": 0, "网络未测": 0}
+    keep, stat = list(other), {"死链/占位": 0, "试听片段": 0, "网络未测": 0}
     drop_ids = []
-    for s in arr:
+    for s in wy:
         entry = cache.get(str(s["i"]))
         # 兼容旧缓存（纯 bytes）与新缓存（(bytes, ctype) 二元组）
         if isinstance(entry, (list, tuple)):
@@ -574,7 +613,9 @@ def audio_gate(arr, tag="pack"):
     # ★ 2026-10-06 风控熔断：云端 IP 被网易云成批拒绝时，「网络未测」会占比极高。
     #   此时继续按 dead 剔歌是危险的（上一轮就是这样把 5.6 万砍到 1.6 万）。
     #   判据：未测占比 > 40% → 判定本轮探测不可信，**整体放行、不剔任何歌**。
-    total = len(arr)
+    #   ★ 2026-10-07：分母改成「真正被探的网易曲目数」——多源曲目压根没探，
+    #     放进分母会把比例稀释，导致风控熔断**该响的时候不响**（危险方向）。
+    total = len(wy)
     if total and stat["网络未测"] / total > 0.40:
         log("[%s] ⚠ 风控熔断：网络未测 %d/%d（%.0f%%）超过 40%% → 本轮音频闸门整体放行，不剔除任何曲目"
             % (tag, stat["网络未测"], total, 100.0 * stat["网络未测"] / total))
@@ -682,7 +723,17 @@ def ensure_oct(ids):
     m = _oct_load()
     if _OCT_SEED:
         m.update({k: v for k, v in _OCT_SEED.items() if k not in m})
-    want = [int(i) for i in dict.fromkeys(ids)]
+    # ★ 2026-10-07：多源曲目混进来后，id 不再保证是数字 —— B 站是 "BV1xx…" 这种字母串，
+    #   酷狗是 hex hash。原写 `[int(i) for i in …]` 会直接 ValueError 炸掉整个 pack。
+    #   而且网易的 song/detail 本来就只认自家 songId，非数字 id 送了也是白送 → 直接跳过。
+    want, skipped = [], 0
+    for i in dict.fromkeys(ids):
+        try:
+            want.append(int(i))
+        except (TypeError, ValueError):
+            skipped += 1
+    if skipped:
+        log("  原唱体检：跳过 %d 个非数字 id（B 站 bvid / 酷狗 hash 等，网易接口不认）" % skipped)
     miss = [i for i in want if i not in m]
     log("原唱体检：待取 %d 首（缓存命中 %d 首）｜%d 并发" % (len(miss), len(want) - len(miss), OCT_WORKERS))
     if miss:
@@ -727,7 +778,10 @@ def original_gate(arr, tag="pack"):
     oct = ensure_oct([s["i"] for s in arr])
     stat = {"原唱": 0, "翻唱": 0, "未知": 0, "名字带版本标": 0}
     for s in arr:
-        v = oct.get(int(s["i"])) or [0, 0]
+        try:
+            v = oct.get(int(s["i"])) or [0, 0]
+        except (TypeError, ValueError):
+            v = [0, 0]                       # 非数字 id（bvid/hash）→ 网易查不到，按未知处理
         t = int(v[0] or 0)
         if t == 1:
             s["cv"] = 1
@@ -737,6 +791,13 @@ def original_gate(arr, tag="pack"):
             if v[1]:
                 s["ov"] = int(v[1])          # 原唱指针：客户端可显示「原唱：XXX」
             stat["翻唱"] += 1
+        elif s.get("cv") == 1 and (s.get("src") or "wy") != "wy":
+            # ★ 2026-10-07 多源：适配器已用 multi_match(strict=True) 实测过这条是
+            #   榜单/官方歌单里的干净版本（HARD_BAD/SOFT_BAD 全毙、时长对得上），
+            #   它标的 cv=1 比「网易 oct 查不到 = 未知」更可信 —— 保留，别抹成 0。
+            #   抹成 0 的后果：端上 isCv() 会退回关键词兜底，干净标题虽不会误挂角标，
+            #   但以后任何「按 cv 排序/筛选」的功能都会把这些歌归错档。
+            stat["原唱"] += 1
         else:
             s["cv"] = 0
             stat["未知"] += 1
@@ -789,8 +850,17 @@ _OCT_SEED = {}          # 从 _songs.jsonl 顺手捡到的 originCoverType（省
 
 
 def load_candidates():
-    """读 _songs.jsonl → 去重 + 剔除不可播（VIP/无版权/过短）。返回 {id: song}"""
-    songs, drop = {}, {"字段不全": 0, "付费不可播": 0, "无版权下架": 0, "时长过短": 0, "热度不足": 0}
+    """读 _songs.jsonl（网易）+ _multi.jsonl（多源）→ 去重 + 剔除不可播。
+
+    返回 {key: song}。key 的命名空间刻意分开（★ 2026-10-07）：
+      · 网易曲目 → songId（int，与原逻辑完全一致）
+      · 多源曲目 → "src:id"（如 "kw:475511182"）
+    为什么必须分开：酷我 rid / 咪咕 contentId 都是**整数**，跟网易 songId 会撞号 ——
+    一旦混进同一个 key 空间，"曲库 3 万首"里就会凭空少掉一批（互相覆盖）。
+    """
+    songs, drop = {}, {"字段不全": 0, "付费不可播": 0, "无版权下架": 0, "时长过短": 0,
+                       "热度不足": 0, "多源重复": 0}
+    nkey = {}                                    # 歌名|歌手 → 已在池中（跨源去重，网易优先）
     for line in open(SONGS_FILE, encoding="utf-8"):
         try:
             rec = json.loads(line)
@@ -817,6 +887,33 @@ def load_candidates():
                 continue
             if sid not in songs or (s.get("pop") or 0) > (songs[sid].get("pop") or 0):
                 songs[sid] = s
+                nkey[_skey(s.get("n"), s.get("a"))] = 1
+
+    # ★ 多源池（QQ 榜单/分类歌单 + 酷狗榜 + 咪咕）：与网易池**同名同歌手直接丢弃**
+    #   —— 网易是主库（有 originCoverType 官方原唱标记、音质最好），多源只做补充。
+    nm = 0
+    if os.path.exists(MULTI_FILE):
+        for line in open(MULTI_FILE, encoding="utf-8"):
+            try:
+                s = json.loads(line)
+            except Exception:
+                continue
+            sid = s.get("i")
+            if not sid or not s.get("n") or not s.get("a"):
+                drop["字段不全"] += 1
+                continue
+            k = _skey(s.get("n"), s.get("a"))
+            if k in nkey:
+                drop["多源重复"] += 1
+                continue
+            if (s.get("d") or 0) < MIN_DUR:
+                drop["时长过短"] += 1
+                continue
+            nkey[k] = 1
+            songs["%s:%s" % (s.get("src") or "wy", sid)] = s
+            nm += 1
+        if nm:
+            log("多源池并入：%d 首（与网易池同名同歌手已去重 %d 首）" % (nm, drop["多源重复"]))
     return songs, drop
 
 
@@ -838,6 +935,12 @@ def apply_gate(songs):
             continue
         if not (MIN_DUR <= (s.get("d") or 0) <= MAX_DUR):
             drop2["时长超限"] += 1
+            continue
+        # ★ 多源曲目（src != wy）：来自榜单/官方分类歌单，且已过 strict 选曲 + 真音频验证。
+        #   这些源根本不吐 pop（QQ/酷狗/咪咕 都没有热度字段），套网易的 pop 闸门会让整批
+        #   被判「无名低热」全灭 —— 所以免检，但上面的垃圾/时长/名字三道闸门照样要过。
+        if s.get("src") and s.get("src") != "wy":
+            out[sid] = s
             continue
         floor = POP_EST if a in strong else POP_NEW
         if (s.get("pop") or 0) < floor:
@@ -921,6 +1024,51 @@ def cmd_pack():
 
     _write_catalog(arr)
 
+    # ★ 2026-10-07 新增：同步刷新「包内曲库分块」（cat-manifest.js / cat-idx-NN.js / cat-sh-NN.js）。
+    #   血案背景：mkcatalog_js.py 以前**没有任何流水线调用** → data/catalog/js/ 长期停在
+    #   上一代（实测 101,256 首、未过质量闸门）而 manifest.json 已是 31,681 首（已洗过）。
+    #   两者不一致的后果：App 优先读**包内**清单 → 装机后搜到的是没洗过的旧库
+    #   （翻唱/伴奏/有声书全在），只有 CDN 可达时 refresh() 才会换成新库；
+    #   而中国网络直连 jsdelivr 常常不可达 → 就永远停在旧库上。
+    _sync_js()
+
+
+def _sync_js():
+    """按刚写好的 manifest.json 重新生成包内 JS 分块。
+
+    放在 cmd_pack() 里（而不是 CI 的独立步骤）是为了**原子性**：
+    pack 写完 manifest.json 就立刻生成 js，永远不会出现「清单已换、分块还是上一代」。
+    失败只告警不抛出 —— 曲库本体已经发布成功，不该因为分块生成把整轮采集成果废掉。
+    """
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import mkcatalog_js
+        mkcatalog_js.main()
+        log("包内曲库分块已刷新 → data/catalog/js/")
+    except Exception as e:
+        log("⚠ 包内曲库分块刷新失败（不影响曲库发布本身）：%r" % (e,))
+
+
+def _sid(v):
+    """JSON 安全的歌曲 id：**短的纯数字**写数字，其余一律写字符串。
+
+    ★ 2026-10-07 实测血案（多源上线当天抓到）：
+      咪咕 contentId 是 18 位整数，如 600930000002751847 —— 远超 JS 的
+      `Number.MAX_SAFE_INTEGER`（2^53-1 = 9007199254740991）。
+      一旦以 JSON 数字形式落到分片里，JS 侧 JSON.parse 直接把它变成
+      `600930000002751900`（尾部 3 位被抹平）→ 端上拿错 id 请求咪咕 →
+      **多源曲目 100% 播不出声**，而且不报错、静默失败，最难查。
+      Python 的 int 无上限、JS 的 Number 有 —— 只能由**写端让路**。
+      同理 B 站 bvid 是 "BV1xx…" 这类字母串，`+"BV1xx"` = NaN，会被 `if(!id)` 静默丢掉。
+
+    判据：≤15 位纯数字 → int（网易 songId / 酷我 rid 都落在这一档，保持与老数据同型）；
+          其余（18 位咪咕 id、bvid、带字母的）→ str，端上按**不透明字符串**处理。
+    """
+    if isinstance(v, int):
+        return v if -9007199254740991 <= v <= 9007199254740991 else str(v)
+    s = str(v or "")
+    return int(s) if s.isdigit() and len(s) <= 15 else s
+
 
 def _write_catalog(arr):
     """把最终曲目列表写成 分片 + 索引 + manifest（pack / verify 共用）"""
@@ -928,6 +1076,13 @@ def _write_catalog(arr):
     for old in os.listdir(CAT):
         if old.startswith("shard-") or old.startswith("idx-") or old in ("manifest.json", "search.json"):
             os.remove(os.path.join(CAT, old))
+
+    # ★ 先把 id 统一成「JSON 安全型」，再同时喂给分片与索引 —— 两处必须同型，
+    #   否则端上 `refs.set(s.id)` / `refs.get(rec.i)` 一个字符串一个数字，封面永远补不上。
+    for x in arr:
+        x["i"] = _sid(x.get("i"))
+        if x.get("ov"):
+            x["ov"] = _sid(x.get("ov"))
 
     shards = []
     for i in range(0, len(arr), SHARD):
@@ -943,11 +1098,14 @@ def _write_catalog(arr):
     #   · 手机端只保存原始字符串（无 JSON.parse、无逐条对象）→ 内存 ≈ 文本体积；
     #   · 检索用 indexOf 直接在字符串上滑，命中才切那一行 → 零额外分配。
     # 行格式：归一化歌名 \u0001 归一化歌手 \u0001 歌曲id \u0001 片号 \u0001 原名 \u0001 原歌手
-    #   \u0001 原唱标记(cv) \u0001 原唱id(ov)
+    #   \u0001 原唱标记(cv) \u0001 原唱id(ov) \u0001 播放源(src)
     #   —— 前两段用内核同款 norm() 规则（小写+去空白/标点），用户输入什么都能搜到；
     #      后两段只用于「显示」，因为 norm 会吃掉空格与标点，不能拿它当标题给用户看。
     #      cv：1=原唱 / 2=翻唱 / 0=未知（客户端据此置顶原唱、给翻唱挂角标，见 kernel isCv）
     #      ov：翻唱指向的原唱 songId（0/空 = 无）→ 客户端可显示「原唱：XXX」
+    #      src：★ 2026-10-07 多源之后新增，wy/kw/migu/bili —— 决定客户端怎么拼直链
+    #        （wy→outer/url；kw→antiserver；migu→listenV2）。老数据只有 8 段，
+    #        客户端把缺省当 "wy" 处理，向后兼容。
     lines = []
     si = 0
     for n, s in enumerate(arr):
@@ -955,12 +1113,18 @@ def _write_catalog(arr):
             si += 1
         lines.append(SEP.join((_norm(s["n"]), _norm(s["a"]), str(s["i"]), str(si),
                                _safe(s["n"]), _safe(s["a"]),
-                               str(s.get("cv") or 0), str(s.get("ov") or 0))))
+                               str(s.get("cv") or 0), str(s.get("ov") or 0),
+                               s.get("src") or "wy")))
 
     idx_files = []
     for i in range(0, len(lines), IDX_CHUNK):
         name = "idx-%02d.txt" % (i // IDX_CHUNK)
-        with open(os.path.join(CAT, name), "w", encoding="utf-8") as fh:
+        # ★ 2026-10-07 血案：必须显式 newline="\n"。
+        #   text 模式默认 newline=None → Windows 上把 "\n" 翻成 "\r\n"，
+        #   于是每行**最后一个字段**（当前是 src）变成 "migu\r"，
+        #   端上 `sid==="migu"` 恒为 false → 又多源静默退回网易直链（无报错、最难查）。
+        #   Linux runner 不会重现，只在 Windows 本机产物上踩——所以这里从根上钉死换行符。
+        with open(os.path.join(CAT, name), "w", encoding="utf-8", newline="\n") as fh:
             fh.write("\n".join(lines[i:i + IDX_CHUNK]))
         idx_files.append(name)
 
@@ -969,12 +1133,18 @@ def _write_catalog(arr):
     man = {"updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
            "count": len(arr), "shardSize": SHARD, "shards": shards,
            "idx": {"chunks": idx_files, "chunkSize": IDX_CHUNK, "total": len(lines),
-                   "sep": SEP, "fields": ["nameN", "artistN", "id", "shard", "name", "artist"]},
+                   "sep": SEP,
+                   "fields": ["nameN", "artistN", "id", "shard", "name", "artist", "cv", "ov", "src"]},
            "schema": {"i": "songId", "n": "name", "a": "artist", "b": "album",
                       "p": "cover", "d": "duration_ms", "f": "fee",
-                      "pop": "popularity0-100", "pt": "publishTime_ms"},
-           "ranked": "pop + freshness", "sources": ["netease"]}
-    json.dump(man, open(os.path.join(CAT, "manifest.json"), "w", encoding="utf-8"),
+                      "pop": "popularity0-100", "pt": "publishTime_ms",
+                      "cv": "1=原唱/2=翻唱/0=未知", "ov": "翻唱指向的原唱id",
+                      "src": "播放源 wy|kw|migu|bili"},
+           "ranked": "pop + freshness",
+           # ★ 2026-10-07：不再是写死的 ["netease"]，而是按实际入库来源统计
+           #   （主人：「为什么就死盯着网易呢！全网什么叫全网？」）
+           "sources": sorted({(s.get("src") or "wy") for s in arr})}
+    json.dump(man, open(os.path.join(CAT, "manifest.json"), "w", encoding="utf-8", newline="\n"),
               ensure_ascii=False, indent=1)
     log("分片完成：%d 片 / %d 首 / %.1f MB" % (len(shards), len(arr), shard_bytes / 1048576))
     log("索引完成：%d 块 / %d 行 / %.1f MB（每块 ~%.2f MB）"
@@ -982,6 +1152,220 @@ def _write_catalog(arr):
            (idx_bytes / max(1, len(idx_files))) / 1048576))
     log("总体：曲库 %.1f MB + 索引 %.1f MB = %.1f MB"
         % (shard_bytes / 1048576, idx_bytes / 1048576, (shard_bytes + idx_bytes) / 1048576))
+
+
+# =============================================================== 多源采集（QQ / 酷狗）
+def _skey(t, s):
+    """与端上 skey() / build._skey() 逐字符对齐：归一化后按**码点** 40/30 截断。"""
+    return "%s|%s" % (_norm(t)[:40], _norm(s)[:30])
+
+
+def _ad():
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import adapters as A
+    return A
+
+
+def _existing_keys():
+    """网易池已采元数据的 歌名|歌手 键集（避免多源重复采同一首）"""
+    keys = set()
+    if not os.path.exists(SONGS_FILE):
+        return keys
+    for line in open(SONGS_FILE, encoding="utf-8"):
+        try:
+            rec = json.loads(line)
+        except Exception:
+            continue
+        for s in rec.get("songs") or []:
+            if s.get("n") and s.get("a"):
+                keys.add(_skey(s["n"], s["a"]))
+    return keys
+
+
+def _multi_keys():
+    """_multi.jsonl 里已采过的键集（断点续跑用）"""
+    keys = set()
+    if not os.path.exists(MULTI_FILE):
+        return keys
+    for line in open(MULTI_FILE, encoding="utf-8"):
+        try:
+            r = json.loads(line)
+        except Exception:
+            continue
+        if r.get("n") and r.get("a"):
+            keys.add(_skey(r["n"], r["a"]))
+    return keys
+
+
+def _kg_ranks(A, limit):
+    """酷狗榜单（rank/list → rank/song）。
+
+    字段实测（2026-10-07）：歌手藏在 `authors[].author_name`（不是 singername，那个是 None），
+    封面是 `album_sizable_cover` 的 {size} 模板，时长 duration 是**秒**。
+    """
+    out = []
+    r = A.http("http://mobilecdn.kugou.com/api/v3/rank/list?json=true&page=1&pagesize=60",
+               {"Referer": "https://www.kugou.com/"})
+    info = ((A.jload(r) or {}).get("data") or {}).get("info") or []
+    for x in info[:limit]:
+        rid = x.get("rankid")
+        if not rid:
+            continue
+        try:
+            r2 = A.http("http://mobilecdn.kugou.com/api/v3/rank/song?version=9108&rankid=%s"
+                        "&page=1&pagesize=%d&withsong=1" % (rid, MULTI_KG_PER_RANK),
+                        {"Referer": "https://www.kugou.com/"})
+        except Exception:
+            continue
+        songs = ((A.jload(r2) or {}).get("data") or {}).get("info") or []
+        rows = []
+        for y in songs:
+            au = y.get("authors") or []
+            sing = "/".join(z.get("author_name", "") for z in au if isinstance(z, dict))
+            cov = ((y.get("album_sizable_cover") or "")
+                   .replace("{size}", "480").replace("http://", "https://"))
+            rows.append({"title": y.get("songname") or "", "singer": sing,
+                         "duration": A.dur_s(y.get("duration")), "cover": cov})
+        out.append({"name": x.get("rankname") or rid, "songs": rows})
+    return out
+
+
+def _collect_tasks(A):
+    """汇总「待补曲目」：[(title, singer, dur_s, cover, album, 来源)]"""
+    tasks, seen = [], set()
+
+    def add(t, s, d, cov, alb, frm):
+        t, s = (t or "").strip(), (s or "").strip()
+        if not t or not s:
+            return
+        k = _skey(t, s)
+        if k in seen:
+            return
+        seen.add(k)
+        tasks.append((t, s, A.dur_s(d), cov or "", alb or "", frm))
+
+    # ① QQ 八大榜单（实测 100 条/榜、747ms，且**第一条就是原唱**）
+    for topid, name, lim in A.QQ_TOPLISTS:
+        if len(tasks) >= MULTI_POOL:
+            break
+        try:
+            r = A.qq_toplist(topid, name, min(lim, MULTI_QQ_PER_RANK))
+            rows = r.get("songs") or []
+            for x in rows:
+                add(x.get("title"), x.get("singer"), x.get("duration"),
+                    x.get("cover"), x.get("album"), "QQ·%s" % name)
+            log("  QQ %-8s %d 首" % (name, len(rows)))
+        except Exception as e:
+            log("  ! QQ %s 失败：%s" % (name, e))
+
+    # ② QQ 分类歌单（5 组 64 分类，实测可用）
+    try:
+        tags = A.qq_diss_tags()
+        ncat = npl = 0
+        for g in tags:
+            if len(tasks) >= MULTI_POOL:
+                break
+            for c in (g.get("cats") or []):
+                if len(tasks) >= MULTI_POOL:
+                    break
+                try:
+                    pls = A.qq_diss_list(c.get("id"), sort=3, n=MULTI_PL_PER_CAT)
+                except Exception:
+                    continue
+                ncat += 1
+                for p in pls:
+                    if len(tasks) >= MULTI_POOL:
+                        break
+                    try:
+                        ss = A.qq_diss_songs(p.get("dissid"), MULTI_SONGS_PER_PL)
+                    except Exception:
+                        continue
+                    npl += 1
+                    for x in ss:
+                        add(x.get("title"), x.get("singer"), x.get("duration"),
+                            x.get("cover"), x.get("album"), "QQ·%s" % g.get("group"))
+        log("  QQ 歌单 %d 分类 / %d 歌单 → 累计 %d 条" % (ncat, npl, len(tasks)))
+    except Exception as e:
+        log("  ! QQ 歌单分类失败：%s" % e)
+
+    # ③ 酷狗榜单（实测 55 个榜、每榜 50 首）
+    try:
+        ranks = _kg_ranks(A, MULTI_KG_RANKS)
+        for r in ranks:
+            for x in r["songs"]:
+                add(x["title"], x["singer"], x["duration"], x["cover"], "", "KG·%s" % r["name"])
+        log("  酷狗榜单 %d 个 → 累计 %d 条" % (len(ranks), len(tasks)))
+    except Exception as e:
+        log("  ! 酷狗榜单失败：%s" % e)
+
+    return tasks
+
+
+def _multi_one(A, task):
+    """一条候选 → multi_match(strict) 找能播源 → 落库记录（找不到干净可播源则 None）"""
+    t, s, d, cov, alb, frm = task
+    try:
+        m = A.multi_match(t, s, dur_ms=int(d or 0) * 1000, strict=True)
+    except Exception:
+        return None
+    if not m or not m.get("id"):
+        return None
+    dur = int(d or 0) or int(m.get("dur") or 0)
+    return {"i": m["id"], "src": m["src"], "n": t, "a": s,
+            "b": (alb or m.get("album") or "")[:60],
+            "p": cov or m.get("cover") or "",
+            "d": dur * 1000, "f": 0,
+            # 多源曲目来自**榜单/官方分类歌单**，本身就是热度背书；网易那套 pop 闸门
+            # 对它们不适用（这些源根本不吐 pop），故给满值并在 apply_gate 里免检。
+            "pop": 100, "pt": 0, "nrc": 0,
+            # strict 模式已把翻唱/Live/DJ/伴奏全毙 → 存活即视为原唱
+            "cv": 1, "ov": 0, "from": frm}
+
+
+def cmd_multi():
+    """★ 多源扩充：把 QQ 榜单/分类歌单 + 酷狗榜单 的曲目并进曲库池。
+
+    每条候选都跑 multi_match(strict=True) 拿**实测能播**的长效 id：
+      · 命中 wy   → 用网易 songId（端上零改动，走原有 outer/url 直链）
+      · 命中 kw   → 用酷我 rid + src="kw"（端上按 antiserver 拼直链）
+      · 命中 migu → 用咪咕 contentId + src="migu"
+      · 全源都只有脏版本 → 丢弃（主人：「宁可不治也不能错治」）
+
+    产出 data/catalog/_multi.jsonl（append-only，可断点续跑）。
+    """
+    if not MULTI_ON:
+        log("多源扩充：已关闭（HV_MULTI=0）")
+        return
+    A = _ad()
+    have, done = _existing_keys(), _multi_keys()
+    log("多源扩充：网易池键 %d 个 ｜ _multi 已采 %d 条" % (len(have), len(done)))
+
+    tasks = _collect_tasks(A)
+    log("多源候选：%d 条（源内已按 歌名|歌手 去重）" % len(tasks))
+    skip = have | done
+    todo = [t for t in tasks if _skey(t[0], t[1]) not in skip]
+    log("待补 %d 条（与网易池/已采重合 %d 条）" % (len(todo), len(tasks) - len(todo)))
+    if MULTI_MAX and len(todo) > MULTI_MAX:
+        todo = todo[:MULTI_MAX]
+        log("  → 本轮限量 %d 条（HV_MULTI_MAX）" % MULTI_MAX)
+    if not todo:
+        log("多源扩充：无新候选，跳过")
+        return
+
+    t0, ok, srcs = time.time(), 0, {}
+    os.makedirs(CAT, exist_ok=True)
+    with ThreadPoolExecutor(MULTI_WORKERS) as ex, open(MULTI_FILE, "a", encoding="utf-8") as fh:
+        for i, rec in enumerate(ex.map(lambda x: _multi_one(A, x), todo), 1):
+            if rec:
+                ok += 1
+                srcs[rec["src"]] = srcs.get(rec["src"], 0) + 1
+                fh.write(json.dumps(rec, ensure_ascii=False, separators=(",", ":")) + "\n")
+            if i % 200 == 0:
+                fh.flush()
+                log("  … %d/%d（命中 %d ｜ %s ｜ %.0fs）"
+                    % (i, len(todo), ok, srcs, time.time() - t0))
+    log("多源扩充完成：新增 %d 条 ｜ 源分布 %s ｜ 耗时 %.0fs"
+        % (ok, srcs, time.time() - t0))
 
 
 def meta_gate(arr, tag="verify"):
@@ -1059,4 +1443,4 @@ if __name__ == "__main__":
     cmd = (sys.argv[1] if len(sys.argv) > 1 else "enum").lower()
     {"enum": cmd_enum, "ids": cmd_ids, "artists": cmd_artists,
      "songs": cmd_songs, "pack": cmd_pack, "stat": cmd_stat,
-     "verify": cmd_verify, "wash": cmd_wash}[cmd]()
+     "verify": cmd_verify, "wash": cmd_wash, "multi": cmd_multi}[cmd]()

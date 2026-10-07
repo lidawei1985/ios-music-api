@@ -57,6 +57,19 @@ jobs:
       HV_ORIGIN_GATE: "1"            # 原唱闸门：剔翻唱（oct=1/2）与非原版命名
       HV_OCT_WORKERS: "8"            # 原唱体检并发（走 _oct.json 缓存，约 40 秒）
       HV_MAX_ARTISTS: "8000"         # 按歌手扩库单轮上限（防止撞 180 分钟超时）
+      # ★ 2026-10-07 多源扩充（主人：「为什么就死盯着网易呢！全网什么叫全网？」）：
+      #   网易单源天花板约 4.4 万，撑不起一个音乐 App。这里把 QQ 榜单/分类歌单 +
+      #   酷狗榜单的曲目并入，逐首用 multi_match(strict=True) 找**实测能播**的长效 id。
+      #   实测（本地）：60 条候选 23s（8 并发）→ 约 0.38s/条；12 并发约 0.25s/条。
+      #   取 8000 条 ≈ 33 分钟，给步骤单独设 60 分钟上限并 continue-on-error，
+      #   超时也不会把整条流水线带崩（_multi.jsonl 是 append-only，断点续跑）。
+      HV_MULTI: "1"
+      HV_MULTI_MAX: "8000"
+      HV_MULTI_WORKERS: "12"
+      HV_MULTI_PL_PER_CAT: "4"       # QQ 每分类取 4 个歌单（64 分类 → 最多 256 个）
+      HV_MULTI_SONGS_PER_PL: "40"
+      HV_MULTI_KG_RANKS: "24"        # 酷狗榜取前 24 个（实测榜列表 55 个）
+      HV_MULTI_QQ_PER_RANK: "100"
     steps:
       - uses: actions/checkout@v4
 
@@ -75,13 +88,14 @@ jobs:
             data/catalog/_artist_ids.json
             data/catalog/_audio_gate.json
             data/catalog/_oct.json
+            data/catalog/_multi.jsonl
           key: harvest-state-v2-${{ github.run_id }}
           restore-keys: |
             harvest-state-v2-
 
       - name: 采集状态盘点（缓存是否命中）
         run: |
-          for f in _playlists.json _ids.json _songs.jsonl; do
+          for f in _playlists.json _ids.json _songs.jsonl _artist_ids.json _oct.json _multi.jsonl; do
             p="data/catalog/$f"
             if [ -f "$p" ]; then echo "$f $(du -h $p | cut -f1)"; else echo "$f 缺失（首次全量）"; fi
           done
@@ -114,6 +128,19 @@ jobs:
         continue-on-error: true
         timeout-minutes: 25
         run: python tools/harvest.py artists
+
+      # ★ 2026-10-07 多源扩充（「全网聚合」真正落地）：
+      #   三路发现源 —— ① QQ 音乐八大榜 ② QQ 64 个官方分类歌单 ③ 酷狗 55 个榜单。
+      #   为什么选 QQ/酷狗/咪咕当发现源：实测搜「晴天 周杰伦」第一条，
+      #     QQ ✅ 晴天/周杰伦 ｜ 酷狗 ✅ 晴天/周杰伦 ｜ 咪咕 ✅ 晴天/周杰伦
+      #     网易 ❌ 晴天(深情版)/Lucky小爱（翻唱第一）｜ 酷我 ❌ 20 条里没一条原版
+      #   → 酷我只当**直链解析器**（antiserver 免登录），不当曲目源。
+      #   逐首跑 multi_match(strict=True) 拿实测能播的长效 id（wy/kw/migu），
+      #   HARD_BAD 硬毙伴奏/DJ/片段/教学，时长 <90s 或与目标偏差过大一律丢。
+      - name: ③-c 多源扩充（QQ 榜单/分类歌单 + 酷狗榜 → 逐首实测可播源）
+        continue-on-error: true
+        timeout-minutes: 60
+        run: python tools/harvest.py multi
 
       - name: ④ 统计增量（过闸门多少首 vs 线上现有）
         id: stat
@@ -166,6 +193,7 @@ jobs:
             data/catalog/_artist_ids.json
             data/catalog/_audio_gate.json
             data/catalog/_oct.json
+            data/catalog/_multi.jsonl
           key: harvest-state-v2-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: ⑦ 发布前体检（不合格直接阻断）
@@ -239,7 +267,10 @@ jobs:
         run: |
           curl -sS --max-time 30 "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/catalog/" -o /dev/null \
             && echo "purged catalog/" || echo "purge dir failed"
-          for f in data/catalog/manifest.json data/catalog/manifest.js; do
+          # ★ 2026-10-07：包内曲库分块目录（pack 里由 mkcatalog_js 重生成）也要刷
+          curl -sS --max-time 30 "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/catalog/js/" -o /dev/null \
+            && echo "purged catalog/js/" || echo "purge js dir failed"
+          for f in data/catalog/manifest.json data/catalog/manifest.js data/catalog/js/cat-manifest.js; do
             [ -f "$f" ] || continue
             curl -sS --max-time 20 "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/${f}" -o /dev/null \
               && echo "purged $f" || echo "purge failed $f"

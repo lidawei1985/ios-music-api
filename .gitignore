@@ -8,8 +8,10 @@ tools/dbg_*.py
 
 # harvest 运行时状态（几百 MB，绝不入库；打包产物 shard/idx/manifest 才入库）
 data/catalog/_*.json
-data/catalog/_songs.jsonl
-data/catalog/_songs_raw.jsonl
+# ★ 2026-10-07：改成通配 —— 新增的多源采集断点续跑缓存 _multi.jsonl（append-only）
+#   与 _songs.jsonl / _songs_raw.jsonl 同待遇：它是**运行态**，靠 actions/cache 在
+#   runner 之间传递（见 harvest.yml 的 cache path），不该跟进 git（每轮都在长）。
+data/catalog/_*.jsonl
 
 # ------------------------------------------------------------------ 备份 / 临时（绝不入库）
 # 血案教训：data/ 下放过一堆 _bak_* 目录，动辄几十上百 MB，
