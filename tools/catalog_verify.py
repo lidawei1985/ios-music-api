@@ -103,6 +103,67 @@ for f in idx_files[:1]:
                 dangling += 1
 check(seps == 0 and dangling == 0, "索引首块格式正确（异常 %d 行）" % (seps + dangling))
 
+# ---------- A2 端上消费层（js 包）必须与 manifest 同代 ----------
+#   ★ 为什么单列这一项（2026-10-07 真事故）：
+#     端上 app.html 读的**不是 manifest.json，而是 data/catalog/js/cat-manifest.js**
+#     （file:// 下零网络优先读包内；且 refresh() 只在 CDN 那份 updated
+#     **与包内不同**时才切到 CDN —— 两份同代 = 永远不切 = 手机永远旧库）。
+#     而 harvest 里 _sync_js() 的异常是「只告警不抛出」→ js 包静默停在上一代时，
+#     上面 A/B/C/D 全部照样「✓ 通过」→ 曲库看着发布成功、手机却看不到。
+#     本项把这个静默失败变成红灯（宁可这轮不发，也不让线上数据与端上消费层分裂）。
+JS = os.path.join(CAT, "js")
+_mjs = None
+_mp = os.path.join(JS, "cat-manifest.js")
+if not os.path.exists(_mp):
+    check(False, "端上曲库包 cat-manifest.js 存在（缺文件）")
+else:
+    _s = open(_mp, encoding="utf-8").read()
+    _k = "window.__CATMAN="
+    try:
+        _mjs = json.loads(_s[_s.index(_k) + len(_k):].strip().rstrip(";").strip())
+    except Exception as e:
+        check(False, "端上曲库包 cat-manifest.js 可解析（%r）" % (e,))
+if _mjs is not None:
+    check(_mjs.get("count") == man.get("count"),
+          "端上清单曲目数 %s == manifest %s" % (_mjs.get("count"), man.get("count")))
+    check(_mjs.get("updated") == man.get("updated"),
+          "端上清单代次 updated=%s == %s" % (_mjs.get("updated"), man.get("updated")))
+    _nsh = len(_mjs.get("shards") or [])
+    check(_nsh == len(man.get("shards") or []),
+          "端上清单分片数 %d == %d" % (_nsh, len(man.get("shards") or [])))
+    # 端上按 Math.floor(i/SH_PACK=10) 取 cat-sh-NN.js；索引按 cat-idx-NN.js
+    _packs = ["cat-sh-%02d.js" % g for g in range((_nsh + 9) // 10)]
+    _ipacks = ["cat-idx-%02d.js" % i
+               for i in range(len((_mjs.get("idx") or {}).get("chunks") or []))]
+    _lack = [f for f in _packs + _ipacks if not os.path.exists(os.path.join(JS, f))]
+    check(not _lack, "端上分块包齐全（缺 %d 个：%s）" % (len(_lack), ",".join(_lack[:5])))
+    # 分块内曲目数合计必须等于清单（防「清单已换、分块还是上代」）
+    # 解析口径：mkcatalog_js 产出形如 window.__CATSH[n]=<json>; 且 json 为紧凑单行
+    #   → 用 ';window.__CATSH[' 切段、每段首个 ']=' 即边界。任何解析异常一律判失败（fail-closed）。
+    _tot = 0
+    for f in [p for p in _packs if os.path.exists(os.path.join(JS, p))]:
+        for piece in open(os.path.join(JS, f), encoding="utf-8").read().split(";window.__CATSH[")[1:]:
+            try:
+                _tot += len(json.loads(piece.split("]=", 1)[1].rstrip().rstrip(";").strip()))
+            except Exception:
+                _tot = -1
+                break
+        if _tot < 0:
+            break
+    check(_tot == (man.get("count") or 0),
+          "端上分块曲目数合计 %s == manifest %s" % (_tot, man.get("count")))
+    # 索引分块必须与 idx-NN.txt 逐字节一致（端上搜索就是拿它做的）
+    _same = True
+    for i, c in enumerate((_mjs.get("idx") or {}).get("chunks") or []):
+        try:
+            _s2 = open(os.path.join(JS, "cat-idx-%02d.js" % i), encoding="utf-8").read()
+            _got = json.loads(_s2.split("window.__CATIDX[", 1)[1].split("]=", 1)[1].rstrip().rstrip(";").strip())
+            _same = _same and (_got == open(os.path.join(CAT, c), encoding="utf-8").read())
+        except Exception:
+            _same = False
+    check(_same, "端上索引分块与 idx-*.txt 逐字节一致（%d 块）"
+          % len((_mjs.get("idx") or {}).get("chunks") or []))
+
 # ---------- B 可播 ----------
 vip = sum(1 for x in arr if x.get("f") in SKIP_FEE)
 nrc = sum(1 for x in arr if x.get("nrc"))
