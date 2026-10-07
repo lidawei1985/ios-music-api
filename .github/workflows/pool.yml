@@ -166,12 +166,17 @@ jobs:
       #     用每 10 分钟换一次的窗口文件名破局：data/win/202610070000.js。
       #   必须**两段提交**：锚点里写的是数据提交的 sha，而 sha 提交完才知道（先有鸡先有蛋）。
       #   端上探到 sha → 索引/数据切到 @<sha>（秒级）；探不到 → 回落 @main（慢 12 小时，功能不受影响）。
+      #   ★ 2026-10-07 关键修订：加 `--back 18` —— **一次回填 18 个窗口（3 小时）**。
+      #     原来只写「当前这一个 10 分钟窗口」，锚点就只存在于「CI 恰好跑过的那一刻」，
+      #     端上探窗口 0 大概率落空，只能往历史一个个试 → 白烧探测预算，锚点静默失效。
+      #     回填后：只要 CI 3 小时内跑过，端上探**任意窗口**都能命中 → 1~2 秒拿到 sha。
+      #     代价：每次 CI 多写 18 个 64 字节小文件（同名覆盖，仓库几乎不涨）。
       - name: 发布时效锚点（data/win/<10分钟窗口>.js）
         if: steps.publish.outputs.sha != ''
         run: |
           git config user.name "music-pool-bot"
           git config user.email "music-pool-bot@users.noreply.github.com"
-          python tools/mktide.py --sha "${{ steps.publish.outputs.sha }}" --prune
+          python tools/mktide.py --sha "${{ steps.publish.outputs.sha }}" --back 18 --prune
           git add -A data/win
           if git diff --cached --quiet; then
             echo "锚点无变化（同窗口内重复跑，URL 相同、内容相同）"
