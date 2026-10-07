@@ -89,13 +89,14 @@ jobs:
             data/catalog/_audio_gate.json
             data/catalog/_oct.json
             data/catalog/_multi.jsonl
+            data/catalog/_multi_tried.jsonl
           key: harvest-state-v2-${{ github.run_id }}
           restore-keys: |
             harvest-state-v2-
 
       - name: 采集状态盘点（缓存是否命中）
         run: |
-          for f in _playlists.json _ids.json _songs.jsonl _artist_ids.json _oct.json _multi.jsonl; do
+          for f in _playlists.json _ids.json _songs.jsonl _artist_ids.json _oct.json _multi.jsonl _multi_tried.jsonl; do
             p="data/catalog/$f"
             if [ -f "$p" ]; then echo "$f $(du -h $p | cut -f1)"; else echo "$f 缺失（首次全量）"; fi
           done
@@ -194,6 +195,7 @@ jobs:
             data/catalog/_audio_gate.json
             data/catalog/_oct.json
             data/catalog/_multi.jsonl
+            data/catalog/_multi_tried.jsonl
           key: harvest-state-v2-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: ⑦ 发布前体检（不合格直接阻断）

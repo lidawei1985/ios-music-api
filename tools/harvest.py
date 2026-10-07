@@ -63,6 +63,14 @@ TARGET_IDS = int(os.environ.get("HV_TARGET_IDS") or "600000")
 #     adapters 里那套 QQ 榜单/64 分类歌单接口早就写好了，却只被 build.py 用来生成
 #     categories/charts/streams，**从未进过曲库采集**。这是流程没接，不是技术不行。
 MULTI_FILE = os.path.join(CAT, "_multi.jsonl")
+# ★ 2026-10-07 新增：**已尝试**台账（含失败）。
+#   为什么必须有：skip 集原先 = 网易池 + _multi.jsonl（只含**成功**记录），于是
+#   「失败候选」永远留在队列头部、每轮都被重新试一遍。命中率 ~1/3 时后果是：
+#   第 N 轮的 8000 条预算里绝大部分是已知失败，真正的新候选只能挤进去一点点，
+#   候选池**尾部永远轮不到** —— 采集量会一路衰减到近乎停滞（典型的静默失效）。
+#   现在按「最近是否试过」跳过，失败也有冷却期，队列才真正向前推进。
+MULTI_TRIED = os.path.join(CAT, "_multi_tried.jsonl")
+MULTI_RETRY_DAYS = int(os.environ.get("HV_MULTI_RETRY_DAYS") or "14")   # 失败多久后可重试
 MULTI_ON = (os.environ.get("HV_MULTI") or "1") != "0"
 MULTI_MAX = int(os.environ.get("HV_MULTI_MAX") or "20000")       # 单轮最多补多少条
 # ★ 候选池上限必须**远大于** MULTI_MAX：否则第一个榜单就把池子填满，
@@ -1197,6 +1205,31 @@ def _multi_keys():
     return keys
 
 
+def _multi_tried():
+    """「最近试过」的键集（含失败），带冷却期 —— 见 MULTI_TRIED 处的说明。
+
+    文件是 append-only 的 jsonl（同键会重复出现），只取每条键的**最后一次**时间戳；
+    超过 MULTI_RETRY_DAYS 的失败允许重试（说不定后来某源上架了）。
+    只保留最近 40 万条以约束内存（远大于任何现实池子）。
+    """
+    last = {}
+    if os.path.exists(MULTI_TRIED):
+        try:
+            lines = open(MULTI_TRIED, encoding="utf-8").read().splitlines()[-400000:]
+        except Exception:
+            lines = []
+        for line in lines:
+            try:
+                r = json.loads(line)
+            except Exception:
+                continue
+            k, t = r.get("k"), r.get("t") or 0
+            if k and t >= last.get(k, 0):
+                last[k] = t
+    cutoff = time.time() - MULTI_RETRY_DAYS * 86400
+    return {k for k, t in last.items() if t >= cutoff}
+
+
 def _kg_ranks(A, limit):
     """酷狗榜单（rank/list → rank/song）。
 
@@ -1395,14 +1428,24 @@ def cmd_multi():
         log("多源扩充：已关闭（HV_MULTI=0）")
         return
     A = _ad()
-    have, done = _existing_keys(), _multi_keys()
-    log("多源扩充：网易池键 %d 个 ｜ _multi 已采 %d 条" % (len(have), len(done)))
+    have, done, tried = _existing_keys(), _multi_keys(), _multi_tried()
+    log("多源扩充：网易池键 %d 个 ｜ _multi 已采 %d 条 ｜ 冷却中（%d 天内试过）%d 条"
+        % (len(have), len(done), MULTI_RETRY_DAYS, len(tried)))
 
     tasks = _collect_tasks(A)
     log("多源候选：%d 条（源内已按 歌名|歌手 去重）" % len(tasks))
-    skip = have | done
+    # ★ 跳过集必须含「试过的（含失败）」—— 否则失败候选永远占着队首，池尾轮不到。
+    skip = have | done | tried
     todo = [t for t in tasks if _skey(t[0], t[1]) not in skip]
-    log("待补 %d 条（与网易池/已采重合 %d 条）" % (len(todo), len(tasks) - len(todo)))
+    log("待补 %d 条（与网易池/已采/冷却中重合 %d 条）" % (len(todo), len(tasks) - len(todo)))
+    # ★ 2026-10-07：**轮转顺序**，别按收集顺序取前 N。
+    #   实测血案：候选是「QQ 八大榜单 → QQ 分类歌单 → 酷狗榜」的顺序拼的，而 QQ 榜单
+    #   全是主流歌 —— 它们**几乎全在网易池里**（218877 键）。skip 之后留在队首的，
+    #   恰恰是「各大源都没有干净原唱」的冷门版本，最难命中。于是每轮限额预算全砸在
+    #   这批硬骨头上（实测连跑两轮 40 条，命中 0）。
+    #   改成随时间变化的洗牌，每轮在全池均匀取样；配合 _multi_tried 冷却，
+    #   整个池子能被均匀、快速地覆盖一遍。
+    random.Random(int(time.time()) // 60).shuffle(todo)
     if MULTI_MAX and len(todo) > MULTI_MAX:
         todo = todo[:MULTI_MAX]
         log("  → 本轮限量 %d 条（HV_MULTI_MAX）" % MULTI_MAX)
@@ -1413,20 +1456,32 @@ def cmd_multi():
     t0, ok, srcs = time.time(), 0, {}
     why, rej_tot, noplay_tot = {}, {}, {}
     os.makedirs(CAT, exist_ok=True)
-    with ThreadPoolExecutor(MULTI_WORKERS) as ex, open(MULTI_FILE, "a", encoding="utf-8") as fh:
-        for i, (rec, w, tr) in enumerate(ex.map(lambda x: _multi_one(A, x), todo), 1):
+    now = int(time.time())
+
+    def _run(tk):
+        """把「键」随任务一起带回来 —— 不要去猜 ex.map 的下标。"""
+        return _skey(tk[0], tk[1]), _multi_one(A, tk)
+
+    with ThreadPoolExecutor(MULTI_WORKERS) as ex, \
+            open(MULTI_FILE, "a", encoding="utf-8") as fh, \
+            open(MULTI_TRIED, "a", encoding="utf-8") as ftr:
+        for i, (k, (rec, w, tr)) in enumerate(ex.map(_run, todo), 1):
+            # ★ 无论成败都记一笔「已尝试」——成功进 _multi.jsonl（永久），
+            #   失败进 _multi_tried.jsonl（14 天冷却），队列才会真正往前推。
+            ftr.write('{"k":%s,"t":%d}\n' % (json.dumps(k, ensure_ascii=False), now))
             if rec:
                 ok += 1
                 srcs[rec["src"]] = srcs.get(rec["src"], 0) + 1
                 fh.write(json.dumps(rec, ensure_ascii=False, separators=(",", ":")) + "\n")
             else:
                 why[w] = why.get(w, 0) + 1
-                for k, n in (tr.get("rej") or {}).items():
-                    rej_tot[k] = rej_tot.get(k, 0) + n
+                for k2, n in (tr.get("rej") or {}).items():
+                    rej_tot[k2] = rej_tot.get(k2, 0) + n
                 for s_ in (tr.get("noplay") or []):
                     noplay_tot[s_] = noplay_tot.get(s_, 0) + 1
             if i % 200 == 0:
                 fh.flush()
+                ftr.flush()
                 top = sorted(why.items(), key=lambda x: -x[1])[:3]
                 log("  … %d/%d（命中 %d ｜ %s ｜ 未中主因 %s ｜ %.0fs）"
                     % (i, len(todo), ok, srcs, top, time.time() - t0))
