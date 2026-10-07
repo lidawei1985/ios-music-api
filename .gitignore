@@ -33,8 +33,16 @@ data/catalog/_*_dropped.txt
 tools/_recover.log
 
 # ------------------------------------------------------------------ 内核热更（已改走 iOS 仓库，这里挡住避免两份真源）
-# 现状：内核 KUP.base 指向 gcore.jsdelivr.net/gh/lidawei1985/ios-music-app@main/kernel/
-#   —— iOS CI（build-ipa.yml）打壳后自动发布 kernel/dist.html + kernel.json。
+# 现状：内核 KUP.base 指向 cdn.jsdmirror.com / gcore.jsdelivr.net /gh/lidawei1985/ios-music-app@main/kernel/
+#   —— iOS CI（build-ipa.yml）打壳后自动发布 kernel/dist.js + kernel.json。
+#   注：2026-10-07 起发布文件名由 dist.html 改为 dist.js ——
+#     因为 jsDelivr 对 .html 一律 301 跳 raw.githubusercontent.com，而 raw 在国内完全不通，
+#     导致内核热更断了（App 拉不到新内核）；.js / .json 则 200 直出。
 # 这里曾是早期通道（publish_kernel.py：本机发到 cloud 的 data/kernel/）。
 # 两份真源并存会让人分不清「手机到底拉哪份」，故不再跟踪；脚本保留作备用通道。
 data/kernel/
+
+# ------------------------------------------------------------------ 图片清理留痕（运行时日志，不入库）
+# 每轮 pool.yml 的 `localize.py prune --yes` 会 append 一段孤儿清单，长期会把仓库撑大
+# （实测约 200KB/天）。而 git 历史本身已完整记录「哪些文件被删」，无需重复留痕。
+data/assets/prune.log

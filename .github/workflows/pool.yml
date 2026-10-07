@@ -71,6 +71,26 @@ jobs:
           LZ_BUDGET_S: "1500"        # 单轮时间预算（不超过 job 40 分钟上限）
         run: python tools/localize.py localize
 
+      # ★★★ 2026-10-07 新增：孤儿图清理（结构性根治「cv/ 顶到 700MB 安全线」）。
+      #   根因：图片是**内容寻址**命名（文件名 = sha1(内容)[:16]）——
+      #   上游一旦换图（同歌手新头像、同歌换封面），新图落地拿到新文件名，
+      #   而**旧文件没有任何人删它**，会永远躺在 data/assets/cv/ 并被 git 永久记账。
+      #   实测证据（2026-10-07 本机盘点）：
+      #     cv/ 磁盘 38287 张 ｜ 索引仅引用 20860 张 → **孤儿 17427 张 / 300.4MB**
+      #     （占该目录 47%），把 cv/ 顶到 639.7MB，逼近 asset_guard 的 700MB 安全线
+      #     → 不做这一步，**下一轮 harvest 的「入库并发布」必被自己的守卫阻断**。
+      #   安全性（为什么敢在 CI 里自动删）：
+      #     · 判据与同文件的 localize 写索引**同源**（都用 <kind>.json 的 map values 取 basename），
+      #       顺序上 localize 刚写完索引 → 这里读到的就是同一份最新事实，不会错判；
+      #     · 索引为空 → localize.py 内部**直接拒绝执行**（绝不全删）；
+      #     · 只删 SPEC 三个 kind 目录下的 .webp，绝不动其他文件；
+      #     · 删除前落 assets/prune.log 留痕；
+      #     · 被删文件必是**上一轮已 commit 进 git** 的，随时可从历史找回。
+      #   位置：放在 asset_guard 之前，让守卫量到的是「清理后」的真实体量。
+      - name: 孤儿图清理（索引已不引用的旧封面）
+        continue-on-error: true
+        run: python tools/localize.py prune --yes
+
       # ★ 补一份 JS 版索引：端上是 file:// 页面，WebView 拦 fetch/XHR、不拦 <script>，
       #   索引只给 .json 的话端上永远拿不到（图下好了也认不出文件名）。
       #   localize 自己也会写，这里再跑一次只为「本轮 localize 因故早退」时兜底 —— 幂等、秒级。
