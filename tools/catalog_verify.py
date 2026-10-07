@@ -165,7 +165,18 @@ if "--no-audio" not in sys.argv:
         if dur <= 0:
             return ("keep", x)
         kb = cl * 8 / dur / 1000.0
-        return (("keep" if 70 <= kb <= 450 else "clip"), x)
+        if kb > 450:
+            return ("keep", x)          # 异常高码率（无损/多轨）不受下界约束
+        # ★★★ 2026-10-07 修正：判据必须与 harvest._verdict **完全对齐** ——
+        #   判「试听片段」看**字节覆盖率**，不是码率下界。
+        #   旧写法 `70 <= kb <= 450` 会把低码率正常内容整片误判成片段（老录音、纯人声、
+        #   听力音频都在 32~64kbps），而这批内容 harvest 那边**已经用覆盖率判据放行过了**
+        #   —— 体检拿更严的尺子再筛一遍，必然把合格曲目判成 clip，于是可播率被自己压低，
+        #   harvest 被自己的体检误拦（2026-10-06 深夜 run 37542937388 就这么挂的）。
+        #   harvest.py 第 411 行早有血案注释：「旧逻辑用 70kbps 卡，会把中间那类低码率
+        #   正常歌整片误判成试听片段剔掉」——体检当时没跟上，现在补上。
+        cover = (cl * 8 / 32 / 1000.0) / dur        # AUDIO_KBPS_LO = 32（与 harvest 同源同值）
+        return (("keep" if cover >= 0.75 else "clip"), x)
 
     with ThreadPoolExecutor(24) as ex:
         _res = [r for r in ex.map(_probe, _samp) if r]

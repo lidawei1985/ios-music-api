@@ -411,7 +411,16 @@ AUDIO_MIN_BYTES = 20000          # 低于此必是 HTML 错误页/占位符
 #   旧逻辑用 70kbps 卡，会把中间那类**低码率正常歌整片误判成「试听片段」剔掉**。
 #   而「试听片段」的本质不是码率低，是**字节数装不下它宣称的时长**。
 #   故改判据：由 (字节/码率区间) 改为 (字节能覆盖的时长 vs 元数据时长的比例)。
-AUDIO_KBPS_LO = int(os.environ.get("HV_KBPS_LO") or "8")     # 仅作下界兜底：低于 8kbps 必然不是歌
+# ★★★ 2026-10-07 修正：原值 8 让覆盖率判据**形同虚设**。
+#   数学上讲：cover = kbps / AUDIO_KBPS_LO，取 LO=8 就等于「kbps ≥ 6 即放行」——
+#   真正的试听片段（481115B 冒充 225s = 17kbps）被算成 cover=2.14 ≥ 0.75 而**放行**。
+#   上线实测（本地按体检同 seed 抽 240 首）：库里 kbps<70 的只剩 4 首「英语听力」
+#   （32.1/64.1/64.3/64.6 kbps），全库 p05=p50=128.0 kbps —— 说明旧注释里说的
+#   「11~22kbps 的正常歌」在真实数据里**并不存在**；那批其实是 30s 试听片段，
+#   同一个 481115B/225s 的案例，catalog_verify.py 第 139 行早已明确判它是 VIP 试听片段。
+#   → 取 32kbps 作分母：既能抓 17kbps 级真片段（cover=17/32=0.53 < 0.75），
+#     又不误杀 32kbps 以上的低码率实录（听力录音/老唱片翻录天然就在 32~64kbps）。
+AUDIO_KBPS_LO = int(os.environ.get("HV_KBPS_LO") or "32")    # 「片段」判据的分母：覆盖率 = kbps / 此值
 AUDIO_KBPS_HI = 450              # 320k/无损上限
 AUDIO_COVER_MIN = float(os.environ.get("HV_CLIP_COVER") or "0.75")  # 字节能覆盖的时长 < 元数据时长*0.75 → 判试听片段
 AUDIO_MAX_PER_RUN = int(os.environ.get("HV_AUDIO_MAX") or "0")   # 0=不限
