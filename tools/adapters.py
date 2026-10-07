@@ -817,7 +817,7 @@ def wy_match(title, singer, tries=12):
     cands = wy_candidates(title, singer, limit=max(10, tries + 4))
     if not cands:
         return None
-    nt, ns = norm(title), norm(singer)
+    nt = norm(title)
 
     def key(c):
         nm, ar = norm(c["name"]), norm(c["artist"])
@@ -826,7 +826,8 @@ def wy_match(title, singer, tries=12):
             r -= 10
         elif nt and (nt in nm or nm in nt):
             r -= 5
-        if ns and (ns in ar or ar in ns):
+        # ★ 2026-10-07：与 _score_cand 统一判据（顺序无关 + 解双重转义 &）
+        if _artist_ok(singer, c["artist"]):
             r -= 7
         r += 3 * badness(c["name"]) + 2 * badness(c["artist"])
         return r
@@ -836,7 +837,7 @@ def wy_match(title, singer, tries=12):
         nm, ar = norm(c["name"]), norm(c["artist"])
         t_exact = bool(nt) and _title_close(nt, nm)
         t_rel = bool(nt) and (t_exact or nt in nm or nm in nt)
-        a_rel = bool(ns) and (ns in ar or ar in ns)
+        a_rel = _artist_ok(singer, c["artist"])
         if not (t_rel and a_rel):
             continue                      # 标题不相关 或 歌手对不上 → 拒绝
         if badness(c["name"]) >= 2 or badness(c["artist"]) >= 2:
@@ -847,8 +848,8 @@ def wy_match(title, singer, tries=12):
     for _, _, c in rank[:max(1, tries)]:
         ok, note, ext = verify_playable(WY_OUTER % c["id"], "https://music.163.com/", 2048)
         if ok:
-            c["native"] = bool(_title_close(nt, norm(c["name"])) and ns
-                               and (ns in norm(c["artist"])))
+            c["native"] = bool(_title_close(nt, norm(c["name"]))
+                               and _artist_ok(singer, c["artist"]))
             c["note"] = note
             c["tier"] = 0
             return c
@@ -924,7 +925,55 @@ def wy_comments(sid, n=20):
 MULTI_ORDER = ("wy", "kw", "migu", "bili")
 
 
-def _score_cand(c, nt, ns, want_dur_ms=0, strict=False):
+def _unesc(v):
+    """还原接口**双重转义**留下的字面量 \\uXXXX。
+
+    ★ 2026-10-07 实测：QQ / 酷我 返回的歌手串里 `&` 成了**字面量** `\\u0026`
+      （例：`周杰伦\\u0026五月天` —— 不是 `&`，是 8 个字符）。它同时污染两处：
+        · 搜索串：拿这串去搜各源 → 搜出无关结果，命中率被白白拉低；
+        · 入库数据：App 上会直接显示 "周杰伦\u0026五月天"。
+    只动真正的 `\\uXXXX` 序列，其余字符（含中文）原样返回 —— 不做
+    unicode_escape 整串往返，那样会把中文变乱码。
+    """
+    s = str(v or "")
+    if "\\u" not in s:
+        return s
+    return re.sub(r"\\{1,2}u([0-9a-fA-F]{4})", lambda m: chr(int(m.group(1), 16)), s)
+
+
+_ART_SPLIT = re.compile(r"[/、,，;；&]|feat\.?|ft\.?", re.I)
+
+
+def _art_set(s):
+    """歌手串 → 归一化集合（**顺序无关**）。传**原始串**（未 norm）。"""
+    s = _unesc(str(s or ""))
+    return {norm(p) for p in _ART_SPLIT.split(s) if norm(p)}
+
+
+def _artist_ok(ns_raw, ar_raw):
+    """歌手是否可视为「同一人/同一组人」。传**原始串**。
+
+    ★ 2026-10-07 血案：原判据是整串包含 `ns in ar or ar in ns`，对
+      「多歌手合作曲」两种必错：
+        · 各源顺序不一致 —— 咪咕给「加木/王睿卓」，QQ 给「王睿卓/加木」，
+          互为子串均不成立 → ARTIST_MISMATCH 误杀。
+          实测被误杀的正是咪咕上的**正解**（「茶花开了，该回家了 / 王睿卓/加木」）。
+        · `&` 被双重转义成字面量 `\\u0026` → 永远对不上（见 _unesc）。
+      改为集合比较（顺序无关），并要求**一方完全包含另一方** —— 既修掉上面两种
+      误杀，又不放松「同名不同人」的拦阻（甲 vs 乙 集合无交集，照样毙）。
+    """
+    ns, ar = norm(ns_raw), norm(ar_raw)
+    if not ns or not ar:
+        return True
+    if ns in ar or ar in ns:
+        return True
+    ts, cs = _art_set(ns_raw), _art_set(ar_raw)
+    if not ts or not cs:
+        return False
+    return ts == cs or ts <= cs or cs <= ts
+
+
+def _score_cand(c, title, singer, want_dur_ms=0, strict=False):
     """给候选打分（越小越好）。判据全部来自实测血案：
       · 歌手必须吻合（否则"同名不同人"错配 —— 历史的 倒数/xjish、honey/桐生千弘）
       · ★ HARD_BAD 直接毙 —— 实测酷我第一条常是伴奏/片段/DJ 版，候选池里没干净的
@@ -933,16 +982,40 @@ def _score_cand(c, nt, ns, want_dur_ms=0, strict=False):
       · 时长差越小越好 —— 防"试听片段"和"串烧合集"
       · ★ 标题比目标长太多 → 大概率是另一首（情歌 ≠ 情歌没有告诉你）
     """
-    nm, ar = norm(c.get("title")), norm(c.get("singer"))
+    # ★ 2026-10-07 血案（多源上线当天抓到，静默到令人发指）：
+    #   各源候选的**字段名不统一** —— 网易 wy_candidates 回的是 name/artist，
+    #   而 kw/migu/bili 回的是 title/singer，这里却只认 title/singer。
+    #   后果：wy 候选的 nm 恒为 ""，被下面 `if not nt or not nm` 静默毙掉
+    #   （**连 __rej 都不打**）→ **multi_match 的网易这一路恒为 0 命中、
+    #   永远不可能返回 src="wy"** —— 音质最好的那个源等于压根没接上。
+    #   实测证据（同一候选、同一判据）：
+    #     {'name':'好久不见','artist':'NAVE/黄婷婷','dur':206} → None（被毙）
+    #     {'title':'好久不见','singer':'NAVE/黄婷婷','dur':206} → 0.04（通过）
+    #   这里统一取别名，源适配器不必改。
+    nm = norm(c.get("title") or c.get("name"))
+    ar = norm(c.get("singer") or c.get("artist"))
+    c_art = c.get("singer") or c.get("artist")
+    # ★ 2026-10-07 接线：签名已改成收**原始** title/singer —— 歌手判据要靠原始串里的
+    #   `&` `/` `、` 等分隔符做「顺序无关集合比较」，归一化后分隔符就没了，所以原始串
+    #   必须一路传到 _artist_ok。这里就地归一化出 nt/ns 供下文的长度/包含判断使用，
+    #   函数体其余部分不必逐行改（老变量名 nt/ns 语义不变）。
+    nt, ns = norm(title), norm(singer)
+    # ★ 两道「直接毙」原先**不打 __rej**，排查时完全看不出去死在哪 —— 一并补上。
     if not nt or not nm:
+        c["__rej"] = "NO_TITLE"
         return None
     if not _title_close(nt, nm) and not (nt in nm or nm in nt):
+        c["__rej"] = "TITLE_UNRELATED"
         return None                                   # 标题不相关 → 直接毙
-    if ns and not (ns in ar or ar in ns):
+    # ★ 歌手判据换成 _artist_ok（顺序无关集合比较）——
+    #   原 `ns in ar or ar in ns` 对「各源歌手顺序不一致」的合作曲必误杀（实测血案见 _artist_ok）。
+    #   空串走 _artist_ok 内部 early-return True，与原来 `ns and` 的短路语义一致。
+    if not _artist_ok(singer, c_art):
+        c["__rej"] = "ARTIST_MISMATCH"
         return None                                   # ★ 歌手对不上 → 直接毙（宁缺毋滥）
     # ★ 硬毙闸门①：标题+专辑里出现「伴奏/片段/谱/教学/宣传片/DJ/Remix/非音乐」
     #   → 这不是这首歌（或其原唱版本）。宁可这歌没有直链，也不拿脏的顶。
-    blob = "%s %s" % (c.get("title") or "", c.get("album") or "")
+    blob = "%s %s" % (c.get("title") or c.get("name") or "", c.get("album") or "")
     if hard_bad(blob):
         c["__rej"] = "HARD_BAD"
         return None
@@ -966,8 +1039,24 @@ def _score_cand(c, nt, ns, want_dur_ms=0, strict=False):
     #   容差 4 个字：「晴天」→「晴天 (深情版)」(差 3) 照过，差 6 的串名拦下。
     #   strict 下收紧到 3（曲库多源采集用，见下）。
     if abs(len(nm) - len(nt)) > (3 if strict else 4):
-        c["__rej"] = "TITLE_FAR"
-        return None
+        # ★ 2026-10-07 例外（实测误杀）：官方条目常把「歌名 + 专辑/企划后缀」拼成
+        #   一个标题。实测目标「以我之见 / 谭维维 / 279s」，酷我第一条是
+        #   「以我之见-汪苏泷概念创作集《联名2》作品 / 谭维维 / 279s」——
+        #   歌手**完全一致**、时长**一秒不差**，只因标题长了 20 字被 TITLE_FAR 毙掉。
+        #   放宽判据（三重同时成立才算同一首，依旧宁缺毋滥）：
+        #     · 歌手完全相等（==，不是包含）
+        #     · 时长差 ≤ 2 秒
+        #     · 标题以目标开头（nm.startswith(nt)）
+        #   为什么安全：原反例「情歌 ≠ 情歌没有告诉你」是两首不同的歌，
+        #   歌手/时长不可能同时对上 —— 长度闸门本来就是为了防「同前缀的另一首」，
+        #   而「同前缀 + 同歌手 + 同时长」几乎只可能是同一首的加长命名。
+        wd = (int(want_dur_ms) / 1000.0) if want_dur_ms else 0
+        relaxed = bool(ns and ar and ns == ar and wd and d
+                       and abs(d - wd) <= 2 and nm.startswith(nt))
+        if not relaxed:
+            c["__rej"] = "TITLE_FAR"
+            return None
+        c["__title_relaxed"] = True
     # ★ strict 模式（曲库多源采集专用）：任何 SOFT_BAD 版本标记都直接毙。
     #   为什么必须这么狠：非网易曲目拿不到 originCoverType，身份完全靠标题判断。
     #   一旦放进 Live/翻唱/DJ 版，端上就会「显示《情歌》、播出来是演唱会版」——
@@ -978,7 +1067,7 @@ def _score_cand(c, nt, ns, want_dur_ms=0, strict=False):
         return None
     r = 0
     r += 8 * soft_bad(blob)                           # 劣质变体重罚（比原来的 4 分/词翻倍）
-    r += 2 * badness(c.get("singer"))
+    r += 2 * badness(c_art)
     oct_ = c.get("oct")
     if oct_ == 1:
         r -= 8                                        # 网易云标了"原曲" → 大加分
@@ -1012,13 +1101,22 @@ def _long_id(sid, raw, c):
     return raw.get("rid") or c.get("id")
 
 
-def multi_match(title, singer, dur_ms=0, order=MULTI_ORDER, per_src=8, want_try=3, strict=False):
+def multi_match(title, singer, dur_ms=0, order=MULTI_ORDER, per_src=8, want_try=3,
+                strict=False, trace=None):
     """多源找**实测能播**的直链。
 
     strict=False（默认，存量行为）：HARD_BAD 硬毙 + SOFT_BAD 8 分/词降权。
       —— 用于 build.py 给自有歌库补流：候选池小，能补上一条就比没有强。
     strict=True（★ 曲库多源采集）：SOFT_BAD 也硬毙，只收「标题完全干净的原版」。
       —— 用于把 QQ/酷狗/咪咕 的曲目并进曲库：身份只能靠标题判断，宁缺毋滥。
+
+    trace：可选 dict。传进来后会被填上**本轮逐源去向**，专治「30 试只中几条、
+    原因全黑」——把静默的 `return None` 拆成可统计的明细：
+      trace["rej"]    = {"<src>|<REASON>": n, ...}   被闸门毙掉的条数与原因
+      trace["nocand"] = [src, ...]                   搜索压根没返回候选
+      trace["noplay"] = [src, ...]                   有干净的候选但 resolve/直链都不可播
+      trace["err"]    = ["<src>: <异常>", ...]        接口异常
+      trace["tried"]  = [(src, 标题, note), ...]     实际试过的探活记录
 
     返回 {id, src, url, quality, ext, name, artist, cover, album, dur, oct, note} 或 None。
       · id   = **长效 id**（wy songId / kw rid / migu contentId），不存临时直链（带签名会过期）
@@ -1031,9 +1129,26 @@ def multi_match(title, singer, dur_ms=0, order=MULTI_ORDER, per_src=8, want_try=
       kw   → 需运行时调 antiserver（见 Kuwo.resolve）
       migu → app.pd.nf.migu.cn listenV2?contentId=<id>&resourceType=2
     """
-    nt, ns = norm(title), norm(singer)
+    # ★ 2026-10-07：nt/ns 不再在这里预归一化 —— _score_cand 收**原始** title/singer
+    #   （歌手集合比较依赖原始串里的分隔符），归一化在它内部完成。
     srcs = instantiate()
     tried = []
+    if trace is None:
+        trace = {}
+    else:
+        trace.clear()
+        trace.update({"rej": {}, "nocand": [], "noplay": [], "err": [], "tried": tried})
+
+    def _tally_rej(sid, items):
+        """把本源的闸门拒绝原因计数（不依赖候选是否被选中）。"""
+        if not items:
+            trace["nocand"].append(sid)
+            return
+        for c in items:
+            r = c.get("__rej")
+            if r:
+                k = "%s|%s" % (sid, r)
+                trace["rej"][k] = trace["rej"].get(k, 0) + 1
 
     # 网易云优先：先拿官方原唱标记（oct），再选曲
     wy = srcs.get("wy")
@@ -1042,21 +1157,27 @@ def multi_match(title, singer, dur_ms=0, order=MULTI_ORDER, per_src=8, want_try=
             cands = wy_candidates(title, singer, limit=max(8, per_src + 4))
             ranked = []
             for c in cands:
-                sc = _score_cand(c, nt, ns, dur_ms, strict)
+                sc = _score_cand(c, title, singer, dur_ms, strict)
                 if sc is not None:
                     ranked.append((sc, c))
             ranked.sort(key=lambda x: x[0])
+            _tally_rej("wy", cands)   # ⚠️ 必须在打分**之后**调用 —— __rej 是 _score_cand 打的
+            played = False
             for _, c in ranked[:want_try]:
                 ok, note, ext = verify_playable(WY_OUTER % c["id"], "https://music.163.com/", 2048)
                 tried.append(("wy", c.get("name"), note))
                 if ok:
+                    played = True
                     return {"id": c["id"], "src": "wy", "url": WY_OUTER % c["id"],
                             "quality": "128k", "ext": ext or "mp3",
                             "name": c.get("name"), "artist": c.get("artist"),
                             "cover": c.get("cover") or "", "album": c.get("album") or "",
                             "dur": dur_s(c.get("dur")),
                             "oct": c.get("oct") or 0, "note": note}
+            if ranked and not played:                 # 过了闸门但直链全不可播（VIP/无版权）
+                trace["noplay"].append("wy")
         except Exception as e:
+            trace["err"].append("wy: %s" % e)
             tried.append(("wy", "-", "异常 %s" % e))
 
     # 其余源依次回退
@@ -1069,14 +1190,23 @@ def multi_match(title, singer, dur_ms=0, order=MULTI_ORDER, per_src=8, want_try=
         try:
             items = ad.search(title, singer) or []
         except Exception as e:
+            trace["err"].append("%s: %s" % (sid, e))
             tried.append((sid, "-", "搜索异常 %s" % e))
             continue
-        ranked = []
-        for c in items:
-            sc = _score_cand(c, nt, ns, dur_ms, strict)
-            if sc is not None:
-                ranked.append((sc, c))
-        ranked.sort(key=lambda x: x[0])
+        # ★ 2026-10-07 硬化：逐源独立兜底 —— 任何一个源在「统计/打分」阶段出岔子，
+        #   只能牺牲它自己（登记到 err 后 continue），绝不允许把整个 multi_match 带崩。
+        #   教训来自 `not res_ok` 那个 NameError：它抛在循环里，害得后面还没试的源全没跑。
+        try:
+            ranked = []
+            for c in items:
+                sc = _score_cand(c, title, singer, dur_ms, strict)
+                if sc is not None:
+                    ranked.append((sc, c))
+            ranked.sort(key=lambda x: x[0])
+            _tally_rej(sid, items)    # ⚠️ 必须在打分**之后** —— __rej 是 _score_cand 打的
+        except Exception as e:
+            trace["err"].append("%s: %s" % (sid, e))
+            continue
         for _, c in ranked[:want_try]:
             try:
                 r = ad.resolve(c)
@@ -1094,6 +1224,11 @@ def multi_match(title, singer, dur_ms=0, order=MULTI_ORDER, per_src=8, want_try=
                         "dur": dur_s(raw.get("dur") or c.get("dur")),
                         "oct": 0, "note": r.get("note")}
             tried.append((sid, c.get("title"), getattr(ad, "last_reason", "无直链")))
+        # ⚠️ 走到这里还没 return，说明本源**过了闸门但直链全拿不到**（VIP/无链）。
+        #   只登记、**绝不能抛异常** —— 否则会连累后面还没试的源（本行原写作
+        #   `not res_ok`，一个已删除的变量，直接 NameError 把整个 multi_match 打死）。
+        if ranked:
+            trace["noplay"].append(sid)
     return None
 
 

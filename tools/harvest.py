@@ -15,7 +15,7 @@
   songs  批量取元数据      → data/catalog/_songs.jsonl
   pack   归一+去重+分片    → data/catalog/manifest.json / shard-NNN.json / search.json
 """
-import json, os, sys, time, ssl, re, urllib.request, urllib.error, urllib.parse, random
+import json, os, sys, time, ssl, re, traceback, urllib.request, urllib.error, urllib.parse, random
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -1235,7 +1235,10 @@ def _collect_tasks(A):
     tasks, seen = [], set()
 
     def add(t, s, d, cov, alb, frm):
-        t, s = (t or "").strip(), (s or "").strip()
+        # ★ 2026-10-07 血案：QQ/酷我 返回的歌手串里 `&` 是**字面量** `\u0026`（8 个字符）。
+        #   不还原的话它同时污染两处：① 拿这串去各源搜 → 搜出无关结果，命中率白白掉；
+        #   ② 直接入库 → App 上显示 "周杰伦\u0026五月天"。这里统一还原（幂等）。
+        t, s = A._unesc(t).strip(), A._unesc(s).strip()
         if not t or not s:
             return
         k = _skey(t, s)
@@ -1301,25 +1304,80 @@ def _collect_tasks(A):
     return tasks
 
 
-def _multi_one(A, task):
-    """一条候选 → multi_match(strict) 找能播源 → 落库记录（找不到干净可播源则 None）"""
-    t, s, d, cov, alb, frm = task
+_SEEN_EXC = set()
+
+
+def _log_exc(tag):
+    """同类未捕获异常只打一次完整栈（12 并发下不然会刷屏），但一定要打。"""
+    if tag in _SEEN_EXC:
+        return
+    _SEEN_EXC.add(tag)
     try:
-        m = A.multi_match(t, s, dur_ms=int(d or 0) * 1000, strict=True)
+        log("  ! 多源未捕获异常（首次出现，完整栈）—— 这条线索必须查，不能吞：")
+        log(traceback.format_exc())
     except Exception:
-        return None
-    if not m or not m.get("id"):
-        return None
+        pass
+
+
+def _why_none(tr):
+    """把 multi_match 的 trace 归成**一个可直接统计的短标签**。
+
+    为什么要它：`_multi_one` 原先失败就静默 return None，实战里「30 试只中 4 条」
+    完全查不出死在哪（连 strict=False 都失败 13/15 且无任何异常）。有了这个标签，
+    日志里就能直接看到「主因分布」，一眼定位是哪道闸门/哪个源在吞量。
+
+    优先级 noplay > 闸门 > 异常 > 无候选：
+      noplay 最值钱 —— 说明**已经找到干净候选了**，只是直链拿不到（VIP/无链），
+      这类是「源能力问题」，和「闸门判错」是两回事，必须分开看。
+    """
+    tr = tr or {}
+    if tr.get("noplay"):
+        return "不可播:" + ",".join(tr["noplay"])
+    rej = tr.get("rej") or {}
+    if rej:
+        k, n = max(rej.items(), key=lambda x: x[1])
+        return "闸门x%d:%s" % (n, k)
+    if tr.get("err"):
+        return "异常:" + str(tr["err"][0])[:40]
+    if tr.get("nocand"):
+        return "无候选:" + ",".join(tr["nocand"])
+    return "未知"
+
+
+def _multi_one(A, task):
+    """一条候选 → multi_match(strict) 找能播源 → 落库记录。
+
+    返回 (rec, why, tr)：
+      rec = 落库记录 或 None
+      why = 失败时**单一可指认原因**（见 _why_none；成功时为 "OK"）
+      tr  = multi_match 的逐源去向明细（用于全量汇总，不落盘）
+    """
+    t, s, d, cov, alb, frm = task
+    tr = {}
+    try:
+        m = A.multi_match(t, s, dur_ms=int(d or 0) * 1000, strict=True, trace=tr)
+    except Exception as e:
+        # ★ 2026-10-07 血案：原先这里只回 `type(e).__name__`，把 message 整个丢掉 ——
+        #   于是 multi_match 里一个 `not res_ok`（变量名已被删）的 NameError 被静默吞掉
+        #   17/300 条候选（≈失败量的 19%），而且它抛在 `for sid in order` 循环里，
+        #   连累后面还没试的源全都没跑。现在带上 message + 打一次完整栈。
+        _log_exc(type(e).__name__)
+        return None, "异常:%s(%s)" % (type(e).__name__, str(e)[:60]), tr
+    if not m:
+        return None, _why_none(tr), tr
+    if not m.get("id"):
+        return None, "无长效id", tr
     dur = int(d or 0) or int(m.get("dur") or 0)
-    return {"i": m["id"], "src": m["src"], "n": t, "a": s,
-            "b": (alb or m.get("album") or "")[:60],
-            "p": cov or m.get("cover") or "",
-            "d": dur * 1000, "f": 0,
-            # 多源曲目来自**榜单/官方分类歌单**，本身就是热度背书；网易那套 pop 闸门
-            # 对它们不适用（这些源根本不吐 pop），故给满值并在 apply_gate 里免检。
-            "pop": 100, "pt": 0, "nrc": 0,
-            # strict 模式已把翻唱/Live/DJ/伴奏全毙 → 存活即视为原唱
-            "cv": 1, "ov": 0, "from": frm}
+    rec = {"i": m["id"], "src": m["src"], "n": t, "a": s,
+           "b": (alb or m.get("album") or "")[:60],
+           "p": cov or m.get("cover") or "",
+           "d": dur * 1000, "f": 0,
+           # 多源曲目来自**榜单/官方分类歌单**，本身就是热度背书；网易那套 pop 闸门
+           # 对它们不适用（这些源根本不吐 pop），故给满值并在 apply_gate 里免检。
+           "pop": 100, "pt": 0, "nrc": 0,
+           # strict 模式已把翻唱/Live/DJ/伴奏全毙 → 存活即视为原唱
+           "cv": 1, "ov": 0, "from": frm}
+    return rec, "OK", tr
 
 
 def cmd_multi():
@@ -1353,19 +1411,39 @@ def cmd_multi():
         return
 
     t0, ok, srcs = time.time(), 0, {}
+    why, rej_tot, noplay_tot = {}, {}, {}
     os.makedirs(CAT, exist_ok=True)
     with ThreadPoolExecutor(MULTI_WORKERS) as ex, open(MULTI_FILE, "a", encoding="utf-8") as fh:
-        for i, rec in enumerate(ex.map(lambda x: _multi_one(A, x), todo), 1):
+        for i, (rec, w, tr) in enumerate(ex.map(lambda x: _multi_one(A, x), todo), 1):
             if rec:
                 ok += 1
                 srcs[rec["src"]] = srcs.get(rec["src"], 0) + 1
                 fh.write(json.dumps(rec, ensure_ascii=False, separators=(",", ":")) + "\n")
+            else:
+                why[w] = why.get(w, 0) + 1
+                for k, n in (tr.get("rej") or {}).items():
+                    rej_tot[k] = rej_tot.get(k, 0) + n
+                for s_ in (tr.get("noplay") or []):
+                    noplay_tot[s_] = noplay_tot.get(s_, 0) + 1
             if i % 200 == 0:
                 fh.flush()
-                log("  … %d/%d（命中 %d ｜ %s ｜ %.0fs）"
-                    % (i, len(todo), ok, srcs, time.time() - t0))
+                top = sorted(why.items(), key=lambda x: -x[1])[:3]
+                log("  … %d/%d（命中 %d ｜ %s ｜ 未中主因 %s ｜ %.0fs）"
+                    % (i, len(todo), ok, srcs, top, time.time() - t0))
     log("多源扩充完成：新增 %d 条 ｜ 源分布 %s ｜ 耗时 %.0fs"
         % (ok, srcs, time.time() - t0))
+    # ★ 2026-10-07 新增：把「未命中」摊开成可读明细 —— 原先这里只有一行「新增 N 条」，
+    #   掉量的原因全黑，导致「命中率低」根本没法定位（详见 _why_none 的说明）。
+    if why:
+        log("  ↳ 未命中 %d 条 ｜ 主因分布：" % sum(why.values()))
+        for k, n in sorted(why.items(), key=lambda x: -x[1])[:10]:
+            log("      %5d  %s" % (n, k))
+    if rej_tot:
+        log("  ↳ 闸门拒绝明细（全源累计，仅用于诊断，不落库）：")
+        for k, n in sorted(rej_tot.items(), key=lambda x: -x[1])[:12]:
+            log("      %5d  %s" % (n, k))
+    if noplay_tot:
+        log("  ↳ 「已找到干净候选但直链拿不到」的源（VIP/无链，属源能力问题）：%s" % noplay_tot)
 
 
 def meta_gate(arr, tag="verify"):
