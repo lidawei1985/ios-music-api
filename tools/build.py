@@ -526,7 +526,9 @@ def build_mv(chart_songs):
             return True
         return False
 
-    def scan_library(max_pages=None, limit_mv=3000, limit_live=800,
+    def scan_library(max_pages=None,
+                     limit_mv=int(os.environ.get("MV_POOL_MV") or "6000"),
+                     limit_live=int(os.environ.get("MV_POOL_LIVE") or "1200"),
                      stop_after_empty=12, verify_n=6):
         """★★ 一次性**深挖官方 MV 全量库**，一次拿到真 MV 池 + 现场池。
 
@@ -624,7 +626,8 @@ def build_mv(chart_songs):
         return items
 
     cols = []
-    core = [s for s in (chart_songs or [])][:40]
+    # （旧代码这里取 core = chart_songs[:40] 喂「官方 MV」关键词搜索那条腿；
+    #   2026-10-07 已改为直接从全库真 MV 池续取，不再依赖榜单前 20 首。）
 
     # ★★ 第一步：无条件深挖官方 MV 全量库（本轮核心改造）
     #   一次拿到「真 MV 池」+「现场池」，后面所有栏目都从这里取 ——
@@ -665,38 +668,61 @@ def build_mv(chart_songs):
                 break
         return out
 
+    # ★★★ 2026-10-07 修复（主人点名「MV 和演唱会弄了吗？」「说一样干一样」）：
+    #   旧写法的病灶 —— 只有 ①精选 ②演唱会 两条腿是**从全库池子**取；
+    #   ③官方 MV ④热门 MV 走的是「关键词搜索」，而关键词只喂了**榜单前 20 首 × per_kw=4**
+    #   → 官方 MV 档实测**只有 12 条**；与此同时全库扫描明明已扫出 3000 条真 MV，
+    #   剩下 2400 条全躺在 pool_mv 里**没人用** → MV 总量被这一条腿卡死在 1224。
+    #   现在五档**全部优先从池子取**（池子已过 时长/垃圾/跨版本去重 三重闸门），
+    #   关键词搜索只作「池子取空后的兜底」—— 这才叫「靠规模，不是靠运气」。
+    N_SEL = int(os.environ.get("MV_SEL_N") or "600")      # ① 精选 MV
+    N_LIVE = int(os.environ.get("MV_LIVE_N") or "600")    # ② 演唱会 Live
+    N_OFF = int(os.environ.get("MV_OFF_N") or "1500")     # ③ 官方 MV（池续取）
+    N_HOT = int(os.environ.get("MV_HOT_N") or "1500")     # ④ 热门 MV（池续取）
+    N_LIVE2 = int(os.environ.get("MV_LIVE2_N") or "300")  # ⑤ 现场 Live（池续取）
+
     # 栏目①「精选 MV」：全库最热的真 MV，保证首页一打开就有硬货
-    sel = take(pool_mv, int(os.environ.get("MV_SEL_N") or "600"))
+    sel = take(pool_mv, N_SEL)
     verify(sel, int(os.environ.get("MV_VERIFY_N") or "6"))
-    print("  MV[精选 MV] %d 条" % len(sel))
+    print("  MV[精选 MV] %d 条（真 MV 池 %d）" % (len(sel), len(pool_mv)))
     cols.append({"name": "精选 MV", "count": len(sel), "items": sel})
 
     # 栏目②「演唱会 Live」：主人点名的方向 —— 全库带现场标记的，按热度排
-    live = take(pool_live, int(os.environ.get("MV_LIVE_N") or "500"), dedup=False)
+    live = take(pool_live, N_LIVE)
     verify(live, 5)
-    print("  MV[演唱会 Live] %d 条" % len(live))
+    print("  MV[演唱会 Live] %d 条（现场池 %d）" % (len(live), len(pool_live)))
     cols.append({"name": "演唱会 Live", "count": len(live), "items": live})
 
-    if core:
-        # 栏目③「官方 MV」：按「歌名 + 歌手」精确搜 —— 只出榜单热歌本人的官方 MV
-        #   （type=1004 搜索实测精确：搜「邓紫棋 MV」9/10 是本人，故这条腿留作"点歌直达"）
-        cols.append(pack("官方 MV",
-                         ["%s %s" % (s["title"], (s["singer"] or "").split("/")[0]) for s in core[:20]],
-                         per_kw=4, limit=36, verify_n=4, seen_keys=used_titles))
-        # 栏目④「热门 MV」：按大牌歌手搜（数量稳、都是官方）
+    # 栏目③「官方 MV」：★ 从全库真 MV 池**续取**（不再重新搜索凑数）
+    official = take(pool_mv, N_OFF)
+    verify(official, 4)
+    print("  MV[官方 MV] %d 条（池续取）" % len(official))
+    cols.append({"name": "官方 MV", "count": len(official), "items": official})
+
+    # 栏目④「热门 MV」：★ 同上，从池续取
+    hot = take(pool_mv, N_HOT)
+    verify(hot, 4)
+    print("  MV[热门 MV] %d 条（池续取）" % len(hot))
+    cols.append({"name": "热门 MV", "count": len(hot), "items": hot})
+
+    # 栏目⑤「现场 Live」：现场池续取 + 关键词搜索兜底（捡漏池里没标 live 的现场）
+    live2 = take(pool_live, N_LIVE2)
+    live_kws = ["演唱会现场", "live 现场版", "演唱会 Live", "世界巡回演唱会",
+                "巡回演唱会", "音乐节 现场", "跨年演唱会 现场",
+                "周杰伦 演唱会", "五月天 演唱会", "陈奕迅 演唱会",
+                "邓紫棋 演唱会", "林俊杰 演唱会", "张学友 演唱会", "张惠妹 演唱会"]
+    extra5 = pack("现场 Live", live_kws, per_kw=8, limit=60, verify_n=5,
+                  want_live=True, seen_keys=used_titles)
+    items5 = list(live2) + list(extra5["items"])
+    print("  MV[现场 Live] %d 条（池续取 %d + 关键词补 %d）"
+          % (len(items5), len(live2), len(extra5["items"])))
+    cols.append({"name": "现场 Live", "count": len(items5), "items": items5})
+
+    # 池子取空时的兜底：真 MV 池一条都没扫到（接口破版/风控）→ 回落到关键词搜索
+    if not sel and not official:
         big = ["周杰伦", "邓紫棋", "薛之谦", "陈奕迅", "林俊杰", "毛不易",
                "五月天", "李荣浩", "张杰", "汪苏泷", "蔡依林", "田馥甄"]
         cols.append(pack("热门 MV", big, per_kw=8, limit=60, verify_n=4, seen_keys=used_titles))
-        # 栏目⑤「现场 Live」：题材词搜（对全库扫描的补充，捡漏全库里没标 live 的现场）
-        live_kws = ["演唱会现场", "live 现场版", "演唱会 Live", "世界巡回演唱会",
-                    "巡回演唱会", "音乐节 现场", "跨年演唱会 现场",
-                    "周杰伦 演唱会", "五月天 演唱会", "陈奕迅 演唱会",
-                    "邓紫棋 演唱会", "林俊杰 演唱会", "张学友 演唱会", "张惠妹 演唱会"]
-        cols.append(pack("现场 Live", live_kws, per_kw=8, limit=60, verify_n=5,
-                         want_live=True, seen_keys=used_titles))
-    else:
-        cols.append(pack("热门 MV", ["周杰伦", "邓紫棋", "林俊杰", "薛之谦", "陈奕迅"],
-                         per_kw=6, limit=30, verify_n=4, seen_keys=used_titles))
 
     flat = [x for c in cols for x in c["items"]]
 
