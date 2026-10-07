@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-06T19:25:59Z",
- "count": 31681,
+ "updated": "2026-10-07T06:29:41Z",
+ "count": 46957,
  "shardSize": 1000,
  "shards": [
   {
@@ -129,15 +129,76 @@
   },
   {
    "file": "shard-0031.json",
-   "count": 681
+   "count": 1000
+  },
+  {
+   "file": "shard-0032.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0033.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0034.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0035.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0036.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0037.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0038.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0039.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0040.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0041.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0042.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0043.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0044.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0045.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0046.json",
+   "count": 957
   }
  ],
  "idx": {
   "chunks": [
-   "idx-00.txt"
+   "idx-00.txt",
+   "idx-01.txt"
   ],
   "chunkSize": 40000,
-  "total": 31681,
+  "total": 46957,
   "sep": "\u0001",
   "fields": [
    "nameN",
