@@ -80,6 +80,11 @@ MULTI_POOL = int(os.environ.get("HV_MULTI_POOL") or str(max(MULTI_MAX * 4, 20000
 MULTI_WORKERS = int(os.environ.get("HV_MULTI_WORKERS") or "8")
 MULTI_PL_PER_CAT = int(os.environ.get("HV_MULTI_PL_PER_CAT") or "4")      # 每个 QQ 分类取几个歌单
 MULTI_SONGS_PER_PL = int(os.environ.get("HV_MULTI_SONGS_PER_PL") or "40")
+# ★ 2026-10-07 扩容：QQ 分类歌单支持多个 sort 维度（1/2/3/5 = 最新/最热/… 不同榜，
+#   歌单集合几乎不重叠）。原来只取 sort=3，全池仅 ~1 万条候选，而 CI 每轮能试 8000 条、
+#   命中 ~39% → **两三轮就把池子抽干**，采集量随即断崖。加上排序维度 + 每分类歌单数，
+#   池子直接上一个数量级。
+MULTI_QQ_SORTS = os.environ.get("HV_MULTI_QQ_SORTS") or "1,2,3"
 MULTI_KG_RANKS = int(os.environ.get("HV_MULTI_KG_RANKS") or "24")         # 取几个酷狗榜
 MULTI_KG_PER_RANK = int(os.environ.get("HV_MULTI_KG_PER_RANK") or "50")
 MULTI_QQ_PER_RANK = int(os.environ.get("HV_MULTI_QQ_PER_RANK") or "100")
@@ -1294,33 +1299,55 @@ def _collect_tasks(A):
         except Exception as e:
             log("  ! QQ %s 失败：%s" % (name, e))
 
-    # ② QQ 分类歌单（5 组 64 分类，实测可用）
+    # ② QQ 分类歌单（多语种分组 × 64 分类 × **多种排序**，实测可用）
+    #    ★ 2026-10-07 扩容：原来只取 sort=3、每分类 4 个歌单 → 全池仅 ~1 万条候选；
+    #      而 CI 每轮能试 8000 条、命中 ~39%，**两三轮就把池子抽干**，之后采集量断崖。
+    #      现在 sort 维度可配（1/2/3/5 是不同榜，歌单集合几乎不重叠），
+    #      并把「取歌单内歌曲」并发化 —— 几千个歌单串行要跑十几分钟，并发后几十秒。
     try:
         tags = A.qq_diss_tags()
-        ncat = npl = 0
+        sorts = [int(z) for z in str(MULTI_QQ_SORTS).split(",") if z.strip().isdigit()]
+        # 歌单数上限：够取满池子即可（热门歌单之间会大量重歌，留 2 倍余量）
+        pl_cap = max(200, (MULTI_POOL // max(MULTI_SONGS_PER_PL, 1)) * 2)
+        pairs, ncat = [], 0
         for g in tags:
-            if len(tasks) >= MULTI_POOL:
+            if len(pairs) >= pl_cap:
                 break
             for c in (g.get("cats") or []):
-                if len(tasks) >= MULTI_POOL:
+                if len(pairs) >= pl_cap:
                     break
-                try:
-                    pls = A.qq_diss_list(c.get("id"), sort=3, n=MULTI_PL_PER_CAT)
-                except Exception:
-                    continue
-                ncat += 1
-                for p in pls:
-                    if len(tasks) >= MULTI_POOL:
+                for st in sorts:
+                    if len(pairs) >= pl_cap:
                         break
                     try:
-                        ss = A.qq_diss_songs(p.get("dissid"), MULTI_SONGS_PER_PL)
+                        pls = A.qq_diss_list(c.get("id"), sort=st, n=MULTI_PL_PER_CAT)
                     except Exception:
+                        continue
+                    ncat += 1
+                    for p in pls:
+                        if p.get("dissid"):
+                            pairs.append((g.get("group"), str(p["dissid"])))
+        log("  QQ 歌单：%d 个「分类×排序」组合 → %d 个歌单待取（并发 %d）"
+            % (ncat, len(pairs), MULTI_WORKERS))
+
+        npl = 0
+        if pairs:
+            def _pl(d):
+                try:
+                    return A.qq_diss_songs(d, MULTI_SONGS_PER_PL)
+                except Exception:
+                    return []
+            with ThreadPoolExecutor(max_workers=MULTI_WORKERS) as ex:
+                for (grp, _d), ss in zip(pairs, ex.map(_pl, [p[1] for p in pairs])):
+                    if len(tasks) >= MULTI_POOL:
+                        break
+                    if not ss:
                         continue
                     npl += 1
                     for x in ss:
                         add(x.get("title"), x.get("singer"), x.get("duration"),
-                            x.get("cover"), x.get("album"), "QQ·%s" % g.get("group"))
-        log("  QQ 歌单 %d 分类 / %d 歌单 → 累计 %d 条" % (ncat, npl, len(tasks)))
+                            x.get("cover"), x.get("album"), "QQ·%s" % grp)
+        log("  QQ 歌单 %d 个 → 累计 %d 条" % (npl, len(tasks)))
     except Exception as e:
         log("  ! QQ 歌单分类失败：%s" % e)
 
@@ -1455,6 +1482,7 @@ def cmd_multi():
 
     t0, ok, srcs = time.time(), 0, {}
     why, rej_tot, noplay_tot = {}, {}, {}
+    tried_keys, wy_dead = [], 0
     os.makedirs(CAT, exist_ok=True)
     now = int(time.time())
 
@@ -1462,13 +1490,12 @@ def cmd_multi():
         """把「键」随任务一起带回来 —— 不要去猜 ex.map 的下标。"""
         return _skey(tk[0], tk[1]), _multi_one(A, tk)
 
-    with ThreadPoolExecutor(MULTI_WORKERS) as ex, \
-            open(MULTI_FILE, "a", encoding="utf-8") as fh, \
-            open(MULTI_TRIED, "a", encoding="utf-8") as ftr:
+    with ThreadPoolExecutor(MULTI_WORKERS) as ex, open(MULTI_FILE, "a", encoding="utf-8") as fh:
         for i, (k, (rec, w, tr)) in enumerate(ex.map(_run, todo), 1):
-            # ★ 无论成败都记一笔「已尝试」——成功进 _multi.jsonl（永久），
-            #   失败进 _multi_tried.jsonl（14 天冷却），队列才会真正往前推。
-            ftr.write('{"k":%s,"t":%d}\n' % (json.dumps(k, ensure_ascii=False), now))
+            tried_keys.append(k)
+            # 健康度：网易这路整轮「搜索无候选」= 大概率被风控/接口异常（见收尾的自检）
+            if "wy" in (tr.get("nocand") or []):
+                wy_dead += 1
             if rec:
                 ok += 1
                 srcs[rec["src"]] = srcs.get(rec["src"], 0) + 1
@@ -1481,12 +1508,29 @@ def cmd_multi():
                     noplay_tot[s_] = noplay_tot.get(s_, 0) + 1
             if i % 200 == 0:
                 fh.flush()
-                ftr.flush()
                 top = sorted(why.items(), key=lambda x: -x[1])[:3]
-                log("  … %d/%d（命中 %d ｜ %s ｜ 未中主因 %s ｜ %.0fs）"
-                    % (i, len(todo), ok, srcs, top, time.time() - t0))
+                log("  … %d/%d（命中 %d ｜ %s ｜ 未中主因 %s ｜ 网易无候选 %d ｜ %.0fs）"
+                    % (i, len(todo), ok, srcs, top, wy_dead, time.time() - t0))
     log("多源扩充完成：新增 %d 条 ｜ 源分布 %s ｜ 耗时 %.0fs"
         % (ok, srcs, time.time() - t0))
+
+    # ★ 2026-10-07：写「已尝试」台账 **必须带健康度自检**。
+    #   为什么：若某个源被风控（整轮请求都返回空），所有候选都会被判「没找到」，
+    #   一旦照写台账，**整池候选会被白白冷却 14 天**（等风控恢复后也不重试）——
+    #   台账反而成了毒药。这里用「网易这路无候选的比例」当场检：
+    #   正常情况该比例远低于 90%（实测 ~10-20%），一旦 ≥90% 就认定本轮不可信。
+    cred = True
+    if len(todo) >= 30 and wy_dead / float(len(todo)) > 0.9:
+        cred = False
+        log("  ⚠️ 本轮 %d/%d 的候选在网易这路「搜索无候选」，疑似风控/接口异常 —— "
+            "**不写「已尝试」台账**，避免把整池候选白白冷却 %d 天"
+            % (wy_dead, len(todo), MULTI_RETRY_DAYS))
+    if cred and tried_keys:
+        os.makedirs(CAT, exist_ok=True)
+        with open(MULTI_TRIED, "a", encoding="utf-8") as ftr:
+            for k in tried_keys:
+                ftr.write('{"k":%s,"t":%d}\n' % (json.dumps(k, ensure_ascii=False), now))
+        log("  已记账 %d 条（%d 天内不再重试失败项）" % (len(tried_keys), MULTI_RETRY_DAYS))
     # ★ 2026-10-07 新增：把「未命中」摊开成可读明细 —— 原先这里只有一行「新增 N 条」，
     #   掉量的原因全黑，导致「命中率低」根本没法定位（详见 _why_none 的说明）。
     if why:
