@@ -19,7 +19,7 @@ on:
       pages:
         description: "每分类枚举页数（每页 60 个歌单）"
         required: false
-        default: "8"
+        default: "40"
   schedule:
     - cron: "23 */6 * * *"
     - cron: "53 */6 * * *"
@@ -38,7 +38,11 @@ jobs:
     timeout-minutes: 180
     env:
       HV_WORKERS: "12"
-      HV_PAGES: ${{ github.event.inputs.pages || '8' }}
+      # ★ 2026-10-07 扩采集面（曲库上不去的真因＝歌单池只有 1,470 个，上限却是 20,000）：
+      #   本地实测 `HV_PAGES=40` → 枚举 2,800 页（70 类 × 40）仅 31s，歌单池 1,470 → 2,414。
+      #   实测分类接口 offset 3600 仍有货（民谣满格 60），故加深页数确能挖到新歌单。
+      #   注：`order=new` 实测无效（返回 0 条），只能靠加深页数这一条路。
+      HV_PAGES: ${{ github.event.inputs.pages || '40' }}
       HV_ENUM_ORDERS: "hot"          # 只取热门排序（真歌来源）
       HV_MIN_TRACKS: "20"            # 歌单门槛 20 首（50 会漏掉精选歌单）
       HV_MAX_PLAYLISTS: "20000"
