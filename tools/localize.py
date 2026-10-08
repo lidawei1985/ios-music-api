@@ -81,10 +81,19 @@ CTX.verify_mode = ssl.CERT_NONE
 
 # 每种图的目标尺寸与质量（WebP）
 #   max = 该类的**总量硬上限**（超了就只保热门，冷门不再新增；已下的不清）
+#   ★★ 2026-10-08 语义纠正：max 是「**落盘唯一图文件数**」上限，**不是索引键数**。
+#     血案：索引里一张图会有多个键（`u:<sha1(url)>` 主键 + `skey(歌名|歌手)` 端上命中键
+#     + `mv:<id>`），键数 ≈ 图数 × 2.2。旧门控把「键数」当容量计数 →
+#     cv 键数涨到 46,177 后 > max 26,000 → 门控恒真 → **每轮 new=0，封面本地化在 CI 里永久冻结**
+#     （实测 10-08：`count=46177 new=0 cached=14863 deferred=36266`，3.6 万条封面永远排队）。
+#     现在门控改用 len(set(old.values())) 计数（见 run_kind），max 也随之按「图数」定标。
+#   cv 定标依据（2026-10-08 实测）：均值 16.27KB/张 → 36000 张 ≈ 586MB；
+#     加 av/kv 与索引后 data/assets ≈ 594MB，压在 asset_guard 的 700MB 安全线内
+#     （现 20860 张/339MB 起算，还有约 250MB 余量）。
 SPEC = {
     "av": {"dir": "av", "size": 128, "q": 82, "max": 4000},      # 歌手头像（小、量大）
     "kv": {"dir": "kv", "size": 720, "q": 80, "max": 400},       # 首页海报（大图、量小）
-    "cv": {"dir": "cv", "size": 400, "q": 78, "max": 26000},     # 歌库/MV/分类封面（中、量最大）
+    "cv": {"dir": "cv", "size": 400, "q": 78, "max": 36000},     # 歌库/MV/分类封面（中、量最大）
 }
 
 WORKERS = int(os.environ.get("LZ_WORKERS") or "10")
@@ -258,6 +267,28 @@ def run_kind(kind, mapping, keep_old=True):
     #   → 磁盘上堆了 36352 张图、索引里却只有 5473 条键（3 万+ 孤儿，占 600MB 却端上一张用不到）。
     #   恢复时把 cap 抬到 ≥ 磁盘图数，才能把这些**已经躺在磁盘上**的图重新认领回来。
     hard_cap = int(os.environ.get("LZ_HARD_CAP") or (sp.get("max") or 99999))
+    # ★★ 2026-10-08 血案修复：容量计数必须按「**落盘唯一图文件数**」，绝不能按索引键数。
+    #   一张图在索引里有多个键（`u:<sha1(url)>` 主键 + `skey(歌名|歌手)` 端上命中键 + `mv:<id>`），
+    #   键数 ≈ 图数 × 2.2。旧写法 `len(old) + new >= hard_cap` 拿**键数**去比上限：
+    #   实测 cv 键数涨到 46,177、max 却只有 26,000 → 条件恒真 → 每个新键都被 skip
+    #   → `new` 永久为 0（现场：count=46177 new=0 cached=14863 deferred=36266）
+    #   → 封面本地化在 CI 里**永久冻结**，3.6 万条封面永远排队。
+    #   注意 `old` 的值就是相对路径（一张图可被多键共享），set() 后即真实图数。
+    disk_files = len(set(old.values()))
+    # ★ 防「索引残缺」低估容量：索引里没有的图（孤儿 / 上次硬中断留下的）**照样占磁盘**。
+    #   以磁盘实际 .webp 文件数取大者，容量判断才不会被孤儿骗过去。
+    #   （2026-10-06 血案：磁盘实有 36352 张、索引只认 5473 条 → 已吃掉 600MB 却还在"继续下"。）
+    #   资产目录是扁平的（无子目录），listdir 足够且廉价。
+    try:
+        _real = sum(1 for _f in os.listdir(os.path.join(AS, sp["dir"])) if _f.endswith(".webp"))
+    except Exception:
+        _real = 0
+    if _real > disk_files:
+        log("[%s] 索引只认 %d 张、磁盘实有 %d 张 → 以磁盘为准（防孤儿吃容量）"
+            % (kind, disk_files, _real))
+        disk_files = _real
+    log("[%s] 容量：落盘唯一图 %d 张 / 上限 %d 张（索引键 %d 条；本轮新增上限 %d）"
+        % (kind, disk_files, hard_cap, len(old), max_new))
     skipped_budget = 0
     with ThreadPoolExecutor(max_workers=WORKERS) as ex:
         futs = {}
@@ -288,7 +319,16 @@ def run_kind(kind, mapping, keep_old=True):
                 pend_alias.append((k, u))
                 continue
             seen_url[u] = k
-            if len(ok) - cached >= max_new or len(old) + (len(ok) - cached) >= hard_cap:
+            # ★★ 2026-10-08 血案修复（本坑第二处）：本轮新增计数**必须用 len(futs)**。
+            #   旧写法 `len(ok) - cached`：调度阶段 `ok` 只从上面「已缓存」两个分支灌入
+            #   （只有那两处 cached += 1），所以 `len(ok) == cached` **恒成立**
+            #   → `len(ok) - cached == 0` 恒为 0 → `max_new` 与 `hard_cap` 在调度阶段
+            #   **完全失效**，只有时间预算（budget_s）能刹车。
+            #   后果：上面把 disk_files 修好、门一打开，一轮就会把整批 3.6 万条全排上队
+            #   → 一次性 +580MB，顶穿 asset_guard 的 700MB 线、push 被拒。
+            #   `futs` 才是「本轮真正排上的下载任务数」，用它计数两个上限才真正生效；
+            #   且 `_save` 只在收尾循环里对已完成任务执行 → 未完成的任务不会在磁盘留孤儿。
+            if len(futs) >= max_new or disk_files + len(futs) >= hard_cap:
                 skipped_budget += 1
                 continue
             futs[ex.submit(_get, u)] = (k, u)

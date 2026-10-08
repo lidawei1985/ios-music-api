@@ -21,15 +21,28 @@ on:
         required: false
         default: "40"
   schedule:
-    - cron: "23 */6 * * *"
-    - cron: "53 */6 * * *"
+    # ★ 2026-10-08 修复：原来只有 2 个偏移（23、53 */6），实测 GitHub 定时投递命中率仅 ~1/6
+    #   → 两个偏移常常全部落空：harvest 曾**连续 23.4 小时零成功**（曲库冻在 68,903 不动）。
+    #   现铺 6 个偏移（每 6 小时窗口 6 次投递机会），整窗全漏概率从 ~30% 降到 ~67%↓（即命中率约 2/3）。
+    #   本仓是 public → Actions 分钟数不计费，加密投递没有成本顾虑。
+    - cron: "07 */6 * * *"
+    - cron: "19 */6 * * *"
+    - cron: "31 */6 * * *"
+    - cron: "43 */6 * * *"
+    - cron: "51 */6 * * *"
+    - cron: "57 */6 * * *"
 
 permissions:
   contents: write
   actions: write          # 清理旧 cache 需要
 
 concurrency:
-  group: pool-maintenance  # 与 pool 同组串行，避免同时 push 互相撞车
+  # ★★ 2026-10-08 拆组（根因之一）：原来与 pool **共用** `pool-maintenance`，而 pool 每 2 小时
+  #   就来一轮（3 偏移），harvest 只有 2 偏移 → 反复被 pool 顶成 cancelled。
+  #   实测：10-07 06:35Z 最后一次成功之后 **7 连 cancelled**，曲库冻结 23.4 小时。
+  #   两边的 push 都已带 rebase 重试（各 4 次、指数退避），并发 push 不会被对方打掉，
+  #   所以可以安全拆成独立组：harvest 只与自己竞争，不再被 pool 挤掉。
+  group: harvest-main
   cancel-in-progress: false
 
 jobs:
