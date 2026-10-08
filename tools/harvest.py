@@ -470,6 +470,9 @@ AUDIO_KBPS_HI = 450              # 320k/无损上限
 AUDIO_COVER_MIN = float(os.environ.get("HV_CLIP_COVER") or "0.75")  # 字节能覆盖的时长 < 元数据时长*0.75 → 判试听片段
 AUDIO_MAX_PER_RUN = int(os.environ.get("HV_AUDIO_MAX") or "0")   # 0=不限
 AUDIO_CACHE_FILE = os.path.join(CAT, "_audio_gate.json")
+# 被剔曲目的流水（供追溯）。★ 2026-10-08：提为模块级常量，**否则单测跑 audio_gate
+# 会把测试用的假 id 追加进真实的 data/catalog/_audio_dropped.txt**（我自己当场踩过）。
+AUDIO_DROPPED_FILE = os.path.join(CAT, "_audio_dropped.txt")
 # ★★ 2026-10-08 血案修复（可播判定的**有效期**）：
 #   缓存原本只按 song id 查、**永不过期** → 老曲目测过一次 keep 就永久放行，
 #   链接后来死了也照样发布。而体检脚本（catalog_verify.py）**每次真测** →
@@ -663,7 +666,7 @@ def audio_gate(arr, tag="pack"):
         % (tag, len(arr), len(keep), len(arr) - len(keep),
            "、".join("%s %d" % (k, v) for k, v in stat.items() if v)))
     if drop_ids:
-        p = os.path.join(CAT, "_audio_dropped.txt")
+        p = AUDIO_DROPPED_FILE
         with open(p, "a", encoding="utf-8") as fh:
             for i in drop_ids:
                 fh.write("%s\n" % i)
