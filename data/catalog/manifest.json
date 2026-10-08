@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-07T08:46:26Z",
- "count": 68903,
+ "updated": "2026-10-08T23:41:18Z",
+ "count": 74086,
  "shardSize": 1000,
  "shards": [
   {
@@ -277,7 +277,31 @@
   },
   {
    "file": "shard-0068.json",
-   "count": 903
+   "count": 1000
+  },
+  {
+   "file": "shard-0069.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0070.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0071.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0072.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0073.json",
+   "count": 1000
+  },
+  {
+   "file": "shard-0074.json",
+   "count": 86
   }
  ],
  "idx": {
@@ -286,7 +310,7 @@
    "idx-01.txt"
   ],
   "chunkSize": 40000,
-  "total": 68903,
+  "total": 74086,
   "sep": "\u0001",
   "fields": [
    "nameN",
@@ -294,7 +318,10 @@
    "id",
    "shard",
    "name",
-   "artist"
+   "artist",
+   "cv",
+   "ov",
+   "src"
   ]
  },
  "schema": {
@@ -306,10 +333,15 @@
   "d": "duration_ms",
   "f": "fee",
   "pop": "popularity0-100",
-  "pt": "publishTime_ms"
+  "pt": "publishTime_ms",
+  "cv": "1=原唱/2=翻唱/0=未知",
+  "ov": "翻唱指向的原唱id",
+  "src": "播放源 wy|kw|migu|bili"
  },
  "ranked": "pop + freshness",
  "sources": [
-  "netease"
+  "kw",
+  "migu",
+  "wy"
  ]
 }
