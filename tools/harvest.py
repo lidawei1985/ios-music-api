@@ -470,6 +470,15 @@ AUDIO_KBPS_HI = 450              # 320k/无损上限
 AUDIO_COVER_MIN = float(os.environ.get("HV_CLIP_COVER") or "0.75")  # 字节能覆盖的时长 < 元数据时长*0.75 → 判试听片段
 AUDIO_MAX_PER_RUN = int(os.environ.get("HV_AUDIO_MAX") or "0")   # 0=不限
 AUDIO_CACHE_FILE = os.path.join(CAT, "_audio_gate.json")
+# ★★ 2026-10-08 血案修复（可播判定的**有效期**）：
+#   缓存原本只按 song id 查、**永不过期** → 老曲目测过一次 keep 就永久放行，
+#   链接后来死了也照样发布。而体检脚本（catalog_verify.py）**每次真测** →
+#   线上真实可播率被自己压低，harvest 被自己的闸门卡死：
+#   run 37736589880（2026-10-08）实测可播率 97.9% < 98%，**整批 79,457 首被阻断**，
+#   线上停在旧的 68,903 首。
+#   现在：缓存带时间戳，超过 TTL 一律重测。老缓存（无 ts）视为已过期 → 首发轮会全量重测一次。
+AUDIO_TTL_H = float(os.environ.get("HV_AUDIO_TTL_H") or "168")   # 小时，默认 7 天
+AUDIO_TTL_S = AUDIO_TTL_H * 3600.0                               # 0 = 每轮全量重测
 OUTER_HDR = {"User-Agent": ("Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) "
                             "AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"),
              "Referer": "https://music.163.com/"}
@@ -576,8 +585,23 @@ def audio_gate(arr, tag="pack"):
     #   （Range GET 拿真音频字节，唯一判据）实测可播。所以：不探、不缓存、原样放行。
     wy = [s for s in arr if (s.get("src") or "wy") == "wy"]
     other = [s for s in arr if (s.get("src") or "wy") != "wy"]
-    known = {str(s["i"]) for s in wy if str(s["i"]) in cache}
-    todo = [s for s in wy if str(s["i"]) not in cache]
+    # ★ 2026-10-08：命中判定从「缓存里有」改为「缓存里有**且没过期**」。
+    #   老缓存是 (bytes, ctype) 二元组、没有时间戳 → 一律视为过期 → 重测，
+    #   这正是我们要的：把「上一代测过 keep、现在可能已死」的曲目重新验一遍。
+    _now = time.time()
+
+    def _fresh(i):
+        e = cache.get(str(i))
+        if e is None or AUDIO_TTL_S <= 0:
+            return False
+        ts = e[2] if isinstance(e, (list, tuple)) and len(e) > 2 else 0
+        try:
+            return (_now - float(ts)) < AUDIO_TTL_S
+        except Exception:
+            return False
+
+    known = {str(s["i"]) for s in wy if _fresh(s["i"])}
+    todo = [s for s in wy if str(s["i"]) not in known]
     if AUDIO_MAX_PER_RUN:
         todo = todo[:AUDIO_MAX_PER_RUN]
     log("音频可播体检：待测 %d 首（缓存命中 %d 首）｜多源免检 %d 首｜%d 并发"
@@ -590,9 +614,10 @@ def audio_gate(arr, tag="pack"):
             for fut in as_completed(futs):
                 s = futs[fut]
                 try:
-                    cache[str(s["i"])] = fut.result()
+                    _cl, _ct = fut.result()
                 except Exception:
-                    cache[str(s["i"])] = (-1, "")
+                    _cl, _ct = -1, ""
+                cache[str(s["i"])] = (_cl, _ct, time.time())   # ★ 带时间戳，供 TTL 判定
                 done += 1
                 if done % 5000 == 0:
                     left = (len(todo) - done) * (time.time() - t0) / max(1, done)
@@ -1034,6 +1059,17 @@ def cmd_pack():
 
     # ★ 音频级可播闸门（放在截断之后：只对真正要发布的集合发 HEAD，省流量）
     arr, _av = audio_gate(arr, "pack")
+
+    # ★★ 2026-10-08：硬过滤缺 i/n/a 的曲目。
+    #   体检（catalog_verify.py）把 i(id)/n(名)/a(歌手) 列为必需，缺一条就阻断**整批**发布；
+    #   这三项端上也是非有不可（id 决定能不能播、名/歌手决定显示与搜索索引）。
+    #   血案：run 37736589880 里 79,457 首中有 29 条缺字段（0.04%），
+    #   结果把 7.9 万首的整批发布全盘卡死，线上停在旧的 68,903 首。
+    #   与其因瑕疵全盘陪葬，不如在这里就剔掉——代价 0.04%，换来闸门恒过。
+    _n0 = len(arr)
+    arr = [x for x in arr if all(x.get(k) for k in ("i", "n", "a"))]
+    if len(arr) != _n0:
+        log("★ 必需字段过滤：%d → %d 首（剔 %d 条缺 i/n/a）" % (_n0, len(arr), _n0 - len(arr)))
 
     _write_catalog(arr)
 

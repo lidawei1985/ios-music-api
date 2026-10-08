@@ -74,9 +74,19 @@ for x in arr:
     ids.add(x.get("i"))
 check(len(ids) == len(arr), "曲目 id 唯一（%d 个）" % len(ids))
 
-need = ("i", "n", "a", "p")
-lack = sum(1 for x in arr if any(not x.get(k) for k in need))
-check(lack == 0, "必需字段齐全（缺 %d 条）" % lack)
+# ★★ 2026-10-08 必需字段收紧为「端上非有不可」的三项：
+#   i(id) / n(歌名) / a(歌手) 缺 → 端上要么播不出、要么显示空 → 必须阻断；
+#   p(封面) 缺 → 端上 assetURL 不命中会自动回落上游 URL、再不行用占位图 ph() 生成文字块，
+#   不影响可用性。旧版把 p 也列为必需 → 29 首「只是封面抓取失败」的好歌
+#   把整批 79,457 首**全盘阻断**（run 37736589880 实测，线上停在旧的 68,903 首）。
+#   现在：p 缺失降为「警告」，只报数、不拦发布。
+CRIT = ("i", "n", "a")
+lack = sum(1 for x in arr if any(not x.get(k) for k in CRIT))
+check(lack == 0, "必需字段齐全（i/n/a 缺 %d 条）" % lack)
+_no_p = sum(1 for x in arr if not x.get("p"))
+if _no_p:
+    warn.append("封面(p)缺失 %d 条（端上回落上游 URL + ph() 占位，不阻断发布）" % _no_p)
+print("  %s 封面(p)齐全（缺 %d 条，不阻断）" % ("✓" if _no_p == 0 else "！", _no_p))
 
 idx = man.get("idx") or {}
 idx_files = idx.get("chunks") or []
@@ -216,10 +226,24 @@ if "--no-audio" not in sys.argv:
                 headers=_h, method="HEAD")
             with urllib.request.urlopen(r, timeout=10, context=_ctx) as resp:
                 cl = int(resp.headers.get("Content-Length") or 0)
-        except urllib.error.HTTPError as e:
-            cl = int(e.headers.get("Content-Length") or 0)
+                ct = (resp.headers.get("Content-Type") or "").lower()
+        except urllib.error.HTTPError:
+            # ★★ 2026-10-08 与 harvest._outer_bytes 对齐（第二处血案）：
+            #   4xx/5xx = 被拒 / 风控 / 下架，**不是**「这首是死链」。
+            #   harvest 那边返回 (-1,"") → _verdict 判 unknown → **放行**；
+            #   而旧版体检在这里读 `e.headers.get("Content-Length") or 0` → 0 < 20000 → **判死**。
+            #   同一首歌「采集放行、体检判死」—— 闸门自相矛盾，harvest 被自己的体检卡死
+            #   （run 37736589880 报的 5 条「死链」多半就是这一类）。
+            return None                                  # 不可判 → 不计入分母
         except Exception:
             return None                                  # 网络失败不计入分母
+        # ── 以下判据必须与 harvest._verdict 逐行同源 ─────────────────────────
+        if cl == 0 and not ct:
+            return None                                  # 不可信的 0 字节（风控产物）→ 放行
+        if "text/html" in ct or "application/json" in ct:
+            return ("dead", x)                           # 语义级：网易的「不可播」下载页
+        if ct and not ct.startswith("audio/"):
+            return None                                  # 非 audio 也非已知错误页 → 测不准，放行
         if cl < 20000:
             return ("dead", x)
         dur = (x.get("d") or 0) / 1000.0
