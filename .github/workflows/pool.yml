@@ -38,7 +38,14 @@ concurrency:
 jobs:
   maintain:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    # ★★ 2026-10-08 40 → 90 分钟（解冻封面本地化后必须抬，否则整轮会被掐死）
+    #   实测基线（10-08 两轮成功）：整轮只跑 **9 分钟**，其中「图片本地化」步骤 **仅 2 秒**
+    #     —— 因为门控 bug 让它每轮 new=0 秒退（修前现场 count=46177 new=0 deferred=36292）。
+    #   解冻后该步骤会真正跑到 LZ_BUDGET_S 的 **1500s（25 分钟）**，
+    #   再叠加下游「源池维护流水线」(build.py) 的最坏预算 TXT 1500s + MV 600s = 2100s，
+    #   合计最坏 ≈ 62 分钟 > 旧的 40 分钟 → **job 超时被杀 → 发布步骤永不执行 → 整轮成果全丢**
+    #   （外部只看到"数据不更新了"，极难排查）。抬到 90 分钟留足余量。
+    timeout-minutes: 90
     steps:
       # ★★★ 用 deploy key 检出（与 ios 仓同一改动，2026-10-06）：
       #   实测 GITHUB_TOKEN 推送的提交**不触发 jsDelivr 的 push webhook** ——
@@ -75,7 +82,7 @@ jobs:
           CV_LIB_TOP: "40000"        # 曲库封面覆盖热度前 4 万首（约 485MB）
           LZ_WORKERS: "16"
           LZ_MAX_NEW: "6000"         # 每轮新增上限，攒量靠多轮
-          LZ_BUDGET_S: "1500"        # 单轮时间预算（不超过 job 40 分钟上限）
+          LZ_BUDGET_S: "1500"        # 单轮时间预算（job 上限已抬到 90 分钟，留足余量）
         run: python tools/localize.py localize
 
       # ★★★ 2026-10-07 新增：孤儿图清理（结构性根治「cv/ 顶到 700MB 安全线」）。
