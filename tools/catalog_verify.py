@@ -214,12 +214,13 @@ if "--no-audio" not in sys.argv:
     _h = {"User-Agent": ("Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) "
                          "AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"),
           "Referer": "https://music.163.com/"}
-    import random
+    import random, time
     from concurrent.futures import ThreadPoolExecutor
     random.seed(20261006)
     _samp = random.sample(arr, min(240, len(arr)))
 
-    def _probe(x):
+    def _probe_once(x):
+        """单次探测。判据与 harvest._outer_bytes / _verdict 逐行同源。"""
         try:
             r = urllib.request.Request(
                 "https://music.163.com/song/media/outer/url?id=%d.mp3" % int(x["i"]),
@@ -263,6 +264,32 @@ if "--no-audio" not in sys.argv:
         cover = (cl * 8 / 32 / 1000.0) / dur        # AUDIO_KBPS_LO = 32（与 harvest 同源同值）
         return (("keep" if cover >= 0.75 else "clip"), x)
 
+    _retest = {"n": 0, "saved": 0}          # ★ 二次确认自证（线上日志可见是否生效）
+
+    def _probe(x):
+        """★ 2026-10-09 血案修复：判 dead 必须**二次确认**，单次不可采信。
+
+        现场证据（run 37895609714 与 37890924411 抽的是**同一 seed、同一批 240 首**）：
+          本地拿同一份库实测 = **100.0%**（死链 0）；
+          CI runner 实测 = 97.9% / 98.3%（死链 4~5）。
+          同一批曲目、同一份代码，唯一变量是**网络出口** →
+          那几条「死链」是 CI 出口被网易云风控 / 连接抖动导致的**瞬时误判**，不是真死链。
+          而 98% 阈值恰好压在这个抖动率（≈2%）上 → **每轮必挂**，
+          采集成果（75,269 首）被自己的体检整批拦下，线上停在旧库（run 37736589880、
+          37895166909、37895609714 三次同样死法）。
+        判据：第一次判 dead 的曲目，隔 1.2s 重测一次；**两次都 dead 才算 dead**。
+        真死链（下架 / 占位页）两次都会 dead，不会被放过 —— 只去抖，不放水。
+        """
+        r = _probe_once(x)
+        if r and r[0] == "dead":
+            _retest["n"] += 1
+            time.sleep(1.2)
+            r2 = _probe_once(x)
+            if r2 is not None and r2[0] != "dead":
+                _retest["saved"] += 1
+                return r2                            # 复测不判死 → 采信复测（抖动）
+        return r
+
     with ThreadPoolExecutor(24) as ex:
         _res = [r for r in ex.map(_probe, _samp) if r]
     _ok = sum(1 for k, _ in _res if k == "keep")
@@ -275,6 +302,9 @@ if "--no-audio" not in sys.argv:
               % (_rate, len(_res), len(_dead), len(_clip),
                  "" if _rate >= 98 else "｜例：" + "；".join(
                      "%s—%s" % (x["n"][:14], x["a"][:10]) for x in (_dead + _clip)[:2])))
+        if _retest["n"]:
+            print("    └ dead 二次确认：%d 首被复测，其中 %d 首复测后不判死（判为抖动，已救回）"
+                  % (_retest["n"], _retest["saved"]))
 
 print("\n结论：%s" % ("❌ 体检不通过，禁止发布（%d 项）" % len(bad) if bad else "✅ 体检通过"))
 for w in warn:

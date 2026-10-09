@@ -469,6 +469,16 @@ AUDIO_KBPS_LO = int(os.environ.get("HV_KBPS_LO") or "32")    # 「片段」判�
 AUDIO_KBPS_HI = 450              # 320k/无损上限
 AUDIO_COVER_MIN = float(os.environ.get("HV_CLIP_COVER") or "0.75")  # 字节能覆盖的时长 < 元数据时长*0.75 → 判试听片段
 AUDIO_MAX_PER_RUN = int(os.environ.get("HV_AUDIO_MAX") or "0")   # 0=不限
+# ★★ 2026-10-08 **第二次血案**：复检必须限量。
+#   加了 TTL 之后，老缓存（无时间戳）被全部视为过期 → 7.9 万首一次性重测，
+#   而 CI runner 到网易云被限速（实测均摊 5.3 秒/首）→「⑥ 打包曲库」一步跑了
+#   **145 分钟**还没完，撞上 job 的 180 分钟上限被 cancelled（run 37751310738），
+#   采集成果（79,457 首）再次全部丢弃。
+#   → 现在：**新歌必测（不限量），老曲复检按「最久没测的优先」限量**，
+#     再叠加一道时间预算兜底。7.9 万首按 2000 首/轮滚动，约 26 轮覆盖一遍。
+#   ★ 教训（第二次犯）：改「让某步骤真的干活」的修复，**必须回头核对 job/step 超时预算**。
+AUDIO_RETEST_MAX = int(os.environ.get("HV_AUDIO_RETEST_MAX") or "2000")   # 每轮最多复检几首；0=不限
+AUDIO_BUDGET_S = float(os.environ.get("HV_AUDIO_BUDGET_S") or "1800")     # 音频实测总预算(秒)；0=不限
 AUDIO_CACHE_FILE = os.path.join(CAT, "_audio_gate.json")
 # 被剔曲目的流水（供追溯）。★ 2026-10-08：提为模块级常量，**否则单测跑 audio_gate
 # 会把测试用的假 id 追加进真实的 data/catalog/_audio_dropped.txt**（我自己当场踩过）。
@@ -509,8 +519,14 @@ def _outer_bytes(sid, timeout=8, retry=2):
                 ct = (r.headers.get("Content-Type") or "").lower()
                 return (int(cl) if cl else 0), ct
         except urllib.error.HTTPError as e:
-            # 4xx/5xx = 被拒/风控，**不是**「这首歌是死链」，交给上层当 unknown 放行
-            return -1, ""
+            # 4xx/5xx = 被拒/风控，**不是**「这首歌是死链」，交给上层当 unknown 放行。
+            # ★ 2026-10-09：风控常常是**瞬时**的（同一首歌隔一秒再测就正常）。而单次被拒
+            #   会让它进「网络未测 → 放行」，随后被体检实测判死 → 两侧又自相矛盾
+            #   （run 37895609714 的 5 条死链就是这么来的）。这里给 4xx/5xx 一次重试机会，
+            #   与体检侧「dead 二次确认」配对，两边一起抗抖动。
+            if i == retry - 1:
+                return -1, ""
+            time.sleep(0.5 + random.random() * 0.5)
         except Exception:
             if i == retry - 1:
                 return -1, ""
@@ -604,15 +620,39 @@ def audio_gate(arr, tag="pack"):
             return False
 
     known = {str(s["i"]) for s in wy if _fresh(s["i"])}
-    todo = [s for s in wy if str(s["i"]) not in known]
+
+    # ★★ 2026-10-08（第二次血案）：拆成「新歌」与「过期复检」两类 ——
+    #   新歌（缓存里根本没有）**必须全测**，它们从没被验过；
+    #   老曲复检（缓存里有但已过期）**按「最久没测的优先」限量**，
+    #   否则一轮测不完，会把整个 job 拖过 180 分钟上限（run 37751310738：⑥ 跑 145 分钟被杀）。
+    def _age(s):
+        e = cache.get(str(s["i"]))
+        if e is None:
+            return -1.0                                    # 新歌：永远排最前
+        ts = e[2] if isinstance(e, (list, tuple)) and len(e) > 2 else 0
+        try:
+            return float(ts)                               # 越小 = 越久没测
+        except Exception:
+            return 0.0
+
+    _todo_all = [s for s in wy if str(s["i"]) not in known]
+    _new = [s for s in _todo_all if str(s["i"]) not in cache]
+    _stale = [s for s in _todo_all if str(s["i"]) in cache]
+    _stale.sort(key=_age)                                  # 最久没测的排前面 → 天然轮转覆盖
+    if AUDIO_RETEST_MAX and len(_stale) > AUDIO_RETEST_MAX:
+        log("音频复检限流：过期 %d 首，本轮只复检最老的 %d 首（其余下轮继续）"
+            % (len(_stale), AUDIO_RETEST_MAX))
+        _stale = _stale[:AUDIO_RETEST_MAX]
+    todo = _new + _stale
     if AUDIO_MAX_PER_RUN:
         todo = todo[:AUDIO_MAX_PER_RUN]
-    log("音频可播体检：待测 %d 首（缓存命中 %d 首）｜多源免检 %d 首｜%d 并发"
-        % (len(todo), len(known), len(other), AUDIO_WORKERS))
+    log("音频可播体检：待测 %d 首（新歌 %d + 复检 %d）｜缓存命中 %d ｜多源免检 %d ｜%d 并发"
+        % (len(todo), len(_new), len(_stale), len(known), len(other), AUDIO_WORKERS))
     t0 = time.time()
     if todo:
         done = 0
-        with ThreadPoolExecutor(AUDIO_WORKERS) as ex:
+        ex = ThreadPoolExecutor(AUDIO_WORKERS)
+        try:
             futs = {ex.submit(_outer_bytes, s["i"]): s for s in todo}
             for fut in as_completed(futs):
                 s = futs[fut]
@@ -622,10 +662,20 @@ def audio_gate(arr, tag="pack"):
                     _cl, _ct = -1, ""
                 cache[str(s["i"])] = (_cl, _ct, time.time())   # ★ 带时间戳，供 TTL 判定
                 done += 1
-                if done % 5000 == 0:
+                if done % 2000 == 0:
                     left = (len(todo) - done) * (time.time() - t0) / max(1, done)
                     log("  … %d/%d 已测（剩约 %.0f 分钟）" % (done, len(todo), left / 60))
                     _save_audio_cache(cache)
+                # ★★ 2026-10-08 时间预算兜底：宁可这轮少测，也不要把 job 拖到被杀。
+                #   未测曲目**不写缓存** → 下轮仍算待测（新歌）或过期复检，天然续跑。
+                if AUDIO_BUDGET_S > 0 and (time.time() - t0) > AUDIO_BUDGET_S:
+                    log("⏱ 音频实测预算 %.0f 分钟用尽：已测 %d/%d，剩余 %d 首本轮不测"
+                        "（按 unknown 放行，下轮续跑）"
+                        % (AUDIO_BUDGET_S / 60.0, done, len(todo), len(todo) - done))
+                    ex.shutdown(wait=False, cancel_futures=True)
+                    break
+        finally:
+            ex.shutdown(wait=False, cancel_futures=True)
         _save_audio_cache(cache)
 
     keep, stat = list(other), {"死链/占位": 0, "试听片段": 0, "网络未测": 0}
