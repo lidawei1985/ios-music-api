@@ -101,6 +101,19 @@ jobs:
       #     · 删除前落 assets/prune.log 留痕；
       #     · 被删文件必是**上一轮已 commit 进 git** 的，随时可从历史找回。
       #   位置：放在 asset_guard 之前，让守卫量到的是「清理后」的真实体量。
+      # ★★★ 2026-10-09 新增：索引换血（根治「旧世代死键把死图钉在磁盘上」）。
+      #   实测病灶：cv 索引 80,775 条键、磁盘只有 40,000 张图，而当前曲库真正用到的
+      #   只有约 20,000 张 —— 其余是曲库换代（歌名/歌手变了）后遗留的旧键。
+      #   而下一行的 prune 判据是「索引里没人引用」，所以这些死图**永远删不掉**
+      #   （本机实测：一张不动就是 302MB 死图，把 data/assets 顶在 629MB / 700MB 线）。
+      #   rebase 按当前「曲库(全量) + 歌库 + 榜单 + 分类 + MV」重算需要的键，索引只留命中的，
+      #   接在它后面的 prune 才能真正把它们清掉。
+      #   安全：默认 dry-run；曲库分片 <5000 首 或 保留率 <5% 一律拒绝执行（防算漏栏目清空索引）。
+      #   必须在 localize 之后（不然本轮新下的图会被判成没人引用）。
+      - name: 索引换血（按当前需求裁剪旧封面键）
+        continue-on-error: true
+        run: python tools/localize.py rebase --yes
+
       - name: 孤儿图清理（索引已不引用的旧封面）
         continue-on-error: true
         run: python tools/localize.py prune --yes

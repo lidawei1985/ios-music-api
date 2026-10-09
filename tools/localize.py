@@ -863,6 +863,169 @@ def cmd_prune():
         % (total_kept, total_orphan, "" if yes else "（dry-run，未删；确认无误后加 --yes 真删）"))
 
 
+def _cov_key(u):
+    """封面 URL → 稳定去重键（与 cmd_localize 内的 cov_key 同源）"""
+    return "u:" + hashlib.sha1(u.encode("utf-8")).hexdigest()[:20]
+
+
+def _cv_need_map():
+    """重建「当前实际需要的 cv 键全集」——与 cmd_localize ③~⑦ 段**同源口径**。
+
+    返回 {键: 远程URL}。键的三种形态：
+      · skey(歌名|歌手)      —— 端上 assetURL("cv", skey) 直接查的键
+      · u:<sha1(URL)[:20]>   —— 去重主键（跨栏目同一张图只下一次）
+      · mv:<id>              —— MV 卡 / 详情页封面
+
+    ★★ 任何改动必须与 cmd_localize 同步：这个集合就是「换血判据」，
+       算漏一个栏目 → rebase 会把那个栏目还要用的图误判成死图。
+    """
+    m = {}
+
+    # ④ MV 全量封面
+    mv = load_json("mv.json", {})
+    for c in (mv.get("collections") or []):
+        for x in (c.get("items") or []):
+            u = (x.get("cov") or "").strip()
+            if x.get("id") and u.startswith("http"):
+                m["mv:" + str(x["id"])] = u
+
+    # ⑤ 分类封面（深层嵌套，只贡献 u: 键）
+    acc = []
+    _walk(load_json("categories.json", {}), "cov", acc)
+    for u in set(acc):
+        if u.startswith("http"):
+            m[_cov_key(u)] = u
+
+    # ⑥ 榜单封面（u: 键 + 歌名|歌手键）
+    ch = load_json("charts.json", {})
+    acc2 = []
+    _walk(ch, "cover", acc2)
+    for u in set(acc2):
+        if u.startswith("http"):
+            m[_cov_key(u)] = u
+    for k, u in _title_index(("title", "singer"),
+                             [(s.get("title"), s.get("singer"), s.get("cover"))
+                              for lst in (ch.get("lists") or [])
+                              for s in (lst.get("songs") or [])]).items():
+        m.setdefault(k, u)
+
+    # ③ 歌库封面
+    lib = load_json("library.json", {})
+    acc3 = []
+    _walk(lib, "cov", acc3)
+    for u in set(acc3):
+        if u.startswith("http"):
+            m[_cov_key(u)] = u
+    for k, u in _title_index(("t", "s"),
+                             [(s.get("t"), s.get("s"), s.get("cov"))
+                              for s in (lib.get("songs") or [])]).items():
+        m.setdefault(k, u)
+
+    # ⑦ 曲库封面（端上播放页/搜索页的主力键）
+    #   ★★ 这里**故意不按 CV_LIB_TOP 截断** —— 换血只关心「这首歌还在不在曲库」，
+    #      不关心它排第几名。CV_LIB_TOP 只该管「要不要为它**下载**新图」，
+    #      不该管「已有的图要不要**留**」。若跟着截断，排名 4 万后的曲库歌
+    #      会被当成死键误删（本机抽查 20 个待删键就撞上 2 个，实测教训）。
+    rows = _lib_covers(1 << 30)
+    for _p, _t, _s, u in rows:
+        m.setdefault(_cov_key(u), u)
+    for k, u in _title_index(("n", "a"), [(t, s, u) for _p, t, s, u in rows]).items():
+        m.setdefault(k, u)
+    return m
+
+
+def cmd_rebase():
+    """cv 索引换血：删掉「不再被任何栏目引用」的旧键，让 prune 能把这些图真正清掉。
+
+    为什么需要（仓库活命问题）：
+      cv 目录是**累积**的 —— 曲库换代（歌名/歌手变了）后，旧世代的 skey 键没人删，
+      索引里越堆越多（实测 80,775 条键 / 磁盘只有 40,000 张图），
+      而 prune 只删「索引里没人引用」的图 → 索引里的死键把死图**钉在磁盘上**，
+      占着几百 MB 却端上一张都查不到。
+    做法：
+      按当前「曲库 + 歌库 + 榜单 + 分类 + MV」重算需要的键集合（_cv_need_map），
+      索引只保留命中的键；剩下的图就成了孤儿，交给 prune 清理。
+    安全边界：
+      · 默认 dry-run，只打印不写；确认后加 --yes。
+      · 索引缺失/为空 → 拒绝执行。
+      · 保留比例 < 5% → 判定口径可疑，拒绝执行（防算漏栏目把索引清光）。
+      · 端上删不掉的键这里不会删 —— 判据与 cmd_localize 写索引时**同源**。
+    """
+    yes = "--yes" in sys.argv
+    log("== cv 索引换血（%s）==" % ("真写" if yes else "dry-run，不改任何东西"))
+    jp = os.path.join(AS, "cv.json")
+    try:
+        d = json.load(open(jp, encoding="utf-8"))
+    except Exception as e:
+        log("索引读取失败（%s）—— 拒绝执行" % e)
+        return
+    mp = d.get("map") or {}
+    if not mp:
+        log("索引为空 —— 拒绝执行（防清空全站封面）")
+        return
+
+    # ★ 护栏：曲库分片读不全 → 数据不完整 → 拒绝（防把整站封面误判成死图）
+    import glob as _g
+    n_cat = 0
+    for _f in _g.glob(os.path.join(DATA, "catalog", "shard-*.json")):
+        try:
+            n_cat += len(json.load(open(_f, encoding="utf-8")))
+        except Exception:
+            pass
+    if n_cat < 5000:
+        log("曲库分片只读到 %d 首 —— 数据不完整，拒绝执行" % n_cat)
+        return
+
+    need = _cv_need_map()
+    keep = {k: v for k, v in mp.items() if k in need}
+    if len(keep) < len(mp) * 0.05:
+        log("保留 %d / %d 条 < 5%% —— 口径可疑，拒绝执行" % (len(keep), len(mp)))
+        return
+
+    dd = os.path.join(AS, SPEC["cv"]["dir"])
+    old_files = set(f for f in os.listdir(dd) if f.endswith(".webp")) if os.path.isdir(dd) else set()
+    new_files = set(os.path.basename(v) for v in keep.values() if v)
+    dead = old_files - new_files
+    dead_b = 0
+    for f in dead:
+        try:
+            dead_b += os.path.getsize(os.path.join(dd, f))
+        except OSError:
+            pass
+
+    def _pfx(k, p):
+        return sum(1 for x in mp if x.startswith(p) and x in keep)
+
+    log("索引键 %s → %s（删 %s）" % (len(mp), len(keep), len(mp) - len(keep)))
+    log("  键构成：skey %d→%d / u: %d→%d / mv: %d→%d"
+        % (sum(1 for x in mp if not x.startswith(("u:", "mv:"))),
+           sum(1 for x in keep if not x.startswith(("u:", "mv:"))),
+           sum(1 for x in mp if x.startswith("u:")), _pfx(None, "u:"),
+           sum(1 for x in mp if x.startswith("mv:")), _pfx(None, "mv:")))
+    log("  磁盘图 %d 张 → 需要 %d 张；将成孤儿 %d 张（%.1f MB）"
+        % (len(old_files), len(new_files), len(dead), dead_b / 1048576.0))
+
+    if not yes:
+        log("dry-run 结束。确认数字合理后加 --yes 真写，再跑 `prune --yes` 清图。")
+        return
+
+    _atomic_index(jp, "cv", keep, 0, 0, 0, 0, note="rebase：按当前需求裁剪旧键（2026-10-09）")
+    # 同步总账：asset_guard / cmd_stat 的「索引：cv 80775 张 617.0 MB」读的就是它，
+    # 不刷新的话守卫会拿着旧数字吓人（体量判定本身走实际 du，不受影响）。
+    try:
+        mfp = os.path.join(AS, "manifest.json")
+        man = json.load(open(mfp, encoding="utf-8")) if os.path.exists(mfp) else {"kinds": {}}
+        b = sum(os.path.getsize(os.path.join(dd, f)) for f in os.listdir(dd)) if os.path.isdir(dd) else 0
+        man.setdefault("kinds", {})["cv"] = {"count": len(keep), "fail": 0, "deferred": 0, "bytes": b}
+        man["total_bytes"] = sum((v.get("bytes") or 0) for v in man["kinds"].values())
+        man["updated"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        json.dump(man, open(mfp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        log("总账已同步：cv %d 张 / %.1f MB" % (len(keep), b / 1048576.0))
+    except Exception as e:
+        log("总账同步失败（不阻断）：%s" % e)
+    log("索引已换血（.json + .js 同步）。下一步：python tools/localize.py prune --yes")
+
+
 if __name__ == "__main__":
     cmd = (sys.argv[1] if len(sys.argv) > 1 else "stat").lower()
     if cmd in ("localize", "all", "run"):
@@ -871,5 +1034,7 @@ if __name__ == "__main__":
         cmd_mkjs()
     elif cmd in ("prune", "gc", "orphan"):
         cmd_prune()
+    elif cmd in ("rebase", "slim", "trim"):
+        cmd_rebase()
     else:
         cmd_stat()
