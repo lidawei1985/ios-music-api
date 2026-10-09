@@ -268,7 +268,12 @@ jobs:
           if git diff --cached --quiet; then
             echo "曲库无变更"
           else
-            git commit -m "曲库 ${CNT} 首：热门歌单扩容 + 质量闸门（p50 热度见体检）$(date -u '+%Y-%m-%d %H:%M')"
+            # ★ commit 必须查返回码：静默失败 → 下面 push「无新提交可推」返回 0
+            #   → 被当成推送成功 → 假发布（2026-10-10 图片分仓同款血案）。
+            if ! git commit -m "曲库 ${CNT} 首：热门歌单扩容 + 质量闸门（p50 热度见体检）$(date -u '+%Y-%m-%d %H:%M')"; then
+              echo "❌ git commit 失败 → 本轮不发布"
+              exit 1
+            fi
             # ★ 2026-10-06 血案修复：本流程可能跑 1~2 小时，期间 pool.yml 的定时任务
             #   很可能往 main 推了新提交 → 直接 git push 会被 "[rejected] (fetch first)" 拒掉，
             #   整轮 2 小时的采集成果全部白费（本地 commit 随 runner 一起销毁）。
@@ -276,7 +281,15 @@ jobs:
             #   用 --autostash：工作区可能还有缓存等未跟踪改动，先 stash 再 rebase。
             ok=0
             for i in 1 2 3 4; do
-              if git push 2>/tmp/push.err; then ok=1; break; fi
+              if git push 2>/tmp/push.err; then
+                # ★★ 只认「远端事实」：push 返回 0 有两种含义 —— ①真推上去了；
+                #    ②本来就没有新提交可推（空跑）。只信返回值会把 ② 当成功。
+                RS=$(git ls-remote origin refs/heads/main 2>/dev/null | awk '{print $1}')
+                LH=$(git rev-parse HEAD)
+                if [ -n "$RS" ] && [ "$RS" = "$LH" ]; then ok=1; break; fi
+                echo "----- push 返回 0 但远端 main(${RS:-空}) ≠ 本地 HEAD(${LH:-空}) → 视为未推送 -----"
+                cat /tmp/push.err 2>/dev/null || true
+              fi
               echo "----- 第 $i 次 push 失败 -----"; cat /tmp/push.err
               echo "拉取远端最新 main 后 rebase 重试…"
               git fetch origin main || true

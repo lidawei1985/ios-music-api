@@ -230,7 +230,13 @@ jobs:
           if git diff --cached --quiet; then
             echo "无变更"
           else
-            git commit -m "pool: round ${ROUND} $(date -u '+%Y-%m-%d %H:%M')"
+            # ★ commit 必须查返回码。静默失败的后果是连锁的：commit 没成 → 下面 push
+            #   「无新提交可推」返回 0 → 被当成推送成功 → 假发布 + 假锚点。
+            #   （2026-10-10 图片分仓同款血案：3,493 张新图就是这样被丢弃的。）
+            if ! git commit -m "pool: round ${ROUND} $(date -u '+%Y-%m-%d %H:%M')"; then
+              echo "❌ git commit 失败 → 本轮不发布"
+              exit 1
+            fi
             # ★★★ 2026-10-07 血案修复（与 harvest.yml ⑧ 同款实现，两处保持一致）：
             #   本流水线会跑 20~40 分钟，期间 harvest 很可能往 main 推了曲库 →
             #   裸 `git push` 会被 "[rejected] (fetch first)" 拒掉，后果有两层：
@@ -244,7 +250,16 @@ jobs:
             #   修法：rebase 到最新 main 后重推，最多 4 次（指数退避）。
             PUSH_OK=0
             for i in 1 2 3 4; do
-              if git push 2>/tmp/push.err; then PUSH_OK=1; break; fi
+              if git push 2>/tmp/push.err; then
+                # ★★ 只认「远端事实」：push 返回 0 有两种含义 —— ①真推上去了；
+                #    ②本来就没有新提交可推（空跑）。只信返回值会把 ② 当成功。
+                #    所以直接问远端 refs/heads/main 是否已指向本地 HEAD。
+                RS=$(git ls-remote origin refs/heads/main 2>/dev/null | awk '{print $1}')
+                LH=$(git rev-parse HEAD)
+                if [ -n "$RS" ] && [ "$RS" = "$LH" ]; then PUSH_OK=1; break; fi
+                echo "----- push 返回 0 但远端 main(${RS:-空}) ≠ 本地 HEAD(${LH:-空}) → 视为未推送 -----"
+                cat /tmp/push.err 2>/dev/null || true
+              fi
               echo "----- 第 $i 次 push 失败 -----"; cat /tmp/push.err
               echo "拉取远端最新 main 后 rebase 重试…"
               git fetch origin main || true
