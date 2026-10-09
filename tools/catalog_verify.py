@@ -216,8 +216,23 @@ if "--no-audio" not in sys.argv:
           "Referer": "https://music.163.com/"}
     import random, time
     from concurrent.futures import ThreadPoolExecutor
+    # ★★ 2026-10-09 血案修复（第四次，也是**真正**的那一个）：
+    #   体检**必须只对网易云源曲目**取样 —— 与 harvest.audio_gate 的 wy/other 划分严格一致。
+    #   曲库里混有非 wy 源曲目（实测 10-09：kw 678 首 + migu 54 首 = 0.98%），
+    #   它们的 `i` 是**别的平台的 id**，拿去请求 `music.163.com/song/media/outer/url`
+    #   必然返回「不可播」占位页 —— **实测 4/4 全部 200 + text/html + 4515 字节**。
+    #   于是这些歌被判 dead，**与它能不能播毫无关系**。采集侧早就把这类划入 other 免检
+    #   （`wy = [s for s in arr if (s.get("src") or "wy") == "wy"]`），体检侧却对全库抽样
+    #   → **闸门自己制造死链、自己阻断自己**（run 37914809221：抽 240 首报 9 条死链，
+    #     dead 二次确认 9/9 全部复测仍 dead —— 因为它是确定性错误，不是网络抖动）。
+    #   样本量同时由 240 提到 600：240 的 95% 置信区间约 ±2.4%，恰好压着 98% 阈值抖。
+    _wy = [x for x in arr if (x.get("src") or "wy") == "wy"]
+    _n_samp = int(os.environ.get("VERIFY_AUDIO_N") or "600")
     random.seed(20261006)
-    _samp = random.sample(arr, min(240, len(arr)))
+    _samp = random.sample(_wy, min(_n_samp, len(_wy)))
+    print("  取样：全库 %d 首 → 网易云源 %d 首 → 抽 %d 首实测"
+          "（非 wy 源 %d 首免测，与采集侧口径一致）"
+          % (len(arr), len(_wy), len(_samp), len(arr) - len(_wy)))
 
     def _probe_once(x):
         """单次探测。判据与 harvest._outer_bytes / _verdict 逐行同源。"""
