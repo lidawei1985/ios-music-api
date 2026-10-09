@@ -68,6 +68,10 @@ _bak_*
 SKIP_TOP = {".git", "prune.log"}
 
 
+IDENT_NAME = "dwg-assets-bot"
+IDENT_MAIL = "dwg-assets-bot@users.noreply.github.com"
+
+
 def log(msg):
     print(msg, flush=True)
 
@@ -91,6 +95,22 @@ def run(args, cwd=None, check=True, capture=False):
 
 def git(*args, **kw):
     return run(["git"] + list(args), cwd=WORK, **kw)
+
+
+def _set_identity():
+    """无条件设置提交身份（每条路径都必须能提交）。
+
+    ★★ 血案（2026-10-10，run 37941733843）：CI 走 `ASSET_WORK=data/assets` 就地模式，
+       而 data/assets 是 pull-in 克隆来的 → `ensure_clone()` 命中「已是 git 仓」的
+       早返回分支，**从不设置身份** → `git commit` 报 `fatal: empty ident name`。
+       更糟的是当时 commit 用的是 check=False（失败不抛错），紧接着 `git push`
+       因无新提交而返回 0 → 打出「已推送 ✅」**假成功**。
+       ⇒ 本轮 localize 新出的 3,493 张封面只留在 runner 上，随 runner 销毁丢弃；
+         而该 bug 会让**图片发布永久静默失败**（每轮新图白做）。
+       纪律：身份设置属于「提交前置条件」，必须无条件执行，不能只挂在克隆分支上。
+    """
+    git("config", "user.name", IDENT_NAME, check=False)
+    git("config", "user.email", IDENT_MAIL, check=False)
 
 
 def count_webp(d):
@@ -161,6 +181,7 @@ def ensure_clone():
                 capture=True, check=False)
         if r.returncode != 0:
             log("  fetch 失败（远端可能还是空仓）→ 忽略")
+        _set_identity()          # ★ 早返回分支也必须设身份（血案根因，见 _set_identity）
         return False
     os.makedirs(os.path.dirname(WORK) or ".", exist_ok=True)
     if os.path.isdir(WORK):
@@ -179,9 +200,9 @@ def ensure_clone():
         os.makedirs(WORK, exist_ok=True)
         run(["git", "init", "-q", "-b", "main"], cwd=WORK)
         git("remote", "add", "origin", REPO_SSH, check=False)
+        _set_identity()
         return True
-    git("config", "user.name", "dwg-assets-bot")
-    git("config", "user.email", "dwg-assets-bot@users.noreply.github.com")
+    _set_identity()
     return True
 
 
@@ -267,15 +288,35 @@ def publish(yes=False):
     if not yes:
         log("  dry-run：将提交 %r（加 --yes 真推）" % msg)
         return
-    git("commit", "-q", "-m", msg, check=False)
+    _set_identity()          # ★ 提交前置条件：无条件设置（血案根因，见 _set_identity）
+    r = git("-c", "user.name=" + IDENT_NAME, "-c", "user.email=" + IDENT_MAIL,
+            "commit", "-q", "-m", msg, capture=True, check=False)
+    if r.returncode != 0:
+        # ★ 必须硬失败：commit 静默失败 + push 因无新提交返回 0 = 「已推送 ✅」假成功（血案）
+        log("!! 提交失败：%s" % (((r.stderr or "") + (r.stdout or ""))[:400],))
+        sys.exit(3)
     for i in range(1, 5):
         r = git("push", "-u", "origin", "main", check=False, capture=True)
-        if r.returncode == 0:
-            log("  已推送 dwg-assets@main ✅")
+        if r.returncode != 0:
+            # 打出真错因：CI 里只看到「被拒」是查不动案的
+            log("  push 被拒：%s" % (((r.stderr or "") + (r.stdout or "")).strip()[:300],))
+            log("  重试 %d/4（fetch + rebase）" % i)
+            git("fetch", "--depth=1", "origin", "main", check=False)
+            git("rebase", "--autostash", "origin/main", check=False)
+            continue
+        # ★★ 推送后校验：只认「远端 main 真指向本次提交」。
+        #    血案教训 —— push 返回 0 有两种含义：①真推上去了 ②本来就没有新提交可推（空跑）。
+        #    只信返回值就会把 ② 当成功；必须用 ls-remote 直接问远端，不依赖本地 clone 状态。
+        lp = (git("rev-parse", "HEAD", capture=True, check=False).stdout or "").strip()
+        rr = git("ls-remote", "origin", "refs/heads/main", capture=True, check=False)
+        rs = ""
+        if rr.returncode == 0 and (rr.stdout or "").strip():
+            rs = (rr.stdout or "").split()[0]
+        if rs and lp and rs == lp:
+            log("  已推送 dwg-assets@main ✅ %s" % rs[:8])
             return
-        log("  push 被拒，rebase 重试 %d/4" % i)
-        git("fetch", "--depth=1", "origin", "main", check=False)
-        git("rebase", "--autostash", "origin/main", check=False)
+        log("  push 返回 0 但远端 main(%s) ≠ 本地 HEAD(%s) → 视为未发布（重试 %d/4）"
+            % (rs[:8] or "-", lp[:8] or "-", i))
     log("!! 推送失败")
     sys.exit(3)
 

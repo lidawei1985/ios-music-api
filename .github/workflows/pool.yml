@@ -319,6 +319,7 @@ jobs:
       #   continue-on-error：图片推失败不该让整轮数据发布被判失败（数据已在主仓发出）。
       #   幂等：无变更时脚本静默成功。
       - name: 发布图片分仓（data/assets → dwg-assets）
+        id: assets_pub
         continue-on-error: true
         env:
           ASSETS_KEY_FILE: ${{ github.workspace }}/.dwg_assets_key
@@ -361,8 +362,19 @@ jobs:
       - name: 发布结果硬校验（本轮是否真的发布成功）
         if: always()
         run: |
+          ok=1
           if [ "${{ steps.publish.outputs.push_ok }}" != "1" ]; then
             echo "❌ 本轮 pool 发布失败：push_ok=${{ steps.publish.outputs.push_ok }}（数据未上线，仅锚点已刷新）"
-            exit 1
+            ok=0
           fi
-          echo "✅ 本轮发布成功"
+          # ★ 图片分仓发布同样绝不静默。该步骤刻意 continue-on-error（数据已先上线，不该
+          #   因图片判失败而中断后面的流程），但代价是「图片压根没推上去」会以绿色运行一直藏着。
+          #   血案（2026-10-10 run 37941733843）：git 无提交身份 → commit 静默失败 →
+          #   push 无新提交返回 0 → 打出「已推送 ✅」假成功，3,493 张新封面随 runner 丢弃。
+          #   所以在这里用 outcome（continue-on-error 之前的真实结果）翻回红灯，绝不静默。
+          if [ "${{ steps.assets_pub.outcome }}" = "failure" ]; then
+            echo "❌ 图片分仓 dwg-assets 未发布成功：本轮新图未上线，端上封面会停在旧图"
+            ok=0
+          fi
+          if [ "$ok" != "1" ]; then exit 1; fi
+          echo "✅ 本轮发布成功（数据 + 图片分仓）"
