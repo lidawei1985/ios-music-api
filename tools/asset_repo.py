@@ -102,6 +102,58 @@ def count_webp(d):
     return n
 
 
+def _same(a, b):
+    return os.path.abspath(a) == os.path.abspath(b)
+
+
+def pull_in():
+    """把 dwg-assets 拉到 data/assets（CI 前置步：主仓已不再跟踪 data/assets）。
+
+    ★★ 失败必须硬失败（exit 4），**绝不能静默继续**：
+       若 data/assets 是空的而 localize 照跑，它会从零重建索引（只含本轮那 1500 条），
+       线上两万张封面的映射当场清空 —— 这是本方案唯一的高危失效路径。
+       所以宁可本轮整轮不跑，也不能带着空索引往下走。
+    """
+    key = os.environ.get("ASSETS_KEY_FILE")
+    if not key or not os.path.exists(key):
+        log("!! 缺 ASSETS_KEY_FILE（部署密钥）→ 拒绝继续（防空索引覆盖线上映射）")
+        sys.exit(4)
+    if os.path.isdir(os.path.join(AS, ".git")):
+        log("data/assets 已是分仓工作副本 → fetch 更新")
+        git_as("remote", "set-url", "origin", REPO_SSH, check=False)
+        r = git_as("fetch", "--depth=1", "origin", "main", capture=True, check=False)
+        if r.returncode != 0:
+            log("!! fetch 失败：%s" % ((r.stderr or "")[:300],))
+            sys.exit(4)
+        r = git_as("reset", "--hard", "origin/main", capture=True, check=False)
+        if r.returncode != 0:
+            log("!! reset --hard origin/main 失败：%s" % ((r.stderr or "")[:300],))
+            sys.exit(4)
+    else:
+        tmp = AS + ".clone"
+        if os.path.isdir(tmp):
+            shutil.rmtree(tmp)
+        log("克隆 dwg-assets → data/assets")
+        r = run(["git", "clone", "--depth=1", REPO_SSH, tmp], capture=True, check=False)
+        if r.returncode != 0:
+            log("!! 克隆失败：%s" % ((r.stderr or "")[:400],))
+            sys.exit(4)
+        if os.path.isdir(AS):
+            shutil.rmtree(AS)
+        os.makedirs(os.path.dirname(AS), exist_ok=True)
+        shutil.move(tmp, AS)
+    n = count_webp(AS)
+    log("  data/assets 就绪：%d 张 webp" % n)
+    if n < MIN_TOTAL:
+        log("!! 分仓里只有 %d 张图（下限 %d）→ 拒绝继续" % (n, MIN_TOTAL))
+        sys.exit(4)
+    return True
+
+
+def git_as(*args, **kw):
+    return run(["git"] + list(args), cwd=AS, **kw)
+
+
 def ensure_clone():
     """work 目录不是仓库就克隆；是仓库就 fetch（浅克隆，省时间）。"""
     if os.path.isdir(os.path.join(WORK, ".git")):
@@ -112,6 +164,10 @@ def ensure_clone():
         return False
     os.makedirs(os.path.dirname(WORK) or ".", exist_ok=True)
     if os.path.isdir(WORK):
+        # ★ WORK 就是真源目录时**绝不删**（那是在删两万张图）
+        if _same(WORK, AS):
+            log("!! %s 不是 git 仓且它就是源目录 → 请先跑 pull-in" % WORK)
+            sys.exit(4)
         shutil.rmtree(WORK)
     log("克隆 dwg-assets → %s" % WORK)
     # 空仓克隆会失败（没有 main）→ 回落到 init
@@ -131,6 +187,10 @@ def ensure_clone():
 
 def mirror():
     """把 data/assets 增量镜像到 WORK（按文件大小判断，不删远端已有）。"""
+    if _same(WORK, AS):
+        log("  work 就是源目录本身（分仓就地提交模式）→ 跳过镜像")
+        _write_gitignore()
+        return
     added = updated = 0
     bytes_new = 0
     for top in sorted(os.listdir(AS)):
@@ -157,7 +217,11 @@ def mirror():
                 updated += 1
                 bytes_new += os.path.getsize(sf)
     log("  镜像：新增/更新 %d 个文件，%.1f MB" % (updated + added, bytes_new / 1048576.0))
-    # 写本仓的 .gitignore（幂等）
+    _write_gitignore()
+
+
+def _write_gitignore():
+    """写本仓的 .gitignore（幂等）"""
     gi = os.path.join(WORK, ".gitignore")
     try:
         cur = open(gi, encoding="utf-8").read() if os.path.exists(gi) else ""
@@ -232,8 +296,12 @@ def status():
 def main():
     cmd = (sys.argv[1] if len(sys.argv) > 1 else "status").lower()
     yes = "--yes" in sys.argv
+    if cmd == "pull-in":
+        pull_in()
+        status()
+        return
     if not os.path.isdir(AS):
-        log("找不到 %s —— 先 checkout 出 data/assets" % AS)
+        log("找不到 %s —— 先 checkout 出 data/assets（或跑 pull-in 从分仓拉）" % AS)
         sys.exit(1)
     if cmd == "status":
         status()

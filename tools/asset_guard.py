@@ -32,9 +32,15 @@ AS = os.path.join(DATA, "assets")
 # GitHub 硬限：单文件 100MB、仓库软限 1GB
 # 我们的分层预算（2026-10-06 定稿，见 tools/ASSETS-PLAN.py）：
 #   热图（头像/KV/热度分层封面）全走 git + gcore.jsdelivr（实测 22KB/s 可用）
-#   → 资产目录守 700MB，仓库总量守 850MB，给曲库分片/歌词/评论留余量。
+#   → 资产目录守上限，仓库总量守 850MB，给曲库分片/歌词/评论留余量。
+#
+# ★★★ 2026-10-10 上限 700 → 900：图片已拆到**独立仓** lidawei1985/dwg-assets
+#   （主仓 ios-music-api 当时已 1002MB，而增长项只有图片）。
+#   现在 data/assets 的预算对的是 dwg-assets 自己的 1GB 仓限（不是主仓的余量），
+#   900MB 留 ~100MB 给 git 打包膨胀；顶到 900MB 时的正确动作**不是**再往上抬，
+#   而是开 dwg-assets-b（端上 ASSETBASE 多一档基址即可，见 kernel/app.html）。
 REPO_LIMIT_MB = int(os.environ.get("AG_REPO_LIMIT_MB") or "1000")
-ASSET_LIMIT_MB = int(os.environ.get("AG_ASSET_LIMIT_MB") or "700")
+ASSET_LIMIT_MB = int(os.environ.get("AG_ASSET_LIMIT_MB") or "900")
 FILE_LIMIT_MB = int(os.environ.get("AG_FILE_LIMIT_MB") or "95")
 
 

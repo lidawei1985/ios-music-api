@@ -65,6 +65,22 @@ jobs:
       - name: 安装取色依赖（Pillow，用于主视觉主色预计算）
         run: python -m pip install --quiet --disable-pip-version-check Pillow
 
+      # ★★★ 2026-10-10 新增：图片资产已拆到独立仓 lidawei1985/dwg-assets。
+      #   主仓 ios-music-api 实测 1002MB 撞 GitHub 1GB 软限，而增长项只有图片
+      #   （曲库/歌词是分片的，片数可预期）→ 图片搬到自己的仓，各占一份 1GB 预算，
+      #   不够再开 -b/-c（与星幕 fc-img-xingmu-a/b 同一套机制）。
+      #   ★ 这一步**失败必须硬失败**（脚本 exit 4）：data/assets 若是空的而 localize 照跑，
+      #     它会从零重建索引（只含本轮那 1500 条）→ 线上两万张封面的映射当场清空。
+      #     宁可本轮整轮不跑（线上保持上一版），也不能带着空索引往下走。
+      #   ★ 不能 continue-on-error —— 那正好会放行上面那条高危路径。
+      - name: 拉取图片分仓（dwg-assets → data/assets）
+        env:
+          ASSETS_KEY_FILE: ${{ github.workspace }}/.dwg_assets_key
+        run: |
+          printf '%s\n' "${{ secrets.ASSETS_DEPLOY_KEY }}" > "$ASSETS_KEY_FILE"
+          chmod 600 "$ASSETS_KEY_FILE"
+          python tools/asset_repo.py pull-in
+
       - name: 适配器自检（破版预警，不阻断）
         continue-on-error: true
         run: python tools/adapters.py 稻香 周杰伦
@@ -296,6 +312,18 @@ jobs:
             fi
           fi
           echo "锚点已发布：https://gcore.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/win/<窗口>.js"
+
+      # ★★★ 2026-10-10 新增：把本轮新落的 WebP + 索引推到图片分仓。
+      #   放在锚点之后 —— 锚点是「数据时效」的关键路径（端上靠它切新 sha），
+      #   图片是长尾资产，晚几分钟推完不影响任何人；反过来则会拖慢整轮。
+      #   continue-on-error：图片推失败不该让整轮数据发布被判失败（数据已在主仓发出）。
+      #   幂等：无变更时脚本静默成功。
+      - name: 发布图片分仓（data/assets → dwg-assets）
+        continue-on-error: true
+        env:
+          ASSETS_KEY_FILE: ${{ github.workspace }}/.dwg_assets_key
+          ASSET_WORK: ${{ github.workspace }}/data/assets
+        run: python tools/asset_repo.py publish --yes
 
       - name: 刷新 jsDelivr 缓存（★ 对分支无效 —— 留作痕迹，数据时效已由锚点解决）
         continue-on-error: true
