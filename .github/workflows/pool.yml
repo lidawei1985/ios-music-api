@@ -339,12 +339,18 @@ jobs:
           #   端上 probeTide() 拿到 sha 后，索引/数据整体切到 @<sha>（全新 URL → 秒级）。
           #   图片仍走 @main：诉求是「图要在我们自己这儿、永不因上游挂掉而白屏」，
           #   不是「分钟级可见」，且端上有 <img> 直连 + 上游 URL 兜底，不会白屏。
+          # ★ 2026-10-10 修正目标仓：图片已拆到独立仓 dwg-assets，
+          #   继续 purge 主仓的 data/assets/* 只会打在一个**已经不存在的路径**上（纯空转）。
+          #   现在分两组打：数据文件打主仓，图片索引打 dwg-assets。
+          ASSET_REPO="lidawei1985/dwg-assets"
           for f in pool.json charts.json library.json artists.json mv.json hero.json \
-                   assets/av.json assets/kv.json assets/cv.json assets/manifest.json \
-                   assets/av.js assets/kv.js assets/cv.js \
                    pool.js charts.js library.js artists.js mv.js hero.js; do
             curl -sS --max-time 25 "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/$f" -o /dev/null \
               && echo "purged $f" || echo "purge failed $f"
+          done
+          for f in av.json kv.json cv.json manifest.json av.js kv.js cv.js; do
+            curl -sS --max-time 25 "https://purge.jsdelivr.net/gh/${ASSET_REPO}@main/$f" -o /dev/null \
+              && echo "purged dwg-assets/$f" || echo "purge failed dwg-assets/$f"
           done
           curl -sS --max-time 25 "https://cdn.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/pool.json" | head -c 400
 

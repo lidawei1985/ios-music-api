@@ -45,9 +45,19 @@ FILE_LIMIT_MB = int(os.environ.get("AG_FILE_LIMIT_MB") or "95")
 
 
 def du(path):
-    """目录真实字节数（含子目录）"""
+    """目录真实字节数（含子目录，**不含 .git**）。
+
+    ★★★ 2026-10-10 血案：data/assets 现在是指纹分仓 dwg-assets 的**克隆**，
+    它带一个 ~330MB 的 `.git/objects/pack/*.pack`。旧实现把 .git 一起算进去 →
+    ① 资产目录体量虚高近一倍（695.8MB 里有一半是 pack）；
+    ② 更致命的是**单文件扫描**撞上那个 pack（>95MB）→ 直接判「GitHub 单文件超限」→
+       整轮发布被拦（run 37937618761 实测：`入库并发布`/锚点全被 skip，本轮数据全丢）。
+    但 pack 是**克隆元的元数据**，不是仓内文件 —— GitHub 的 100MB 限制针对的是 **blob**，
+    dwg-assets 里最大的 blob 是 13KB 的 webp。所以这里必须排除 .git。
+    """
     t = 0
-    for r, _d, fs in os.walk(path):
+    for r, ds, fs in os.walk(path):
+        ds[:] = [d for d in ds if d != ".git"]
         for f in fs:
             p = os.path.join(r, f)
             try:
@@ -89,10 +99,12 @@ def main():
     print("  git 已跟踪 %d 个文件    : %.1f MB（仓库硬限 %d MB）"
           % (n_files, mb(tracked_b), REPO_LIMIT_MB))
 
-    # ① 单文件上限
+    # ① 单文件上限（★ 同样排除 .git —— 克隆的 pack 文件动辄几百 MB，
+    #    它不是仓内文件，见 du() 上方注释）
     big = []
     if os.path.isdir(AS):
-        for r, _d, fs in os.walk(AS):
+        for r, ds, fs in os.walk(AS):
+            ds[:] = [d for d in ds if d != ".git"]
             for f in fs:
                 p = os.path.join(r, f)
                 try:
