@@ -1,0 +1,47 @@
+name: assets
+
+# 图片资产分仓发布（lidawei1985/dwg-assets）
+#
+# 为什么单独一个 workflow（不塞进 pool.yml）：
+#   pool.yml 是 90 分钟预算 + 新鲜度守卫的采集主流程，任何一步超时都会让「整轮成果全丢
+#   且锚点不发」。而图片分仓只是把 data/assets 镜像出去，与数据采集无耦合，
+#   单独跑 → 失败也不影响曲库/歌词/榜单的发布（只是封面暂时还留在主仓）。
+#
+# 与主仓的关系：主仓仍跟踪 data/assets（端上老版本还在读主仓路径），
+#   本 workflow **只读主仓、只写分仓**，不产生主仓提交 → 零风险。
+#   等 dwg-assets 内容核验完整后，再把「主仓停止跟踪 data/assets」这一步做掉。
+on:
+  workflow_dispatch:
+  schedule:
+    # 与 pool 的 :07/:27/:47 错开，避免两个 job 同时抢 GitHub 出口
+    - cron: "13 1-23/2 * * *"
+    - cron: "43 1-23/2 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: assets-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    # 首次要推 ~365MB / 2 万张图；之后每轮只推增量。30 分钟留足。
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 写入图片分仓部署密钥
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.ASSETS_DEPLOY_KEY }}" > ~/.ssh/dwg_assets
+          chmod 600 ~/.ssh/dwg_assets
+          # 空 secret 时明确报错（否则后面会静默回落到 https 然后卡住）
+          test -s ~/.ssh/dwg_assets && echo "部署密钥已就位 $(wc -c < ~/.ssh/dwg_assets) 字节"
+
+      - name: 同步并发布图片分仓
+        env:
+          ASSETS_KEY_FILE: /home/runner/.ssh/dwg_assets
+          ASSET_WORK: ${{ github.workspace }}/.assets-publish
+        run: python3 tools/asset_repo.py all --yes
