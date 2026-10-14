@@ -1,87 +1,6 @@
 {
- "updated": "2026-10-14T07:43:08Z",
- "hotkeys": [
-  {
-   "k": "我们的歌",
-   "n": 765562
-  },
-  {
-   "k": "冰雪奇缘2",
-   "n": 587404
-  },
-  {
-   "k": "张杰",
-   "n": 323823
-  },
-  {
-   "k": "桥边姑娘",
-   "n": 287637
-  },
-  {
-   "k": "星辰大海",
-   "n": 202868
-  },
-  {
-   "k": "哪咤 李宇春",
-   "n": 192652
-  },
-  {
-   "k": "左手指月",
-   "n": 164609
-  },
-  {
-   "k": "邓紫棋",
-   "n": 155475
-  },
-  {
-   "k": "酒醉的蝴蝶",
-   "n": 154236
-  },
-  {
-   "k": "左肩",
-   "n": 139814
-  },
-  {
-   "k": "从前有座灵剑山",
-   "n": 133861
-  },
-  {
-   "k": "下山",
-   "n": 122423
-  },
-  {
-   "k": "肖战",
-   "n": 107837
-  },
-  {
-   "k": "DANCE MONKEY",
-   "n": 103401
-  },
-  {
-   "k": "句号",
-   "n": 76584
-  },
-  {
-   "k": "冰雪奇缘",
-   "n": 76530
-  },
-  {
-   "k": "心似烟火",
-   "n": 69945
-  },
-  {
-   "k": "酒醉的蝴蝶原唱",
-   "n": 69664
-  },
-  {
-   "k": "句号邓紫棋",
-   "n": 68767
-  },
-  {
-   "k": "IU",
-   "n": 67439
-  }
- ],
+ "updated": "2026-10-14T08:58:29Z",
+ "hotkeys": [],
  "lists": [
   {
    "topid": "26",
@@ -3855,12 +3774,8 @@
     },
     {
      "title": "我在等一个懂我的人 (深情版)",
-     "singer": "糖小小/张多歌",
+     "singer": "张多歌",
      "singers": [
-      {
-       "name": "糖小小",
-       "mid": "002JRDt215rcyz"
-      },
       {
        "name": "张多歌",
        "mid": "000rptnR1liYhf"
@@ -6540,12 +6455,8 @@
     },
     {
      "title": "我在等一个懂我的人 (深情版)",
-     "singer": "糖小小/张多歌",
+     "singer": "张多歌",
      "singers": [
-      {
-       "name": "糖小小",
-       "mid": "002JRDt215rcyz"
-      },
       {
        "name": "张多歌",
        "mid": "000rptnR1liYhf"
@@ -10631,9 +10542,9 @@
      ],
      "album": "看淡",
      "duration": 216,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000032Yp7x1CQ0CW.jpg",
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001GeRC12l75Dt.jpg",
      "mid": "0044ZulJ3OrXfs",
-     "albummid": "0032Yp7x1CQ0CW",
+     "albummid": "001GeRC12l75Dt",
      "vid": "",
      "rank": "2"
     },
@@ -12734,9 +12645,9 @@
      ],
      "album": "看淡",
      "duration": 216,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000032Yp7x1CQ0CW.jpg",
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001GeRC12l75Dt.jpg",
      "mid": "0044ZulJ3OrXfs",
-     "albummid": "0032Yp7x1CQ0CW",
+     "albummid": "001GeRC12l75Dt",
      "vid": "",
      "rank": "22"
     },
