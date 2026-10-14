@@ -1,6 +1,87 @@
 {
- "updated": "2026-10-14T08:58:29Z",
- "hotkeys": [],
+ "updated": "2026-10-14T12:57:20Z",
+ "hotkeys": [
+  {
+   "k": "我们的歌",
+   "n": 765562
+  },
+  {
+   "k": "冰雪奇缘2",
+   "n": 587404
+  },
+  {
+   "k": "张杰",
+   "n": 323823
+  },
+  {
+   "k": "桥边姑娘",
+   "n": 287637
+  },
+  {
+   "k": "星辰大海",
+   "n": 202868
+  },
+  {
+   "k": "哪咤 李宇春",
+   "n": 192652
+  },
+  {
+   "k": "左手指月",
+   "n": 164609
+  },
+  {
+   "k": "邓紫棋",
+   "n": 155475
+  },
+  {
+   "k": "酒醉的蝴蝶",
+   "n": 154236
+  },
+  {
+   "k": "左肩",
+   "n": 139814
+  },
+  {
+   "k": "从前有座灵剑山",
+   "n": 133861
+  },
+  {
+   "k": "下山",
+   "n": 122423
+  },
+  {
+   "k": "肖战",
+   "n": 107837
+  },
+  {
+   "k": "DANCE MONKEY",
+   "n": 103401
+  },
+  {
+   "k": "句号",
+   "n": 76584
+  },
+  {
+   "k": "冰雪奇缘",
+   "n": 76530
+  },
+  {
+   "k": "心似烟火",
+   "n": 69945
+  },
+  {
+   "k": "酒醉的蝴蝶原唱",
+   "n": 69664
+  },
+  {
+   "k": "句号邓紫棋",
+   "n": 68767
+  },
+  {
+   "k": "IU",
+   "n": 67439
+  }
+ ],
  "lists": [
   {
    "topid": "26",
@@ -26,11 +107,15 @@
     },
     {
      "title": "NEON",
-     "singer": "A2O LITE",
+     "singer": "A2O LITE/A2O",
      "singers": [
       {
        "name": "A2O LITE",
        "mid": "001a9OPO2jNaJe"
+      },
+      {
+       "name": "A2O",
+       "mid": "000rmEay0gfWiA"
       }
      ],
      "album": "NEON",
@@ -1779,11 +1864,15 @@
     },
     {
      "title": "SUPERSTAR",
-     "singer": "A2O SOUL",
+     "singer": "A2O SOUL/A2O",
      "singers": [
       {
        "name": "A2O SOUL",
        "mid": "001PaqIP4CMMOI"
+      },
+      {
+       "name": "A2O",
+       "mid": "000rmEay0gfWiA"
       }
      ],
      "album": "SUPERSTAR",
@@ -5256,11 +5345,15 @@
     },
     {
      "title": "NEON",
-     "singer": "A2O LITE",
+     "singer": "A2O LITE/A2O",
      "singers": [
       {
        "name": "A2O LITE",
        "mid": "001a9OPO2jNaJe"
+      },
+      {
+       "name": "A2O",
+       "mid": "000rmEay0gfWiA"
       }
      ],
      "album": "NEON",
@@ -6918,11 +7011,15 @@
     },
     {
      "title": "SUPERSTAR",
-     "singer": "A2O SOUL",
+     "singer": "A2O SOUL/A2O",
      "singers": [
       {
        "name": "A2O SOUL",
        "mid": "001PaqIP4CMMOI"
+      },
+      {
+       "name": "A2O",
+       "mid": "000rmEay0gfWiA"
       }
      ],
      "album": "SUPERSTAR",
@@ -7018,11 +7115,15 @@
    "songs": [
     {
      "title": "NEON",
-     "singer": "A2O LITE",
+     "singer": "A2O LITE/A2O",
      "singers": [
       {
        "name": "A2O LITE",
        "mid": "001a9OPO2jNaJe"
+      },
+      {
+       "name": "A2O",
+       "mid": "000rmEay0gfWiA"
       }
      ],
      "album": "NEON",
@@ -7052,11 +7153,15 @@
     },
     {
      "title": "SUPERSTAR",
-     "singer": "A2O SOUL",
+     "singer": "A2O SOUL/A2O",
      "singers": [
       {
        "name": "A2O SOUL",
        "mid": "001PaqIP4CMMOI"
+      },
+      {
+       "name": "A2O",
+       "mid": "000rmEay0gfWiA"
       }
      ],
      "album": "SUPERSTAR",
@@ -8516,11 +8621,15 @@
     },
     {
      "title": "心跳赫兹 (Love Got Me Ooh)",
-     "singer": "A2O MAY",
+     "singer": "A2O MAY/A2O",
      "singers": [
       {
        "name": "A2O MAY",
        "mid": "0039r9bW4JA9eN"
+      },
+      {
+       "name": "A2O",
+       "mid": "000rmEay0gfWiA"
       }
      ],
      "album": "Love Got Me Ooh",
@@ -8769,11 +8878,15 @@
    "songs": [
     {
      "title": "NEON",
-     "singer": "A2O LITE",
+     "singer": "A2O LITE/A2O",
      "singers": [
       {
        "name": "A2O LITE",
        "mid": "001a9OPO2jNaJe"
+      },
+      {
+       "name": "A2O",
+       "mid": "000rmEay0gfWiA"
       }
      ],
      "album": "NEON",
@@ -9155,11 +9268,15 @@
     },
     {
      "title": "SUPERSTAR",
-     "singer": "A2O SOUL",
+     "singer": "A2O SOUL/A2O",
      "singers": [
       {
        "name": "A2O SOUL",
        "mid": "001PaqIP4CMMOI"
+      },
+      {
+       "name": "A2O",
+       "mid": "000rmEay0gfWiA"
       }
      ],
      "album": "SUPERSTAR",
@@ -12898,11 +13015,11 @@
        "mid": "0046i1Eh0A9NCk"
       }
      ],
-     "album": "煙灰Ash 影视原声带",
+     "album": "蜚蜚",
      "duration": 220,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003K21up4crPBp.jpg",
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000zb1WO0TVWG9.jpg",
      "mid": "00388U1G0yN0lK",
-     "albummid": "003K21up4crPBp",
+     "albummid": "000zb1WO0TVWG9",
      "vid": "",
      "rank": "37"
     },
