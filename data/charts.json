@@ -1,11 +1,92 @@
 {
- "updated": "2026-10-14T06:13:53Z",
- "hotkeys": [],
+ "updated": "2026-10-14T07:43:08Z",
+ "hotkeys": [
+  {
+   "k": "我们的歌",
+   "n": 765562
+  },
+  {
+   "k": "冰雪奇缘2",
+   "n": 587404
+  },
+  {
+   "k": "张杰",
+   "n": 323823
+  },
+  {
+   "k": "桥边姑娘",
+   "n": 287637
+  },
+  {
+   "k": "星辰大海",
+   "n": 202868
+  },
+  {
+   "k": "哪咤 李宇春",
+   "n": 192652
+  },
+  {
+   "k": "左手指月",
+   "n": 164609
+  },
+  {
+   "k": "邓紫棋",
+   "n": 155475
+  },
+  {
+   "k": "酒醉的蝴蝶",
+   "n": 154236
+  },
+  {
+   "k": "左肩",
+   "n": 139814
+  },
+  {
+   "k": "从前有座灵剑山",
+   "n": 133861
+  },
+  {
+   "k": "下山",
+   "n": 122423
+  },
+  {
+   "k": "肖战",
+   "n": 107837
+  },
+  {
+   "k": "DANCE MONKEY",
+   "n": 103401
+  },
+  {
+   "k": "句号",
+   "n": 76584
+  },
+  {
+   "k": "冰雪奇缘",
+   "n": 76530
+  },
+  {
+   "k": "心似烟火",
+   "n": 69945
+  },
+  {
+   "k": "酒醉的蝴蝶原唱",
+   "n": 69664
+  },
+  {
+   "k": "句号邓紫棋",
+   "n": 68767
+  },
+  {
+   "k": "IU",
+   "n": 67439
+  }
+ ],
  "lists": [
   {
    "topid": "26",
    "name": "热歌榜",
-   "count": 300,
+   "count": 299,
    "songs": [
     {
      "title": "我不难过",
@@ -4329,23 +4410,6 @@
      "rank": "249"
     },
     {
-     "title": "NEON(A2O LITE)",
-     "singer": "林砚秋",
-     "singers": [
-      {
-       "name": "林砚秋",
-       "mid": "001mejCE1oVNIB"
-      }
-     ],
-     "album": "NEON(A2O LITE)",
-     "duration": 222,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001WXBDO1SpcjW.jpg",
-     "mid": "001u751P2jHxfG",
-     "albummid": "001WXBDO1SpcjW",
-     "vid": "",
-     "rank": "250"
-    },
-    {
      "title": "Indestructible",
      "singer": "MEOVV",
      "singers": [
@@ -7110,23 +7174,6 @@
      "rank": "436600"
     },
     {
-     "title": "NEON(A2O LITE)",
-     "singer": "林砚秋",
-     "singers": [
-      {
-       "name": "林砚秋",
-       "mid": "001mejCE1oVNIB"
-      }
-     ],
-     "album": "NEON(A2O LITE)",
-     "duration": 222,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001WXBDO1SpcjW.jpg",
-     "mid": "001u751P2jHxfG",
-     "albummid": "001WXBDO1SpcjW",
-     "vid": "",
-     "rank": "38147"
-    },
-    {
      "title": "夏天的雪",
      "singer": "展轩",
      "singers": [
@@ -8784,6 +8831,23 @@
      "albummid": "002BZWH51e6hbB",
      "vid": "",
      "rank": "29404"
+    },
+    {
+     "title": "Hmm",
+     "singer": "展轩",
+     "singers": [
+      {
+       "name": "展轩",
+       "mid": "000fcQjv3tipAg"
+      }
+     ],
+     "album": "未命名 Untitled",
+     "duration": 172,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000037utx12r8Epv.jpg",
+     "mid": "002P1cUI2Ebaid",
+     "albummid": "0037utx12r8Epv",
+     "vid": "",
+     "rank": "4612"
     }
    ]
   },
