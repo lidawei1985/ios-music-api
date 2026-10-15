@@ -1,87 +1,6 @@
 {
- "updated": "2026-10-15T06:04:25Z",
- "hotkeys": [
-  {
-   "k": "我们的歌",
-   "n": 765562
-  },
-  {
-   "k": "冰雪奇缘2",
-   "n": 587404
-  },
-  {
-   "k": "张杰",
-   "n": 323823
-  },
-  {
-   "k": "桥边姑娘",
-   "n": 287637
-  },
-  {
-   "k": "星辰大海",
-   "n": 202868
-  },
-  {
-   "k": "哪咤 李宇春",
-   "n": 192652
-  },
-  {
-   "k": "左手指月",
-   "n": 164609
-  },
-  {
-   "k": "邓紫棋",
-   "n": 155475
-  },
-  {
-   "k": "酒醉的蝴蝶",
-   "n": 154236
-  },
-  {
-   "k": "左肩",
-   "n": 139814
-  },
-  {
-   "k": "从前有座灵剑山",
-   "n": 133861
-  },
-  {
-   "k": "下山",
-   "n": 122423
-  },
-  {
-   "k": "肖战",
-   "n": 107837
-  },
-  {
-   "k": "DANCE MONKEY",
-   "n": 103401
-  },
-  {
-   "k": "句号",
-   "n": 76584
-  },
-  {
-   "k": "冰雪奇缘",
-   "n": 76530
-  },
-  {
-   "k": "心似烟火",
-   "n": 69945
-  },
-  {
-   "k": "酒醉的蝴蝶原唱",
-   "n": 69664
-  },
-  {
-   "k": "句号邓紫棋",
-   "n": 68767
-  },
-  {
-   "k": "IU",
-   "n": 67439
-  }
- ],
+ "updated": "2026-10-15T08:20:04Z",
+ "hotkeys": [],
  "lists": [
   {
    "topid": "26",
@@ -16002,6 +15921,35 @@
    "count": 100,
    "songs": [
     {
+     "title": "Know My Name (以我之名)",
+     "singer": "True Damage/英雄联盟/Sofia Reyes/Vic Mensa",
+     "singers": [
+      {
+       "name": "True Damage",
+       "mid": "0025eg6Z0bkxnP"
+      },
+      {
+       "name": "英雄联盟",
+       "mid": "0000RHdG1ukDqy"
+      },
+      {
+       "name": "Sofia Reyes",
+       "mid": "003WNu5q2lYwXa"
+      },
+      {
+       "name": "Vic Mensa",
+       "mid": "001OtObv23E1WQ"
+      }
+     ],
+     "album": "Know My Name (以我之名)",
+     "duration": 212,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000CGQ5I3ry29A.jpg",
+     "mid": "002Vylat0rpIcN",
+     "albummid": "000CGQ5I3ry29A",
+     "vid": "",
+     "rank": "1"
+    },
+    {
      "title": "Patient Zero",
      "singer": "Taylor Swift",
      "singers": [
@@ -16016,51 +15964,26 @@
      "mid": "0003mjnm10HxDz",
      "albummid": "003zeVgY4BE7Sk",
      "vid": "",
-     "rank": "1"
-    },
-    {
-     "title": "Bye Bye Inhibitions",
-     "singer": "Alok/娜琏 (나연)/TWICE (트와이스)",
-     "singers": [
-      {
-       "name": "Alok",
-       "mid": "0034Quv21XbI9L"
-      },
-      {
-       "name": "娜琏 (나연)",
-       "mid": "003bl58c4YGJis"
-      },
-      {
-       "name": "TWICE (트와이스)",
-       "mid": "001p0vF44ewiwB"
-      }
-     ],
-     "album": "Bye Bye Inhibitions",
-     "duration": 146,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002Xfmp41ALVyi.jpg",
-     "mid": "001IqQ762rXAcV",
-     "albummid": "002Xfmp41ALVyi",
-     "vid": "",
      "rank": "2"
     },
     {
-     "title": "Solace Feat. Emily Vaughn",
-     "singer": "Vicetone/Emily Vaughn",
+     "title": "Last Thing You Need (from GTAVI: The Album)",
+     "singer": "Morgan Wallen/Grand Theft Auto VI",
      "singers": [
       {
-       "name": "Vicetone",
-       "mid": "003AD17D4PYPFR"
+       "name": "Morgan Wallen",
+       "mid": "000v4VeA23qqdy"
       },
       {
-       "name": "Emily Vaughn",
-       "mid": "002C1P5U3cc1CO"
+       "name": "Grand Theft Auto VI",
+       "mid": "003CAurj2wVWSV"
       }
      ],
-     "album": "Solace Feat. Emily Vaughn",
-     "duration": 166,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004GX8xd3jZRhi.jpg",
-     "mid": "002B9s1115OweP",
-     "albummid": "004GX8xd3jZRhi",
+     "album": "Last Thing You Need (from GTAVI: The Album)",
+     "duration": 196,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003vpJj42IuuO1.jpg",
+     "mid": "002rThtt26yDop",
+     "albummid": "003vpJj42IuuO1",
      "vid": "",
      "rank": "3"
     },
@@ -16080,6 +16003,23 @@
      "albummid": "000eyexn1eKs1j",
      "vid": "",
      "rank": "4"
+    },
+    {
+     "title": "Pink Clouding",
+     "singer": "Taylor Swift",
+     "singers": [
+      {
+       "name": "Taylor Swift",
+       "mid": "000qrPik2w6lDr"
+      }
+     ],
+     "album": "The Life of a Showgirl: The Encore",
+     "duration": 190,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000eyexn1eKs1j.jpg",
+     "mid": "000cuZfy26RlZk",
+     "albummid": "000eyexn1eKs1j",
+     "vid": "",
+     "rank": "5"
     },
     {
      "title": "If The Sun Burns Out Tonight (feat. Oli Sykes & Courtney LaPlante) (炽日将烬)",
@@ -16108,24 +16048,24 @@
      "mid": "001DyGLQ4FgVnr",
      "albummid": "003za1wU3CHrFg",
      "vid": "",
-     "rank": "5"
+     "rank": "6"
     },
     {
-     "title": "Pink Clouding",
-     "singer": "Taylor Swift",
+     "title": "Follow Me",
+     "singer": "Alec Benjamin",
      "singers": [
       {
-       "name": "Taylor Swift",
-       "mid": "000qrPik2w6lDr"
+       "name": "Alec Benjamin",
+       "mid": "002HRSkP17GCwL"
       }
      ],
-     "album": "The Life of a Showgirl: The Encore",
-     "duration": 190,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000eyexn1eKs1j.jpg",
-     "mid": "000cuZfy26RlZk",
-     "albummid": "000eyexn1eKs1j",
+     "album": "Follow Me",
+     "duration": 171,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000026Ja2k3z8d4n.jpg",
+     "mid": "003jNiO51fODTk",
+     "albummid": "0026Ja2k3z8d4n",
      "vid": "",
-     "rank": "6"
+     "rank": "7"
     },
     {
      "title": "Cleveland!",
@@ -16142,96 +16082,121 @@
      "mid": "004GkHhe0Naskn",
      "albummid": "003zeVgY4BE7Sk",
      "vid": "",
-     "rank": "7"
-    },
-    {
-     "title": "Popstar",
-     "singer": "Tinashe",
-     "singers": [
-      {
-       "name": "Tinashe",
-       "mid": "000SBCns40v4lH"
-      }
-     ],
-     "album": "Popstar (Explicit)",
-     "duration": 167,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004DoQfA0tmG6b.jpg",
-     "mid": "000sGB2h2Pg607",
-     "albummid": "004DoQfA0tmG6b",
-     "vid": "",
      "rank": "8"
     },
     {
-     "title": "Last Thing You Need (from GTAVI: The Album)",
-     "singer": "Morgan Wallen/Grand Theft Auto VI",
+     "title": "She’s the Best (Explicit)",
+     "singer": "Troye Sivan",
      "singers": [
       {
-       "name": "Morgan Wallen",
-       "mid": "000v4VeA23qqdy"
-      },
-      {
-       "name": "Grand Theft Auto VI",
-       "mid": "003CAurj2wVWSV"
+       "name": "Troye Sivan",
+       "mid": "004LhKMW2CWJox"
       }
      ],
-     "album": "Last Thing You Need (from GTAVI: The Album)",
-     "duration": 196,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003vpJj42IuuO1.jpg",
-     "mid": "002rThtt26yDop",
-     "albummid": "003vpJj42IuuO1",
+     "album": "She’s the Best (Explicit)",
+     "duration": 254,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
+     "mid": "003KNDXT1A9Wtx",
+     "albummid": "002eygU92yDRl8",
      "vid": "",
      "rank": "9"
     },
     {
-     "title": "Sunglasses",
-     "singer": "Tinashe",
+     "title": "FF (Explicit)",
+     "singer": "Troye Sivan",
      "singers": [
       {
-       "name": "Tinashe",
-       "mid": "000SBCns40v4lH"
+       "name": "Troye Sivan",
+       "mid": "004LhKMW2CWJox"
       }
      ],
-     "album": "Popstar (Explicit)",
-     "duration": 156,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004DoQfA0tmG6b.jpg",
-     "mid": "001jwf653kfvyp",
-     "albummid": "004DoQfA0tmG6b",
+     "album": "She’s the Best (Explicit)",
+     "duration": 262,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
+     "mid": "001GjuRW4cAl1l",
+     "albummid": "002eygU92yDRl8",
      "vid": "",
      "rank": "10"
     },
     {
-     "title": "one life",
-     "singer": "charlieonnafriday",
+     "title": "Bye Bye Inhibitions",
+     "singer": "Alok/娜琏 (나연)/TWICE (트와이스)",
      "singers": [
       {
-       "name": "charlieonnafriday",
-       "mid": "003RlpSh39N2jW"
+       "name": "Alok",
+       "mid": "0034Quv21XbI9L"
+      },
+      {
+       "name": "娜琏 (나연)",
+       "mid": "003bl58c4YGJis"
+      },
+      {
+       "name": "TWICE (트와이스)",
+       "mid": "001p0vF44ewiwB"
       }
      ],
-     "album": "one life",
-     "duration": 182,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002fIW1G1VPEUS.jpg",
-     "mid": "000wN2Kb3mlqMN",
-     "albummid": "002fIW1G1VPEUS",
+     "album": "Bye Bye Inhibitions",
+     "duration": 146,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002Xfmp41ALVyi.jpg",
+     "mid": "001IqQ762rXAcV",
+     "albummid": "002Xfmp41ALVyi",
      "vid": "",
      "rank": "11"
     },
     {
-     "title": "The Fate of Ophelia",
-     "singer": "Taylor Swift",
+     "title": "He's Not Me",
+     "singer": "Anson Seabra",
      "singers": [
       {
-       "name": "Taylor Swift",
-       "mid": "000qrPik2w6lDr"
+       "name": "Anson Seabra",
+       "mid": "001f0ufU3ddN8w"
       }
      ],
-     "album": "The Life of a Showgirl: The Encore (Explicit)",
-     "duration": 226,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
-     "mid": "003XUNLK1PuQqW",
-     "albummid": "003zeVgY4BE7Sk",
+     "album": "He's Not Me",
+     "duration": 186,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003MsT3j37yqxD.jpg",
+     "mid": "00179xMq1xAvS0",
+     "albummid": "003MsT3j37yqxD",
      "vid": "",
      "rank": "12"
+    },
+    {
+     "title": "Canada Dry",
+     "singer": "Troye Sivan",
+     "singers": [
+      {
+       "name": "Troye Sivan",
+       "mid": "004LhKMW2CWJox"
+      }
+     ],
+     "album": "She’s the Best (Explicit)",
+     "duration": 201,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
+     "mid": "003jZtJm1WzYCm",
+     "albummid": "002eygU92yDRl8",
+     "vid": "",
+     "rank": "13"
+    },
+    {
+     "title": "Sincerity",
+     "singer": "NORIO/16",
+     "singers": [
+      {
+       "name": "NORIO",
+       "mid": "001baDHa0yTDzQ"
+      },
+      {
+       "name": "16",
+       "mid": "003qD6Eo3cbSKV"
+      }
+     ],
+     "album": "Sincerity",
+     "duration": 206,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000027AGm0i6pEB.jpg",
+     "mid": "002DFxkO0o4utC",
+     "albummid": "00027AGm0i6pEB",
+     "vid": "",
+     "rank": "14"
     },
     {
      "title": "Circles",
@@ -16248,7 +16213,189 @@
      "mid": "0027FRLW0r5xuH",
      "albummid": "003lXPni0fyYPf",
      "vid": "",
-     "rank": "13"
+     "rank": "15"
+    },
+    {
+     "title": "Popstar",
+     "singer": "Tinashe",
+     "singers": [
+      {
+       "name": "Tinashe",
+       "mid": "000SBCns40v4lH"
+      }
+     ],
+     "album": "Popstar (Explicit)",
+     "duration": 167,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004DoQfA0tmG6b.jpg",
+     "mid": "000sGB2h2Pg607",
+     "albummid": "004DoQfA0tmG6b",
+     "vid": "",
+     "rank": "16"
+    },
+    {
+     "title": "Solace Feat. Emily Vaughn",
+     "singer": "Vicetone/Emily Vaughn",
+     "singers": [
+      {
+       "name": "Vicetone",
+       "mid": "003AD17D4PYPFR"
+      },
+      {
+       "name": "Emily Vaughn",
+       "mid": "002C1P5U3cc1CO"
+      }
+     ],
+     "album": "Solace Feat. Emily Vaughn",
+     "duration": 166,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004GX8xd3jZRhi.jpg",
+     "mid": "002B9s1115OweP",
+     "albummid": "004GX8xd3jZRhi",
+     "vid": "",
+     "rank": "17"
+    },
+    {
+     "title": "Elements",
+     "singer": "John Michael Howell/ZVC",
+     "singers": [
+      {
+       "name": "John Michael Howell",
+       "mid": "003b0Zsz3VzkYB"
+      },
+      {
+       "name": "ZVC",
+       "mid": "000s8Sqp32G4A9"
+      }
+     ],
+     "album": "Elements",
+     "duration": 160,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000ollO83guzEp.jpg",
+     "mid": "0023bIod3ZwRQq",
+     "albummid": "000ollO83guzEp",
+     "vid": "",
+     "rank": "18"
+    },
+    {
+     "title": "The Fate of Ophelia",
+     "singer": "Taylor Swift",
+     "singers": [
+      {
+       "name": "Taylor Swift",
+       "mid": "000qrPik2w6lDr"
+      }
+     ],
+     "album": "The Life of a Showgirl: The Encore (Explicit)",
+     "duration": 226,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
+     "mid": "003XUNLK1PuQqW",
+     "albummid": "003zeVgY4BE7Sk",
+     "vid": "",
+     "rank": "19"
+    },
+    {
+     "title": "Way Back (混音版)",
+     "singer": "Acreix/La Mer",
+     "singers": [
+      {
+       "name": "Acreix",
+       "mid": "0046tUuY0UhoZy"
+      },
+      {
+       "name": "La Mer",
+       "mid": "000IjThf0CevJv"
+      }
+     ],
+     "album": "Soft Block（律动版）",
+     "duration": 138,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001MWYyY2JHFVD.jpg",
+     "mid": "003jxUoj1g9v9p",
+     "albummid": "001MWYyY2JHFVD",
+     "vid": "",
+     "rank": "20"
+    },
+    {
+     "title": "Tomorrow Tonight",
+     "singer": "Chris James",
+     "singers": [
+      {
+       "name": "Chris James",
+       "mid": "003LMmjH0IpWY8"
+      }
+     ],
+     "album": "Tomorrow Tonight",
+     "duration": 145,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000036cjOj1VAkE9.jpg",
+     "mid": "0000tc8h1p3iDX",
+     "albummid": "0036cjOj1VAkE9",
+     "vid": "",
+     "rank": "21"
+    },
+    {
+     "title": "Say It's Mine",
+     "singer": "Larissa Lambert",
+     "singers": [
+      {
+       "name": "Larissa Lambert",
+       "mid": "002KuHoe3iKXjw"
+      }
+     ],
+     "album": "Yearning (Explicit)",
+     "duration": 167,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001LLfOf13GGpJ.jpg",
+     "mid": "001nFQcN1VgUQs",
+     "albummid": "001LLfOf13GGpJ",
+     "vid": "",
+     "rank": "22"
+    },
+    {
+     "title": "She'll Never Be Me",
+     "singer": "Britney Spears",
+     "singers": [
+      {
+       "name": "Britney Spears",
+       "mid": "002EYdg22Ts0BV"
+      }
+     ],
+     "album": "She'll Never Be Me",
+     "duration": 185,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000W1Hrf3LRXoT.jpg",
+     "mid": "003VhSJ33xCORj",
+     "albummid": "000W1Hrf3LRXoT",
+     "vid": "",
+     "rank": "23"
+    },
+    {
+     "title": "Pop This",
+     "singer": "Öwnboss",
+     "singers": [
+      {
+       "name": "Öwnboss",
+       "mid": "004Soz8Y3UYQXz"
+      }
+     ],
+     "album": "Pop This",
+     "duration": 179,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000096xsA15gZiQ.jpg",
+     "mid": "004Z8gRf1uyU5S",
+     "albummid": "00096xsA15gZiQ",
+     "vid": "",
+     "rank": "24"
+    },
+    {
+     "title": "Sunglasses",
+     "singer": "Tinashe",
+     "singers": [
+      {
+       "name": "Tinashe",
+       "mid": "000SBCns40v4lH"
+      }
+     ],
+     "album": "Popstar (Explicit)",
+     "duration": 156,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004DoQfA0tmG6b.jpg",
+     "mid": "001jwf653kfvyp",
+     "albummid": "004DoQfA0tmG6b",
+     "vid": "",
+     "rank": "25"
     },
     {
      "title": "Live My Life (我行我路)",
@@ -16277,7 +16424,7 @@
      "mid": "003XWUgq1XgbAM",
      "albummid": "0026a8Dy0aCSON",
      "vid": "",
-     "rank": "14"
+     "rank": "26"
     },
     {
      "title": "Too Easy",
@@ -16294,31 +16441,116 @@
      "mid": "004edJb42l2iXg",
      "albummid": "004DoQfA0tmG6b",
      "vid": "",
-     "rank": "15"
+     "rank": "27"
     },
     {
-     "title": "See You In My Dreams",
-     "singer": "Victoria Monét/SZA",
+     "title": "Embarrassingly (Explicit)",
+     "singer": "Troye Sivan",
      "singers": [
       {
-       "name": "Victoria Monét",
-       "mid": "004VM6II2gjUAJ"
-      },
-      {
-       "name": "SZA",
-       "mid": "000Y8Ox33WKXcW"
+       "name": "Troye Sivan",
+       "mid": "004LhKMW2CWJox"
       }
      ],
-     "album": "Frequency Of Love (Explicit)",
-     "duration": 158,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001gq4e43Iruv5.jpg",
-     "mid": "003p8Pam0OlPmf",
-     "albummid": "001gq4e43Iruv5",
+     "album": "She’s the Best (Explicit)",
+     "duration": 211,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
+     "mid": "002s3SlW2QM2ax",
+     "albummid": "002eygU92yDRl8",
      "vid": "",
-     "rank": "16"
+     "rank": "28"
     },
     {
-     "title": "Way Back (混音版)",
+     "title": "Icarus",
+     "singer": "Klaas/Monkeekid",
+     "singers": [
+      {
+       "name": "Klaas",
+       "mid": "00420lwO1IOHVx"
+      },
+      {
+       "name": "Monkeekid",
+       "mid": "004MB8Fq1QF02F"
+      }
+     ],
+     "album": "Icarus",
+     "duration": 179,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004eZatY4NdMEW.jpg",
+     "mid": "0034rPF24LTGks",
+     "albummid": "004eZatY4NdMEW",
+     "vid": "",
+     "rank": "29"
+    },
+    {
+     "title": "Nobody Wanna Dance Anymore (Explicit)",
+     "singer": "Tinashe",
+     "singers": [
+      {
+       "name": "Tinashe",
+       "mid": "000SBCns40v4lH"
+      }
+     ],
+     "album": "Popstar (Explicit)",
+     "duration": 140,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004DoQfA0tmG6b.jpg",
+     "mid": "001UResl4evuMH",
+     "albummid": "004DoQfA0tmG6b",
+     "vid": "",
+     "rank": "30"
+    },
+    {
+     "title": "blue",
+     "singer": "girl in red",
+     "singers": [
+      {
+       "name": "girl in red",
+       "mid": "002YYg9p3QgFKh"
+      }
+     ],
+     "album": "blue",
+     "duration": 250,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002pXUPR1c1tNN.jpg",
+     "mid": "001Ysszp0aUqsJ",
+     "albummid": "002pXUPR1c1tNN",
+     "vid": "",
+     "rank": "31"
+    },
+    {
+     "title": "Momentum",
+     "singer": "Jake Miller",
+     "singers": [
+      {
+       "name": "Jake Miller",
+       "mid": "001dBswQ3gbvwT"
+      }
+     ],
+     "album": "Momentum",
+     "duration": 165,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002CU2cW0vha6o.jpg",
+     "mid": "002YmPqj16QXLt",
+     "albummid": "002CU2cW0vha6o",
+     "vid": "",
+     "rank": "32"
+    },
+    {
+     "title": "Cowboy",
+     "singer": "Troye Sivan",
+     "singers": [
+      {
+       "name": "Troye Sivan",
+       "mid": "004LhKMW2CWJox"
+      }
+     ],
+     "album": "She’s the Best (Explicit)",
+     "duration": 204,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
+     "mid": "0000AXk60nxKcO",
+     "albummid": "002eygU92yDRl8",
+     "vid": "",
+     "rank": "33"
+    },
+    {
+     "title": "Walk Thru Fire Deep (氛围律动版)",
      "singer": "Acreix/La Mer",
      "singers": [
       {
@@ -16330,30 +16562,30 @@
        "mid": "000IjThf0CevJv"
       }
      ],
-     "album": "Soft Block（律动版）",
-     "duration": 138,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001MWYyY2JHFVD.jpg",
-     "mid": "003jxUoj1g9v9p",
-     "albummid": "001MWYyY2JHFVD",
+     "album": "Walk Thru Fire Deep（氛围律动版）",
+     "duration": 118,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003HLMKr2guLs2.jpg",
+     "mid": "003ytr3m4De5d7",
+     "albummid": "003HLMKr2guLs2",
      "vid": "",
-     "rank": "17"
+     "rank": "34"
     },
     {
-     "title": "Tomorrow Tonight",
-     "singer": "Chris James",
+     "title": "Perfect Man",
+     "singer": "Teddy Swims",
      "singers": [
       {
-       "name": "Chris James",
-       "mid": "003LMmjH0IpWY8"
+       "name": "Teddy Swims",
+       "mid": "003BiWMI2M50oZ"
       }
      ],
-     "album": "Tomorrow Tonight",
-     "duration": 145,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000036cjOj1VAkE9.jpg",
-     "mid": "0000tc8h1p3iDX",
-     "albummid": "0036cjOj1VAkE9",
+     "album": "Perfect Man",
+     "duration": 213,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002bJEQU3lqWI2.jpg",
+     "mid": "001sXKPr1XLjvT",
+     "albummid": "002bJEQU3lqWI2",
      "vid": "",
-     "rank": "18"
+     "rank": "35"
     },
     {
      "title": "That's Why I Love You",
@@ -16374,339 +16606,34 @@
      "mid": "0048jiXk1UxN96",
      "albummid": "001gq4e43Iruv5",
      "vid": "",
-     "rank": "19"
-    },
-    {
-     "title": "Solar Eclipse",
-     "singer": "Drake/Don Toliver",
-     "singers": [
-      {
-       "name": "Drake",
-       "mid": "001FAb1d02xUcH"
-      },
-      {
-       "name": "Don Toliver",
-       "mid": "003HsAIA1HndKS"
-      }
-     ],
-     "album": "HABIBTI (FOMO)",
-     "duration": 218,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003j4gOJ2oEvXd.jpg",
-     "mid": "001dYRDM0s88mJ",
-     "albummid": "003j4gOJ2oEvXd",
-     "vid": "",
-     "rank": "20"
-    },
-    {
-     "title": "Dance With Me",
-     "singer": "Bruno Mars",
-     "singers": [
-      {
-       "name": "Bruno Mars",
-       "mid": "001F1svH2tTpsC"
-      }
-     ],
-     "album": "Dance With Me",
-     "duration": 219,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000280MKd3Juw9E.jpg",
-     "mid": "003b23Cm03QFYN",
-     "albummid": "00280MKd3Juw9E",
-     "vid": "",
-     "rank": "21"
-    },
-    {
-     "title": "Elements",
-     "singer": "John Michael Howell/ZVC",
-     "singers": [
-      {
-       "name": "John Michael Howell",
-       "mid": "003b0Zsz3VzkYB"
-      },
-      {
-       "name": "ZVC",
-       "mid": "000s8Sqp32G4A9"
-      }
-     ],
-     "album": "Elements",
-     "duration": 160,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000ollO83guzEp.jpg",
-     "mid": "0023bIod3ZwRQq",
-     "albummid": "000ollO83guzEp",
-     "vid": "",
-     "rank": "22"
-    },
-    {
-     "title": "could cry just thinkin about you (Full Version)",
-     "singer": "Troye Sivan",
-     "singers": [
-      {
-       "name": "Troye Sivan",
-       "mid": "004LhKMW2CWJox"
-      }
-     ],
-     "album": "songs to cry to in your room (Explicit)",
-     "duration": 158,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004O1fe60fuAOP.jpg",
-     "mid": "0028VFEr1j2j14",
-     "albummid": "004O1fe60fuAOP",
-     "vid": "",
-     "rank": "23"
-    },
-    {
-     "title": "Nobody Wanna Dance Anymore (Explicit)",
-     "singer": "Tinashe",
-     "singers": [
-      {
-       "name": "Tinashe",
-       "mid": "000SBCns40v4lH"
-      }
-     ],
-     "album": "Popstar (Explicit)",
-     "duration": 140,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004DoQfA0tmG6b.jpg",
-     "mid": "001UResl4evuMH",
-     "albummid": "004DoQfA0tmG6b",
-     "vid": "",
-     "rank": "24"
-    },
-    {
-     "title": "Melatonin (Explicit)",
-     "singer": "Tinashe",
-     "singers": [
-      {
-       "name": "Tinashe",
-       "mid": "000SBCns40v4lH"
-      }
-     ],
-     "album": "Popstar (Explicit)",
-     "duration": 222,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004DoQfA0tmG6b.jpg",
-     "mid": "004QqfLl2HfbGC",
-     "albummid": "004DoQfA0tmG6b",
-     "vid": "",
-     "rank": "25"
-    },
-    {
-     "title": "Pillow Fight",
-     "singer": "Tinashe",
-     "singers": [
-      {
-       "name": "Tinashe",
-       "mid": "000SBCns40v4lH"
-      }
-     ],
-     "album": "Pillow Fight / I’d Rather Be Alone",
-     "duration": 141,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001sEjLG4PauMz.jpg",
-     "mid": "004Xi61I4DvzHN",
-     "albummid": "001sEjLG4PauMz",
-     "vid": "",
-     "rank": "26"
-    },
-    {
-     "title": "Honey (Explicit)",
-     "singer": "Taylor Swift",
-     "singers": [
-      {
-       "name": "Taylor Swift",
-       "mid": "000qrPik2w6lDr"
-      }
-     ],
-     "album": "The Life of a Showgirl: The Encore (Explicit)",
-     "duration": 181,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
-     "mid": "001aFOUz272GDR",
-     "albummid": "003zeVgY4BE7Sk",
-     "vid": "",
-     "rank": "27"
-    },
-    {
-     "title": "Say It's Mine",
-     "singer": "Larissa Lambert",
-     "singers": [
-      {
-       "name": "Larissa Lambert",
-       "mid": "002KuHoe3iKXjw"
-      }
-     ],
-     "album": "Yearning (Explicit)",
-     "duration": 167,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001LLfOf13GGpJ.jpg",
-     "mid": "001nFQcN1VgUQs",
-     "albummid": "001LLfOf13GGpJ",
-     "vid": "",
-     "rank": "28"
-    },
-    {
-     "title": "This Dream of You",
-     "singer": "Martin Garrix",
-     "singers": [
-      {
-       "name": "Martin Garrix",
-       "mid": "003gHa6S2vmcbq"
-      }
-     ],
-     "album": "This Dream of You",
-     "duration": 286,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000EHRBY0yiqD7.jpg",
-     "mid": "001w51zR2gyf0f",
-     "albummid": "000EHRBY0yiqD7",
-     "vid": "",
-     "rank": "29"
-    },
-    {
-     "title": "REDLIGHTS",
-     "singer": "Miley Cyrus",
-     "singers": [
-      {
-       "name": "Miley Cyrus",
-       "mid": "0037uV5A4O7UGj"
-      }
-     ],
-     "album": "Bass Persuades",
-     "duration": 222,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002jV9ZC1G5plj.jpg",
-     "mid": "0047AMOK0iWhbt",
-     "albummid": "002jV9ZC1G5plj",
-     "vid": "",
-     "rank": "30"
-    },
-    {
-     "title": "Ruin The Friendship",
-     "singer": "Taylor Swift",
-     "singers": [
-      {
-       "name": "Taylor Swift",
-       "mid": "000qrPik2w6lDr"
-      }
-     ],
-     "album": "The Life of a Showgirl: The Encore (Explicit)",
-     "duration": 220,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
-     "mid": "004B9znR3MAmcl",
-     "albummid": "003zeVgY4BE7Sk",
-     "vid": "",
-     "rank": "31"
-    },
-    {
-     "title": "TSUNAMI",
-     "singer": "Sofi Tukker/OneRepublic",
-     "singers": [
-      {
-       "name": "Sofi Tukker",
-       "mid": "004ai5SE3AAoHD"
-      },
-      {
-       "name": "OneRepublic",
-       "mid": "0004LscG3FtUDz"
-      }
-     ],
-     "album": "TSUNAMI",
-     "duration": 156,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000T2krc3N0WvD.jpg",
-     "mid": "001MXv5v1K6LYk",
-     "albummid": "000T2krc3N0WvD",
-     "vid": "",
-     "rank": "32"
-    },
-    {
-     "title": "The Life of a Showgirl (Explicit)",
-     "singer": "Taylor Swift/Sabrina Carpenter",
-     "singers": [
-      {
-       "name": "Taylor Swift",
-       "mid": "000qrPik2w6lDr"
-      },
-      {
-       "name": "Sabrina Carpenter",
-       "mid": "001b86502oTUai"
-      }
-     ],
-     "album": "The Life of a Showgirl: The Encore (Explicit)",
-     "duration": 241,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
-     "mid": "004I1avm0h5Vcb",
-     "albummid": "003zeVgY4BE7Sk",
-     "vid": "",
-     "rank": "33"
-    },
-    {
-     "title": "Self Aware",
-     "singer": "Mentol",
-     "singers": [
-      {
-       "name": "Mentol",
-       "mid": "000Ap73N1geBqH"
-      }
-     ],
-     "album": "Self Aware",
-     "duration": 159,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001lPFMC3cBNGg.jpg",
-     "mid": "0028cEpZ0kuBQJ",
-     "albummid": "001lPFMC3cBNGg",
-     "vid": "",
-     "rank": "34"
-    },
-    {
-     "title": "World's Greatest (Explicit)",
-     "singer": "Lil Nas X",
-     "singers": [
-      {
-       "name": "Lil Nas X",
-       "mid": "002wmeml04IbW4"
-      }
-     ],
-     "album": "World's Greatest (Explicit)",
-     "duration": 230,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001GfsYY1ISM8E.jpg",
-     "mid": "002P7LPr16rSpC",
-     "albummid": "001GfsYY1ISM8E",
-     "vid": "",
-     "rank": "35"
-    },
-    {
-     "title": "Alive (氛围鼓点版)",
-     "singer": "Tsuki/Pao7oO/La Mer",
-     "singers": [
-      {
-       "name": "Tsuki",
-       "mid": "0035SvV002vY6F"
-      },
-      {
-       "name": "Pao7oO",
-       "mid": "003CqLCs16vRSw"
-      },
-      {
-       "name": "La Mer",
-       "mid": "000IjThf0CevJv"
-      }
-     ],
-     "album": "Tropical Sunset (律动版)",
-     "duration": 100,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000IrJEY2ByyJQ.jpg",
-     "mid": "00007LpM3RlqpC",
-     "albummid": "000IrJEY2ByyJQ",
-     "vid": "",
      "rank": "36"
     },
     {
-     "title": "Sincerity",
-     "singer": "NORIO/16",
+     "title": "You My Shore（动感鼓点）",
+     "singer": "Waifu Shop/Ameriie/He00c/拖鞋pd",
      "singers": [
       {
-       "name": "NORIO",
-       "mid": "001baDHa0yTDzQ"
+       "name": "Waifu Shop",
+       "mid": "002e4I4B0B1wNb"
       },
       {
-       "name": "16",
-       "mid": "003qD6Eo3cbSKV"
+       "name": "Ameriie",
+       "mid": "0025FNgg49vChw"
+      },
+      {
+       "name": "He00c",
+       "mid": "002SNdXH0mKdql"
+      },
+      {
+       "name": "拖鞋pd",
+       "mid": "003vzG6N3YHEho"
       }
      ],
-     "album": "Sincerity",
-     "duration": 206,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000027AGm0i6pEB.jpg",
-     "mid": "002DFxkO0o4utC",
-     "albummid": "00027AGm0i6pEB",
+     "album": "Slowed Stars（夜的序章）",
+     "duration": 140,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000036ZccH4AFiJN.jpg",
+     "mid": "001bJL392ykYgh",
+     "albummid": "0036ZccH4AFiJN",
      "vid": "",
      "rank": "37"
     },
@@ -16732,63 +16659,38 @@
      "rank": "38"
     },
     {
-     "title": "Sway",
-     "singer": "Jada Facer",
+     "title": "REDLIGHTS",
+     "singer": "Miley Cyrus",
      "singers": [
       {
-       "name": "Jada Facer",
-       "mid": "001GKH533praBl"
+       "name": "Miley Cyrus",
+       "mid": "0037uV5A4O7UGj"
       }
      ],
-     "album": "Sway",
-     "duration": 139,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004H892I1oxgRF.jpg",
-     "mid": "001pbbJM0EYPxg",
-     "albummid": "004H892I1oxgRF",
+     "album": "Bass Persuades",
+     "duration": 222,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002jV9ZC1G5plj.jpg",
+     "mid": "0047AMOK0iWhbt",
+     "albummid": "002jV9ZC1G5plj",
      "vid": "",
      "rank": "39"
     },
     {
-     "title": "Abraxas (动感鼓点版)",
-     "singer": "Acreix/La Mer",
+     "title": "Dance With Me",
+     "singer": "Bruno Mars",
      "singers": [
       {
-       "name": "Acreix",
-       "mid": "0046tUuY0UhoZy"
-      },
-      {
-       "name": "La Mer",
-       "mid": "000IjThf0CevJv"
+       "name": "Bruno Mars",
+       "mid": "001F1svH2tTpsC"
       }
      ],
-     "album": "Boby（DJ版）",
-     "duration": 123,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Zv3fC2BxguP.jpg",
-     "mid": "002DT0kt46PNRX",
-     "albummid": "000Zv3fC2BxguP",
+     "album": "Dance With Me",
+     "duration": 219,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000280MKd3Juw9E.jpg",
+     "mid": "003b23Cm03QFYN",
+     "albummid": "00280MKd3Juw9E",
      "vid": "",
      "rank": "40"
-    },
-    {
-     "title": "Mariô",
-     "singer": "David Guetta/Jast",
-     "singers": [
-      {
-       "name": "David Guetta",
-       "mid": "000gELB619OfVG"
-      },
-      {
-       "name": "Jast",
-       "mid": "001YMtEN4dk4vb"
-      }
-     ],
-     "album": "Mariô",
-     "duration": 120,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003PFi7H3gUxGb.jpg",
-     "mid": "002zw3hO0N2ga1",
-     "albummid": "003PFi7H3gUxGb",
-     "vid": "",
-     "rank": "41"
     },
     {
      "title": "Opalite",
@@ -16799,206 +16701,16 @@
        "mid": "000qrPik2w6lDr"
       }
      ],
-     "album": "The Life of a Showgirl: The Encore (Explicit)",
+     "album": "The Life of a Showgirl: The Encore",
      "duration": 235,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
-     "mid": "002r0Uaz25I1SN",
-     "albummid": "003zeVgY4BE7Sk",
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000eyexn1eKs1j.jpg",
+     "mid": "000fohkm3wUGJi",
+     "albummid": "000eyexn1eKs1j",
      "vid": "",
-     "rank": "42"
+     "rank": "41"
     },
     {
-     "title": "Perfect Man",
-     "singer": "Teddy Swims",
-     "singers": [
-      {
-       "name": "Teddy Swims",
-       "mid": "003BiWMI2M50oZ"
-      }
-     ],
-     "album": "Perfect Man",
-     "duration": 213,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002bJEQU3lqWI2.jpg",
-     "mid": "001sXKPr1XLjvT",
-     "albummid": "002bJEQU3lqWI2",
-     "vid": "",
-     "rank": "43"
-    },
-    {
-     "title": "Drug Called Love",
-     "singer": "Klaas",
-     "singers": [
-      {
-       "name": "Klaas",
-       "mid": "00420lwO1IOHVx"
-      }
-     ],
-     "album": "Drug Called Love",
-     "duration": 151,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000033ic1E0b9gfu.jpg",
-     "mid": "0012Lfmc13caQP",
-     "albummid": "0033ic1E0b9gfu",
-     "vid": "",
-     "rank": "44"
-    },
-    {
-     "title": "Cold Shoulder (Explicit)",
-     "singer": "Drake/Don Toliver/YEBBA",
-     "singers": [
-      {
-       "name": "Drake",
-       "mid": "001FAb1d02xUcH"
-      },
-      {
-       "name": "Don Toliver",
-       "mid": "003HsAIA1HndKS"
-      },
-      {
-       "name": "YEBBA",
-       "mid": "000E7HU91jcami"
-      }
-     ],
-     "album": "HABIBTI (FOMO) [Explicit]",
-     "duration": 234,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001cvv6l13xL65.jpg",
-     "mid": "003gnM580mApSc",
-     "albummid": "001cvv6l13xL65",
-     "vid": "",
-     "rank": "45"
-    },
-    {
-     "title": "Elizabeth Taylor",
-     "singer": "Taylor Swift",
-     "singers": [
-      {
-       "name": "Taylor Swift",
-       "mid": "000qrPik2w6lDr"
-      }
-     ],
-     "album": "The Life of a Showgirl: The Encore (Explicit)",
-     "duration": 208,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
-     "mid": "003FHXJJ1srswZ",
-     "albummid": "003zeVgY4BE7Sk",
-     "vid": "",
-     "rank": "46"
-    },
-    {
-     "title": "Close My Eyes",
-     "singer": "Marshmello/ILLENIUM/Sacha",
-     "singers": [
-      {
-       "name": "Marshmello",
-       "mid": "003T09nh37Pq4N"
-      },
-      {
-       "name": "ILLENIUM",
-       "mid": "0020hNzE3kGP45"
-      },
-      {
-       "name": "Sacha",
-       "mid": "004ZJeOr1sgXWu"
-      }
-     ],
-     "album": "Close My Eyes",
-     "duration": 163,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002a7O1n4RDX8E.jpg",
-     "mid": "0039sGg62U1LQO",
-     "albummid": "002a7O1n4RDX8E",
-     "vid": "",
-     "rank": "47"
-    },
-    {
-     "title": "Father Figure (Explicit)",
-     "singer": "Taylor Swift",
-     "singers": [
-      {
-       "name": "Taylor Swift",
-       "mid": "000qrPik2w6lDr"
-      }
-     ],
-     "album": "The Life of a Showgirl: The Encore (Explicit)",
-     "duration": 212,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
-     "mid": "003U6ifi3YYJOc",
-     "albummid": "003zeVgY4BE7Sk",
-     "vid": "",
-     "rank": "48"
-    },
-    {
-     "title": "Wood (Explicit)",
-     "singer": "Taylor Swift",
-     "singers": [
-      {
-       "name": "Taylor Swift",
-       "mid": "000qrPik2w6lDr"
-      }
-     ],
-     "album": "The Life of a Showgirl: The Encore (Explicit)",
-     "duration": 150,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
-     "mid": "004R9Klg08xuF0",
-     "albummid": "003zeVgY4BE7Sk",
-     "vid": "",
-     "rank": "49"
-    },
-    {
-     "title": "Pop This",
-     "singer": "Öwnboss",
-     "singers": [
-      {
-       "name": "Öwnboss",
-       "mid": "004Soz8Y3UYQXz"
-      }
-     ],
-     "album": "Pop This",
-     "duration": 179,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000096xsA15gZiQ.jpg",
-     "mid": "004Z8gRf1uyU5S",
-     "albummid": "00096xsA15gZiQ",
-     "vid": "",
-     "rank": "50"
-    },
-    {
-     "title": "Echo Gone (宿命感)",
-     "singer": "Acreix/La Mer",
-     "singers": [
-      {
-       "name": "Acreix",
-       "mid": "0046tUuY0UhoZy"
-      },
-      {
-       "name": "La Mer",
-       "mid": "000IjThf0CevJv"
-      }
-     ],
-     "album": "Boby（DJ版）",
-     "duration": 126,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Zv3fC2BxguP.jpg",
-     "mid": "001tVsWv0T0J5F",
-     "albummid": "000Zv3fC2BxguP",
-     "vid": "",
-     "rank": "51"
-    },
-    {
-     "title": "Quebec",
-     "singer": "Drake",
-     "singers": [
-      {
-       "name": "Drake",
-       "mid": "001FAb1d02xUcH"
-      }
-     ],
-     "album": "HABIBTI (FOMO)",
-     "duration": 130,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003j4gOJ2oEvXd.jpg",
-     "mid": "003hJkQ73k7ue6",
-     "albummid": "003j4gOJ2oEvXd",
-     "vid": "",
-     "rank": "52"
-    },
-    {
-     "title": "Party",
+     "title": "I Do This For You (Explicit)",
      "singer": "Troye Sivan",
      "singers": [
       {
@@ -17006,51 +16718,55 @@
        "mid": "004LhKMW2CWJox"
       }
      ],
-     "album": "Party",
-     "duration": 201,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000gI2oT10JkCi.jpg",
-     "mid": "003Ecd8l2nBgHk",
-     "albummid": "000gI2oT10JkCi",
+     "album": "She’s the Best (Explicit)",
+     "duration": 214,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
+     "mid": "001xd5HY0kV0mo",
+     "albummid": "002eygU92yDRl8",
      "vid": "",
-     "rank": "53"
+     "rank": "42"
     },
     {
-     "title": "Versailles",
-     "singer": "Carly Rae Jepsen",
+     "title": "Alive (氛围鼓点版)",
+     "singer": "Tsuki/Pao7oO/La Mer",
      "singers": [
       {
-       "name": "Carly Rae Jepsen",
-       "mid": "004cnBXB1OBN7m"
-      }
-     ],
-     "album": "Day and Night (Explicit)",
-     "duration": 194,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000drI092CGDzF.jpg",
-     "mid": "001WEuXM0DqqIe",
-     "albummid": "000drI092CGDzF",
-     "vid": "",
-     "rank": "54"
-    },
-    {
-     "title": "Diamonds (带感氛围版)",
-     "singer": "Acreix/La Mer",
-     "singers": [
+       "name": "Tsuki",
+       "mid": "0035SvV002vY6F"
+      },
       {
-       "name": "Acreix",
-       "mid": "0046tUuY0UhoZy"
+       "name": "Pao7oO",
+       "mid": "003CqLCs16vRSw"
       },
       {
        "name": "La Mer",
        "mid": "000IjThf0CevJv"
       }
      ],
-     "album": "BOOM BOOM",
-     "duration": 161,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002LmXtW3CZxSp.jpg",
-     "mid": "002FsbL22YwXhz",
-     "albummid": "002LmXtW3CZxSp",
+     "album": "Tropical Sunset (律动版)",
+     "duration": 100,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000IrJEY2ByyJQ.jpg",
+     "mid": "00007LpM3RlqpC",
+     "albummid": "000IrJEY2ByyJQ",
      "vid": "",
-     "rank": "55"
+     "rank": "43"
+    },
+    {
+     "title": "Holding Out For A Hero",
+     "singer": "Mentol",
+     "singers": [
+      {
+       "name": "Mentol",
+       "mid": "000Ap73N1geBqH"
+      }
+     ],
+     "album": "Holding Out For A Hero",
+     "duration": 200,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001quAaC1Bb3q3.jpg",
+     "mid": "003REt9N4UY2mx",
+     "albummid": "001quAaC1Bb3q3",
+     "vid": "",
+     "rank": "44"
     },
     {
      "title": "I’d Rather Be Alone",
@@ -17067,10 +16783,69 @@
      "mid": "000yvqZo1Rkyds",
      "albummid": "004DoQfA0tmG6b",
      "vid": "",
-     "rank": "56"
+     "rank": "45"
     },
     {
-     "title": "Close Behind",
+     "title": "See You In My Dreams",
+     "singer": "Victoria Monét/SZA",
+     "singers": [
+      {
+       "name": "Victoria Monét",
+       "mid": "004VM6II2gjUAJ"
+      },
+      {
+       "name": "SZA",
+       "mid": "000Y8Ox33WKXcW"
+      }
+     ],
+     "album": "Frequency Of Love (Explicit)",
+     "duration": 158,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001gq4e43Iruv5.jpg",
+     "mid": "003p8Pam0OlPmf",
+     "albummid": "001gq4e43Iruv5",
+     "vid": "",
+     "rank": "46"
+    },
+    {
+     "title": "Don’t Chart (from GTAVI: The Album) (Explicit)",
+     "singer": "Cardi B/Grand Theft Auto VI",
+     "singers": [
+      {
+       "name": "Cardi B",
+       "mid": "003KiJMA3QCdjW"
+      },
+      {
+       "name": "Grand Theft Auto VI",
+       "mid": "003CAurj2wVWSV"
+      }
+     ],
+     "album": "Don’t Chart (from GTAVI: The Album) [Explicit]",
+     "duration": 164,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000flHNs3jCF7y.jpg",
+     "mid": "004Aflgz02nfNa",
+     "albummid": "000flHNs3jCF7y",
+     "vid": "",
+     "rank": "47"
+    },
+    {
+     "title": "roomie (Explicit)",
+     "singer": "Tove Lo",
+     "singers": [
+      {
+       "name": "Tove Lo",
+       "mid": "002lOe3K3G9oqe"
+      }
+     ],
+     "album": "ESTRUS (Explicit)",
+     "duration": 132,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002SOtv441Chqv.jpg",
+     "mid": "000yCKeh0c9c7R",
+     "albummid": "002SOtv441Chqv",
+     "vid": "",
+     "rank": "48"
+    },
+    {
+     "title": "Let's Meet Again",
      "singer": "Imazee",
      "singers": [
       {
@@ -17078,41 +16853,67 @@
        "mid": "001TlfHN1SJ0ld"
       }
      ],
-     "album": "Close Behind",
-     "duration": 255,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000HELaI35S9HF.jpg",
-     "mid": "000rVvHN2TUaLZ",
-     "albummid": "000HELaI35S9HF",
+     "album": "Let's Meet Again",
+     "duration": 212,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001toBek45Seh8.jpg",
+     "mid": "002esOzu45zzLL",
+     "albummid": "001toBek45Seh8",
      "vid": "",
-     "rank": "57"
+     "rank": "49"
     },
     {
-     "title": "Tik Tok（DJ混音）",
-     "singer": "Waifu Shop/Pao7oO/Ameriie",
+     "title": "Le Boy",
+     "singer": "Troye Sivan",
      "singers": [
       {
-       "name": "Waifu Shop",
-       "mid": "002e4I4B0B1wNb"
-      },
-      {
-       "name": "Pao7oO",
-       "mid": "003CqLCs16vRSw"
-      },
-      {
-       "name": "Ameriie",
-       "mid": "0025FNgg49vChw"
+       "name": "Troye Sivan",
+       "mid": "004LhKMW2CWJox"
       }
      ],
-     "album": "Montagem Nada（动感节奏版）",
-     "duration": 154,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001rjvJa4AkkTZ.jpg",
-     "mid": "004fSfbC4IExEa",
-     "albummid": "001rjvJa4AkkTZ",
+     "album": "She’s the Best (Explicit)",
+     "duration": 210,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
+     "mid": "000WJ6ZW07zjAM",
+     "albummid": "002eygU92yDRl8",
      "vid": "",
-     "rank": "58"
+     "rank": "50"
     },
     {
-     "title": "CANCELLED! (Explicit)",
+     "title": "Party",
+     "singer": "Troye Sivan",
+     "singers": [
+      {
+       "name": "Troye Sivan",
+       "mid": "004LhKMW2CWJox"
+      }
+     ],
+     "album": "She’s the Best (Explicit)",
+     "duration": 201,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
+     "mid": "002dvgn425yUey",
+     "albummid": "002eygU92yDRl8",
+     "vid": "",
+     "rank": "51"
+    },
+    {
+     "title": "Love So Big It Hurts (Explicit)",
+     "singer": "Troye Sivan",
+     "singers": [
+      {
+       "name": "Troye Sivan",
+       "mid": "004LhKMW2CWJox"
+      }
+     ],
+     "album": "She’s the Best (Explicit)",
+     "duration": 167,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
+     "mid": "004cHeJW3ceKXp",
+     "albummid": "002eygU92yDRl8",
+     "vid": "",
+     "rank": "52"
+    },
+    {
+     "title": "Honey",
      "singer": "Taylor Swift",
      "singers": [
       {
@@ -17120,126 +16921,130 @@
        "mid": "000qrPik2w6lDr"
       }
      ],
-     "album": "The Life of a Showgirl: The Encore (Explicit)",
-     "duration": 211,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
-     "mid": "002OjboP2c0GrN",
-     "albummid": "003zeVgY4BE7Sk",
+     "album": "The Life of a Showgirl: The Encore",
+     "duration": 181,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000eyexn1eKs1j.jpg",
+     "mid": "002DKEgm2TeLwL",
+     "albummid": "000eyexn1eKs1j",
+     "vid": "",
+     "rank": "53"
+    },
+    {
+     "title": "Solar Eclipse",
+     "singer": "Drake/Don Toliver",
+     "singers": [
+      {
+       "name": "Drake",
+       "mid": "001FAb1d02xUcH"
+      },
+      {
+       "name": "Don Toliver",
+       "mid": "003HsAIA1HndKS"
+      }
+     ],
+     "album": "HABIBTI (FOMO)",
+     "duration": 218,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003j4gOJ2oEvXd.jpg",
+     "mid": "001dYRDM0s88mJ",
+     "albummid": "003j4gOJ2oEvXd",
+     "vid": "",
+     "rank": "54"
+    },
+    {
+     "title": "MONTAGEM MWEZI",
+     "singer": "NUEKI",
+     "singers": [
+      {
+       "name": "NUEKI",
+       "mid": "003zuKCs4JN087"
+      }
+     ],
+     "album": "MONTAGEM MWEZI",
+     "duration": 120,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001dViAV1N2RpT.jpg",
+     "mid": "003jZzJt3P8ege",
+     "albummid": "001dViAV1N2RpT",
+     "vid": "",
+     "rank": "55"
+    },
+    {
+     "title": "Troye Meets World",
+     "singer": "Troye Sivan",
+     "singers": [
+      {
+       "name": "Troye Sivan",
+       "mid": "004LhKMW2CWJox"
+      }
+     ],
+     "album": "She’s the Best (Explicit)",
+     "duration": 163,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
+     "mid": "003k2iIf3ENQHw",
+     "albummid": "002eygU92yDRl8",
+     "vid": "",
+     "rank": "56"
+    },
+    {
+     "title": "Molecules",
+     "singer": "Charlie Jeer",
+     "singers": [
+      {
+       "name": "Charlie Jeer",
+       "mid": "000ONBNm2PwShq"
+      }
+     ],
+     "album": "Take Away My Problems",
+     "duration": 193,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ZDvaU3WnksR.jpg",
+     "mid": "001Nek0h3mUZqK",
+     "albummid": "003ZDvaU3WnksR",
+     "vid": "",
+     "rank": "57"
+    },
+    {
+     "title": "Lost Control（祖国人进行曲）",
+     "singer": "Waifu Shop/Ameriie",
+     "singers": [
+      {
+       "name": "Waifu Shop",
+       "mid": "002e4I4B0B1wNb"
+      },
+      {
+       "name": "Ameriie",
+       "mid": "0025FNgg49vChw"
+      }
+     ],
+     "album": "Good Time（高燃节奏版）",
+     "duration": 134,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003uHdiz3gojC7.jpg",
+     "mid": "002tihdN1xao9z",
+     "albummid": "003uHdiz3gojC7",
+     "vid": "",
+     "rank": "58"
+    },
+    {
+     "title": "TSUNAMI",
+     "singer": "Sofi Tukker/OneRepublic",
+     "singers": [
+      {
+       "name": "Sofi Tukker",
+       "mid": "004ai5SE3AAoHD"
+      },
+      {
+       "name": "OneRepublic",
+       "mid": "0004LscG3FtUDz"
+      }
+     ],
+     "album": "TSUNAMI",
+     "duration": 156,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000T2krc3N0WvD.jpg",
+     "mid": "001MXv5v1K6LYk",
+     "albummid": "000T2krc3N0WvD",
      "vid": "",
      "rank": "59"
     },
     {
-     "title": "your verity",
-     "singer": "CG5/Horror Skunx",
-     "singers": [
-      {
-       "name": "CG5",
-       "mid": "0011CUbH3mi2mH"
-      },
-      {
-       "name": "Horror Skunx",
-       "mid": "00428Lim15JjnB"
-      }
-     ],
-     "album": "your verity",
-     "duration": 134,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003WYCCZ2bXR6c.jpg",
-     "mid": "001Z2k3c27tE6b",
-     "albummid": "003WYCCZ2bXR6c",
-     "vid": "",
-     "rank": "60"
-    },
-    {
-     "title": "#SELFIE",
-     "singer": "The Chainsmokers",
-     "singers": [
-      {
-       "name": "The Chainsmokers",
-       "mid": "004ABIFV1EZUAj"
-      }
-     ],
-     "album": "BEST THROWBACK PARTY HITS (Explicit)",
-     "duration": 184,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004K5Dnb2wuwXI.jpg",
-     "mid": "001BkA540vlpWp",
-     "albummid": "004K5Dnb2wuwXI",
-     "vid": "",
-     "rank": "61"
-    },
-    {
-     "title": "My Humps (Single Version)",
-     "singer": "Black Eyed Peas",
-     "singers": [
-      {
-       "name": "Black Eyed Peas",
-       "mid": "0039PNMH4AdYZd"
-      }
-     ],
-     "album": "2000s Hot Girl Bangers by Digster Pop (Explicit)",
-     "duration": 251,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001pO2j420DVPE.jpg",
-     "mid": "004abeMF2byiFt",
-     "albummid": "001pO2j420DVPE",
-     "vid": "",
-     "rank": "62"
-    },
-    {
-     "title": "Clear",
-     "singer": "FKJ",
-     "singers": [
-      {
-       "name": "FKJ",
-       "mid": "001Dv3rK15sbno"
-      }
-     ],
-     "album": "Tyber",
-     "duration": 173,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002OIBhJ1N4rnT.jpg",
-     "mid": "0005SSww0XpoNA",
-     "albummid": "002OIBhJ1N4rnT",
-     "vid": "",
-     "rank": "63"
-    },
-    {
-     "title": "So Good",
-     "singer": "Jhené Aiko/Kendrick Lamar",
-     "singers": [
-      {
-       "name": "Jhené Aiko",
-       "mid": "004atxHL14sWWm"
-      },
-      {
-       "name": "Kendrick Lamar",
-       "mid": "001doCJW3OCmVJ"
-      }
-     ],
-     "album": "Westside Whimsy",
-     "duration": 237,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002sE8bw2M31jQ.jpg",
-     "mid": "003ncRaZ20pL6P",
-     "albummid": "002sE8bw2M31jQ",
-     "vid": "",
-     "rank": "64"
-    },
-    {
-     "title": "Small Town",
-     "singer": "Dominic Fike",
-     "singers": [
-      {
-       "name": "Dominic Fike",
-       "mid": "000gHvO93CGFZJ"
-      }
-     ],
-     "album": "Small Town",
-     "duration": 169,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000035vchR49zAGj.jpg",
-     "mid": "000vmAEr2sDxhJ",
-     "albummid": "0035vchR49zAGj",
-     "vid": "",
-     "rank": "65"
-    },
-    {
-     "title": "Brainrot (Explicit)",
+     "title": "Melatonin (Explicit)",
      "singer": "Tinashe",
      "singers": [
       {
@@ -17248,40 +17053,83 @@
       }
      ],
      "album": "Popstar (Explicit)",
-     "duration": 142,
+     "duration": 222,
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004DoQfA0tmG6b.jpg",
-     "mid": "003SQX7J29q2OB",
+     "mid": "004QqfLl2HfbGC",
      "albummid": "004DoQfA0tmG6b",
      "vid": "",
-     "rank": "66"
+     "rank": "60"
     },
     {
-     "title": "Have It All",
-     "singer": "Hoang/SABAI/Dia Frampton",
+     "title": "Love Me Like I Loved You",
+     "singer": "Imazee",
      "singers": [
       {
-       "name": "Hoang",
-       "mid": "002Pgc2N3OJ588"
-      },
-      {
-       "name": "SABAI",
-       "mid": "001v7xOB0xRqlg"
-      },
-      {
-       "name": "Dia Frampton",
-       "mid": "001xC2zM4K7keC"
+       "name": "Imazee",
+       "mid": "001TlfHN1SJ0ld"
       }
      ],
-     "album": "Have It All",
-     "duration": 176,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000033l6N50yVN4a.jpg",
-     "mid": "000ESdlU2KX6T6",
-     "albummid": "0033l6N50yVN4a",
+     "album": "Love Me Like I Loved You",
+     "duration": 253,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001ijUUn0pKUO1.jpg",
+     "mid": "000687PE1fgzL8",
+     "albummid": "001ijUUn0pKUO1",
      "vid": "",
-     "rank": "67"
+     "rank": "61"
     },
     {
-     "title": "Actually Romantic (Explicit)",
+     "title": "Unloveu (Explicit)",
+     "singer": "KATSEYE",
+     "singers": [
+      {
+       "name": "KATSEYE",
+       "mid": "000n1Yr42d13rd"
+      }
+     ],
+     "album": "Unloveu (Explicit)",
+     "duration": 232,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000SrIOi4QrsLP.jpg",
+     "mid": "000Ek2Tf1PMdou",
+     "albummid": "000SrIOi4QrsLP",
+     "vid": "",
+     "rank": "62"
+    },
+    {
+     "title": "Love Me Like You Do (From \"Fifty Shades Of Grey\")",
+     "singer": "Ellie Goulding",
+     "singers": [
+      {
+       "name": "Ellie Goulding",
+       "mid": "001YMoro1NL5hU"
+      }
+     ],
+     "album": "relaxing girly shower (Explicit)",
+     "duration": 253,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000kiJ2Q2VDtPY.jpg",
+     "mid": "000s8qAS3JoCuD",
+     "albummid": "000kiJ2Q2VDtPY",
+     "vid": "",
+     "rank": "63"
+    },
+    {
+     "title": "Amazed",
+     "singer": "Boyce Avenue",
+     "singers": [
+      {
+       "name": "Boyce Avenue",
+       "mid": "0035bDEn0Pypru"
+      }
+     ],
+     "album": "Amazed",
+     "duration": 232,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000317lwO48lg2X.jpg",
+     "mid": "001eQs1K0wpsar",
+     "albummid": "00317lwO48lg2X",
+     "vid": "",
+     "rank": "64"
+    },
+    {
+     "title": "Elizabeth Taylor",
      "singer": "Taylor Swift",
      "singers": [
       {
@@ -17290,12 +17138,92 @@
       }
      ],
      "album": "The Life of a Showgirl: The Encore (Explicit)",
-     "duration": 163,
+     "duration": 208,
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
-     "mid": "004YjBWt0Mog0i",
+     "mid": "003FHXJJ1srswZ",
      "albummid": "003zeVgY4BE7Sk",
      "vid": "",
+     "rank": "65"
+    },
+    {
+     "title": "You Left The Light (动感鼓点版)",
+     "singer": "Waifu Shop/拖鞋pd/AIYO",
+     "singers": [
+      {
+       "name": "Waifu Shop",
+       "mid": "002e4I4B0B1wNb"
+      },
+      {
+       "name": "拖鞋pd",
+       "mid": "003vzG6N3YHEho"
+      },
+      {
+       "name": "AIYO",
+       "mid": "004NxbHs1OsWB1"
+      }
+     ],
+     "album": "人看不清认知以外的事情",
+     "duration": 243,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002mbHTH2CnwCF.jpg",
+     "mid": "003SJX8J24xMpH",
+     "albummid": "002mbHTH2CnwCF",
+     "vid": "",
+     "rank": "66"
+    },
+    {
+     "title": "Ai Caralho (Explicit)",
+     "singer": "Hardwell/Maddix",
+     "singers": [
+      {
+       "name": "Hardwell",
+       "mid": "002xao6L3n9l4w"
+      },
+      {
+       "name": "Maddix",
+       "mid": "004cGshA1U2DYS"
+      }
+     ],
+     "album": "Ai Caralho (Explicit)",
+     "duration": 164,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000027RZN23Hs0Z1.jpg",
+     "mid": "001lbotT2wCeOh",
+     "albummid": "0027RZN23Hs0Z1",
+     "vid": "",
+     "rank": "67"
+    },
+    {
+     "title": "Colors (Deluxe Version)",
+     "singer": "OneRepublic",
+     "singers": [
+      {
+       "name": "OneRepublic",
+       "mid": "0004LscG3FtUDz"
+      }
+     ],
+     "album": "Oh My My (Deluxe Edition)",
+     "duration": 215,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004Szwll3Hgwyh.jpg",
+     "mid": "0018SBMT1Wel8r",
+     "albummid": "004Szwll3Hgwyh",
+     "vid": "",
      "rank": "68"
+    },
+    {
+     "title": "Ruin The Friendship",
+     "singer": "Taylor Swift",
+     "singers": [
+      {
+       "name": "Taylor Swift",
+       "mid": "000qrPik2w6lDr"
+      }
+     ],
+     "album": "The Life of a Showgirl: The Encore (Explicit)",
+     "duration": 220,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
+     "mid": "004B9znR3MAmcl",
+     "albummid": "003zeVgY4BE7Sk",
+     "vid": "",
+     "rank": "69"
     },
     {
      "title": "Where Is Your Love（House2026）",
@@ -17320,284 +17248,145 @@
      "mid": "0017cCe02Oh0eU",
      "albummid": "002oNcfU4KRKvw",
      "vid": "",
-     "rank": "69"
-    },
-    {
-     "title": "Immortals（DJ2026）",
-     "singer": "Waifu Shop/Pao7oO/Ameriie",
-     "singers": [
-      {
-       "name": "Waifu Shop",
-       "mid": "002e4I4B0B1wNb"
-      },
-      {
-       "name": "Pao7oO",
-       "mid": "003CqLCs16vRSw"
-      },
-      {
-       "name": "Ameriie",
-       "mid": "0025FNgg49vChw"
-      }
-     ],
-     "album": "Ga Sto Do（黑暗进行曲）",
-     "duration": 92,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004WkviO2SbIZO.jpg",
-     "mid": "001Pnhd54WFP0P",
-     "albummid": "004WkviO2SbIZO",
-     "vid": "",
      "rank": "70"
     },
     {
-     "title": "Sweet Dreams",
-     "singer": "TommyMuzzic/Luke Muzzic",
+     "title": "Lost Time (Explicit)",
+     "singer": "Troye Sivan/Lily-Rose Depp",
      "singers": [
       {
-       "name": "TommyMuzzic",
-       "mid": "0009UBrt4Cf94n"
+       "name": "Troye Sivan",
+       "mid": "004LhKMW2CWJox"
       },
       {
-       "name": "Luke Muzzic",
-       "mid": "0006POS31D0533"
+       "name": "Lily-Rose Depp",
+       "mid": "003yF5813NN0qC"
       }
      ],
-     "album": "Sweet Dreams",
-     "duration": 211,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001pLcTK2YWOck.jpg",
-     "mid": "000VLjEk3XPta5",
-     "albummid": "001pLcTK2YWOck",
+     "album": "She’s the Best (Explicit)",
+     "duration": 240,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
+     "mid": "003Oo3LG2VxAoN",
+     "albummid": "002eygU92yDRl8",
      "vid": "",
      "rank": "71"
     },
     {
-     "title": "Eleven",
-     "singer": "Connor Price/GRAHAM/Nic D",
+     "title": "pop it",
+     "singer": "Gunna",
      "singers": [
       {
-       "name": "Connor Price",
-       "mid": "002QYZ5e42GJwb"
-      },
-      {
-       "name": "GRAHAM",
-       "mid": "000DFjmc0qsOzG"
-      },
-      {
-       "name": "Nic D",
-       "mid": "002umtBW1kBsHE"
+       "name": "Gunna",
+       "mid": "002lBnfX0y4K7U"
       }
      ],
-     "album": "100",
-     "duration": 119,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001bnzC94Waf9E.jpg",
-     "mid": "000GA0CC0KvW1P",
-     "albummid": "001bnzC94Waf9E",
+     "album": "pop it",
+     "duration": 138,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001cTSIu307yb1.jpg",
+     "mid": "000cA5FF3bzrGt",
+     "albummid": "001cTSIu307yb1",
      "vid": "",
      "rank": "72"
     },
     {
-     "title": "Wi$h Li$t (Explicit)",
-     "singer": "Taylor Swift",
+     "title": "Have It All",
+     "singer": "Hoang/SABAI/Dia Frampton",
      "singers": [
       {
-       "name": "Taylor Swift",
-       "mid": "000qrPik2w6lDr"
+       "name": "Hoang",
+       "mid": "002Pgc2N3OJ588"
+      },
+      {
+       "name": "SABAI",
+       "mid": "001v7xOB0xRqlg"
+      },
+      {
+       "name": "Dia Frampton",
+       "mid": "001xC2zM4K7keC"
       }
      ],
-     "album": "The Life of a Showgirl: The Encore (Explicit)",
-     "duration": 207,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
-     "mid": "003Gekow34xCJd",
-     "albummid": "003zeVgY4BE7Sk",
+     "album": "Have It All",
+     "duration": 176,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000033l6N50yVN4a.jpg",
+     "mid": "000ESdlU2KX6T6",
+     "albummid": "0033l6N50yVN4a",
      "vid": "",
      "rank": "73"
     },
     {
-     "title": "Burst",
-     "singer": "FKJ/Baby Rose",
+     "title": "Lostinsummer (feat. Kasane Teto)",
+     "singer": "Yowane/Kasane Teto",
      "singers": [
       {
-       "name": "FKJ",
-       "mid": "001Dv3rK15sbno"
+       "name": "Yowane",
+       "mid": "000x3t2G1DPzh4"
       },
       {
-       "name": "Baby Rose",
-       "mid": "000tA99a2wKoe9"
+       "name": "Kasane Teto",
+       "mid": "001yQoeI3awUno"
       }
      ],
-     "album": "Tyber",
-     "duration": 185,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002OIBhJ1N4rnT.jpg",
-     "mid": "004AbHKc0LwB32",
-     "albummid": "002OIBhJ1N4rnT",
+     "album": "Lostinsummer (feat. Kasane Teto)",
+     "duration": 146,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002kNNtv09kfTf.jpg",
+     "mid": "0001bsz83qg2i9",
+     "albummid": "002kNNtv09kfTf",
      "vid": "",
      "rank": "74"
     },
     {
-     "title": "Jungle",
-     "singer": "Nicholas Witt",
+     "title": "This Dream of You",
+     "singer": "Martin Garrix",
      "singers": [
       {
-       "name": "Nicholas Witt",
-       "mid": "003eco0E0pYPtk"
+       "name": "Martin Garrix",
+       "mid": "003gHa6S2vmcbq"
       }
      ],
-     "album": "Jungle",
-     "duration": 131,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001zanqg02we6K.jpg",
-     "mid": "004RBulW3XXN5u",
-     "albummid": "001zanqg02we6K",
+     "album": "This Dream of You",
+     "duration": 286,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000EHRBY0yiqD7.jpg",
+     "mid": "001w51zR2gyf0f",
+     "albummid": "000EHRBY0yiqD7",
      "vid": "",
      "rank": "75"
     },
     {
-     "title": "ILYSB (STRIPPED)",
-     "singer": "LANY",
+     "title": "Spend Your Time",
+     "singer": "Walk off the Earth",
      "singers": [
       {
-       "name": "LANY",
-       "mid": "003BVBKE3ddsJF"
+       "name": "Walk off the Earth",
+       "mid": "002RXUq04F4DHF"
       }
      ],
-     "album": "Rainy Late Night Drive: Modern Love & Heartbreak Songs (Explicit)",
-     "duration": 244,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000C6cO42luU1G.jpg",
-     "mid": "004AgKWP09lViw",
-     "albummid": "000C6cO42luU1G",
+     "album": "Spend Your Time",
+     "duration": 183,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004FR7534YdJqQ.jpg",
+     "mid": "000rJ9ZB0VqqbV",
+     "albummid": "004FR7534YdJqQ",
      "vid": "",
      "rank": "76"
     },
     {
-     "title": "Danceteria Afterhours",
-     "singer": "Madonna/Charli xcx",
+     "title": "Yes",
+     "singer": "Carly Rae Jepsen",
      "singers": [
       {
-       "name": "Madonna",
-       "mid": "001lCqXC2BuTi6"
-      },
-      {
-       "name": "Charli xcx",
-       "mid": "003qGjxe4e4Npn"
+       "name": "Carly Rae Jepsen",
+       "mid": "004cnBXB1OBN7m"
       }
      ],
-     "album": "Danceteria Afterhours (Explicit)",
-     "duration": 230,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000003G3ux0LZbEA.jpg",
-     "mid": "003PLgHV13fnCp",
-     "albummid": "0003G3ux0LZbEA",
+     "album": "Day and Night (Continued) [Explicit]",
+     "duration": 201,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Nhnvd1WfsKc.jpg",
+     "mid": "002fGc1i2d8KH6",
+     "albummid": "000Nhnvd1WfsKc",
      "vid": "",
      "rank": "77"
     },
     {
-     "title": "Still Falling For You (From \"Bridget Jones's Baby\")",
-     "singer": "Ellie Goulding",
-     "singers": [
-      {
-       "name": "Ellie Goulding",
-       "mid": "001YMoro1NL5hU"
-      }
-     ],
-     "album": "Happy Sad Songs (Explicit)",
-     "duration": 240,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001xhnax0UKzHk.jpg",
-     "mid": "002tOmzE0WhTI4",
-     "albummid": "001xhnax0UKzHk",
-     "vid": "",
-     "rank": "78"
-    },
-    {
-     "title": "Flashbacks",
-     "singer": "Tinashe",
-     "singers": [
-      {
-       "name": "Tinashe",
-       "mid": "000SBCns40v4lH"
-      }
-     ],
-     "album": "Popstar (Explicit)",
-     "duration": 163,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004DoQfA0tmG6b.jpg",
-     "mid": "000cLmUA4VaHfs",
-     "albummid": "004DoQfA0tmG6b",
-     "vid": "",
-     "rank": "79"
-    },
-    {
-     "title": "Empty Stadium",
-     "singer": "Tinashe",
-     "singers": [
-      {
-       "name": "Tinashe",
-       "mid": "000SBCns40v4lH"
-      }
-     ],
-     "album": "Popstar (Explicit)",
-     "duration": 165,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004DoQfA0tmG6b.jpg",
-     "mid": "003VbKhz1m8GnA",
-     "albummid": "004DoQfA0tmG6b",
-     "vid": "",
-     "rank": "80"
-    },
-    {
-     "title": "One More Time",
-     "singer": "Mike Candys",
-     "singers": [
-      {
-       "name": "Mike Candys",
-       "mid": "001GxgEP0IlucW"
-      }
-     ],
-     "album": "One More Time",
-     "duration": 129,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001c2IzK2Et0cc.jpg",
-     "mid": "003UmRNL0T4M4m",
-     "albummid": "001c2IzK2Et0cc",
-     "vid": "",
-     "rank": "81"
-    },
-    {
-     "title": "Satisfied (feat. Miguel & Queen Latifah)",
-     "singer": "Sia/Miguel/Queen Latifah",
-     "singers": [
-      {
-       "name": "Sia",
-       "mid": "004ItgA32BhfdC"
-      },
-      {
-       "name": "Miguel",
-       "mid": "002hkau74SmJBr"
-      },
-      {
-       "name": "Queen Latifah",
-       "mid": "001whNSD3G1GyT"
-      }
-     ],
-     "album": "Rise Up! Hamilton: The Anthology (Explicit)",
-     "duration": 318,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001leLZL3FLS9S.jpg",
-     "mid": "002sf0qX1PvosG",
-     "albummid": "001leLZL3FLS9S",
-     "vid": "",
-     "rank": "82"
-    },
-    {
-     "title": "A Different Kind of Happiness",
-     "singer": "Nothing But Thieves",
-     "singers": [
-      {
-       "name": "Nothing But Thieves",
-       "mid": "003T6L5E40CuYB"
-      }
-     ],
-     "album": "A Different Kind of Happiness",
-     "duration": 246,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Co8J44TV9Xb.jpg",
-     "mid": "000ZZtj206KuPN",
-     "albummid": "000Co8J44TV9Xb",
-     "vid": "",
-     "rank": "83"
-    },
-    {
-     "title": "Eldest Daughter (Explicit)",
+     "title": "CANCELLED! (Explicit)",
      "singer": "Taylor Swift",
      "singers": [
       {
@@ -17606,67 +17395,67 @@
       }
      ],
      "album": "The Life of a Showgirl: The Encore (Explicit)",
-     "duration": 246,
+     "duration": 211,
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
-     "mid": "002FnQ6a2n5tU7",
+     "mid": "002OjboP2c0GrN",
      "albummid": "003zeVgY4BE7Sk",
      "vid": "",
-     "rank": "84"
+     "rank": "78"
     },
     {
-     "title": "Classic PT2",
-     "singer": "Drake",
+     "title": "Small Town",
+     "singer": "Dominic Fike",
      "singers": [
       {
-       "name": "Drake",
-       "mid": "001FAb1d02xUcH"
+       "name": "Dominic Fike",
+       "mid": "000gHvO93CGFZJ"
       }
      ],
-     "album": "HABIBTI (FOMO) [Explicit]",
-     "duration": 179,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001cvv6l13xL65.jpg",
-     "mid": "004EsKdH1FFddv",
-     "albummid": "001cvv6l13xL65",
+     "album": "Small Town",
+     "duration": 169,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000035vchR49zAGj.jpg",
+     "mid": "000vmAEr2sDxhJ",
+     "albummid": "0035vchR49zAGj",
      "vid": "",
-     "rank": "85"
+     "rank": "79"
     },
     {
-     "title": "Heavy Heart",
-     "singer": "FKJ/Bas",
+     "title": "The Life of a Showgirl (Explicit)",
+     "singer": "Taylor Swift/Sabrina Carpenter",
      "singers": [
       {
-       "name": "FKJ",
-       "mid": "001Dv3rK15sbno"
+       "name": "Taylor Swift",
+       "mid": "000qrPik2w6lDr"
       },
       {
-       "name": "Bas",
-       "mid": "0001XgL83Z4HBt"
+       "name": "Sabrina Carpenter",
+       "mid": "001b86502oTUai"
       }
      ],
-     "album": "Tyber",
-     "duration": 163,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002OIBhJ1N4rnT.jpg",
-     "mid": "0019sfoS3OPyoF",
-     "albummid": "002OIBhJ1N4rnT",
+     "album": "The Life of a Showgirl: The Encore (Explicit)",
+     "duration": 241,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
+     "mid": "004I1avm0h5Vcb",
+     "albummid": "003zeVgY4BE7Sk",
      "vid": "",
-     "rank": "86"
+     "rank": "80"
     },
     {
-     "title": "How To Ride A Bike",
-     "singer": "salem ilese",
+     "title": "Versailles",
+     "singer": "Carly Rae Jepsen",
      "singers": [
       {
-       "name": "salem ilese",
-       "mid": "002NzmN34bNTLd"
+       "name": "Carly Rae Jepsen",
+       "mid": "004cnBXB1OBN7m"
       }
      ],
-     "album": "How To Ride A Bike",
-     "duration": 201,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000LJvcg4VTO3d.jpg",
-     "mid": "000t4iuw3VO8S2",
-     "albummid": "000LJvcg4VTO3d",
+     "album": "Day and Night (Explicit)",
+     "duration": 194,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000drI092CGDzF.jpg",
+     "mid": "001WEuXM0DqqIe",
+     "albummid": "000drI092CGDzF",
      "vid": "",
-     "rank": "87"
+     "rank": "81"
     },
     {
      "title": "Are You With Me (混搭版)",
@@ -17691,103 +17480,124 @@
      "mid": "002JUldF2RwmZc",
      "albummid": "001cOFQA4PvLWO",
      "vid": "",
+     "rank": "82"
+    },
+    {
+     "title": "Sweet Dreams",
+     "singer": "TommyMuzzic/Luke Muzzic",
+     "singers": [
+      {
+       "name": "TommyMuzzic",
+       "mid": "0009UBrt4Cf94n"
+      },
+      {
+       "name": "Luke Muzzic",
+       "mid": "0006POS31D0533"
+      }
+     ],
+     "album": "Sweet Dreams",
+     "duration": 211,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001pLcTK2YWOck.jpg",
+     "mid": "000VLjEk3XPta5",
+     "albummid": "001pLcTK2YWOck",
+     "vid": "",
+     "rank": "83"
+    },
+    {
+     "title": "One More Time",
+     "singer": "Mike Candys",
+     "singers": [
+      {
+       "name": "Mike Candys",
+       "mid": "001GxgEP0IlucW"
+      }
+     ],
+     "album": "One More Time",
+     "duration": 129,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001c2IzK2Et0cc.jpg",
+     "mid": "003UmRNL0T4M4m",
+     "albummid": "001c2IzK2Et0cc",
+     "vid": "",
+     "rank": "84"
+    },
+    {
+     "title": "Ahí",
+     "singer": "Mentol",
+     "singers": [
+      {
+       "name": "Mentol",
+       "mid": "000Ap73N1geBqH"
+      }
+     ],
+     "album": "Ahí",
+     "duration": 155,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000LAbOw3F15Kp.jpg",
+     "mid": "000WTPsV40OJYO",
+     "albummid": "000LAbOw3F15Kp",
+     "vid": "",
+     "rank": "85"
+    },
+    {
+     "title": "DANGER DANGER",
+     "singer": "Dom Dolla/Solomun/Skepta",
+     "singers": [
+      {
+       "name": "Dom Dolla",
+       "mid": "000bZjpl0DTe6H"
+      },
+      {
+       "name": "Solomun",
+       "mid": "0015NEky4ZeX3x"
+      },
+      {
+       "name": "Skepta",
+       "mid": "0035VoOC2RHngK"
+      }
+     ],
+     "album": "DANGER DANGER",
+     "duration": 180,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004gR0mJ3h7HZr.jpg",
+     "mid": "0020VY6U1N9xEs",
+     "albummid": "004gR0mJ3h7HZr",
+     "vid": "",
+     "rank": "86"
+    },
+    {
+     "title": "Free",
+     "singer": "Umar Keyn",
+     "singers": [
+      {
+       "name": "Umar Keyn",
+       "mid": "000Bj4Tj08ypPb"
+      }
+     ],
+     "album": "Free",
+     "duration": 194,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000ghL3G3sl4AS.jpg",
+     "mid": "001OMJ8J1SDqT1",
+     "albummid": "000ghL3G3sl4AS",
+     "vid": "",
+     "rank": "87"
+    },
+    {
+     "title": "magnolia",
+     "singer": "keshi",
+     "singers": [
+      {
+       "name": "keshi",
+       "mid": "001MptjX2RoF5s"
+      }
+     ],
+     "album": "magnolia",
+     "duration": 139,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004MMvNj1YoExB.jpg",
+     "mid": "002T5xge3phQ56",
+     "albummid": "004MMvNj1YoExB",
+     "vid": "",
      "rank": "88"
     },
     {
-     "title": "Too Cute To Be Lonely",
-     "singer": "Holly Humberstone",
-     "singers": [
-      {
-       "name": "Holly Humberstone",
-       "mid": "0029tv9A1hpXc1"
-      }
-     ],
-     "album": "Too Cute To Be Lonely",
-     "duration": 196,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003SO7IC1Rqk2Z.jpg",
-     "mid": "003cnbB61Igevz",
-     "albummid": "003SO7IC1Rqk2Z",
-     "vid": "",
-     "rank": "89"
-    },
-    {
-     "title": "Crash Out (Explicit)",
-     "singer": "Tinashe",
-     "singers": [
-      {
-       "name": "Tinashe",
-       "mid": "000SBCns40v4lH"
-      }
-     ],
-     "album": "Popstar (Explicit)",
-     "duration": 190,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004DoQfA0tmG6b.jpg",
-     "mid": "0048KxyY1RC1da",
-     "albummid": "004DoQfA0tmG6b",
-     "vid": "",
-     "rank": "90"
-    },
-    {
-     "title": "Orbit",
-     "singer": "Miley Cyrus",
-     "singers": [
-      {
-       "name": "Miley Cyrus",
-       "mid": "0037uV5A4O7UGj"
-      }
-     ],
-     "album": "Bass Persuades",
-     "duration": 235,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002jV9ZC1G5plj.jpg",
-     "mid": "001zojLx0Gbk8T",
-     "albummid": "002jV9ZC1G5plj",
-     "vid": "",
-     "rank": "91"
-    },
-    {
-     "title": "MONTAGEM MWEZI",
-     "singer": "NUEKI",
-     "singers": [
-      {
-       "name": "NUEKI",
-       "mid": "003zuKCs4JN087"
-      }
-     ],
-     "album": "MONTAGEM MWEZI",
-     "duration": 120,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001dViAV1N2RpT.jpg",
-     "mid": "003jZzJt3P8ege",
-     "albummid": "001dViAV1N2RpT",
-     "vid": "",
-     "rank": "92"
-    },
-    {
-     "title": "In The End（最终）",
-     "singer": "Waifu Shop/Pao7oO/Ameriie",
-     "singers": [
-      {
-       "name": "Waifu Shop",
-       "mid": "002e4I4B0B1wNb"
-      },
-      {
-       "name": "Pao7oO",
-       "mid": "003CqLCs16vRSw"
-      },
-      {
-       "name": "Ameriie",
-       "mid": "0025FNgg49vChw"
-      }
-     ],
-     "album": "Montagem Nada（动感节奏版）",
-     "duration": 211,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001rjvJa4AkkTZ.jpg",
-     "mid": "000c2c3W4fEui1",
-     "albummid": "001rjvJa4AkkTZ",
-     "vid": "",
-     "rank": "93"
-    },
-    {
-     "title": "Let's Meet Again",
+     "title": "Love Never Left",
      "singer": "Imazee",
      "singers": [
       {
@@ -17795,89 +17605,47 @@
        "mid": "001TlfHN1SJ0ld"
       }
      ],
-     "album": "Let's Meet Again",
-     "duration": 212,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001toBek45Seh8.jpg",
-     "mid": "002esOzu45zzLL",
-     "albummid": "001toBek45Seh8",
+     "album": "Love Never Left",
+     "duration": 258,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000028B5nV09dkbt.jpg",
+     "mid": "003Ssms523iCil",
+     "albummid": "0028B5nV09dkbt",
      "vid": "",
-     "rank": "94"
+     "rank": "89"
     },
     {
-     "title": "Burning Heart",
-     "singer": "Carly Rae Jepsen",
+     "title": "Eldest Daughter (Explicit)",
+     "singer": "Taylor Swift",
      "singers": [
       {
-       "name": "Carly Rae Jepsen",
-       "mid": "004cnBXB1OBN7m"
+       "name": "Taylor Swift",
+       "mid": "000qrPik2w6lDr"
       }
      ],
-     "album": "Day and Night (Explicit)",
-     "duration": 210,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000drI092CGDzF.jpg",
-     "mid": "001O26Tv2lWXHv",
-     "albummid": "000drI092CGDzF",
+     "album": "The Life of a Showgirl: The Encore (Explicit)",
+     "duration": 246,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
+     "mid": "002FnQ6a2n5tU7",
+     "albummid": "003zeVgY4BE7Sk",
      "vid": "",
-     "rank": "95"
+     "rank": "90"
     },
     {
-     "title": "Let’s Get Married",
-     "singer": "Miley Cyrus",
+     "title": "Sway",
+     "singer": "Jada Facer",
      "singers": [
       {
-       "name": "Miley Cyrus",
-       "mid": "0037uV5A4O7UGj"
+       "name": "Jada Facer",
+       "mid": "001GKH533praBl"
       }
      ],
-     "album": "Bass Persuades",
-     "duration": 216,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002jV9ZC1G5plj.jpg",
-     "mid": "0024cYtX4HDQin",
-     "albummid": "002jV9ZC1G5plj",
+     "album": "Sway",
+     "duration": 139,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004H892I1oxgRF.jpg",
+     "mid": "001pbbJM0EYPxg",
+     "albummid": "004H892I1oxgRF",
      "vid": "",
-     "rank": "96"
-    },
-    {
-     "title": "Coca-Cola",
-     "singer": "Gabry Ponte/Louis III",
-     "singers": [
-      {
-       "name": "Gabry Ponte",
-       "mid": "000PU4ik2EyDPG"
-      },
-      {
-       "name": "Louis III",
-       "mid": "002O7eaR1RuLiV"
-      }
-     ],
-     "album": "DANCE OFF",
-     "duration": 134,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004NWFm04TeYVx.jpg",
-     "mid": "0026untx3sn0W3",
-     "albummid": "004NWFm04TeYVx",
-     "vid": "",
-     "rank": "97"
-    },
-    {
-     "title": "Lostinsummer (feat. Kasane Teto)",
-     "singer": "Yowane/Kasane Teto",
-     "singers": [
-      {
-       "name": "Yowane",
-       "mid": "000x3t2G1DPzh4"
-      },
-      {
-       "name": "Kasane Teto",
-       "mid": "001yQoeI3awUno"
-      }
-     ],
-     "album": "Lostinsummer (feat. Kasane Teto)",
-     "duration": 146,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002kNNtv09kfTf.jpg",
-     "mid": "0001bsz83qg2i9",
-     "albummid": "002kNNtv09kfTf",
-     "vid": "",
-     "rank": "98"
+     "rank": "91"
     },
     {
      "title": "Heavy Weight",
@@ -17894,22 +17662,165 @@
      "mid": "00117YNs0ZjREs",
      "albummid": "004DoQfA0tmG6b",
      "vid": "",
+     "rank": "92"
+    },
+    {
+     "title": "MADARA (Explicit)",
+     "singer": "Ez Mil/Eminem/Neil Kaplan/Hideyoshi (ヒデヨシ)",
+     "singers": [
+      {
+       "name": "Ez Mil",
+       "mid": "002KhQWp1YSsJ2"
+      },
+      {
+       "name": "Eminem",
+       "mid": "000yDAjj2TE9j8"
+      },
+      {
+       "name": "Neil Kaplan",
+       "mid": "000rOqNz1hHhpU"
+      },
+      {
+       "name": "Hideyoshi (ヒデヨシ)",
+       "mid": "002nWTlR3PMjlF"
+      }
+     ],
+     "album": "MADARA (Explicit)",
+     "duration": 295,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000032Cz6L45oZw1.jpg",
+     "mid": "003BZvsx41VOFz",
+     "albummid": "0032Cz6L45oZw1",
+     "vid": "",
+     "rank": "93"
+    },
+    {
+     "title": "Love Depressed",
+     "singer": "Carly Rae Jepsen",
+     "singers": [
+      {
+       "name": "Carly Rae Jepsen",
+       "mid": "004cnBXB1OBN7m"
+      }
+     ],
+     "album": "Day and Night (Continued) [Explicit]",
+     "duration": 180,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Nhnvd1WfsKc.jpg",
+     "mid": "003xuJC24MwQiG",
+     "albummid": "000Nhnvd1WfsKc",
+     "vid": "",
+     "rank": "94"
+    },
+    {
+     "title": "Florence",
+     "singer": "Charlie Jeer",
+     "singers": [
+      {
+       "name": "Charlie Jeer",
+       "mid": "000ONBNm2PwShq"
+      }
+     ],
+     "album": "Take Away My Problems",
+     "duration": 223,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ZDvaU3WnksR.jpg",
+     "mid": "002byPqA3WZFsg",
+     "albummid": "003ZDvaU3WnksR",
+     "vid": "",
+     "rank": "95"
+    },
+    {
+     "title": "Do It To Me",
+     "singer": "Larissa Lambert",
+     "singers": [
+      {
+       "name": "Larissa Lambert",
+       "mid": "002KuHoe3iKXjw"
+      }
+     ],
+     "album": "Yearning (Explicit)",
+     "duration": 180,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001LLfOf13GGpJ.jpg",
+     "mid": "0032NaGp1tyCCw",
+     "albummid": "001LLfOf13GGpJ",
+     "vid": "",
+     "rank": "96"
+    },
+    {
+     "title": "Father Figure (Explicit)",
+     "singer": "Taylor Swift",
+     "singers": [
+      {
+       "name": "Taylor Swift",
+       "mid": "000qrPik2w6lDr"
+      }
+     ],
+     "album": "The Life of a Showgirl: The Encore (Explicit)",
+     "duration": 212,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zeVgY4BE7Sk.jpg",
+     "mid": "003U6ifi3YYJOc",
+     "albummid": "003zeVgY4BE7Sk",
+     "vid": "",
+     "rank": "97"
+    },
+    {
+     "title": "Phoenix (高燃版)",
+     "singer": "Acreix/La Mer",
+     "singers": [
+      {
+       "name": "Acreix",
+       "mid": "0046tUuY0UhoZy"
+      },
+      {
+       "name": "La Mer",
+       "mid": "000IjThf0CevJv"
+      }
+     ],
+     "album": "TOUCH IT（绝对硬曲）",
+     "duration": 112,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001swSVh1eeDCI.jpg",
+     "mid": "004PwrmO4by3tW",
+     "albummid": "001swSVh1eeDCI",
+     "vid": "",
+     "rank": "98"
+    },
+    {
+     "title": "Company",
+     "singer": "Clean Bandit/Chlöe/Omah Lay",
+     "singers": [
+      {
+       "name": "Clean Bandit",
+       "mid": "002aFRpO1dMtfw"
+      },
+      {
+       "name": "Chlöe",
+       "mid": "001Et70m0kgBcu"
+      },
+      {
+       "name": "Omah Lay",
+       "mid": "001TCcF42QuKQM"
+      }
+     ],
+     "album": "Company",
+     "duration": 172,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000031d7ai1MLQAs.jpg",
+     "mid": "000SnZuA2qqu3O",
+     "albummid": "0031d7ai1MLQAs",
+     "vid": "",
      "rank": "99"
     },
     {
-     "title": "roomie (Explicit)",
-     "singer": "Tove Lo",
+     "title": "Reaching for a Star",
+     "singer": "Carly Rae Jepsen",
      "singers": [
       {
-       "name": "Tove Lo",
-       "mid": "002lOe3K3G9oqe"
+       "name": "Carly Rae Jepsen",
+       "mid": "004cnBXB1OBN7m"
       }
      ],
-     "album": "ESTRUS (Explicit)",
-     "duration": 132,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002SOtv441Chqv.jpg",
-     "mid": "000yCKeh0c9c7R",
-     "albummid": "002SOtv441Chqv",
+     "album": "Day and Night (Continued) [Explicit]",
+     "duration": 223,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Nhnvd1WfsKc.jpg",
+     "mid": "003X9cIr2BTniC",
+     "albummid": "000Nhnvd1WfsKc",
      "vid": "",
      "rank": "100"
     }
