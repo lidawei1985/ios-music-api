@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-20T11:33:35Z",
- "round": 129,
+ "updated": "2026-10-20T12:57:15Z",
+ "round": 130,
  "probes": [
   {
    "title": "稻香",
@@ -268,13 +268,9 @@
      "note": "搜索无结果"
     }
    ],
-   "score": 6.5,
+   "score": 1.0,
    "status": "quarantined",
    "history": [
-    [
-     1792138013,
-     41.4
-    ],
     [
      1792154885,
      6.2
@@ -430,6 +426,10 @@
     [
      1792495687,
      6.5
+    ],
+    [
+     1792500679,
+     1.0
     ]
    ]
   },
@@ -439,12 +439,12 @@
    "kind": "platform",
    "homepage": "https://www.bilibili.com/",
    "role": "backstop",
-   "chain_ok": 0.1,
+   "chain_ok": 0.2,
    "search_ok": 1.0,
    "match_ok": 1.0,
-   "latency_ms": 2287,
-   "quality_score": 0.6,
-   "ok_count": 2,
+   "latency_ms": 1629,
+   "quality_score": 0.613,
+   "ok_count": 4,
    "total": 20,
    "note": "无 cid（稿件不可取）",
    "details": [
@@ -453,31 +453,31 @@
      "s": "卢冠廷",
      "ok": false,
      "q": null,
-     "ms": 1496,
+     "ms": 1489,
      "note": "无 cid（稿件不可取）"
     },
     {
      "t": "光年之外",
      "s": "邓紫棋",
-     "ok": true,
-     "q": "66kbps",
-     "ms": 2267,
-     "note": "HTTP 206 4096B m4a"
+     "ok": false,
+     "q": null,
+     "ms": 1692,
+     "note": "无 cid（稿件不可取）"
     },
     {
      "t": "后来",
      "s": "刘若英",
-     "ok": false,
-     "q": null,
-     "ms": 1505,
-     "note": "无 cid（稿件不可取）"
+     "ok": true,
+     "q": "132kbps",
+     "ms": 1818,
+     "note": "HTTP 206 4096B m4a"
     },
     {
      "t": "告白气球",
      "s": "周杰伦",
      "ok": false,
      "q": null,
-     "ms": 1652,
+     "ms": 1618,
      "note": "无 cid（稿件不可取）"
     },
     {
@@ -485,7 +485,7 @@
      "s": "周杰伦",
      "ok": false,
      "q": null,
-     "ms": 1554,
+     "ms": 1631,
      "note": "无 cid（稿件不可取）"
     },
     {
@@ -493,7 +493,7 @@
      "s": "陈奕迅",
      "ok": false,
      "q": null,
-     "ms": 1508,
+     "ms": 1563,
      "note": "无 cid（稿件不可取）"
     },
     {
@@ -501,7 +501,7 @@
      "s": "筷子兄弟",
      "ok": false,
      "q": null,
-     "ms": 1551,
+     "ms": 1686,
      "note": "无 cid（稿件不可取）"
     },
     {
@@ -509,7 +509,7 @@
      "s": "朴树",
      "ok": false,
      "q": null,
-     "ms": 1629,
+     "ms": 1578,
      "note": "无 cid（稿件不可取）"
     },
     {
@@ -517,7 +517,7 @@
      "s": "赵雷",
      "ok": false,
      "q": null,
-     "ms": 1538,
+     "ms": 1665,
      "note": "无 cid（稿件不可取）"
     },
     {
@@ -525,55 +525,55 @@
      "s": "黄霄雲",
      "ok": false,
      "q": null,
-     "ms": 1650,
+     "ms": 1518,
      "note": "无 cid（稿件不可取）"
     },
     {
      "t": "晴天",
      "s": "周杰伦",
-     "ok": false,
-     "q": null,
-     "ms": 1568,
-     "note": "无 cid（稿件不可取）"
+     "ok": true,
+     "q": "183kbps",
+     "ms": 2172,
+     "note": "HTTP 206 4096B m4a"
     },
     {
      "t": "月亮代表我的心",
      "s": "邓丽君",
-     "ok": false,
-     "q": null,
-     "ms": 1537,
-     "note": "无 cid（稿件不可取）"
+     "ok": true,
+     "q": "49kbps",
+     "ms": 1440,
+     "note": "HTTP 206 4096B m4a"
     },
     {
      "t": "海阔天空",
      "s": "BEYOND",
      "ok": false,
      "q": null,
-     "ms": 1551,
+     "ms": 1599,
      "note": "无 cid（稿件不可取）"
     },
     {
      "t": "消愁",
      "s": "毛不易",
-     "ok": false,
-     "q": null,
-     "ms": 1676,
-     "note": "无 cid（稿件不可取）"
+     "ok": true,
+     "q": "194kbps",
+     "ms": 1335,
+     "note": "HTTP 206 4096B m4a"
     },
     {
      "t": "演员",
      "s": "薛之谦",
-     "ok": true,
-     "q": "122kbps",
-     "ms": 2307,
-     "note": "HTTP 206 4096B m4a"
+     "ok": false,
+     "q": null,
+     "ms": 1576,
+     "note": "无 cid（稿件不可取）"
     },
     {
      "t": "漠河舞厅",
      "s": "柳爽",
      "ok": false,
      "q": null,
-     "ms": 1456,
+     "ms": 1686,
      "note": "无 cid（稿件不可取）"
     },
     {
@@ -581,7 +581,7 @@
      "s": "王心凌",
      "ok": false,
      "q": null,
-     "ms": 1566,
+     "ms": 1650,
      "note": "无 cid（稿件不可取）"
     },
     {
@@ -589,7 +589,7 @@
      "s": "周杰伦",
      "ok": false,
      "q": null,
-     "ms": 1499,
+     "ms": 1667,
      "note": "无 cid（稿件不可取）"
     },
     {
@@ -597,7 +597,7 @@
      "s": "刀郎",
      "ok": false,
      "q": null,
-     "ms": 1467,
+     "ms": 1565,
      "note": "无 cid（稿件不可取）"
     },
     {
@@ -605,17 +605,13 @@
      "s": "买辣椒也用券",
      "ok": false,
      "q": null,
-     "ms": 1515,
+     "ms": 1592,
      "note": "无 cid（稿件不可取）"
     }
    ],
-   "score": 23.3,
+   "score": 35.1,
    "status": "quarantined",
    "history": [
-    [
-     1792138022,
-     29.5
-    ],
     [
      1792154894,
      35.3
@@ -771,6 +767,10 @@
     [
      1792495696,
      23.3
+    ],
+    [
+     1792500688,
+     35.1
     ]
    ]
   },
@@ -783,7 +783,7 @@
    "chain_ok": 0.15,
    "search_ok": 1.0,
    "match_ok": 1.0,
-   "latency_ms": 3349,
+   "latency_ms": 3354,
    "quality_score": 0.7,
    "ok_count": 3,
    "total": 20,
@@ -794,7 +794,7 @@
      "s": "卢冠廷",
      "ok": false,
      "q": null,
-     "ms": 7534,
+     "ms": 7589,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -802,7 +802,7 @@
      "s": "邓紫棋",
      "ok": false,
      "q": null,
-     "ms": 5094,
+     "ms": 5222,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -810,7 +810,7 @@
      "s": "刘若英",
      "ok": false,
      "q": null,
-     "ms": 7565,
+     "ms": 7613,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -818,7 +818,7 @@
      "s": "周杰伦",
      "ok": false,
      "q": null,
-     "ms": 2582,
+     "ms": 2732,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -826,7 +826,7 @@
      "s": "周杰伦",
      "ok": false,
      "q": null,
-     "ms": 2667,
+     "ms": 2774,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -834,7 +834,7 @@
      "s": "陈奕迅",
      "ok": false,
      "q": null,
-     "ms": 2517,
+     "ms": 2574,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -842,7 +842,7 @@
      "s": "筷子兄弟",
      "ok": false,
      "q": null,
-     "ms": 2620,
+     "ms": 2693,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -850,7 +850,7 @@
      "s": "朴树",
      "ok": false,
      "q": null,
-     "ms": 5177,
+     "ms": 5119,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -858,7 +858,7 @@
      "s": "赵雷",
      "ok": false,
      "q": null,
-     "ms": 7578,
+     "ms": 7698,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -866,7 +866,7 @@
      "s": "黄霄雲",
      "ok": false,
      "q": null,
-     "ms": 2501,
+     "ms": 2512,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -874,7 +874,7 @@
      "s": "周杰伦",
      "ok": true,
      "q": "mp3",
-     "ms": 3349,
+     "ms": 3354,
      "note": "HTTP 206 4096B mp3"
     },
     {
@@ -882,7 +882,7 @@
      "s": "邓丽君",
      "ok": false,
      "q": null,
-     "ms": 7607,
+     "ms": 7646,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -890,7 +890,7 @@
      "s": "BEYOND",
      "ok": false,
      "q": null,
-     "ms": 7772,
+     "ms": 7933,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -898,7 +898,7 @@
      "s": "毛不易",
      "ok": false,
      "q": null,
-     "ms": 7476,
+     "ms": 7618,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -906,7 +906,7 @@
      "s": "薛之谦",
      "ok": true,
      "q": "mp3",
-     "ms": 5782,
+     "ms": 5704,
      "note": "HTTP 206 4096B mp3"
     },
     {
@@ -914,7 +914,7 @@
      "s": "柳爽",
      "ok": false,
      "q": null,
-     "ms": 7792,
+     "ms": 7545,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -922,7 +922,7 @@
      "s": "王心凌",
      "ok": false,
      "q": null,
-     "ms": 7529,
+     "ms": 7602,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -930,7 +930,7 @@
      "s": "周杰伦",
      "ok": true,
      "q": "mp3",
-     "ms": 3242,
+     "ms": 3293,
      "note": "HTTP 206 4096B mp3"
     },
     {
@@ -938,7 +938,7 @@
      "s": "刀郎",
      "ok": false,
      "q": null,
-     "ms": 2555,
+     "ms": 2506,
      "note": "VIP/版权受限（outer 无跳转）"
     },
     {
@@ -946,17 +946,13 @@
      "s": "买辣椒也用券",
      "ok": false,
      "q": null,
-     "ms": 2506,
+     "ms": 2770,
      "note": "VIP/版权受限（outer 无跳转）"
     }
    ],
-   "score": 24.4,
+   "score": 24.2,
    "status": "quarantined",
    "history": [
-    [
-     1792138047,
-     24.0
-    ],
     [
      1792154921,
      24.1
@@ -1112,6 +1108,10 @@
     [
      1792495719,
      24.4
+    ],
+    [
+     1792500711,
+     24.2
     ]
    ]
   },
@@ -1135,7 +1135,7 @@
      "s": "卢冠廷",
      "ok": false,
      "q": null,
-     "ms": 2450,
+     "ms": 2808,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1143,7 +1143,7 @@
      "s": "邓紫棋",
      "ok": false,
      "q": null,
-     "ms": 2959,
+     "ms": 2882,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1151,7 +1151,7 @@
      "s": "刘若英",
      "ok": false,
      "q": null,
-     "ms": 2591,
+     "ms": 2362,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1159,7 +1159,7 @@
      "s": "周杰伦",
      "ok": false,
      "q": null,
-     "ms": 2490,
+     "ms": 2069,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1167,7 +1167,7 @@
      "s": "周杰伦",
      "ok": false,
      "q": null,
-     "ms": 2492,
+     "ms": 4015,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1175,7 +1175,7 @@
      "s": "陈奕迅",
      "ok": false,
      "q": null,
-     "ms": 1755,
+     "ms": 1767,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1183,7 +1183,7 @@
      "s": "筷子兄弟",
      "ok": false,
      "q": null,
-     "ms": 2907,
+     "ms": 5715,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1191,7 +1191,7 @@
      "s": "朴树",
      "ok": false,
      "q": null,
-     "ms": 836,
+     "ms": 1022,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1199,7 +1199,7 @@
      "s": "赵雷",
      "ok": false,
      "q": null,
-     "ms": 930,
+     "ms": 784,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1207,7 +1207,7 @@
      "s": "黄霄雲",
      "ok": false,
      "q": null,
-     "ms": 2629,
+     "ms": 2408,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1215,7 +1215,7 @@
      "s": "周杰伦",
      "ok": false,
      "q": null,
-     "ms": 3699,
+     "ms": 2658,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1223,7 +1223,7 @@
      "s": "邓丽君",
      "ok": false,
      "q": null,
-     "ms": 2589,
+     "ms": 2393,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1231,7 +1231,7 @@
      "s": "BEYOND",
      "ok": false,
      "q": null,
-     "ms": 2881,
+     "ms": 5177,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1239,7 +1239,7 @@
      "s": "毛不易",
      "ok": false,
      "q": null,
-     "ms": 2928,
+     "ms": 2607,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1247,7 +1247,7 @@
      "s": "薛之谦",
      "ok": false,
      "q": null,
-     "ms": 2946,
+     "ms": 2809,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1255,7 +1255,7 @@
      "s": "柳爽",
      "ok": false,
      "q": null,
-     "ms": 1666,
+     "ms": 1799,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1263,7 +1263,7 @@
      "s": "王心凌",
      "ok": false,
      "q": null,
-     "ms": 2586,
+     "ms": 2347,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1271,7 +1271,7 @@
      "s": "周杰伦",
      "ok": false,
      "q": null,
-     "ms": 3467,
+     "ms": 5679,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1279,7 +1279,7 @@
      "s": "刀郎",
      "ok": false,
      "q": null,
-     "ms": 1964,
+     "ms": 1569,
      "note": "result=104003（未登录/需账号）"
     },
     {
@@ -1287,17 +1287,13 @@
      "s": "买辣椒也用券",
      "ok": false,
      "q": null,
-     "ms": 1704,
+     "ms": 2102,
      "note": "取链失败"
     }
    ],
-   "score": 9.0,
+   "score": 1.4,
    "status": "needs_auth",
    "history": [
-    [
-     1792138070,
-     1.4
-    ],
     [
      1792154942,
      0.2
@@ -1453,6 +1449,10 @@
     [
      1792495744,
      9.0
+    ],
+    [
+     1792500739,
+     1.4
     ]
    ]
   },
@@ -1463,8 +1463,8 @@
    "homepage": "https://www.kugou.com/",
    "role": "auth",
    "chain_ok": 0.0,
-   "search_ok": 1.0,
-   "match_ok": 1.0,
+   "search_ok": 0.95,
+   "match_ok": 0.95,
    "latency_ms": null,
    "quality_score": 0.0,
    "ok_count": 0,
@@ -1476,15 +1476,15 @@
      "s": "卢冠廷",
      "ok": false,
      "q": null,
-     "ms": 6966,
-     "note": "err=None（需登录 token）"
+     "ms": 0,
+     "note": "搜索无结果"
     },
     {
      "t": "光年之外",
      "s": "邓紫棋",
      "ok": false,
      "q": null,
-     "ms": 4464,
+     "ms": 4959,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1492,7 +1492,7 @@
      "s": "刘若英",
      "ok": false,
      "q": null,
-     "ms": 3346,
+     "ms": 2874,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1500,7 +1500,7 @@
      "s": "周杰伦",
      "ok": false,
      "q": null,
-     "ms": 9649,
+     "ms": 12208,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1508,7 +1508,7 @@
      "s": "周杰伦",
      "ok": false,
      "q": null,
-     "ms": 4994,
+     "ms": 8263,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1516,7 +1516,7 @@
      "s": "陈奕迅",
      "ok": false,
      "q": null,
-     "ms": 2855,
+     "ms": 3032,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1524,7 +1524,7 @@
      "s": "筷子兄弟",
      "ok": false,
      "q": null,
-     "ms": 4873,
+     "ms": 8430,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1532,7 +1532,7 @@
      "s": "朴树",
      "ok": false,
      "q": null,
-     "ms": 3371,
+     "ms": 2368,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1540,7 +1540,7 @@
      "s": "赵雷",
      "ok": false,
      "q": null,
-     "ms": 5730,
+     "ms": 2917,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1548,7 +1548,7 @@
      "s": "黄霄雲",
      "ok": false,
      "q": null,
-     "ms": 4358,
+     "ms": 3873,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1556,7 +1556,7 @@
      "s": "周杰伦",
      "ok": false,
      "q": null,
-     "ms": 6260,
+     "ms": 11654,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1564,7 +1564,7 @@
      "s": "邓丽君",
      "ok": false,
      "q": null,
-     "ms": 6387,
+     "ms": 2945,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1572,7 +1572,7 @@
      "s": "BEYOND",
      "ok": false,
      "q": null,
-     "ms": 8342,
+     "ms": 11190,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1580,7 +1580,7 @@
      "s": "毛不易",
      "ok": false,
      "q": null,
-     "ms": 3551,
+     "ms": 3871,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1588,7 +1588,7 @@
      "s": "薛之谦",
      "ok": false,
      "q": null,
-     "ms": 6768,
+     "ms": 4772,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1596,7 +1596,7 @@
      "s": "柳爽",
      "ok": false,
      "q": null,
-     "ms": 1918,
+     "ms": 2313,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1604,7 +1604,7 @@
      "s": "王心凌",
      "ok": false,
      "q": null,
-     "ms": 3671,
+     "ms": 2424,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1612,7 +1612,7 @@
      "s": "周杰伦",
      "ok": false,
      "q": null,
-     "ms": 4983,
+     "ms": 8379,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1620,7 +1620,7 @@
      "s": "刀郎",
      "ok": false,
      "q": null,
-     "ms": 1856,
+     "ms": 1470,
      "note": "err=None（需登录 token）"
     },
     {
@@ -1628,17 +1628,13 @@
      "s": "买辣椒也用券",
      "ok": false,
      "q": null,
-     "ms": 5646,
+     "ms": 2993,
      "note": "err=None（需登录 token）"
     }
    ],
-   "score": 9.0,
+   "score": 1.4,
    "status": "needs_auth",
    "history": [
-    [
-     1792138087,
-     1.4
-    ],
     [
      1792154968,
      0.2
@@ -1794,6 +1790,10 @@
     [
      1792495773,
      9.0
+    ],
+    [
+     1792500764,
+     1.4
     ]
    ]
   }
