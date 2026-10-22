@@ -146,18 +146,10 @@ jobs:
 
       - name: 摘要
         if: always()
+        # ★ 2026-10-23 修：原写法是 { ... python - <<'PY' ... PY ... } >> $GITHUB_STEP_SUMMARY，
+        #   heredoc 结束符被缩进带偏（不在第 0 列），bash 报
+        #   "here-document delimited by end-of-file" + syntax error，
+        #   把这轮**已经成功采集并推送**的运行标成红的（数据其实已经上去了）。
+        #   改成 python 单行 -c 直接写文件：不用 heredoc、不用花括号、不用反引号。
         run: |
-          {
-            echo "### 歌词补齐结果"
-            echo ""
-            if [ -f data/lyrics/manifest.json ]; then
-              python - <<'PY'
-              import json
-              m = json.load(open("data/lyrics/manifest.json", encoding="utf-8"))
-              print("- 累计歌词 **%d** 条 / %d 片" % (m["count"], len(m["shards"])))
-              print("- 更新时间 `%s`" % m["updated"])
-              PY
-            else
-              echo "- 无产物"
-            fi
-          } >> "$GITHUB_STEP_SUMMARY"
+          python -c "import json,os,pathlib;p=pathlib.Path('data/lyrics/manifest.json');m=json.loads(p.read_text(encoding='utf-8')) if p.exists() else {'count':0,'shards':[],'updated':'-'};f=open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8');f.write('### 歌词补齐结果');f.write(chr(10));f.write('- 累计歌词 %d 条 / %d 片'%(m['count'],len(m['shards'])));f.write(chr(10));f.write('- 更新时间 %s'%m['updated']);f.write(chr(10))"
