@@ -717,6 +717,24 @@ def audio_gate(arr, tag="pack"):
            "、".join("%s %d" % (k, v) for k, v in stat.items() if v)))
     if drop_ids:
         p = AUDIO_DROPPED_FILE
+        # ★★ 2026-10-22 阻断事故修复：这条诊断流水曾把**整条 harvest 线打死 13 天**。
+        #   它在仓库里是 **被 git 跟踪**的文件（.gitignore 对已跟踪文件无效），
+        #   每轮往里追加剔除 id，涨到 **100.76MB** 后每次 push 都被 GitHub 硬拒
+        #   （remote: File data/catalog/_audio_dropped.txt is 100.76 MB; this exceeds
+        #    GitHub's file size limit of 100.00 MB）→ 采集成果全部丢弃，曲库卡在 75,997 首。
+        #   两处一起治：① cloud 仓 `git rm --cached` 二者 + .gitignore 已覆盖（解除跟踪）
+        #              ② 这里写入前做**大小滚动**，任何情况下都不许超过 8MB（纵深防御：
+        #                 即使将来又被谁 add 回索引，也绝不可能再撞 100MB 硬限）。
+        try:
+            if os.path.exists(p) and os.path.getsize(p) > 8 * 1024 * 1024:
+                with open(p, "rb") as fh:
+                    fh.seek(-1024 * 1024, os.SEEK_END)
+                    tail = fh.read()
+                with open(p, "wb") as fh:
+                    fh.write(tail)          # 只留最后 1MB：够追溯近期剔除，又永不膨胀
+                log("[%s] 剔除流水超 8MB → 滚动裁剪到 1MB（防 GitHub 100MB 硬限打死 push）" % tag)
+        except OSError as e:
+            log("[%s] 剔除流水滚动失败（忽略，不影响采集）：%r" % (tag, e))
         with open(p, "a", encoding="utf-8") as fh:
             for i in drop_ids:
                 fh.write("%s\n" % i)
