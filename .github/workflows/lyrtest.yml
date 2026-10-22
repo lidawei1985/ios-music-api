@@ -1,0 +1,40 @@
+name: lyrtest
+
+# 一次性探针：用**真实榜单曲目**量 LRCLIB 命中率。
+# 为什么单独开一条：本机（国内家宽）单首 5~50s，60 首要跑半小时以上；
+# Actions（海外）出网快，几分钟就能出结论。跑完看 Summary 即可，不产生业务数据。
+on:
+  workflow_dispatch:
+    inputs:
+      n:
+        description: "测多少首（去重后的榜单曲目）"
+        required: false
+        default: "80"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 跑榜单命中率探针
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -o pipefail
+          python tools/lyrtest.py --n "${{ github.event.inputs.n || '80' }}" 2>&1 | tee /tmp/t.log
+          {
+            echo "### LRCLIB 真实榜单命中率"
+            echo '```'
+            tail -20 /tmp/t.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
