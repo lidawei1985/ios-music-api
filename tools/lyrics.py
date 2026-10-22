@@ -1,32 +1,35 @@
 # -*- coding: utf-8 -*-
-"""LRCLIB 歌词补齐流水线：把带时间轴的 LRC 落成 CDN 分片，端上按需取。
+"""歌词补齐流水线：云端预取带时间轴的 LRC → CDN 分片 → 端上按需取。
+
+================================ 主源换人（2026-10-22 实测后改的）================================
+最初按「用 LRCLIB 对齐」的设想只接了 LRCLIB，结果用**真实榜单 80 首**一测：
+    · LRCLIB  带时间轴命中 **4/80 = 5.0%**，487s（约 6.1s/首）
+    · 网易云 wy_lyric 抽样 15 首命中 **10/15 = 67%**，1.9s（**0.13s/首**）
+  → LRCLIB 是西方社区主导，中文流行歌大面积 404；快 40 倍、准 13 倍的网易云才是主力。
+  现在：**网易云 id 优先 → LRCLIB 兜底**（只对没有网易云 id 的 kw/migu 曲目才有意义）。
 
 ================================ 为什么在云端跑 ================================
-2026-10-22 本机实测（国内家宽直连 lrclib.net）：
-    · /api/get 单请求 5.8s，40 首串行跑 15 分钟还没完
-    · 并发 6 → 22×URLError(RST) + 18×503，等于被当场打回
-    → 端上「边播边查」绝无可能（用户早就播完了还在转圈）。
-  所以走：**GitHub Actions（海外网络）串行预取 → 落 data/lyrics/ 分片 → jsDelivr → 端上读静态分片**。
-  端上只在分片里没有时，才用原生 fetch 兜底查一次（带本地缓存，失败静默）。
+2026-10-22 本机（国内家宽）实测 lrclib.net：
+    · 单请求 5.8s；40 首串行跑 33 分钟；并发 6 → 22×URLError(RST) + 18×503
+    → 端上「边播边查」不可能。云端预取 → data/lyrics/js/ 分片 → 端上读静态分片。
 
-================================ 官方 fair-use（照做，别撞限流）================================
-    · 串行请求，间隔 200~500ms
-    · User-Agent 必须带应用名+版本+项目页（已标识 90 次/分，未标识只 45）
-    · 429 必须遵守 Retry-After + 30% 抖动
-    · /api/get 的 duration 容差 **±2 秒**，所以默认**不传** duration（传不准反而 404）
-    · /api/search 实测 34.7s 超时，不用
+================================ 官方 fair-use（LRCLIB 部分）================================
+    · 串行 + 间隔 200~500ms；已标识 UA 约 90 次/分，本流水线自限 80
+    · 429 的 Retry-After 封顶 8s（照睡会把整轮预算吃光，实测踩过）
+    · /api/get 的 duration 容差只有 ±2s → 默认不传
+    · /api/search 实测 34.7s 超时，彻底不用
 
 ================================ 产物 ================================
-    data/lyrics/manifest.json      {updated, count, shardSize, shards:[{file,count}]}
-    data/lyrics/shard-XXXX.json    { "<skey>": {"l": "<LRC 全文>", "d": 时长秒, "s": "lrclib" } }
-  skey 与曲库同一套（tools/skey_contract.json），端上 song.skey() 直接查。
+    data/lyrics/js/shard-XXXX.js   window.__DWG_LYRS[i] = {"<skey>": {"l": LRC, "d": 秒, "s": 源}}
+    data/lyrics/js/m.js            window.__DWG_LYRMAN   = {updated, count, shardSize, shards[{file,count,from,to}]}
+    data/lyrics/manifest.json      人/脚本查看用（端上不读）
+  .js 而不是 .json：App 页面是 file://，这种文档下 fetch/XHR 跨源被拦死，**只放行 script/img**。
 
 用法：
     python tools/lyrics.py                     # 增量补齐（跳过已有）
-    python tools/lyrics.py --limit 3000        # 本轮最多查 3000 首
-    python tools/lyrics.py --budget 1500       # 本轮最多跑 1500 秒（CI 里防超时）
+    python tools/lyrics.py --limit 3000
+    python tools/lyrics.py --budget 1500
     python tools/lyrics.py --top 20000         # 只补热度前 2 万首（默认）
-    python tools/lyrics.py --dry               # 只统计不请求
 """
 import argparse
 import json
@@ -105,9 +108,18 @@ def load_catalog(top):
         keep.append(x)
     print("可补歌词 %d 首（剔掉群星/垃圾标题/翻唱/伴奏）" % len(keep))
 
-    # 热度优先：先把大家真会点的歌补齐
-    keep.sort(key=lambda x: -(x.get("pop") or 0))
-    return keep[:top]
+    # ★ 排序规则（2026-10-22 实测后改）：
+    #   曲库的 pop 字段在部分分片里普遍虚高，纯按 pop 取前 N 会取到一大堆
+    #   儿歌/催眠曲/地下说唱 —— 那批 LRCLIB 命中 5%、网易云也大面积无词，
+    #   跑一轮只捞到 2 条（实测）。所以先按「有没有网易云 id」分组：
+    #   有 wy id 的曲目才是能真正拿到官方歌词的主体（占曲库 98%）。
+    def prio(x):
+        src0 = (x.get("src") or "wy")
+        has_wy = 1 if (src0 in ("wy", "", None) and x.get("i")) else 0
+        return (-has_wy, -(x.get("pop") or 0))
+
+    keep.sort(key=prio)
+    return keep if top <= 0 else keep[:top]
 
 
 # ------------------------------------------------------------------ 已有歌词
@@ -154,6 +166,29 @@ def load_done():
 
 
 # ------------------------------------------------------------------ 请求
+def wy_lyric(sid):
+    """网易云歌词（主源）。返回 (lrc, trans) 或 (None, None)。
+
+    ★ 实测 0.13s/首、67% 命中 —— 比 LRCLIB 快 40 倍、准 13 倍。
+      中文歌的官方词基本都在这里，还额外带翻译（tv=-1）。
+    """
+    u = "https://music.163.com/api/song/lyric?id=%s&lv=1&kv=0&tv=-1" % sid
+    for attempt in range(2):
+        try:
+            with OPENER.open(urllib.request.Request(u, headers={
+                    "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X)",
+                    "Referer": "https://music.163.com/"}), timeout=15) as r:
+                d = json.loads(r.read().decode("utf-8", "replace"))
+            return (((d.get("lrc") or {}).get("lyric") or "").strip(),
+                    ((d.get("tlyric") or {}).get("lyric") or "").strip())
+        except Exception:
+            if attempt == 0:
+                time.sleep(0.6)
+                continue
+            return None, None
+    return None, None
+
+
 def fetch(a, t, dur=None, retries=2):
     q = {"artist_name": a, "track_name": t}
     # 默认不传 duration：官方容差 ±2s，而曲库时长来自 QQ/酷狗未必准，
@@ -196,6 +231,9 @@ def main():
     ap.add_argument("--limit", type=int, default=0, help="本轮最多查多少首（0=不限）")
     ap.add_argument("--budget", type=int, default=1500, help="本轮时间预算（秒）")
     ap.add_argument("--dry", action="store_true")
+    ap.add_argument("--lrclib", action="store_true",
+                    help="启用 LRCLIB 兜底（默认关：真实榜单实测命中仅 5%%，"
+                         "却比网易云慢 40 倍，开着会把整轮速度拖到 1/20）")
     ap.add_argument("--save-every", type=int, default=400)
     ap.add_argument("--rpm", type=int, default=80,
                     help="每分钟请求上限（官方：已标识 UA 约 90；留 10 的余量防抖动）")
@@ -231,26 +269,54 @@ def main():
                 break
             a, n = clean(x["a"]), clean(x["n"])
             libdur = (x.get("d") or 0) / 1000.0
-            rec, err = fetch(a, n)
-            streak429 = streak429 + 1 if err == "429" else 0
-            if not rec:
-                stat[err or "?"] += 1
-            elif rec.get("instrumental"):
-                stat["纯音乐"] += 1
-            elif not (rec.get("syncedLyrics") or "").strip():
-                stat["无时间轴"] += 1
-            else:
-                ld = rec.get("duration") or 0
-                drift = abs(ld - libdur) if (ld and libdur) else 0
-                if drift > 8:
-                    # 名字对了但时长差太多 → 大概率同名不同曲，宁缺毋滥
-                    stat["时长错配"] += 1
-                else:
+            k = skey(x["n"], x["a"])
+
+            # ① 网易云优先（主源：0.13s/首，67% 命中，带翻译）
+            hit_done = False
+            src0 = (x.get("src") or "wy")
+            wyid = str(x.get("i") or "") if src0 in ("wy", "", None) else ""
+            if wyid:
+                lrc, trans = wy_lyric(wyid)
+                if lrc and re.search(r"\[\d{1,3}:\d{1,2}", lrc):
+                    stat["命中(网易云)"] += 1
                     stat["命中"] += 1
-                    got.append((skey(x["n"], x["a"]),
-                                {"l": rec["syncedLyrics"], "d": round(ld or libdur, 1),
-                                 "s": "lrclib"}))
-                    done[skey(x["n"], x["a"])] = got[-1][1]
+                    rec_v = {"l": lrc, "d": round(libdur, 1), "s": "wy"}
+                    if trans:
+                        rec_v["t"] = trans
+                    done[k] = rec_v
+                    got.append((k, rec_v))
+                    hit_done = True
+                elif lrc:
+                    stat["网易云无时间轴"] += 1
+                else:
+                    stat["网易云无词"] += 1
+            else:
+                stat["无网易云id"] += 1
+
+            # ② LRCLIB 兜底（默认关；只有 --lrclib 才走）。
+            #    理由：真实榜单 80 首实测只命中 4 首（5%），却要 6.1s/首，
+            #    开着会把「网易云 0.2s/首」拖成「4.6s/首」，整轮产出反而更少。
+            if not hit_done and args.lrclib:
+                rec, err = fetch(a, n)
+                streak429 = streak429 + 1 if err == "429" else 0
+                if not rec:
+                    stat[err or "?"] += 1
+                elif rec.get("instrumental"):
+                    stat["纯音乐"] += 1
+                elif not (rec.get("syncedLyrics") or "").strip():
+                    stat["无时间轴"] += 1
+                else:
+                    ld = rec.get("duration") or 0
+                    drift = abs(ld - libdur) if (ld and libdur) else 0
+                    if drift > 8:
+                        # 名字对了但时长差太多 → 大概率同名不同曲，宁缺毋滥
+                        stat["时长错配"] += 1
+                    else:
+                        stat["命中(LRCLIB)"] += 1
+                        stat["命中"] += 1
+                        rec_v = {"l": rec["syncedLyrics"], "d": round(ld or libdur, 1), "s": "lrclib"}
+                        done[k] = rec_v
+                        got.append((k, rec_v))
             if i % 50 == 0:
                 el = time.time() - t0
                 print("  %d/%d ｜命中 %d (%.0f%%) ｜%.1fs ｜%.1f 首/分" % (
@@ -259,14 +325,20 @@ def main():
             if got and len(got) >= args.save_every:
                 flush(got, done)
                 got = []
-            time.sleep(max(random.uniform(*GAP), min_gap))
+            # 网易云命中时只做轻量间隔（实测 0.13s/首都稳），
+            # 只有真去打 LRCLIB 才套 80 次/分的硬限速 —— 否则 7.7 万首会被限速拖成 16 小时。
+            if hit_done:
+                time.sleep(random.uniform(0.05, 0.12))
+            else:
+                time.sleep(max(random.uniform(*GAP), min_gap))
     except KeyboardInterrupt:
         print("\n中断，保存已拿到的")
     if got:
         flush(got, done)
 
     el = time.time() - t0
-    n = sum(stat.values())
+    stat["命中"] = stat["命中(网易云)"] + stat["命中(LRCLIB)"]
+    n = sum(v for k, v in stat.items() if k != "命中")   # 「命中」是两者之和，别重复计
     print("\n=== 本轮 ===")
     print("请求 %d 首 ｜ 耗时 %.0fs ｜ 有效 %.1f 首/分" % (n, el, n / max(el, 1) * 60))
     if n:

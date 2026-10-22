@@ -1,6 +1,10 @@
 name: lyrics
 
-# LRCLIB 歌词补齐流水线（无人值守 · 全 GitHub 侧）
+# 歌词补齐流水线（无人值守 · 全 GitHub 侧）
+#
+# ★ 2026-10-22 实测后主源大改：网易云 wy_lyric 0.29s/首、前 300 首命中 86%；
+#   LRCLIB 用真实榜单 80 首只命中 5%（4 首）且 6.1s/首 —— 所以现在
+#   网易云优先、LRCLIB 默认关闭（要用加 --lrclib）。
 #
 # ============================ 为什么在云端跑，不在手机上查 ============================
 # 2026-10-22 本机（国内家宽）实测：
@@ -26,7 +30,7 @@ on:
       budget:
         description: "本轮时间预算（秒）"
         required: false
-        default: "1800"
+        default: "2400"
   schedule:
     # 每天 4 个偏移，跟 harvest 一样铺多次提高定时投递命中率
     - cron: "23 3 * * *"
@@ -44,7 +48,7 @@ concurrency:
 jobs:
   fill:
     runs-on: ubuntu-latest
-    timeout-minutes: 42
+    timeout-minutes: 46
     steps:
       - uses: actions/checkout@v4
         with:
@@ -91,8 +95,8 @@ jobs:
         run: |
           set -o pipefail
           LIMIT="${{ github.event.inputs.limit }}"
-          BUDGET="${{ github.event.inputs.budget || '1800' }}"
-          ARGS="--top 20000 --budget ${BUDGET:-1800} --rpm 80"
+          BUDGET="${{ github.event.inputs.budget || '2400' }}"
+          ARGS="--top 0 --budget ${BUDGET:-2400} --rpm 80"
           if [ -n "$LIMIT" ]; then ARGS="$ARGS --limit $LIMIT"; fi
           echo "python tools/lyrics.py $ARGS"
           python tools/lyrics.py $ARGS 2>&1 | tee /tmp/lyrics.log
@@ -113,7 +117,7 @@ jobs:
             echo "歌词无变更（本轮到时间预算但没新增，或全部命中已存在）"
             exit 0
           fi
-          if ! git commit -m "lyrics: ${CNT} 首带时间轴歌词（LRCLIB 对齐）$(date -u '+%Y-%m-%d %H:%M')"; then
+          if ! git commit -m "lyrics: ${CNT} 首带时间轴歌词（网易云主力）$(date -u '+%Y-%m-%d %H:%M')"; then
             echo "❌ commit 失败"
             exit 1
           fi
@@ -144,7 +148,7 @@ jobs:
         if: always()
         run: |
           {
-            echo "### LRCLIB 补齐结果"
+            echo "### 歌词补齐结果"
             echo ""
             if [ -f data/lyrics/manifest.json ]; then
               python - <<'PY'
