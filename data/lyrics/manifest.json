@@ -1,0 +1,13 @@
+{
+ "updated": "2026-10-22T16:03:07Z",
+ "count": 41,
+ "shardSize": 500,
+ "shards": [
+  {
+   "file": "shard-0000.js",
+   "count": 41,
+   "from": "agritosdeesperanza|alexubago",
+   "to": "별이빛나는밤starrynight星星闪耀的夜晚|mamamoo"
+  }
+ ]
+}
