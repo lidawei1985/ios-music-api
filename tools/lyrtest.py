@@ -73,9 +73,12 @@ def main():
     songs = []
     for lst in ch.get("lists", []):
         for x in (lst.get("songs") or [])[:40]:
-            t, a = (x.get("t") or "").strip(), (x.get("s") or "").strip()
+            # 榜单字段是 title/singer/duration(秒)，不是曲库那套 t/s/d。
+            # 按曲库字段名取会得到 0 首（2026-10-22 实测踩过，白跑一轮）。
+            t = (x.get("title") or x.get("t") or "").strip()
+            a = (x.get("singer") or x.get("s") or "").strip()
             if t and a:
-                songs.append({"t": t, "a": a, "chart": lst.get("name") or lst.get("n") or "?"})
+                songs.append({"t": t, "a": a, "chart": lst.get("name") or "?"})
     # 去重后取前 n 首
     seen, uniq = set(), []
     for x in songs:
