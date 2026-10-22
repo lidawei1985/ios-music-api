@@ -1,13 +1,37 @@
 {
- "updated": "2026-10-22T16:03:07Z",
- "count": 41,
+ "updated": "2026-10-22T17:16:01Z",
+ "count": 2045,
  "shardSize": 500,
  "shards": [
   {
    "file": "shard-0000.js",
-   "count": 41,
-   "from": "agritosdeesperanza|alexubago",
-   "to": "별이빛나는밤starrynight星星闪耀的夜晚|mamamoo"
+   "count": 500,
+   "from": "+*say*+|tree",
+   "to": "下一话心动|奇然/萧忆情alex/排骨教主/张承煜小魂"
+  },
+  {
+   "file": "shard-0001.js",
+   "count": 500,
+   "from": "下一页|梓渝",
+   "to": "小小奇迹|鸣潮先约电台/jixwang/飞行雪绒"
+  },
+  {
+   "file": "shard-0002.js",
+   "count": 500,
+   "from": "小尾巴|陆虎",
+   "to": "灰烬|江辰"
+  },
+  {
+   "file": "shard-0003.js",
+   "count": 500,
+   "from": "灰色头发|bobbynopeace/迪诺哥",
+   "to": "预言的勇者|卦者灵风/秀三岁"
+  },
+  {
+   "file": "shard-0004.js",
+   "count": 45,
+   "from": "颓|niney/＃max#",
+   "to": "퇴사할게여|饼饼有礼"
   }
  ]
 }
