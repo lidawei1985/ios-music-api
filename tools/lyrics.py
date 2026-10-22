@@ -112,7 +112,11 @@ def load_catalog(top):
 
 # ------------------------------------------------------------------ 已有歌词
 def load_done():
-    """返回已落盘的 key 集合 + 歌词字典，支持增量。"""
+    """读回已落盘的歌词（增量基础）。
+
+    产物是 .js（见 flush 的说明），所以要剥掉 `window.__DWG_LYRS[...]=` 外壳再 json 解析。
+    剥不掉就跳过这一片 —— 宁可重查几十首，也不要因为一片坏了整轮失败。
+    """
     done = {}
     mf = os.path.join(LYR, "manifest.json")
     if not os.path.exists(mf):
@@ -122,12 +126,30 @@ def load_done():
     except Exception:
         return done
     for sh in man.get("shards", []):
-        p = os.path.join(LYR, sh["file"])
-        if os.path.exists(p):
-            try:
-                done.update(json.load(open(p, encoding="utf-8")))
-            except Exception:
-                pass
+        name = sh.get("file") or ""
+        p = os.path.join(LYR, "js", name)
+        if not os.path.exists(p):
+            # 兼容早期的 .json 分片（第一版产物）
+            alt = os.path.join(LYR, name.replace(".js", ".json"))
+            if os.path.exists(alt):
+                try:
+                    done.update(json.load(open(alt, encoding="utf-8")))
+                except Exception:
+                    pass
+            continue
+        try:
+            txt = open(p, encoding="utf-8").read()
+            # 只认外壳的 `window.__DWG_LYRS[<n>=` 收尾位置，别用 find("]=")
+            # —— 歌词正文里完全可能出现 `]=`，那样会从中间截断解析失败
+            m = re.search(r"window\.__DWG_LYRS\[\d+\]=", txt)
+            if not m:
+                continue
+            body = txt[m.end():].rstrip()
+            if body.endswith(";"):
+                body = body[:-1]
+            done.update(json.loads(body))
+        except Exception:
+            pass
     return done
 
 
@@ -141,13 +163,17 @@ def fetch(a, t, dur=None, retries=2):
     url = "https://lrclib.net/api/get?" + urllib.parse.urlencode(q)
     for attempt in range(retries + 1):
         try:
-            with OPENER.open(urllib.request.Request(url, headers=UA), timeout=25) as r:
+            with OPENER.open(urllib.request.Request(url, headers=UA), timeout=20) as r:
                 return json.loads(r.read().decode("utf-8")), None
         except urllib.error.HTTPError as e:
             if e.code == 404:
                 return None, "404"
             if e.code == 429:
-                wait = float(e.headers.get("Retry-After") or 5)
+                # ★ 2026-10-22 血案：官方 Retry-After 可能是几百秒，照睡会把
+                #   一轮 15 分钟的预算全吃光（首轮 CI 就这样跑了 33 分钟没退出）。
+                #   这里封顶 8s，剩下的交给「连续 429 熔断」——被限流就早点收工，
+                #   宁可这轮少补几百首，也不要挂满一小时的 job。
+                wait = min(float(e.headers.get("Retry-After") or 5), 8.0)
                 if attempt < retries:
                     time.sleep(wait + random.uniform(0, wait * 0.3))
                     continue
@@ -194,14 +220,19 @@ def main():
     t0 = time.time()
     stat = Counter()
     got = []
+    streak429 = 0                  # 连续限流计数 → 熔断
     try:
         for i, x in enumerate(todo, 1):
             if time.time() - t0 > args.budget:
                 print("\n⏳ 到时间预算 %ds，收工（下轮继续）" % args.budget)
                 break
+            if streak429 >= 12:
+                print("\n🛑 连续 12 次被限流 → 提前收工（别把 job 挂在等 Retry-After 上）")
+                break
             a, n = clean(x["a"]), clean(x["n"])
             libdur = (x.get("d") or 0) / 1000.0
             rec, err = fetch(a, n)
+            streak429 = streak429 + 1 if err == "429" else 0
             if not rec:
                 stat[err or "?"] += 1
             elif rec.get("instrumental"):
@@ -247,22 +278,43 @@ def main():
 
 
 def flush(new_items, allmap):
-    """把新拿到的歌词合并进分片并重写 manifest。"""
-    os.makedirs(LYR, exist_ok=True)
+    """把新拿到的歌词合并进分片并重写清单。
+
+    ★★ 为什么产物是 **.js 不是 .json**（2026-10-22，和曲库 cat-manifest.js 同一套理由）：
+       App 里页面是 file://（WKWebView / Android WebView 载入沙盒内核），
+       这种文档下 fetch/XHR 跨源会被拦死，**只放行 <script> 与 <img> 子资源**。
+       所以分片必须是能被 <script src> 直接吃的形状：
+           window.__DWG_LYRS[<i>] = { "<skey>": {l,d,s}, ... }
+       清单同理：window.__DWG_LYRMAN = {updated,count,shardSize,shards}
+
+    ★ 分片带 key 区间（from/to）：端上不拉全量索引、也不全量下载，
+      拿清单里的区间二分一次就能定位到**唯一一片**，只下 ~1.5MB。
+      分片内部按 key 排序（sorted(keys) 切），所以区间连续且无重叠。
+    """
+    jsdir = os.path.join(LYR, "js")
+    os.makedirs(jsdir, exist_ok=True)
     keys = sorted(allmap.keys())
     shards = []
     for i in range(0, max(1, len(keys)), SHARD):
         chunk = keys[i:i + SHARD]
-        name = "shard-%04d.json" % (i // SHARD)
-        obj = {k: allmap[k] for k in chunk}
-        with open(os.path.join(LYR, name), "w", encoding="utf-8") as f:
-            json.dump(obj, f, ensure_ascii=False, separators=(",", ":"))
-        shards.append({"file": name, "count": len(chunk)})
+        name = "shard-%04d.js" % (i // SHARD)
+        payload = json.dumps({k: allmap[k] for k in chunk},
+                             ensure_ascii=False, separators=(",", ":"))
+        with open(os.path.join(jsdir, name), "w", encoding="utf-8") as f:
+            # 一次赋值，不要 JSONP 回调 —— 端上用 loadScript 等 onload 再读全局量
+            f.write("window.__DWG_LYRS=window.__DWG_LYRS||{};"
+                    "window.__DWG_LYRS[%d]=%s;\n" % (i // SHARD, payload))
+        shards.append({"file": name, "count": len(chunk),
+                       "from": chunk[0], "to": chunk[-1]})
     man = {"updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
            "count": len(keys), "shardSize": SHARD, "shards": shards}
+    with open(os.path.join(jsdir, "m.js"), "w", encoding="utf-8") as f:
+        f.write("window.__DWG_LYRMAN=%s;\n"
+                % json.dumps(man, ensure_ascii=False, separators=(",", ":")))
+    # manifest.json 只留作人/脚本查看（端上不读它）
     with open(os.path.join(LYR, "manifest.json"), "w", encoding="utf-8") as f:
         json.dump(man, f, ensure_ascii=False, indent=1)
-    print("   💾 落盘 %d 条 / %d 片" % (len(keys), len(shards)))
+    print("   💾 落盘 %d 条 / %d 片 → data/lyrics/js/" % (len(keys), len(shards)))
 
 
 if __name__ == "__main__":

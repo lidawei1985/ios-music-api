@@ -26,7 +26,7 @@ on:
       budget:
         description: "本轮时间预算（秒）"
         required: false
-        default: "2400"
+        default: "1800"
   schedule:
     # 每天 4 个偏移，跟 harvest 一样铺多次提高定时投递命中率
     - cron: "23 3 * * *"
@@ -44,7 +44,7 @@ concurrency:
 jobs:
   fill:
     runs-on: ubuntu-latest
-    timeout-minutes: 55
+    timeout-minutes: 42
     steps:
       - uses: actions/checkout@v4
         with:
@@ -91,8 +91,8 @@ jobs:
         run: |
           set -o pipefail
           LIMIT="${{ github.event.inputs.limit }}"
-          BUDGET="${{ github.event.inputs.budget || '2400' }}"
-          ARGS="--top 20000 --budget ${BUDGET:-2400} --rpm 80"
+          BUDGET="${{ github.event.inputs.budget || '1800' }}"
+          ARGS="--top 20000 --budget ${BUDGET:-1800} --rpm 80"
           if [ -n "$LIMIT" ]; then ARGS="$ARGS --limit $LIMIT"; fi
           echo "python tools/lyrics.py $ARGS"
           python tools/lyrics.py $ARGS 2>&1 | tee /tmp/lyrics.log
