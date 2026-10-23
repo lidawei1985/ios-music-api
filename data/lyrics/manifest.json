@@ -1,42 +1,48 @@
 {
- "updated": "2026-10-22T20:09:50Z",
- "count": 2996,
+ "updated": "2026-10-23T09:21:53Z",
+ "count": 3249,
  "shardSize": 500,
  "shards": [
   {
    "file": "shard-0000.js",
    "count": 500,
    "from": "+*say*+|tree",
-   "to": "notgood|rapeter"
+   "to": "muhabbat1|mamatjanabay"
   },
   {
    "file": "shard-0001.js",
    "count": 500,
-   "from": "nothing|seto",
-   "to": "他在乎我去世了然后|spylent"
+   "from": "muhabbetazabi|mominjanablikim",
+   "to": "主观性遗忘|1k"
   },
   {
    "file": "shard-0002.js",
    "count": 500,
-   "from": "仗着|俞天时/陈壹千",
-   "to": "孙权帝业|张一末灰老板"
+   "from": "举步维艰|姜云升/朴冉",
+   "to": "夏蝉说流光匆忙|冬子"
   },
   {
    "file": "shard-0003.js",
    "count": 500,
-   "from": "孙杰克李杰克|凯桑",
-   "to": "普鲁斯特效应|高旭"
+   "from": "夕阳落|blackthedevil",
+   "to": "拥过你的风|lbi利比"
   },
   {
    "file": "shard-0004.js",
    "count": 500,
-   "from": "晴天和猫|花粥",
-   "to": "绿皮火车|yzh于哲浩/李晨曦chrisulous"
+   "from": "拨不开的云|nacho",
+   "to": "献给风和蝉鸣|wovop/洛天依/乐正绫"
   },
   {
    "file": "shard-0005.js",
-   "count": 496,
-   "from": "绿色翡翠|keyl刘聪/c0de731",
+   "count": 500,
+   "from": "玉兰开花三月三|洛天依/乌龟sui/亚小琨",
+   "to": "迷途之中|李上安"
+  },
+  {
+   "file": "shard-0006.js",
+   "count": 249,
+   "from": "迷雾|tc",
    "to": "퇴사할게여|饼饼有礼"
   }
  ]
