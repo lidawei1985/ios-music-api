@@ -1,48 +1,48 @@
 {
- "updated": "2026-10-23T09:21:53Z",
- "count": 3249,
+ "updated": "2026-10-23T15:01:59Z",
+ "count": 3473,
  "shardSize": 500,
  "shards": [
   {
    "file": "shard-0000.js",
    "count": 500,
    "from": "+*say*+|tree",
-   "to": "muhabbat1|mamatjanabay"
+   "to": "montagemalways|trispect"
   },
   {
    "file": "shard-0001.js",
    "count": 500,
-   "from": "muhabbetazabi|mominjanablikim",
-   "to": "主观性遗忘|1k"
+   "from": "montagemboomerang|lunak",
+   "to": "不负天涯|冬子"
   },
   {
    "file": "shard-0002.js",
    "count": 500,
-   "from": "举步维艰|姜云升/朴冉",
-   "to": "夏蝉说流光匆忙|冬子"
+   "from": "不赴|忘川风华录/苍穹/赤羽",
+   "to": "和气生财|揽小"
   },
   {
    "file": "shard-0003.js",
    "count": 500,
-   "from": "夕阳落|blackthedevil",
-   "to": "拥过你的风|lbi利比"
+   "from": "哈糖月色荷塘月色哈基米|djprin4/是只大鱼鸭",
+   "to": "憎prodyoungbing|sasioverlxrd"
   },
   {
    "file": "shard-0004.js",
    "count": 500,
-   "from": "拨不开的云|nacho",
-   "to": "献给风和蝉鸣|wovop/洛天依/乐正绫"
+   "from": "懂哥freestyle|doublesr/煤球metro",
+   "to": "流浪地球|tangoz/ansrj/谢可寅"
   },
   {
    "file": "shard-0005.js",
    "count": 500,
-   "from": "玉兰开花三月三|洛天依/乌龟sui/亚小琨",
-   "to": "迷途之中|李上安"
+   "from": "浅忆|极简乐队",
+   "to": "茶|round2/早安/贰万/icepaper"
   },
   {
    "file": "shard-0006.js",
-   "count": 249,
-   "from": "迷雾|tc",
+   "count": 473,
+   "from": "茶仙|西瓜jun",
    "to": "퇴사할게여|饼饼有礼"
   }
  ]
