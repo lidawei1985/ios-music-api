@@ -1,54 +1,54 @@
 {
- "updated": "2026-10-24T19:01:34Z",
- "count": 3609,
+ "updated": "2026-10-25T00:09:05Z",
+ "count": 3649,
  "shardSize": 500,
  "shards": [
   {
    "file": "shard-0000.js",
    "count": 500,
    "from": "+*say*+|tree",
-   "to": "mom|蜡笔小心灵柯"
+   "to": "momentsonlyforyou|den"
   },
   {
    "file": "shard-0001.js",
    "count": 500,
-   "from": "moneyflow|buzzy/杨和苏keyng",
-   "to": "不归女孩|sunkenboat沉舟乐队"
+   "from": "mom|蜡笔小心灵柯",
+   "to": "不对等天体|余佳运"
   },
   {
    "file": "shard-0002.js",
    "count": 500,
-   "from": "不得|铁皮软糖",
-   "to": "可岁月你到底要怎样|王应天"
+   "from": "不属于地球上的|江楠",
+   "to": "发火|余佳运"
   },
   {
    "file": "shard-0003.js",
    "count": 500,
-   "from": "可惜你不在prodayeyoung|sasioverlxrd",
-   "to": "总有一天你会知道|颜人中"
+   "from": "发迹|topbarry/indecompany",
+   "to": "快乐着疲惫|den"
   },
   {
    "file": "shard-0004.js",
    "count": 500,
-   "from": "总比好过没有感情|张方钊",
-   "to": "欲泪海|mocker44/洛天依"
+   "from": "快点来|akemen",
+   "to": "梓|mo末"
   },
   {
    "file": "shard-0005.js",
    "count": 500,
-   "from": "歌|洛天依/张卡斯",
-   "to": "美好事物|房东的猫"
+   "from": "梗概|加木",
+   "to": "给你呀|蓝心羽/蒋小呢"
   },
   {
    "file": "shard-0006.js",
    "count": 500,
-   "from": "美满一生|单依纯",
-   "to": "雾林鸟|mocker44/洛天依"
+   "from": "给我织毛衣|diffusion扩散乐队",
+   "to": "陪着你|銘宏"
   },
   {
    "file": "shard-0007.js",
-   "count": 109,
-   "from": "霁夜茶|小曲儿",
+   "count": 149,
+   "from": "陷阱|大碗小面",
    "to": "퇴사할게여|饼饼有礼"
   }
  ]
