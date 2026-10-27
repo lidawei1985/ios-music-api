@@ -1,54 +1,54 @@
 {
- "updated": "2026-10-27T01:18:35Z",
- "count": 3802,
+ "updated": "2026-10-27T09:51:32Z",
+ "count": 3804,
  "shardSize": 500,
  "shards": [
   {
    "file": "shard-0000.js",
    "count": 500,
    "from": "+*say*+|tree",
-   "to": "luvisdrug|cashtrippy/热单间heatroom"
+   "to": "luvisdrug|cashtrippy/kkecho"
   },
   {
    "file": "shard-0001.js",
    "count": 500,
-   "from": "luvistrue|3rdcoast",
-   "to": "三号线|刘大壮"
+   "from": "luvisdrug|cashtrippy/热单间heatroom",
+   "to": "三两句|余翊/烟火客"
   },
   {
    "file": "shard-0002.js",
    "count": 500,
-   "from": "三天可见|沙一汀el",
-   "to": "千灯展卷|漆柚/椒椒jmj"
+   "from": "三只小熊|儿歌",
+   "to": "千年泪|echo艾歌"
   },
   {
    "file": "shard-0003.js",
    "count": 500,
-   "from": "千疮百孔|艾热air/shark",
-   "to": "引导型恋人|万乐体"
+   "from": "千年深雪|fbei",
+   "to": "弃子pt2|misterk"
   },
   {
    "file": "shard-0004.js",
    "count": 500,
-   "from": "弥渡山歌山丹丹民歌组合|山丹丹民歌组合",
-   "to": "暗恋|伦桑"
+   "from": "弄坏|栗紫锐/橙汁",
+   "to": "暗号|skiboyvv/tphunk"
   },
   {
    "file": "shard-0005.js",
    "count": 500,
-   "from": "暗恋人类日记|bopeep/洛天依official",
-   "to": "破局:breakthelaw|fire范艾迩/李大奔benzo/brantb白景屹"
+   "from": "暗恋|tg",
+   "to": "破伞|lbi利比"
   },
   {
    "file": "shard-0006.js",
    "count": 500,
-   "from": "破碎|jing/秦不寻/胭脂雨",
-   "to": "迷失暹罗feat荨麻疹|jinjibewater隼/荨麻疹"
+   "from": "破境|topbarry/侯东holdon",
+   "to": "迷失在北京|文氓苏"
   },
   {
    "file": "shard-0007.js",
-   "count": 302,
-   "from": "迷失的季节|sipsu小口酥/sakee云雾",
+   "count": 304,
+   "from": "迷失情感迷宫|曾舜晞",
    "to": "퇴사할게여|饼饼有礼"
   }
  ]
