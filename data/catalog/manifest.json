@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-28T06:32:50Z",
- "count": 77347,
+ "updated": "2026-10-28T12:59:05Z",
+ "count": 77338,
  "shardSize": 1000,
  "shards": [
   {
@@ -313,7 +313,7 @@
   },
   {
    "file": "shard-0077.json",
-   "count": 347
+   "count": 338
   }
  ],
  "idx": {
@@ -322,7 +322,7 @@
    "idx-01.txt"
   ],
   "chunkSize": 40000,
-  "total": 77347,
+  "total": 77338,
   "sep": "\u0001",
   "fields": [
    "nameN",
