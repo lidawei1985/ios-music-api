@@ -49,6 +49,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)                     # .../cloud
 CAT = os.path.join(ROOT, "data", "catalog")
 LYR = os.path.join(ROOT, "data", "lyrics")
+DATA = os.path.join(ROOT, "data")
 
 UA = {"User-Agent": "DawgeMusic/1.0.0 (https://github.com/lidawei1985/ios-music-app)"}
 OPENER = urllib.request.build_opener(urllib.request.ProxyHandler({}))
@@ -80,6 +81,45 @@ def skey(t, s):
 def clean(s):
     s = SUFFIX.sub("", (s or "").strip())
     return re.sub(r"\s+", " ", s).strip()
+
+
+# ------------------------------------------------- 端上真会露出的歌 → 优先补
+def load_curated_keys():
+    """首页/榜单/分类/曲库里真实能点到的歌的 skey 集合。
+
+    ★ 2026-10-30 主人指令「采集器……质量也没有保证」的根治之一：
+      此前队列只按曲库 pop 排序 —— 6 千多条歌词里大量是用户永远点不到的冷门曲，
+      而首页能点到的歌反而还空着。这里把「端上会露出的歌」提到队列最前，
+      先保证**看得见的都有词**，剩下的冷门曲再按热度慢慢铺。
+      口径和 tools/enrich_streams.py::curated() 完全一致。
+    """
+    keys = set()
+
+    def put(t, s):
+        if t:
+            keys.add(skey(t, s or ""))
+
+    def rd(name):
+        p = os.path.join(DATA, name)
+        if not os.path.exists(p):
+            return {}
+        try:
+            return json.load(open(p, encoding="utf-8"))
+        except Exception:
+            return {}
+
+    for s in (rd("library.json").get("songs") or []):
+        put(s.get("t"), s.get("s"))
+    for l in (rd("charts.json").get("lists") or []):
+        for s in (l.get("songs") or []):
+            put(s.get("title"), s.get("singer"))
+    for g in (rd("categories.json").get("groups") or []):
+        for c in (g.get("cats") or []):
+            for s in (c.get("songs") or []):
+                put(s.get("t"), s.get("s"))
+    for s in (rd("hero.json").get("items") or []):
+        put(s.get("t"), s.get("s"))
+    return keys
 
 
 # ------------------------------------------------------------------ 曲库读取
@@ -249,6 +289,19 @@ def main():
 
     todo = [x for x in pool if skey(x["n"], x["a"]) not in done]
     print("待补 %d 首" % len(todo))
+
+    # ★ 2026-10-30：先补「端上真能看到的那批」。稳定划分，组内保持原热度序。
+    try:
+        cur = load_curated_keys()
+        if cur:
+            head = [x for x in todo if skey(x["n"], x["a"]) in cur]
+            if head:
+                rest = [x for x in todo if skey(x["n"], x["a"]) not in cur]
+                print("端上可见曲目 %d 首，其中还缺词 %d 首 —— 提到队首先补"
+                      % (len(cur), len(head)))
+                todo = head + rest
+    except Exception as e:
+        print("（可见曲目优先跳过：%r）" % (e,))
     if args.limit:
         todo = todo[:args.limit]
         print("本轮限 %d 首" % len(todo))

@@ -72,22 +72,38 @@ jobs:
               print("还没有歌词分片，本轮从零开始")
           PY
 
+      # ★★★ 2026-10-30 修「无人值守被自己打断」：
+      #   这一步原本只探 **lrclib** —— 但主源早在 10-22 就改成网易云（lrclib 默认关闭），
+      #   于是每天早上/中午的定时运行都在这一步 **exit 1 早退**，18 秒收工，
+      #   歌词库从那以后就再没增量过（6730 → 6794 全靠后来手跑）。
+      #   现在改成探真正会用的那个源（网易云 lyric），lrclib 只作提示不阻断。
       - name: 接口自检（拿不到就早退，别白跑 40 分钟）
         run: |
           python - <<'PY'
-          import json, sys, urllib.parse, urllib.request
+          import json, sys, urllib.request
           UA = {"User-Agent": "DawgeMusic/1.0.0 (https://github.com/lidawei1985/ios-music-app)"}
-          q = urllib.parse.urlencode({"artist_name": "周杰伦", "track_name": "稻香"})
+          # ① 主源：网易云歌词接口（这首歌覆盖率最高，拿不到才真要早退）
+          ok_main = False
           try:
-              with urllib.request.urlopen(
-                      urllib.request.Request("https://lrclib.net/api/get?" + q, headers=UA),
-                      timeout=25) as r:
-                  d = json.loads(r.read().decode())
-              print("✅ 可达：%s / %s ｜ synced=%s ｜ %d 行" % (
-                  d.get("artistName"), d.get("trackName"), bool(d.get("syncedLyrics")),
-                  len((d.get("syncedLyrics") or "").splitlines())))
+              u = "https://music.163.com/api/song/lyric?os=pc&id=186016&lv=-1&kv=-1&tv=-1"
+              req = urllib.request.Request(u, headers=dict(UA, Referer="https://music.163.com/"))
+              d = json.loads(urllib.request.urlopen(req, timeout=20).read().decode("utf-8", "replace"))
+              lrc = ((d or {}).get("lrc") or {}).get("lyric") or ""
+              ok_main = bool(lrc.strip())
+              print("网易云歌词接口：%s（%d 行）" % ("✅" if ok_main else "❌", len(lrc.splitlines())))
           except Exception as e:
-              print("❌ lrclib 不可达：%r" % (e,))
+              print("网易云歌词接口不可达：%r" % (e,))
+          # ② 兜底源 lrclib：只是提示，不可达也不阻断（默认关闭，用不上）
+          try:
+              import urllib.parse
+              q = urllib.parse.urlencode({"artist_name": "周杰伦", "track_name": "稻香"})
+              with urllib.request.urlopen(urllib.request.Request("https://lrclib.net/api/get?" + q, headers=UA), timeout=25) as r:
+                  d = json.loads(r.read().decode())
+              print("lrclib（兜底）：✅ %s / %s" % (d.get("artistName"), d.get("trackName")))
+          except Exception as e:
+              print("lrclib（兜底）不可达，本轮不用它：%r" % (e,))
+          if not ok_main:
+              print("❌ 主源不可用，早退")
               sys.exit(1)
           PY
 
