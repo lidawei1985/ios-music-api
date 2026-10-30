@@ -217,6 +217,8 @@ def pick(items, title, singer, tf, sf):
             score = 6
         if score == 0:
             continue
+        if s and not (s in si or si in s):
+            continue   # ★ 2026-10-30 歌手必须沾边：标题同名但歌手完全不同 = 翻唱/同人曲，宁可不要（杜绝「放错歌」）
         if s and (s in si or si in s):
             score += 5
         score -= 3 * badness(tf(it))                 # 劣质变体扣分
@@ -241,6 +243,8 @@ def pick_all(items, title, singer, tf, sf, limit=4):
             score = 6
         if score == 0:
             continue
+        if s and not (s in si or si in s):
+            continue   # ★ 2026-10-30 歌手必须沾边：标题同名但歌手完全不同 = 翻唱/同人曲，宁可不要（杜绝「放错歌」）
         if s and (s in si or si in s):
             score += 5
         score -= 3 * badness(tf(it))

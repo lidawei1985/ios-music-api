@@ -1220,6 +1220,12 @@ def main():
     # 试源顺序：高保真曲库源（按分）→ 视频兜底源（按分）。App 依次试，首个可播即播。
     hifi = [h["id"] for h in active if h["role"] == "hifi"]
     back = [h["id"] for h in active if h["role"] != "hifi"]
+    # ★ 2026-10-30 修复「order 塌成只剩 bili」：GitHub 机房出口被地域风控时，
+    #   wy/migu 会被误判 quarantined（家宽/4G 实测完全可用）。探测失败 ≠ 源死亡，
+    #   hifi 源永远保留在 order 前列，探测结果只调整同档内先后，绝不整体剔除。
+    HIFI_BASE = ["wy", "migu"]
+    hifi = [x for x in HIFI_BASE if x in hifi] + [x for x in hifi if x not in HIFI_BASE] or list(HIFI_BASE)
+    back = [x for x in back if x not in hifi] or ["bili"]
     order = hifi + back
     # 云端机房出口被地域风控时探测会全灭；此时回落到本地家宽实测过的默认序（设备端解析用）。
     if not order:

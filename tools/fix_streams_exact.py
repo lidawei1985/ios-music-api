@@ -9,8 +9,8 @@
 """
 import json, re, os, sys, time
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-SRC = os.path.join(ROOT, "cloud", "data", "streams.json")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # tools/ 的上一级 = 仓根（2026-10-30 目录结构对齐）
+SRC = os.path.join(ROOT, "data", "streams.json")
 
 def norm(s):
     if not s: return ""
@@ -21,9 +21,12 @@ def main():
     mp = d.get("map") or {}
     total = len(mp)
     keep, dropped_native, dropped_mismatch = {}, 0, 0
+    def art_ok(ka, va):
+        a, b = norm(ka), norm(va)
+        return bool(a and b and (a in b or b in a))
     for k, v in mp.items():
-        title = k.split("|")[0]
-        if norm(v.get("n", "")) != norm(title):
+        title, _, kartist = k.partition("|")
+        if norm(v.get("n", "")) != norm(title) or (kartist and not art_ok(kartist, v.get("a", ""))):
             if v.get("native") == 1: dropped_native += 1
             else: dropped_mismatch += 1
             continue
