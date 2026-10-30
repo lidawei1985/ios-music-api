@@ -168,6 +168,19 @@ jobs:
               f.write('skip=%s\n' % ('true' if skip else 'false'))
           PY
 
+      # ★★★ 2026-10-30 根治「点了没反应 / 一首接一首跳过」的关键一步。
+      #   实测：App 里最显眼的四个入口（首页热歌 / 榜单 / 主视觉 / 我的）用的
+      #   全是策展数据（charts/hero/library/categories），而这些数据里一首歌
+      #   只有 QQ 的 mid，**没有任何 wy/kw/migu 可播 id** → 端上必然
+      #   「暂无可用音源 → 自动跳歌」。
+      #   答案其实就在本仓库：data/catalog 就是 7.6 万首带实测可播 id 的曲库。
+      #   这一步**离线**把策展歌名翻译回真 id（0 耗时、不耗 Actions 分钟数），
+      #   再交给下面的 build.py 去联网补曲库里没有的那些。
+      - name: 离线补源（策展曲目 → 本机曲库的真 id）
+        if: github.event_name == 'workflow_dispatch' || steps.fresh.outputs.skip != 'true'
+        continue-on-error: true
+        run: python tools/enrich_streams.py
+
       - name: 源池维护流水线
         if: github.event_name == 'workflow_dispatch' || steps.fresh.outputs.skip != 'true'
         env:
@@ -196,6 +209,15 @@ jobs:
           COMMENT_TOP: "400"
           TXT_BUDGET_S: "1500"
         run: python tools/build.py
+
+      # ★★★ 2026-10-30：multimap.py 写完之后**从来没有任何流水线调用过**，
+      #   所以 data/streams/xmap.js 一直停在 301 首（占曲库 0.4%）——
+      #   端上的「备用线路」等于不存在：主源一挂就彻底没声。
+      #   这里正式接进来给热门曲补备用源（增量续跑，每轮按预算往前拱）。
+      - name: 多源备用线路（xmap：给热门曲补第二条/第三条线路）
+        if: github.event_name == 'workflow_dispatch' || steps.fresh.outputs.skip != 'true'
+        continue-on-error: true
+        run: python tools/multimap.py --top 8000 --budget 1200 --workers 6
 
       # ★★★ 2026-10-06 补齐关键一环：把 data/<n>.json 同步导出 data/<n>.js。
       #   端上是 file:// 页面，iOS WebView **拦 fetch / XHR，只放行 <script>**；
