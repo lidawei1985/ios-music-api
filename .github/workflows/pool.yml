@@ -219,6 +219,24 @@ jobs:
         continue-on-error: true
         run: python tools/multimap.py --top 8000 --budget 1200 --workers 6
 
+      # ★★★ 2026-10-30 主人指令：「MV 演唱会每一个播放的了的」。
+      #   mv.json 里 4000+ 条从来没有人真验过能不能播（文件里 verified=17 是死数字）。
+      #   verify_mv.py 逐条真测（取流 + Range 探测），打不开的直接从库里剔除；
+      #   增量：data/mv_ok.json 记结果，7 天内不重测，只有新补进来的才实测。
+      - name: MV 全量可播核验（剔除打不开的）
+        if: github.event_name == 'workflow_dispatch' || steps.fresh.outputs.skip != 'true'
+        continue-on-error: true
+        run: python tools/verify_mv.py --budget 1500
+
+      # ★★★ 2026-10-30 主人指令「没有资源直接跳过」的根治：
+      #   端上可见曲目里还有 3475 首没有服务端背书的音源（只能靠点播时在线搜，
+      #   慢且依赖现场网络）。这里在 Actions（海外出口）+ 한국近日品种，服务端批量
+      #   翻译 id 并**逐条真测**后才落库，端上就是开箱即用。
+      - name: 缺源曲目翻译 + 真测落库
+        if: github.event_name == 'workflow_dispatch' || steps.fresh.outputs.skip != 'true'
+        continue-on-error: true
+        run: python tools/resolve_missing.py --workers 4 --budget 1200
+
       # ★★★ 2026-10-06 补齐关键一环：把 data/<n>.json 同步导出 data/<n>.js。
       #   端上是 file:// 页面，iOS WebView **拦 fetch / XHR，只放行 <script>**；
       #   内核 fetchLive() 已改走 <script> 注入 window.__DWG_DB_<NAME>。
