@@ -1,54 +1,54 @@
 {
- "updated": "2026-10-31T01:35:17Z",
- "count": 3961,
+ "updated": "2026-10-31T10:29:38Z",
+ "count": 3968,
  "shardSize": 500,
  "shards": [
   {
    "file": "shard-0000.js",
    "count": 500,
    "from": "+*say*+|tree",
-   "to": "love920|江辰"
+   "to": "love6|建坤young/果妹"
   },
   {
    "file": "shard-0001.js",
    "count": 500,
-   "from": "lovecanignitethestars|blesslarke",
-   "to": "一分钟恋人|gg啵"
+   "from": "love920|江辰",
+   "to": "一些关于她的事|陈宸"
   },
   {
    "file": "shard-0002.js",
    "count": 500,
-   "from": "一剑成执一念痴|诺言jason",
-   "to": "刀子|卦者灵风"
+   "from": "一分一寸|阿yueyue",
+   "to": "出山|花粥/王胜娚"
   },
   {
    "file": "shard-0003.js",
    "count": 500,
-   "from": "刀背|lbi利比",
-   "to": "小城曲|周舟/tenoclock"
+   "from": "出鞘剧情版|nl不分/阿睿凌霓剑裳",
+   "to": "小人物|辉子"
   },
   {
    "file": "shard-0004.js",
    "count": 500,
-   "from": "小城谣|胡碧乔",
-   "to": "无法忘记你|nicky尼基/檀安crush"
+   "from": "小人间|双笙陈元汐",
+   "to": "无意之间|马里奥mario/俺酱"
   },
   {
    "file": "shard-0005.js",
    "count": 500,
-   "from": "无法把你挽回|野生三十/xxxmiracle",
-   "to": "狗狗|李大奔benzo"
+   "from": "无意之间伪装学渣片尾曲mario俺酱|俺酱/马里奥mario",
+   "to": "牵丝戏|银临/aki阿杰"
   },
   {
    "file": "shard-0006.js",
    "count": 500,
-   "from": "独一vu二|thome/toyoki/digighetto",
-   "to": "西乡飞鸟|光头仙子"
+   "from": "牵挂你的人是我|高林生",
+   "to": "被你骗和你吻|三火flame/沧桑cang333"
   },
   {
    "file": "shard-0007.js",
-   "count": 461,
-   "from": "西凉夜|礼越",
+   "count": 468,
+   "from": "被动人格|ljz329/饺子/yugo",
    "to": "퇴사할게여|饼饼有礼"
   }
  ]
