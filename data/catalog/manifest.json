@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-31T22:22:34Z",
- "count": 76852,
+ "updated": "2026-11-01T06:06:16Z",
+ "count": 76871,
  "shardSize": 1000,
  "shards": [
   {
@@ -309,7 +309,7 @@
   },
   {
    "file": "shard-0076.json",
-   "count": 852
+   "count": 871
   }
  ],
  "idx": {
@@ -318,7 +318,7 @@
    "idx-01.txt"
   ],
   "chunkSize": 40000,
-  "total": 76852,
+  "total": 76871,
   "sep": "\u0001",
   "fields": [
    "nameN",
@@ -348,6 +348,7 @@
  },
  "ranked": "pop + freshness",
  "sources": [
+  "bili",
   "kw",
   "migu",
   "wy"
