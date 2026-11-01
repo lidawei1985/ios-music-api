@@ -96,14 +96,13 @@ jobs:
         run: python tools/resolve_missing.py --workers 4 --budget ${{ github.event.inputs.budget || '3000' }}
 
       # ---------------------------------------------------------------- 4.5) 国内直连复检
-      #   ★ 为什么必须单独一步：补源 probe 走的是 runner 的海外出口，
-      #     而用户手机在国内 —— 实测同一批 id 两边结果不同：
-      #     服务端标"可播 92.3%"，端上真测抽样只有 76.7%，差的 17 首全是
-      #     `text/html`（VIP/版权错误页）。已在 CI 上按国内出口复检打 dead 标记，
-      #     端上见到 dead 就直接跳过、转在线补源，不再干等超时。
-      - name: 音源复检（剔除放不出来的坏链）
-        continue-on-error: true
-        run: python tools/recheck_streams.py --workers 6
+      #   ★ 2026-11-02：这一步**从 CI 里撤掉了**，理由是本文件注释自己写错了：
+      #     注释说"按国内出口复检"，但 GitHub runner 的出口在**海外** —— 同一批 id
+      #     海外能放、国内放不出（网易 VIP/版权在国内回 HTML 错误页）。
+      #     于是 CI 每跑一次，就会把真正的坏链判成"可播"并**摘掉 dead 标记**，
+      #     等于每周把坏链复活一次。复检必须留在国内出口的机器上手工跑：
+      #         python tools/recheck_streams.py --workers 6     # 然后推 data/
+      #     脚本自己已强制 ProxyHandler({}) 走直连，在香港/海外机器上跑只会得到假结果。
 
       # ---------------------------------------------------------------- 5) 导出 + 校验
       - name: 导出端上可用的 JS 版数据（data/*.js）

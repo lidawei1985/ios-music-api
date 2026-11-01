@@ -61,10 +61,30 @@ def url_of(rec):
     return None
 
 
-def check(rec):
-    u = url_of(rec)
-    if not u:
-        return False, "no-url"
+def kw_real(rid):
+    r"""酷我「兑换链」两段式：anti.s 返回的**不是音频**，是一段 URL 文本。
+
+    ★ 2026-11-02 实测翻案（这是本文件此前最大的误杀）：
+       旧代码拿 anti.s 直接当音频探测 → Content-Type: text/plain → 判死，
+       于是 **312 条 kw 源被打成 312/312 全灭**（连官方 `srcs` 统计里 kw 都整片 dead）。
+       实际抽样 25 条：先兑换、再取真实地址，**25/25 全是 audio/mpeg 真 MP3（100%）**。
+       —— 不是版权问题，是复检方法错了。不先兑换就是白杀 312 首。
+
+    返回真实音频 URL（http 一律升 https：iOS ATS 拒绝明文，实测 https 域名同样可下）。
+    """
+    try:
+        t = OP.open(urllib.request.Request(KW % rid, headers=UA),
+                    timeout=12).read().decode("utf-8", "replace").strip()
+    except Exception:
+        return None
+    if not t.startswith("http"):
+        return None                                  # 兑换失败/下架
+    if t.startswith("http://"):
+        t = "https://" + t[len("http://"):]
+    return t
+
+
+def probe(u):
     try:
         req = urllib.request.Request(u, headers=dict(UA, Range="bytes=0-2047"))
         r = OP.open(req, timeout=20)
@@ -85,6 +105,24 @@ def check(rec):
         return False, "err:" + repr(e)[:32]
 
 
+def check(rec):
+    # ① 酷我：必须先兑换出真实地址再测（直接测 anti.s 只会拿到一段文本）
+    if rec.get("kw"):
+        real = kw_real(rec["kw"])
+        if not real:
+            return False, "kw-nourl"
+        return probe(real)
+    # ② 咪咕：播放地址接口（MIGUM2.0 strategy/listen-url 与 MIGUM3.0 sub/listenV2）
+    #    2026-11-02 实测一律回 `code:299996 路由请求不支持`（换 host / 加 channel /
+    #    ua / toneFlag 头都不行）→ 这是接口级失效，不是单曲版权，没救。
+    if rec.get("migu") or rec.get("mg"):
+        return False, "migu-api-dead"
+    u = url_of(rec)
+    if not u:
+        return False, "no-url"
+    return probe(u)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry", action="store_true")
@@ -102,6 +140,16 @@ def main():
             dead = json.load(open(DEADF, encoding="utf-8"))
         except Exception:
             dead = {}
+
+    # 咪咕线路已接口级失效（check() 里 299996），留着只会让端上白等 —— 直接清掉，
+    # 不等「连续 3 轮」慢慢淘汰。清掉后这些歌回到「无源」状态，由补源流程重新找线路。
+    mg = [k for k, v in omap.items()
+          if isinstance(v, dict) and (v.get("migu") or v.get("mg")) and not v.get("wy")]
+    for k in mg:
+        omap.pop(k, None)
+        dead.pop(k, None)
+    if mg:
+        print("咪咕线路接口级失效（299996）→ 直接清除 %d 条" % len(mg), flush=True)
 
     keys = list(omap.keys())
     if a.limit:
