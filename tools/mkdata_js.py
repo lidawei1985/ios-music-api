@@ -21,7 +21,7 @@ DATA = os.path.join(CD, "data")
 # 端上会实时热更的（体积小、会变）。其余大文件仍随包内置，不在这里生成也没关系，
 # 但统一生成成本极低，且方便以后按需扩展。
 NAMES = ["pool", "charts", "library", "artists", "mv", "hero",
-         "categories", "streams", "lyrics", "comments"]
+         "categories", "streams", "lyrics", "comments", "inst"]
 
 
 def main():
