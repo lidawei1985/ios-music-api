@@ -157,7 +157,7 @@ def main():
     print("复检 %d 条（map 共 %d 条）" % (len(keys), len(omap)), flush=True)
 
     t0 = time.time()
-    bad, good = {}, 0
+    bad, good, revived = {}, 0, 0
     with cf.ThreadPoolExecutor(max_workers=a.workers) as ex:
         futs = {ex.submit(check, omap[k]): k for k in keys}
         for n, fu in enumerate(cf.as_completed(futs), 1):
@@ -169,9 +169,15 @@ def main():
             if ok:
                 good += 1
                 if k in dead:
-                    dead.pop(k, None)          # 恢复了 → 摘标记
-                    if k in omap:
-                        omap[k].pop("dead", None)
+                    dead.pop(k, None)          # 恢复了 → 摘计数
+                # ★ 2026-11-02 修「摘不掉」：摘标记**不能**挂在 `k in dead` 里。
+                #   streams_dead.json 与 streams.json 会不同步（实测 CI 那轮留下的
+                #   298 条 dead 标记在 dead 文件里一条都没有）—— 于是复检明明通过，
+                #   streams.json 里的 dead:1 却原封不动，端上照样跳过，等于白修。
+                #   通过就是通过了，无条件摘。
+                if k in omap and "dead" in omap[k]:
+                    omap[k].pop("dead", None)
+                    revived += 1
             else:
                 bad[k] = why
                 if k in omap:
@@ -183,6 +189,8 @@ def main():
 
     print("\n=== 复检结论 ===")
     print("  真能播 %d / %d（%.1f%%）" % (good, len(keys), 100.0 * good / max(1, len(keys))))
+    if revived:
+        print("  摘掉误标 dead %d 条（这些歌端上立刻恢复可播）" % revived)
     print("  放不出来 %d 条" % len(bad))
     for w, n in sorted(((w, list(bad.values()).count(w)) for w in set(bad.values())),
                        key=lambda x: -x[1])[:6]:
