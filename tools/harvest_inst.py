@@ -50,7 +50,9 @@ INST_RE = re.compile(
     r"纯音乐|纯音版|演奏版|消音|和声版)", re.I)
 # ② 翻唱/串歌信号（命中即毙）
 COVER_RE = re.compile(
-    r"(cover|翻唱|翻自|原唱\s*[:：({（]|feat\.?\s|remix|dj版|慢摇|变速|倍速)", re.I)
+    # ★ 2026-11-02 补「dj」「remix」「变速」的**任意写法**：实测漏网的
+    #   「大漠长明(DJ乔大拿版)-伴奏」—— 正则只写了 `dj版`，挡不住 `DJ乔大拿版`。
+    r"(cover|翻唱|翻自|原唱\s*[:：({（]|feat\.?\s|remix|dj|慢摇|变速|倍速|电音|鼓点)", re.I)
 # ③ 明显不是伴奏的噪音
 NOISE_RE = re.compile(r"(现场|live|演唱会|音乐节|清唱|清唱版|哼唱|试听|片段|铃声|彩铃)", re.I)
 
@@ -99,9 +101,24 @@ def probe(cid):
         return False, "err:" + repr(e)[:28]
 
 
+def core_name(nm):
+    """伴奏标题的「裸歌名」：去掉括号内容、去掉伴奏类词、抹掉空格。
+
+    为什么要这个（2026-11-02 实测翻车）：
+      旧判定是「互相包含即算过」，结果配出一堆错歌 ——
+        「我的女人」→ 配到「下辈子做我的女人 伴奏」
+        「千里之外」→ 配到「千里之外爱着你 (伴奏)」
+      用户点的伴奏放出来是**另一首歌**，比没有伴奏更糟。
+      现在要求裸歌名**完全相等**才收。
+    """
+    s = re.sub(r"[（(\[【][^）)\]】]*[）)\]】]", " ", nm or "")   # 去括号内容
+    s = INST_RE.sub(" ", s)                                     # 去伴奏类词
+    return E.norm(E.strip(s)).replace(" ", "")
+
+
 def pick_inst(title, orig_dur, arr):
     """从搜索结果里挑最靠谱的伴奏。返回 (id, name, singer, dur) 或 None"""
-    bt = E.norm(E.strip(title))
+    bt = core_name(title)
     best, bsc = None, 0
     for x in arr:
         nm = x.get("name") or ""
@@ -109,14 +126,11 @@ def pick_inst(title, orig_dur, arr):
             continue                                  # ① 没有伴奏信号 → 不是伴奏
         if COVER_RE.search(nm) or NOISE_RE.search(nm):
             continue                                  # ② 是翻唱/现场 → 毙
-        ct = E.norm(E.strip(nm))
-        # 歌名要对得上：伴奏名通常就是「<歌名> 伴奏」
-        if ct == bt:
-            sc = 100
-        elif bt and (bt in ct or ct in bt):
-            sc = 70
-        else:
+        ct = core_name(nm)
+        # ★ 歌名必须**完全相等**（裸名对齐），绝不接受「互相包含」
+        if not bt or ct != bt:
             continue
+        sc = 100
         d = dur_of(x)
         # ③ 时长闸门
         if orig_dur and d:
