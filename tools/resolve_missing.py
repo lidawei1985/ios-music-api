@@ -170,48 +170,82 @@ def probe(sid):
         return False, repr(e)[:40]
 
 
+def _song_fields(x):
+    """★ 2026-11-02 实测翻案（这是「歌不对」的真根因，不是什么玄学）：
+
+    `cloudsearch/pc` 返回的**不是** `artists` / `duration`（那两个是老接口
+    `search/get/web` 的字段），而是 **`ar`** 和 **`dt`**。
+    旧代码照抄老字段 → 两个值恒为 None → 下面两句
+        `if ba and ca:`      （歌手校验）
+        `if cd and dur:`     （时长校验）
+    **同时为假，两道关卡全程被静默跳过** —— 于是「歌名一样」就敢落库：
+    搜「自己就是自己的光」回来的是「东天太冷」「半岛调频」的版本，照样收。
+    这就是用户反复投诉「点了放出来是别人的歌」的来源。
+    这里两个字段名都兼容，并对 `dt` 做单位兜底（毫秒 / 秒两种都见过）。"""
+    an = "/".join((z.get("name") or "") for z in (x.get("ar") or x.get("artists") or []))
+    raw = x.get("dt")
+    if raw is None:
+        raw = x.get("duration")
+    try:
+        raw = int(raw or 0)
+    except Exception:
+        raw = 0
+    dur = raw / 1000.0 if raw > 100000 else float(raw)   # ms → s；已是秒就别再除
+    return an, dur
+
+
 def resolve_one(c):
     """返回 (cid, dur) 或 None —— 三关校验 + 真测全过才算"""
-    q = (c["t"] + " " + (c["s"] or "")).strip()
-    d = get_json(SEARCH % urllib.parse.quote(q))
-    arr = (((d or {}).get("result") or {}).get("songs") or [])
-    if not arr:
-        return None, "no-result"
     bt = E.norm(E.strip(c["t"]))
     ba = E.norm(c["s"] or "")
+    # ★ 查询串：先只用歌名。实测双词（"兰香如故 叶炫清"）时网易做的是**相关推荐**，
+    #   回来的全是该歌手别的歌（时间中央/九张机…），一条都对不上；
+    #   纯歌名才真的返回同名曲目，再由下面的歌手关卡挑人 —— 命中率与准确率都更高。
+    qs = [c["t"]]
+    full = (c["t"] + " " + (c["s"] or "")).strip()
+    if full != c["t"]:
+        qs.append(full)
     best, bsc = None, 0
-    for x in arr:
-        nm = x.get("name") or ""
-        if BAD.search(nm):
+    for q in qs:
+        d = get_json(SEARCH % urllib.parse.quote(q))
+        arr = (((d or {}).get("result") or {}).get("songs") or [])
+        if not arr:
             continue
-        ct = E.norm(E.strip(nm))
-        # ① 歌名
-        if ct == bt:
-            sc = 100
-        elif ct and bt and (ct in bt or bt in ct):
-            sc = 70
-        else:
-            continue
-        # ② 歌手（必须沾边，杜绝同名不同人）
-        an = "/".join((z.get("name") or "") for z in (x.get("artists") or []))
-        ca = E.norm(an)
-        if ba and ca:
-            if ca == ba or ca in ba or ba in ca:
-                sc += 20
+        for x in arr:
+            nm = x.get("name") or ""
+            if BAD.search(nm):
+                continue
+            ct = E.norm(E.strip(nm))
+            # ① 歌名
+            if ct == bt:
+                sc = 100
+            elif ct and bt and (ct in bt or bt in ct):
+                sc = 70
             else:
                 continue
-        # ③ 时长
-        dur = int(x.get("duration") or 0) / 1000.0
-        cd = c.get("dur") or 0
-        if cd and dur:
-            if abs(dur - cd) <= 3:
-                sc += 15
-            elif abs(dur - cd) <= 8:
-                sc += 5
-            else:
-                continue
-        if sc > bsc:
-            bsc, best = sc, (str(x.get("id") or ""), dur)
+            an, dur = _song_fields(x)
+            # ② 歌手（必须沾边，杜绝同名不同人）
+            ca = E.norm(an)
+            if ba and ca:
+                if ca == ba or ca in ba or ba in ca:
+                    sc += 20
+                else:
+                    continue
+            elif ba and not ca:
+                continue                              # 拿不到歌手 → 不敢认，宁可不补
+            # ③ 时长
+            cd = c.get("dur") or 0
+            if cd and dur:
+                if abs(dur - cd) <= 3:
+                    sc += 15
+                elif abs(dur - cd) <= 8:
+                    sc += 5
+                else:
+                    continue
+            if sc > bsc:
+                bsc, best = sc, (str(x.get("id") or ""), dur)
+        if best:
+            break
     if not best or not best[0]:
         return None, "no-match"
     ok, why = probe(best[0])
