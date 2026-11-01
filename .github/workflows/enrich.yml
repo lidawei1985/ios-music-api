@@ -95,6 +95,16 @@ jobs:
         continue-on-error: true
         run: python tools/resolve_missing.py --workers 4 --budget ${{ github.event.inputs.budget || '3000' }}
 
+      # ---------------------------------------------------------------- 4.5) 国内直连复检
+      #   ★ 为什么必须单独一步：补源 probe 走的是 runner 的海外出口，
+      #     而用户手机在国内 —— 实测同一批 id 两边结果不同：
+      #     服务端标"可播 92.3%"，端上真测抽样只有 76.7%，差的 17 首全是
+      #     `text/html`（VIP/版权错误页）。已在 CI 上按国内出口复检打 dead 标记，
+      #     端上见到 dead 就直接跳过、转在线补源，不再干等超时。
+      - name: 音源复检（剔除放不出来的坏链）
+        continue-on-error: true
+        run: python tools/recheck_streams.py --workers 6
+
       # ---------------------------------------------------------------- 5) 导出 + 校验
       - name: 导出端上可用的 JS 版数据（data/*.js）
         continue-on-error: true
