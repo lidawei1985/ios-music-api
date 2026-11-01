@@ -42,7 +42,10 @@ permissions:
   contents: write
 
 concurrency:
-  group: lyrics-main
+  # ★ 2026-11-01：改用**全局统一锁** `dwg-data`（pool/harvest/lyrics/enrich 共用）。
+  #   各用独立 group 时它们真的会并发往 data/ 写 → rebase 冲突 → 整轮成果随 runner 销毁。
+  #   cancel-in-progress: false → 只排队不取消，严格串行（10-08 那次"被 cancel"是 true 造成的）。
+  group: dwg-data
   cancel-in-progress: false
 
 jobs:

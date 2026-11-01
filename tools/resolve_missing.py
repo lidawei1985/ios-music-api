@@ -48,9 +48,59 @@ MISSF = os.path.join(DATA, "resolve_miss.json")
 UA = {"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) "
                     "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 "
                     "Mobile/15E148 Safari/604.1"}
-OP = urllib.request.build_opener(urllib.request.ProxyHandler({}))
-SEARCH = "https://music.163.com/api/search/get/web?s=%s&type=1&offset=0&limit=12"
+SEARCH = ("https://music.163.com/api/cloudsearch/pc?s=%s&type=1&offset=0&limit=12")
+# ★ 2026-11-01 实测：`search/get/web` 已对本机/代理出口持续回 405（且是伪装成"搜不到"的业务码），
+#   `cloudsearch/pc` 同一出口 code=200 / 12 条结果照常返回 —— 换用后者，并带上 appver cookie。
+SEARCH_COOKIE = "appver=2.9.7; os=pc"
 OUTER = "https://music.163.com/song/media/outer/url?id=%s.mp3"
+
+
+def _probe_proxy():
+    r"""★ 2026-11-01 实测翻案（推翻 10-30 的结论）：
+
+    10-30 判定「网易搜索对本机 IP 风控，只能靠 GitHub Actions 补」——
+    当时漏看了本文件自己的 OP = ProxyHandler({})：**显式禁用了系统代理**，
+    于是请求永远从本机家宽出口发出，被网易按 code=405/406 风控掉
+    （它不是 httperror，而是伪装成「搜不到」的业务码，于是被当成 no-result）。
+
+    实测：走本机梯子（127.0.0.1:7897，出口 104.160.183.199）后
+    `search/get/web` 立刻 code=200 / n=12 全通 —— **补源在本机就能全量跑完**，
+    不必等 CI 每天挤一点预算。
+
+    选择顺序：--proxy 显式指定 > 环境变量 http(s)_proxy > 本机 7897 探测 > 直连。
+    CI（GitHub Actions 海外出口）会走最后一条，行为与之前一致。"""
+    import socket
+    cand = []
+    p = os.environ.get("https_proxy") or os.environ.get("HTTPS_PROXY")
+    if p:
+        cand.append(p)
+    p = os.environ.get("http_proxy") or os.environ.get("HTTP_PROXY")
+    if p:
+        cand.append(p)
+    for port in (7897, 7890, 10809):
+        try:
+            s = socket.create_connection(("127.0.0.1", port), timeout=0.6)
+            s.close()
+            cand.append("http://127.0.0.1:%d" % port)
+            break
+        except Exception:
+            continue
+    for p in cand:
+        try:
+            op = urllib.request.build_opener(urllib.request.ProxyHandler(
+                {"http": p, "https": p}))
+            d = json.loads(op.open(urllib.request.Request(
+                SEARCH % "test", headers=dict(UA, Referer="https://music.163.com/")),
+                timeout=12).read().decode("utf-8", "replace"))
+            print("  · 联网通道：%s（code=%s）" % (p, d.get("code")))
+            return op
+        except Exception:
+            continue
+    print("  · 联网通道：直连（无可用代理）")
+    return urllib.request.build_opener(urllib.request.ProxyHandler({}))
+
+
+OP = _probe_proxy()
 
 # 与端上 XFIND.BAD 保持一致：这些一律不能当成正片给用户听
 BAD = re.compile(r"(伴奏|纯音乐|instrumental|karaoke|消音|DJ版|dj ?版|remix|加速|慢速|"
@@ -68,7 +118,8 @@ def get_json(url, ref="https://music.163.com/", ms=15, tries=3):
        这里：406/空结果一律退避重试（2s / 5s），**不算失败**。"""
     for i in range(tries):
         try:
-            req = urllib.request.Request(url, headers=dict(UA, Referer=ref))
+            req = urllib.request.Request(url, headers=dict(UA, Referer=ref,
+                                                           Cookie=SEARCH_COOKIE))
             d = json.loads(OP.open(req, timeout=ms).read().decode("utf-8", "replace"))
         except Exception:
             time.sleep(1.5 + 2 * i)
@@ -83,16 +134,38 @@ def get_json(url, ref="https://music.163.com/", ms=15, tries=3):
     return None
 
 
+def _looks_media(head, ct):
+    """★ 2026-11-01：只看 Content-Type 会**误杀**大量能正常播的曲子。
+       实测 213 首被判 dead 的唯一"罪证"是 `Content-Type: application/octet-stream`
+       —— 网易不少节点就是这么回的，但载荷其实是真 MP3。
+       改为读文件头 magic bytes 判定，跟播放器一个口径。"""
+    if ct.startswith("audio/") or ct.startswith("video/"):
+        return True
+    if ct.startswith("text/"):
+        return False                                  # 错误页/HTML
+    if not head:
+        return False
+    if head[:3] == b"ID3":                            # MP3（带 ID3v2）
+        return True
+    if len(head) >= 2 and head[0] == 0xFF and (head[1] & 0xE0) == 0xE0:
+        return True                                   # MP3 帧同步
+    if head[4:8] == b"ftyp":                          # MP4/M4A
+        return True
+    if head[:4] == b"RIFF" or head[:4] == b"fLaC" or head[:4] == b"OggS":
+        return True
+    return False
+
+
 def probe(sid):
-    """真打直链：必须真是音频"""
+    """真打直链：必须真是音频（Content-Type + magic bytes 双判定）"""
     try:
         req = urllib.request.Request(OUTER % sid, headers=dict(UA, Range="bytes=0-2047"))
         r = OP.open(req, timeout=15)
         ct = (r.headers.get("Content-Type") or "").lower()
-        r.read(1024)
-        if r.status in (200, 206) and ct.startswith("audio"):
+        head = r.read(64)
+        if r.status in (200, 206) and _looks_media(head, ct):
             return True, "ok"
-        return False, "ctype=%s/%s" % (r.status, ct[:20])
+        return False, "ctype=%s/%s" % (r.status, ct[:24])
     except Exception as e:
         return False, repr(e)[:40]
 

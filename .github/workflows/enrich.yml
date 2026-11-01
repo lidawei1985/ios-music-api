@@ -1,0 +1,194 @@
+name: enrich
+
+# =====================================================================
+# ★ 2026-11-01 新建：**慢活专用流水线**（音源补全 / MV 可播核验 / 多源备用线路）
+# ---------------------------------------------------------------------
+# 为什么拆出来（实测血案，不是拍脑袋）：
+#   这三个步骤的时间预算是 1200 + 1500 + 1200 秒 = **65 分钟**，原先挂在 pool.yml 里。
+#   叠上 pool 自己的「源池维护流水线」(build.py) 后整轮必然超过 90 分钟 job 上限：
+#       2026-11-01 10:49Z → 1h30m18s → cancelled
+#       2026-11-01 13:11Z → 1h30m21s → cancelled
+#   后果不是"慢一点"，而是**从 10-30 起服务端补源一轮都没真正完成过** ——
+#   端上 5105 首里长期只有 1623 首有音源（31.8%），用户看到的就是"没资源直接跳过"。
+#   拆出来后：pool 回到 40 分钟内稳定完成，慢活在这里有 6 小时预算从容跑完。
+#
+# 并发：与 pool / harvest / lyrics **共用同一个 concurrency group `dwg-data`**。
+#   四者都往 data/ 写东西；实测各用独立 group 时它们真的会并发，
+#   rebase 撞冲突 → 整轮成果随 runner 销毁（2026-11-01 13:23Z harvest 就是这么挂的）。
+#   cancel-in-progress: false → 只排队不取消，严格串行，永不冲突。
+#   （2026-10-08 那次「共用组被 cancel」的血案是 cancel-in-progress: true 造成的，现已是 false。）
+# =====================================================================
+on:
+  workflow_dispatch:
+    inputs:
+      skip_mv:
+        description: "跳过 MV 核验（填 1 跳过）"
+        required: false
+        default: ""
+      budget:
+        description: "补源时间预算（秒，默认 3000）"
+        required: false
+        default: "3000"
+  schedule:
+    # UTC。GitHub 定时投递实测只有 ~1/6 命中，所以每个窗口挂 3 个偏移（:13/:33/:53）。
+    # 每天两窗：03 点档（对应北京 11 点）与 15 点档（对应北京 23 点）。
+    - cron: "13 3 * * *"
+    - cron: "33 3 * * *"
+    - cron: "53 3 * * *"
+    - cron: "13 15 * * *"
+    - cron: "33 15 * * *"
+    - cron: "53 15 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dwg-data            # 与 pool / harvest / lyrics 同一把锁 → 严格串行
+  cancel-in-progress: false
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    # 慢活专用：三个步骤预算合计 65 分钟，留出 6 小时余量（含排队等待）。
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # 与 pool 同：deploy key 推送才会触发 jsDelivr 的 push webhook（秒级回源）；
+          # 回落 https 也能跑，只是数据要等 12 小时才可见。
+          ssh-key: ${{ secrets.API_DEPLOY_KEY }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 拉取最新（锁内串行，进来时尽量已是最新 main）
+        run: |
+          git config user.name "music-pool-bot"
+          git config user.email "music-pool-bot@users.noreply.github.com"
+          git config merge.dwgid.name "DWG shard union by song id"
+          git config merge.dwgid.driver "python tools/merge_shard.py %O %A %B"
+          git pull --rebase --autostash origin main || true
+
+      # ---------------------------------------------------------------- 1) 零网络：本机曲库翻译
+      - name: 离线补源（策展曲目 → 本机曲库的真 id）
+        continue-on-error: true
+        run: python tools/enrich_streams.py
+
+      # ---------------------------------------------------------------- 2) 多源备用线路
+      - name: 多源备用线路（xmap：给热门曲补第二条/第三条线路）
+        continue-on-error: true
+        run: python tools/multimap.py --top 8000 --budget 1200 --workers 6
+
+      # ---------------------------------------------------------------- 3) MV 可播核验
+      #   增量：data/mv_ok.json 记结果，7 天内不重测，只有新补进来的才实测。
+      - name: MV 全量可播核验（剔除打不开的）
+        if: github.event.inputs.skip_mv != '1'
+        continue-on-error: true
+        run: python tools/verify_mv.py --budget 1500
+
+      # ---------------------------------------------------------------- 4) 缺源在线补（最重的一步）
+      #   ★ 2026-11-01 换接口：music.163.com/api/search/get/web 对多数出口持续回 **405**
+      #     （伪装成"搜不到"的业务码，不是 httperror），命中率假性极低；
+      #     resolve_missing.py 已改用 cloudsearch/pc + appver cookie，实测命中 82.5%。
+      - name: 缺源曲目翻译 + 真测落库
+        continue-on-error: true
+        run: python tools/resolve_missing.py --workers 4 --budget ${{ github.event.inputs.budget || '3000' }}
+
+      # ---------------------------------------------------------------- 5) 导出 + 校验
+      - name: 导出端上可用的 JS 版数据（data/*.js）
+        continue-on-error: true
+        run: python tools/mkdata_js.py
+
+      - name: 产出校验
+        continue-on-error: true
+        run: python tools/validate.py
+
+      - name: 体检摘要（本轮可播率）
+        run: |
+          python - <<'PY'
+          import json, os
+          st = json.load(open('data/streams.json', encoding='utf-8'))
+          print("端上可见曲目 %s｜有音源 %s｜可播率 %s%%"
+                % (st.get('count'), st.get('hit'), st.get('rate')))
+          mv = json.load(open('data/mv.json', encoding='utf-8'))
+          print("MV %s 条｜已核验可播 %s" % (mv.get('count'), mv.get('verified')))
+          PY
+
+      # ---------------------------------------------------------------- 6) 入库发布
+      - name: 入库并发布
+        id: publish
+        run: |
+          git config user.name "music-pool-bot"
+          git config user.email "music-pool-bot@users.noreply.github.com"
+          git config merge.dwgid.name "DWG shard union by song id"
+          git config merge.dwgid.driver "python tools/merge_shard.py %O %A %B"
+          git add -A data
+          PUSH_OK=1
+          if git diff --cached --quiet; then
+            echo "无变更"
+          else
+            if ! git commit -m "enrich: 音源/MV 补全 $(date -u '+%Y-%m-%d %H:%M')"; then
+              echo "❌ git commit 失败 → 本轮不发布"
+              exit 1
+            fi
+            # ★ 与 pool/harvest 同款：rebase 到最新 main 后重推，最多 4 次（指数退避）。
+            #   只认「远端事实」：push 返回 0 也可能是"本来就没新提交"，必须核对 ls-remote。
+            PUSH_OK=0
+            for i in 1 2 3 4; do
+              if git push 2>/tmp/push.err; then
+                RS=$(git ls-remote origin refs/heads/main 2>/dev/null | awk '{print $1}')
+                LH=$(git rev-parse HEAD)
+                if [ -n "$RS" ] && [ "$RS" = "$LH" ]; then PUSH_OK=1; break; fi
+                echo "----- push 返回 0 但远端 main(${RS:-空}) ≠ 本地 HEAD(${LH:-空}) → 视为未推送 -----"
+                cat /tmp/push.err 2>/dev/null || true
+              fi
+              echo "----- 第 $i 次 push 失败 -----"; cat /tmp/push.err
+              git fetch origin main || true
+              if ! git rebase --autostash origin/main; then
+                echo "rebase 冲突，放弃本次发布"
+                git rebase --abort 2>/dev/null || true
+                break
+              fi
+              sleep $((i * 5))
+            done
+          fi
+          if [ "$PUSH_OK" = "0" ]; then
+            echo "❌ push 连续失败：本轮数据不发布（线上保持上一版）"
+            git reset --hard origin/main 2>/dev/null || true
+          fi
+          git fetch origin main >/dev/null 2>&1 || true
+          SHA=$(git rev-parse origin/main 2>/dev/null || git rev-parse HEAD)
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "push_ok=$PUSH_OK" >> "$GITHUB_OUTPUT"
+
+      # 锚点是「端上能否立刻看到新数据」的唯一命门：jsDelivr 对 @main 吃 12 小时分支缓存，
+      # 只有全新 URL（10 分钟窗口文件名）才秒级回源。--back 18 一次回填 3 小时窗口。
+      - name: 发布时效锚点（data/win/<10分钟窗口>.js）
+        if: steps.publish.outputs.sha != ''
+        run: |
+          git config user.name "music-pool-bot"
+          git config user.email "music-pool-bot@users.noreply.github.com"
+          python tools/mktide.py --sha "${{ steps.publish.outputs.sha }}" --back 18 --prune
+          git add -A data/win
+          if git diff --cached --quiet; then
+            echo "锚点无变化"
+          else
+            git commit -m "tide: enrich anchor @$(echo ${{ steps.publish.outputs.sha }} | cut -c1-10) $(date -u '+%Y-%m-%d %H:%M')"
+            TIDE_OK=0
+            for i in 1 2 3 4; do
+              if git push 2>/tmp/push.err; then TIDE_OK=1; break; fi
+              echo "----- 锚点第 $i 次 push 失败 -----"; cat /tmp/push.err
+              git fetch origin main || true
+              if ! git rebase --autostash origin/main; then
+                echo "锚点 rebase 冲突，放弃"
+                git rebase --abort 2>/dev/null || true
+                break
+              fi
+              sleep $((i * 5))
+            done
+            if [ "$TIDE_OK" != "1" ]; then
+              echo "❌ 时效锚点发布失败：端上本轮无法切到新数据"
+              exit 1
+            fi
+          fi

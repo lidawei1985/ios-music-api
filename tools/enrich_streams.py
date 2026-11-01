@@ -138,34 +138,72 @@ def curated():
 
 
 # ------------------------------------------------------------------ 3) 匹配
-def match(idx_by_title, t, s):
-    """严格优先原唱：歌名完全一致 > 剥后缀后一致；歌手必须沾边；原唱优先"""
+def match(idx_by_title, t, s, loose=True):
+    r"""严格优先原唱：歌名完全一致 > 剥后缀后一致 > 模糊包含；歌手必须沾边；原唱优先。
+
+    ★ 2026-11-01 放宽（实测：严格口径把 3482 首缺源里 **1502 首** 明明库里有的歌判成找不到）
+      榜单/歌单的歌手写法和曲库不一致是常态（榜单写「半吨兄弟」、曲库存「于牧野」），
+      一律拒绝 = 用户点一首跳一首。分级放宽：
+        ① 歌名精确一致 + 歌手沾边                → 直接收（高质量）
+        ② 歌名精确一致 + 歌手不沾边               → 仅当**该歌名在库里只有 1~2 位歌手唱过**
+                                                    才收（不是易串的名曲），并扣分
+        ③ 歌名剥后缀一致                          → 同 ① ②
+        ④ 歌名模糊包含（长度差 ≤2）              → **歌手必须沾边**，否则坚决不收
+      ★ 任何情况下 cv=2（翻唱）都不得顶替正片。"""
     nt, ns = norm(t), norm(s)
     st = strip(t)
+
+    exact = list(idx_by_title.get(nt) or [])
+    seen = {id(c) for c in exact}
+    for c in (idx_by_title.get(st) or []):
+        if id(c) not in seen:
+            exact.append(c)
+            seen.add(id(c))
+
+    # 该精确歌名在本库里共有几位歌手唱过（用于②的"是否易串"判断）
+    n_singers = len({c[1] for c in exact if c[1]})
+
+    fuzzy = []
+    if not exact and loose and nt:
+        for tk, v in idx_by_title.items():
+            if len(v) > 40:
+                continue
+            if (nt in tk or tk in nt) and abs(len(tk) - len(nt)) <= 2:
+                fuzzy.extend(v)
+                if len(fuzzy) > 80:
+                    break
+
     best, bs = None, -99
-    for cand in (idx_by_title.get(nt) or []) + (idx_by_title.get(st) or []):
-        ctn, cts = cand[0], strip(cand[4])
-        sc = -99
-        if ctn == nt:
-            sc = 6
-        elif st and cts == st:
-            sc = 3
-        if sc < -90:
-            continue
-        cn = cand[1]
-        if ns and cn:
-            if cn == ns:
-                sc += 5
-            elif cn in ns or ns in cn:
-                sc += 2
+    for grp, base in ((exact, True), (fuzzy, False)):
+        for cand in grp:
+            ctn, cts = cand[0], strip(cand[4])
+            if ctn == nt:
+                sc = 6
+            elif st and cts == st:
+                sc = 3
+            elif not base:
+                sc = 1                          # 模糊命中：低分起步
             else:
-                continue                      # 同名不同人 → 绝不能串
-        if cand[6] == 1:
-            sc += 3                           # 原唱优先
-        elif cand[6] == 2:
-            sc -= 3                           # 翻唱靠后
-        if sc > bs:
-            bs, best = sc, cand
+                continue
+            cn = cand[1]
+            if ns and cn:
+                if cn == ns:
+                    sc += 5
+                elif cn in ns or ns in cn:
+                    sc += 2
+                elif base and n_singers <= 2:
+                    sc -= 4                     # 库里就这一两个人唱过，不是名曲，接受
+                else:
+                    continue                    # 同名不同人 / 模糊命中歌手不沾边 → 绝不能串
+            cv = str(cand[6] or "0")
+            if cv == "1":
+                sc += 3                         # 原唱优先
+            elif cv == "2":
+                sc -= 3                         # 翻唱靠后
+            if sc > bs:
+                bs, best = sc, cand
+        if best and bs >= 6:
+            break                               # 精确命中已足够好，别再让模糊的抢
     return best
 
 

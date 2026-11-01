@@ -37,12 +37,16 @@ permissions:
   actions: write          # 清理旧 cache 需要
 
 concurrency:
-  # ★★ 2026-10-08 拆组（根因之一）：原来与 pool **共用** `pool-maintenance`，而 pool 每 2 小时
-  #   就来一轮（3 偏移），harvest 只有 2 偏移 → 反复被 pool 顶成 cancelled。
-  #   实测：10-07 06:35Z 最后一次成功之后 **7 连 cancelled**，曲库冻结 23.4 小时。
-  #   两边的 push 都已带 rebase 重试（各 4 次、指数退避），并发 push 不会被对方打掉，
-  #   所以可以安全拆成独立组：harvest 只与自己竞争，不再被 pool 挤掉。
-  group: harvest-main
+  # ★ 2026-11-01：改用**全局统一锁** `dwg-data`（pool/harvest/lyrics/enrich 共用）。
+  #   各用独立 group 时它们真的会并发往 data/ 写 → rebase 冲突 → 整轮成果随 runner 销毁。
+  #   cancel-in-progress: false → 只排队不取消，严格串行（10-08 那次"被 cancel"是 true 造成的）。
+  # 历史（2026-10-08）：曾与 pool 共用 `pool-maintenance`，因 **cancel-in-progress: true**
+  #   被 pool 反复顶成 cancelled（10-07 06:35Z 之后 7 连 cancelled，曲库冻结 23.4 小时）→ 当时拆成独立组。
+  # 现状（2026-11-01 改回共用）：拆组解决了"被取消"，却带来新问题 —— 两条流水线**真的并发**
+  #   往 data/catalog/shard-*.json 写，rebase 撞行级冲突 → 整轮采集随 runner 销毁
+  #   （11-01 13:23Z 那轮就是这么挂的）。现在 cancel-in-progress 已是 **false**（只排队不取消），
+  #   共用组既不会被取消、也不会并发冲突；shard 冲突另有 merge driver 按歌曲 id 取并集兜底。
+  group: dwg-data
   cancel-in-progress: false
 
 jobs:
@@ -263,6 +267,15 @@ jobs:
         run: |
           git config user.name "music-pool-bot"
           git config user.email "music-pool-bot@users.noreply.github.com"
+          # ★★★ 2026-11-01 修「整轮采集白跑」：
+          #    harvest 与 pool 各有独立 concurrency group（刻意拆开，共用会被 cancel），
+          #    于是两者真的会并发，且都要写 data/catalog/shard-*.json → rebase 撞出行级冲突
+          #    → 旧逻辑直接 `rebase 冲突，放弃本次发布`，1~2 小时成果随 runner 销毁
+          #    （2026-11-01 13:23Z 那轮就是这样挂的）。
+          #    shard 语义是「歌曲集合」，两边都是加歌 —— 注册按 id 取并集的 merge driver，
+          #    让 git 自己裁决，不再需要人工/放弃。
+          git config merge.dwgid.name "DWG shard union by song id"
+          git config merge.dwgid.driver "python tools/merge_shard.py %O %A %B"
           CNT=$(python -c "import json;print(json.load(open('data/catalog/manifest.json',encoding='utf-8'))['count'])")
           git add -A data/catalog
           if git diff --cached --quiet; then

@@ -32,7 +32,10 @@ permissions:
   contents: write
 
 concurrency:
-  group: pool-maintenance
+  # ★ 2026-11-01：改用**全局统一锁** `dwg-data`（pool/harvest/lyrics/enrich 共用）。
+  #   各用独立 group 时它们真的会并发往 data/ 写 → rebase 冲突 → 整轮成果随 runner 销毁。
+  #   cancel-in-progress: false → 只排队不取消，严格串行（10-08 那次"被 cancel"是 true 造成的）。
+  group: dwg-data
   cancel-in-progress: false
 
 jobs:
@@ -45,7 +48,7 @@ jobs:
     #   再叠加下游「源池维护流水线」(build.py) 的最坏预算 TXT 1500s + MV 600s = 2100s，
     #   合计最坏 ≈ 62 分钟 > 旧的 40 分钟 → **job 超时被杀 → 发布步骤永不执行 → 整轮成果全丢**
     #   （外部只看到"数据不更新了"，极难排查）。抬到 90 分钟留足余量。
-    timeout-minutes: 90
+    timeout-minutes: 240
     steps:
       # ★★★ 用 deploy key 检出（与 ios 仓同一改动，2026-10-06）：
       #   实测 GITHUB_TOKEN 推送的提交**不触发 jsDelivr 的 push webhook** ——
@@ -210,32 +213,11 @@ jobs:
           TXT_BUDGET_S: "1500"
         run: python tools/build.py
 
-      # ★★★ 2026-10-30：multimap.py 写完之后**从来没有任何流水线调用过**，
-      #   所以 data/streams/xmap.js 一直停在 301 首（占曲库 0.4%）——
-      #   端上的「备用线路」等于不存在：主源一挂就彻底没声。
-      #   这里正式接进来给热门曲补备用源（增量续跑，每轮按预算往前拱）。
-      - name: 多源备用线路（xmap：给热门曲补第二条/第三条线路）
-        if: github.event_name == 'workflow_dispatch' || steps.fresh.outputs.skip != 'true'
-        continue-on-error: true
-        run: python tools/multimap.py --top 8000 --budget 1200 --workers 6
-
-      # ★★★ 2026-10-30 主人指令：「MV 演唱会每一个播放的了的」。
-      #   mv.json 里 4000+ 条从来没有人真验过能不能播（文件里 verified=17 是死数字）。
-      #   verify_mv.py 逐条真测（取流 + Range 探测），打不开的直接从库里剔除；
-      #   增量：data/mv_ok.json 记结果，7 天内不重测，只有新补进来的才实测。
-      - name: MV 全量可播核验（剔除打不开的）
-        if: github.event_name == 'workflow_dispatch' || steps.fresh.outputs.skip != 'true'
-        continue-on-error: true
-        run: python tools/verify_mv.py --budget 1500
-
-      # ★★★ 2026-10-30 主人指令「没有资源直接跳过」的根治：
-      #   端上可见曲目里还有 3475 首没有服务端背书的音源（只能靠点播时在线搜，
-      #   慢且依赖现场网络）。这里在 Actions（海外出口）+ 한국近日品种，服务端批量
-      #   翻译 id 并**逐条真测**后才落库，端上就是开箱即用。
-      - name: 缺源曲目翻译 + 真测落库
-        if: github.event_name == 'workflow_dispatch' || steps.fresh.outputs.skip != 'true'
-        continue-on-error: true
-        run: python tools/resolve_missing.py --workers 4 --budget 1200
+      # ★★★ 2026-11-01 慢活外迁：multimap / verify_mv / resolve_missing 三个重步骤
+      #   （预算 1200+1500+1200 秒 = 65 分钟）原先挂在 pool 里，叠上源池维护后整轮必然
+      #   超过 90 分钟上限 → 实测 10-49、13-11 **连续两轮跑满 1h30m 被 cancelled**，
+      #   也就是说服务端补源从 10-30 起一轮都没真正完成过。
+      #   现在迁到独立流水线 enrich.yml（每天 2 次、timeout 360），pool 回到 40 分钟内。
 
       # ★★★ 2026-10-06 补齐关键一环：把 data/<n>.json 同步导出 data/<n>.js。
       #   端上是 file:// 页面，iOS WebView **拦 fetch / XHR，只放行 <script>**；
@@ -264,6 +246,15 @@ jobs:
         run: |
           git config user.name "music-pool-bot"
           git config user.email "music-pool-bot@users.noreply.github.com"
+          # ★★★ 2026-11-01 修「整轮采集白跑」：
+          #    harvest 与 pool 各有独立 concurrency group（刻意拆开，共用会被 cancel），
+          #    于是两者真的会并发，且都要写 data/catalog/shard-*.json → rebase 撞出行级冲突
+          #    → 旧逻辑直接 `rebase 冲突，放弃本次发布`，1~2 小时成果随 runner 销毁
+          #    （2026-11-01 13:23Z 那轮就是这样挂的）。
+          #    shard 语义是「歌曲集合」，两边都是加歌 —— 注册按 id 取并集的 merge driver，
+          #    让 git 自己裁决，不再需要人工/放弃。
+          git config merge.dwgid.name "DWG shard union by song id"
+          git config merge.dwgid.driver "python tools/merge_shard.py %O %A %B"
           ROUND=$(python -c "import json;print(json.load(open('data/pool.json',encoding='utf-8'))['round'])")
           git add -A data
           PUSH_OK=1
