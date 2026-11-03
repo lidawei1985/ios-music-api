@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T19:48:07Z",
+ "updated": "2026-11-03T02:49:40Z",
  "hotkeys": [],
  "lists": [
   {
@@ -5295,23 +5295,6 @@
    "count": 100,
    "songs": [
     {
-     "title": "我好像在哪见过你",
-     "singer": "薛之谦",
-     "singers": [
-      {
-       "name": "薛之谦",
-       "mid": "002J4UUk29y8BY"
-      }
-     ],
-     "album": "初学者",
-     "duration": 279,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000dcZ9I1nzO62.jpg",
-     "mid": "004VBMk71TdUuR",
-     "albummid": "000dcZ9I1nzO62",
-     "vid": "",
-     "rank": "515018"
-    },
-    {
      "title": "Hong Kong (feat. 王菲季候风)",
      "singer": "The Weeknd",
      "singers": [
@@ -5326,58 +5309,92 @@
      "mid": "00255MYE3GNkZF",
      "albummid": "003h24VO1pTh6K",
      "vid": "",
-     "rank": "304259"
+     "rank": "321809"
     },
     {
-     "title": "季候风",
-     "singer": "王菲",
+     "title": "我好像在哪见过你",
+     "singer": "薛之谦",
      "singers": [
       {
-       "name": "王菲",
-       "mid": "000GDDuQ3sGQiT"
+       "name": "薛之谦",
+       "mid": "002J4UUk29y8BY"
       }
      ],
-     "album": "执迷不悔",
-     "duration": 276,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002Oen8n3cKClG.jpg",
-     "mid": "001SFw584CAgoJ",
-     "albummid": "002Oen8n3cKClG",
+     "album": "初学者",
+     "duration": 279,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000dcZ9I1nzO62.jpg",
+     "mid": "004VBMk71TdUuR",
+     "albummid": "000dcZ9I1nzO62",
      "vid": "",
-     "rank": "224646"
+     "rank": "483314"
     },
     {
-     "title": "迟来的情话",
-     "singer": "张家旺",
+     "title": "自由的你",
+     "singer": "G.E.M.邓紫棋",
      "singers": [
       {
-       "name": "张家旺",
-       "mid": "000NpEYi1G9R6r"
+       "name": "G.E.M.邓紫棋",
+       "mid": "001fNHEf1SFEFN"
       }
      ],
-     "album": "迟来的情话",
-     "duration": 202,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000007qwpc1XDkXo.jpg",
-     "mid": "003ZbWC54Hyyxl",
-     "albummid": "0007qwpc1XDkXo",
+     "album": "自由的你",
+     "duration": 296,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002Cy8kL400ft2.jpg",
+     "mid": "002qUdaX4ba2ez",
+     "albummid": "002Cy8kL400ft2",
      "vid": "",
-     "rank": "94510"
+     "rank": "348992"
     },
     {
-     "title": "隔岸 (女版)",
-     "singer": "可楼",
+     "title": "연애의 조건 (LOVE OPTIONS) (恋爱的条件)",
+     "singer": "BESTie (베스티)",
      "singers": [
       {
-       "name": "可楼",
-       "mid": "000msVPH0vPdfB"
+       "name": "BESTie (베스티)",
+       "mid": "003FtY7P4XArUx"
       }
      ],
-     "album": "隔岸 (女版)",
-     "duration": 231,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000042uV2d3a2IjF.jpg",
-     "mid": "003ARPg02FVFFD",
-     "albummid": "0042uV2d3a2IjF",
+     "album": "연애의 조건 (Love Options)",
+     "duration": 194,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000034h3c72cswaP.jpg",
+     "mid": "0008rnAh3oSbcW",
+     "albummid": "0034h3c72cswaP",
      "vid": "",
-     "rank": "188856"
+     "rank": "166766"
+    },
+    {
+     "title": "Wish You Well",
+     "singer": "张智成",
+     "singers": [
+      {
+       "name": "张智成",
+       "mid": "000fLFlf0ycA4i"
+      }
+     ],
+     "album": "你爱上的...",
+     "duration": 257,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002RBVbE1ef8kW.jpg",
+     "mid": "000pXdIV2ysR3q",
+     "albummid": "002RBVbE1ef8kW",
+     "vid": "",
+     "rank": "68921"
+    },
+    {
+     "title": "Just Be My Child",
+     "singer": "小智",
+     "singers": [
+      {
+       "name": "小智",
+       "mid": "004XDKHW0aIioI"
+      }
+     ],
+     "album": "Just Be My Child",
+     "duration": 248,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004RQJuH2VMvUN.jpg",
+     "mid": "003psxK72a8iPr",
+     "albummid": "004RQJuH2VMvUN",
+     "vid": "",
+     "rank": "91630"
     },
     {
      "title": "难生恨",
@@ -5394,7 +5411,92 @@
      "mid": "003nhy5F0kJzD4",
      "albummid": "001HbTL21T4QDT",
      "vid": "",
-     "rank": "100748"
+     "rank": "82544"
+    },
+    {
+     "title": "季候风",
+     "singer": "王菲",
+     "singers": [
+      {
+       "name": "王菲",
+       "mid": "000GDDuQ3sGQiT"
+      }
+     ],
+     "album": "执迷不悔",
+     "duration": 276,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002Oen8n3cKClG.jpg",
+     "mid": "001SFw584CAgoJ",
+     "albummid": "002Oen8n3cKClG",
+     "vid": "",
+     "rank": "236428"
+    },
+    {
+     "title": "以物易物",
+     "singer": "DYLAN尹海阳",
+     "singers": [
+      {
+       "name": "DYLAN尹海阳",
+       "mid": "003avqhq1xTH0O"
+      }
+     ],
+     "album": "INDIVIDUAL: 个体差异",
+     "duration": 206,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000aqlFL1ASSsd.jpg",
+     "mid": "004IyfD13rH1Oi",
+     "albummid": "000aqlFL1ASSsd",
+     "vid": "",
+     "rank": "82525"
+    },
+    {
+     "title": "we never beat",
+     "singer": "秋落雨",
+     "singers": [
+      {
+       "name": "秋落雨",
+       "mid": "001OD5PF3SYNOn"
+      }
+     ],
+     "album": "we never beat",
+     "duration": 121,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004bSPT609lVk7.jpg",
+     "mid": "003OSdar2EG8ZP",
+     "albummid": "004bSPT609lVk7",
+     "vid": "",
+     "rank": "86719"
+    },
+    {
+     "title": "过渡期",
+     "singer": "小宇-宋念宇",
+     "singers": [
+      {
+       "name": "小宇-宋念宇",
+       "mid": "003Pt2380Q2EbF"
+      }
+     ],
+     "album": "再一次",
+     "duration": 275,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Uw5qE3Wjlo6.jpg",
+     "mid": "002GnkGs2TknvY",
+     "albummid": "001Uw5qE3Wjlo6",
+     "vid": "",
+     "rank": "127362"
+    },
+    {
+     "title": "Moonride",
+     "singer": "Hearts2Hearts",
+     "singers": [
+      {
+       "name": "Hearts2Hearts",
+       "mid": "000p3zNi1qu1Eu"
+      }
+     ],
+     "album": "Moonride",
+     "duration": 176,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004BnVzt0HGFcy.jpg",
+     "mid": "001qW0XY1BqDiE",
+     "albummid": "004BnVzt0HGFcy",
+     "vid": "",
+     "rank": "198108"
     },
     {
      "title": "爱是难解的签",
@@ -5411,7 +5513,58 @@
      "mid": "001wIDUc1SltKc",
      "albummid": "002ZeUy20FicrV",
      "vid": "",
-     "rank": "77558"
+     "rank": "56510"
+    },
+    {
+     "title": "发如雪",
+     "singer": "周杰伦",
+     "singers": [
+      {
+       "name": "周杰伦",
+       "mid": "0025NhlN2yWrP4"
+      }
+     ],
+     "album": "十一月的萧邦",
+     "duration": 299,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000024bjiL2aocxT.jpg",
+     "mid": "0027oMO61wWi55",
+     "albummid": "0024bjiL2aocxT",
+     "vid": "",
+     "rank": "443526"
+    },
+    {
+     "title": "天空之外",
+     "singer": "弦子",
+     "singers": [
+      {
+       "name": "弦子",
+       "mid": "002LJqM93gNF52"
+      }
+     ],
+     "album": "陪你到世界之巅 电视剧原声带",
+     "duration": 297,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002zUgJU2juo1u.jpg",
+     "mid": "002QvY603SPTaA",
+     "albummid": "002zUgJU2juo1u",
+     "vid": "",
+     "rank": "117069"
+    },
+    {
+     "title": "隔岸 (女版)",
+     "singer": "可楼",
+     "singers": [
+      {
+       "name": "可楼",
+       "mid": "000msVPH0vPdfB"
+      }
+     ],
+     "album": "隔岸 (女版)",
+     "duration": 231,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000042uV2d3a2IjF.jpg",
+     "mid": "003ARPg02FVFFD",
+     "albummid": "0042uV2d3a2IjF",
+     "vid": "",
+     "rank": "211497"
     },
     {
      "title": "我不愿看到你流泪的眼睛 (伤感氛围版)",
@@ -5436,109 +5589,7 @@
      "mid": "002Azs9u1kyyUp",
      "albummid": "004dSEW32P4baF",
      "vid": "",
-     "rank": "61785"
-    },
-    {
-     "title": "自由的你",
-     "singer": "G.E.M.邓紫棋",
-     "singers": [
-      {
-       "name": "G.E.M.邓紫棋",
-       "mid": "001fNHEf1SFEFN"
-      }
-     ],
-     "album": "自由的你",
-     "duration": 296,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002Cy8kL400ft2.jpg",
-     "mid": "002qUdaX4ba2ez",
-     "albummid": "002Cy8kL400ft2",
-     "vid": "",
-     "rank": "265472"
-    },
-    {
-     "title": "过渡期",
-     "singer": "小宇-宋念宇",
-     "singers": [
-      {
-       "name": "小宇-宋念宇",
-       "mid": "003Pt2380Q2EbF"
-      }
-     ],
-     "album": "再一次",
-     "duration": 275,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Uw5qE3Wjlo6.jpg",
-     "mid": "002GnkGs2TknvY",
-     "albummid": "001Uw5qE3Wjlo6",
-     "vid": "",
-     "rank": "111781"
-    },
-    {
-     "title": "以物易物",
-     "singer": "DYLAN尹海阳",
-     "singers": [
-      {
-       "name": "DYLAN尹海阳",
-       "mid": "003avqhq1xTH0O"
-      }
-     ],
-     "album": "INDIVIDUAL: 个体差异",
-     "duration": 206,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000aqlFL1ASSsd.jpg",
-     "mid": "004IyfD13rH1Oi",
-     "albummid": "000aqlFL1ASSsd",
-     "vid": "",
-     "rank": "79557"
-    },
-    {
-     "title": "天空之外",
-     "singer": "弦子",
-     "singers": [
-      {
-       "name": "弦子",
-       "mid": "002LJqM93gNF52"
-      }
-     ],
-     "album": "陪你到世界之巅 电视剧原声带",
-     "duration": 297,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002zUgJU2juo1u.jpg",
-     "mid": "002QvY603SPTaA",
-     "albummid": "002zUgJU2juo1u",
-     "vid": "",
-     "rank": "108708"
-    },
-    {
-     "title": "发如雪",
-     "singer": "周杰伦",
-     "singers": [
-      {
-       "name": "周杰伦",
-       "mid": "0025NhlN2yWrP4"
-      }
-     ],
-     "album": "十一月的萧邦",
-     "duration": 299,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000024bjiL2aocxT.jpg",
-     "mid": "0027oMO61wWi55",
-     "albummid": "0024bjiL2aocxT",
-     "vid": "",
-     "rank": "460415"
-    },
-    {
-     "title": "Bad Boy Club",
-     "singer": "刘宇",
-     "singers": [
-      {
-       "name": "刘宇",
-       "mid": "00255EBh1FcAEk"
-      }
-     ],
-     "album": "Bad Boy Club",
-     "duration": 169,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001gOdd60TDRhu.jpg",
-     "mid": "001KH2US3wjaMx",
-     "albummid": "001gOdd60TDRhu",
-     "vid": "",
-     "rank": "76021"
+     "rank": "49169"
     },
     {
      "title": "月下签",
@@ -5555,414 +5606,7 @@
      "mid": "003iY8de1iJA7c",
      "albummid": "003kOLwh4SCHL5",
      "vid": "",
-     "rank": "76010"
-    },
-    {
-     "title": "世纪传说",
-     "singer": "苏醒AllenSu",
-     "singers": [
-      {
-       "name": "苏醒AllenSu",
-       "mid": "000b7B7h1fXzaM"
-      }
-     ],
-     "album": "世纪传说",
-     "duration": 210,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003n4ehI0Mdwzb.jpg",
-     "mid": "000pnPXe4eQvcU",
-     "albummid": "003n4ehI0Mdwzb",
-     "vid": "",
-     "rank": "75765"
-    },
-    {
-     "title": "暗恋过 结局呢",
-     "singer": "新街口组合/Mona Lavi",
-     "singers": [
-      {
-       "name": "新街口组合",
-       "mid": "000m8IbI4LBbBo"
-      },
-      {
-       "name": "Mona Lavi",
-       "mid": "000BzvZW0rzzFG"
-      }
-     ],
-     "album": "国王",
-     "duration": 231,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000013bTvi0ZvSbw.jpg",
-     "mid": "000uW4pt0WyfhW",
-     "albummid": "0013bTvi0ZvSbw",
-     "vid": "",
-     "rank": "114837"
-    },
-    {
-     "title": "不懂事",
-     "singer": "吴炳文",
-     "singers": [
-      {
-       "name": "吴炳文",
-       "mid": "003Gcaom2Fqh6Y"
-      }
-     ],
-     "album": "不懂事",
-     "duration": 231,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000000VbgK0B6o2e.jpg",
-     "mid": "004e3QnK26YCrY",
-     "albummid": "0000VbgK0B6o2e",
-     "vid": "",
-     "rank": "71062"
-    },
-    {
-     "title": "You're Under Arrest",
-     "singer": "ILLIT (아일릿)",
-     "singers": [
-      {
-       "name": "ILLIT (아일릿)",
-       "mid": "001lOGcd3wfgOi"
-      }
-     ],
-     "album": "BREAK EVEN",
-     "duration": 181,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001vZgxP31tZzd.jpg",
-     "mid": "004GusH53fGeg2",
-     "albummid": "001vZgxP31tZzd",
-     "vid": "",
-     "rank": "63941"
-    },
-    {
-     "title": "Wish You Well",
-     "singer": "张智成",
-     "singers": [
-      {
-       "name": "张智成",
-       "mid": "000fLFlf0ycA4i"
-      }
-     ],
-     "album": "你爱上的...",
-     "duration": 257,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002RBVbE1ef8kW.jpg",
-     "mid": "000pXdIV2ysR3q",
-     "albummid": "002RBVbE1ef8kW",
-     "vid": "",
-     "rank": "46369"
-    },
-    {
-     "title": "我们之间到底算什么呢（Bigger than us）",
-     "singer": "蒲熠星",
-     "singers": [
-      {
-       "name": "蒲熠星",
-       "mid": "000fIcRn3eIgnb"
-      }
-     ],
-     "album": "我们之间到底算什么呢（Bigger than us）",
-     "duration": 174,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001G2jGq0YRWse.jpg",
-     "mid": "003nPEAq0wKVrb",
-     "albummid": "001G2jGq0YRWse",
-     "vid": "",
-     "rank": "72988"
-    },
-    {
-     "title": "时过境迁",
-     "singer": "苏艺馨Chency",
-     "singers": [
-      {
-       "name": "苏艺馨Chency",
-       "mid": "001ZbBj53vuU6J"
-      }
-     ],
-     "album": "时过境迁",
-     "duration": 236,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001zUnnV4T1qwb.jpg",
-     "mid": "002TTnfc13TkgO",
-     "albummid": "001zUnnV4T1qwb",
-     "vid": "",
-     "rank": "316218"
-    },
-    {
-     "title": "可我只是海",
-     "singer": "LBI利比（时柏尘）",
-     "singers": [
-      {
-       "name": "LBI利比（时柏尘）",
-       "mid": "003ViYoy2bJYmk"
-      }
-     ],
-     "album": "可我只是海",
-     "duration": 175,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003cFq1Z1oIpyN.jpg",
-     "mid": "0046JqLd1AuRvW",
-     "albummid": "003cFq1Z1oIpyN",
-     "vid": "",
-     "rank": "107854"
-    },
-    {
-     "title": "You Are All I Need",
-     "singer": "FLY COAST/二宮愛 (にのみや あい)",
-     "singers": [
-      {
-       "name": "FLY COAST",
-       "mid": "003LbZPw0sitQK"
-      },
-      {
-       "name": "二宮愛 (にのみや あい)",
-       "mid": "001En8ME2TaxU9"
-      }
-     ],
-     "album": "Flight Number 001",
-     "duration": 239,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000B8U3p19UV0b.jpg",
-     "mid": "002dG09F2B9jlJ",
-     "albummid": "000B8U3p19UV0b",
-     "vid": "",
-     "rank": "180776"
-    },
-    {
-     "title": "新·与天齐",
-     "singer": "指尖笑",
-     "singers": [
-      {
-       "name": "指尖笑",
-       "mid": "003zW96B1Rt7sa"
-      }
-     ],
-     "album": "与天齐",
-     "duration": 139,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002PwVL14fG66d.jpg",
-     "mid": "004KaogL1rk4jT",
-     "albummid": "002PwVL14fG66d",
-     "vid": "",
-     "rank": "220070"
-    },
-    {
-     "title": "那女孩对我说",
-     "singer": "赵乃吉",
-     "singers": [
-      {
-       "name": "赵乃吉",
-       "mid": "003jTY4I4f2ETE"
-      }
-     ],
-     "album": "那女孩对我说",
-     "duration": 237,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004FlVr11YthLN.jpg",
-     "mid": "004WveI800LATg",
-     "albummid": "004FlVr11YthLN",
-     "vid": "",
-     "rank": "55047"
-    },
-    {
-     "title": "眼神",
-     "singer": "孙燕姿",
-     "singers": [
-      {
-       "name": "孙燕姿",
-       "mid": "001pWERg3vFgg8"
-      }
-     ],
-     "album": "The Moment",
-     "duration": 211,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002ehzTm0TxXC2.jpg",
-     "mid": "004UfT3H4eRFYc",
-     "albummid": "002ehzTm0TxXC2",
-     "vid": "",
-     "rank": "34586"
-    },
-    {
-     "title": "Just Be My Child",
-     "singer": "小智",
-     "singers": [
-      {
-       "name": "小智",
-       "mid": "004XDKHW0aIioI"
-      }
-     ],
-     "album": "Just Be My Child",
-     "duration": 248,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004RQJuH2VMvUN.jpg",
-     "mid": "003psxK72a8iPr",
-     "albummid": "004RQJuH2VMvUN",
-     "vid": "",
-     "rank": "51649"
-    },
-    {
-     "title": "연애의 조건 (LOVE OPTIONS) (恋爱的条件)",
-     "singer": "BESTie (베스티)",
-     "singers": [
-      {
-       "name": "BESTie (베스티)",
-       "mid": "003FtY7P4XArUx"
-      }
-     ],
-     "album": "연애의 조건 (Love Options)",
-     "duration": 194,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000034h3c72cswaP.jpg",
-     "mid": "0008rnAh3oSbcW",
-     "albummid": "0034h3c72cswaP",
-     "vid": "",
-     "rank": "110531"
-    },
-    {
-     "title": "外面的世界",
-     "singer": "半吨兄弟",
-     "singers": [
-      {
-       "name": "半吨兄弟",
-       "mid": "000KBVw62Xyb2H"
-      }
-     ],
-     "album": "外面的世界",
-     "duration": 211,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003WH6L11V4zRN.jpg",
-     "mid": "002Im9pm0RuL4T",
-     "albummid": "003WH6L11V4zRN",
-     "vid": "",
-     "rank": "48323"
-    },
-    {
-     "title": "后来的我和你",
-     "singer": "高冷",
-     "singers": [
-      {
-       "name": "高冷",
-       "mid": "004fYIvD3lWSRp"
-      }
-     ],
-     "album": "后来的我和你",
-     "duration": 219,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004ad0ne3kVygo.jpg",
-     "mid": "003BSqzl0pc2Du",
-     "albummid": "004ad0ne3kVygo",
-     "vid": "",
-     "rank": "48143"
-    },
-    {
-     "title": "一颗糖的勇气",
-     "singer": "于梓贝/RiboDiary",
-     "singers": [
-      {
-       "name": "于梓贝",
-       "mid": "000okN6H1I5URN"
-      },
-      {
-       "name": "RiboDiary",
-       "mid": "002yTKxH3B2jPi"
-      }
-     ],
-     "album": "RiboDiary：一颗糖的勇气",
-     "duration": 181,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001yGobS3qFua4.jpg",
-     "mid": "002XXpTY1REpyT",
-     "albummid": "001yGobS3qFua4",
-     "vid": "",
-     "rank": "47378"
-    },
-    {
-     "title": "如果爱是命中注定的相遇",
-     "singer": "铃草",
-     "singers": [
-      {
-       "name": "铃草",
-       "mid": "0007zpfc1dGkgq"
-      }
-     ],
-     "album": "如果爱是命中注定的相遇",
-     "duration": 133,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000ztLWE4E1xd3.jpg",
-     "mid": "001yRY2V3ygUCz",
-     "albummid": "000ztLWE4E1xd3",
-     "vid": "",
-     "rank": "73489"
-    },
-    {
-     "title": "Call your name (Gv)",
-     "singer": "澤野弘之 (さわの ひろゆき)/R!N/Gemie",
-     "singers": [
-      {
-       "name": "澤野弘之 (さわの ひろゆき)",
-       "mid": "0023TUOS0vGD8C"
-      },
-      {
-       "name": "R!N/Gemie",
-       "mid": "003RIgq02Sg7vp"
-      }
-     ],
-     "album": "「進撃の巨人」Season3 オリジナル・サウンドトラック (进击的巨人第三季 动画原声带)",
-     "duration": 259,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000GHr773SppMX.jpg",
-     "mid": "002IsYoV4f9a3g",
-     "albummid": "000GHr773SppMX",
-     "vid": "",
-     "rank": "113394"
-    },
-    {
-     "title": "一身傲骨不认输 (深情版)",
-     "singer": "兴俊拔",
-     "singers": [
-      {
-       "name": "兴俊拔",
-       "mid": "000RRAuK2h0Kk2"
-      }
-     ],
-     "album": "一身傲骨不认输",
-     "duration": 202,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Pcioa2ud37T.jpg",
-     "mid": "001WCfPC2Iq92Z",
-     "albummid": "000Pcioa2ud37T",
-     "vid": "",
-     "rank": "51470"
-    },
-    {
-     "title": "多幸运",
-     "singer": "韩安旭",
-     "singers": [
-      {
-       "name": "韩安旭",
-       "mid": "004QoDUs3jfOC6"
-      }
-     ],
-     "album": "多幸运",
-     "duration": 249,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000008wVjT0MSG3T.jpg",
-     "mid": "0008Xbt23AGrr6",
-     "albummid": "0008wVjT0MSG3T",
-     "vid": "",
-     "rank": "117719"
-    },
-    {
-     "title": "无尽冬",
-     "singer": "周深",
-     "singers": [
-      {
-       "name": "周深",
-       "mid": "003fA5G40k6hKc"
-      }
-     ],
-     "album": "无尽冬",
-     "duration": 258,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002JkES13koV1w.jpg",
-     "mid": "000gMlKd3pj6KU",
-     "albummid": "002JkES13koV1w",
-     "vid": "",
-     "rank": "45521"
-    },
-    {
-     "title": "Moonride",
-     "singer": "Hearts2Hearts",
-     "singers": [
-      {
-       "name": "Hearts2Hearts",
-       "mid": "000p3zNi1qu1Eu"
-      }
-     ],
-     "album": "Moonride",
-     "duration": 176,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004BnVzt0HGFcy.jpg",
-     "mid": "001qW0XY1BqDiE",
-     "albummid": "004BnVzt0HGFcy",
-     "vid": "",
-     "rank": "169441"
+     "rank": "67255"
     },
     {
      "title": "Until You",
@@ -5983,2684 +5627,121 @@
      "mid": "0015N5iK4RrulU",
      "albummid": "000ZO9BC1bIV3m",
      "vid": "",
-     "rank": "44199"
+     "rank": "63643"
     },
     {
-     "title": "茉茉",
-     "singer": "Nzwin 黄跃成",
+     "title": "暗恋过 结局呢",
+     "singer": "新街口组合/Mona Lavi",
      "singers": [
       {
-       "name": "Nzwin 黄跃成",
-       "mid": "0034KUvb1DZEYw"
-      }
-     ],
-     "album": "茉茉",
-     "duration": 120,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000vinRR01agny.jpg",
-     "mid": "000QRSae14GCA6",
-     "albummid": "000vinRR01agny",
-     "vid": "",
-     "rank": "61400"
-    },
-    {
-     "title": "Cherry Candy",
-     "singer": "Lunak",
-     "singers": [
+       "name": "新街口组合",
+       "mid": "000m8IbI4LBbBo"
+      },
       {
-       "name": "Lunak",
-       "mid": "000TRRMj1S9MHC"
+       "name": "Mona Lavi",
+       "mid": "000BzvZW0rzzFG"
       }
      ],
-     "album": "Cherry Candy",
-     "duration": 141,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001KsTdW3f3W9A.jpg",
-     "mid": "003KUOtt4LN4cW",
-     "albummid": "001KsTdW3f3W9A",
-     "vid": "",
-     "rank": "43389"
-    },
-    {
-     "title": "时间会回答",
-     "singer": "七元",
-     "singers": [
-      {
-       "name": "七元",
-       "mid": "003HUF9Z1kL0MU"
-      }
-     ],
-     "album": "时间会回答",
-     "duration": 201,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004Nydxc3ReaDR.jpg",
-     "mid": "002eom782x5HrI",
-     "albummid": "004Nydxc3ReaDR",
-     "vid": "",
-     "rank": "48195"
-    },
-    {
-     "title": "秋风一吹又老一岁",
-     "singer": "周深深",
-     "singers": [
-      {
-       "name": "周深深",
-       "mid": "00352ilz0eBkEW"
-      }
-     ],
-     "album": "秋风一吹又老一岁",
-     "duration": 183,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000m01tJ0EPgzA.jpg",
-     "mid": "002JgZF33Uxq7f",
-     "albummid": "000m01tJ0EPgzA",
-     "vid": "",
-     "rank": "63708"
-    },
-    {
-     "title": "在你的世界迷路 (抒情版)",
-     "singer": "糖晓晓",
-     "singers": [
-      {
-       "name": "糖晓晓",
-       "mid": "0027wFD10rV7RZ"
-      }
-     ],
-     "album": "在你的世界迷路",
+     "album": "国王",
      "duration": 231,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000v6G9a48jTpr.jpg",
-     "mid": "0013mfRK2LSm3h",
-     "albummid": "000v6G9a48jTpr",
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000013bTvi0ZvSbw.jpg",
+     "mid": "000uW4pt0WyfhW",
+     "albummid": "0013bTvi0ZvSbw",
      "vid": "",
-     "rank": "42905"
+     "rank": "108735"
     },
     {
-     "title": "忧郁幻昼",
-     "singer": "Matrix Tone",
+     "title": "可我只是海",
+     "singer": "LBI利比（时柏尘）",
      "singers": [
       {
-       "name": "Matrix Tone",
-       "mid": "000MSKIR39HKjw"
+       "name": "LBI利比（时柏尘）",
+       "mid": "003ViYoy2bJYmk"
       }
      ],
-     "album": "忧郁幻昼",
-     "duration": 129,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000tqYSc2qd212.jpg",
-     "mid": "002Mx7D00sifK2",
-     "albummid": "000tqYSc2qd212",
+     "album": "可我只是海",
+     "duration": 175,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003cFq1Z1oIpyN.jpg",
+     "mid": "0046JqLd1AuRvW",
+     "albummid": "003cFq1Z1oIpyN",
      "vid": "",
-     "rank": "39715"
+     "rank": "105119"
     },
     {
-     "title": "Phoenix",
-     "singer": "GTR7",
+     "title": "后来的我和你",
+     "singer": "高冷",
      "singers": [
       {
-       "name": "GTR7",
-       "mid": "003KJwrn2IANoQ"
+       "name": "高冷",
+       "mid": "004fYIvD3lWSRp"
       }
      ],
-     "album": "Phoenix",
-     "duration": 116,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004FXO350RR3b9.jpg",
-     "mid": "001ILAOO3f29PJ",
-     "albummid": "004FXO350RR3b9",
-     "vid": "",
-     "rank": "27691"
-    },
-    {
-     "title": "ECHOES OF YOUR NAME",
-     "singer": "阿米toofu",
-     "singers": [
-      {
-       "name": "阿米toofu",
-       "mid": "004SsH872oEe4q"
-      }
-     ],
-     "album": "只需要拥有你就行了",
-     "duration": 194,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002obKip03ZXBo.jpg",
-     "mid": "001p2HSm3pQiq1",
-     "albummid": "002obKip03ZXBo",
-     "vid": "",
-     "rank": "44022"
-    },
-    {
-     "title": "In The Shadow Of The Sun (感觉至上)",
-     "singer": "404Hz/DJ绷带",
-     "singers": [
-      {
-       "name": "404Hz",
-       "mid": "001Rar5R4YAjKN"
-      },
-      {
-       "name": "DJ绷带",
-       "mid": "001Bnydd23S6CZ"
-      }
-     ],
-     "album": "Trouble I'm In (绝处逢生)",
-     "duration": 126,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000009Jf2y1slaHt.jpg",
-     "mid": "001ZCM0H0Y2JJf",
-     "albummid": "0009Jf2y1slaHt",
-     "vid": "",
-     "rank": "26076"
-    },
-    {
-     "title": "我听人说思念像风一样 (纯享版)",
-     "singer": "雪山阿木",
-     "singers": [
-      {
-       "name": "雪山阿木",
-       "mid": "003cv5JI2Ch9Mg"
-      }
-     ],
-     "album": "我听人说思念像风一样(纯享版)",
-     "duration": 187,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004elj0l2ZjU7Y.jpg",
-     "mid": "001VMm5Q0i2164",
-     "albummid": "004elj0l2ZjU7Y",
-     "vid": "",
-     "rank": "99317"
-    },
-    {
-     "title": "也会有人代替你",
-     "singer": "供销社乐队",
-     "singers": [
-      {
-       "name": "供销社乐队",
-       "mid": "001usCce3oZtkq"
-      }
-     ],
-     "album": "也会有人代替你",
-     "duration": 268,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000rxOlT0NzfM8.jpg",
-     "mid": "002X8hbg2EB3ft",
-     "albummid": "000rxOlT0NzfM8",
-     "vid": "",
-     "rank": "46646"
-    },
-    {
-     "title": "无字句尾",
-     "singer": "鹭卓",
-     "singers": [
-      {
-       "name": "鹭卓",
-       "mid": "0034HhNB0CRhr5"
-      }
-     ],
-     "album": "ALL IN ALL",
-     "duration": 232,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001SAuEX2jsQ4o.jpg",
-     "mid": "000aeazU4Q6MGG",
-     "albummid": "001SAuEX2jsQ4o",
-     "vid": "",
-     "rank": "54240"
-    },
-    {
-     "title": "老人与海",
-     "singer": "海鸣威",
-     "singers": [
-      {
-       "name": "海鸣威",
-       "mid": "0000QHSk0ruY3Y"
-      }
-     ],
-     "album": "老人与海",
-     "duration": 265,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002xkMav17d28o.jpg",
-     "mid": "004MA1MS0F8QAq",
-     "albummid": "002xkMav17d28o",
-     "vid": "",
-     "rank": "45514"
-    },
-    {
-     "title": "风吹过",
-     "singer": "张玮",
-     "singers": [
-      {
-       "name": "张玮",
-       "mid": "003Y98C04dlTYN"
-      }
-     ],
-     "album": "风吹过",
-     "duration": 267,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004HdMIu3BxTYc.jpg",
-     "mid": "003f3Wqk2yb5bB",
-     "albummid": "004HdMIu3BxTYc",
-     "vid": "",
-     "rank": "46998"
-    },
-    {
-     "title": "别卿书 (纸太薄意难写)",
-     "singer": "文雯",
-     "singers": [
-      {
-       "name": "文雯",
-       "mid": "001V5tKO3TrNkS"
-      }
-     ],
-     "album": "别卿书 (纸太薄意难写)",
-     "duration": 192,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000049AquM0Hcj3m.jpg",
-     "mid": "002ocuGl3NQVpl",
-     "albummid": "0049AquM0Hcj3m",
-     "vid": "",
-     "rank": "37284"
-    },
-    {
-     "title": "你冷一分我就退一分",
-     "singer": "苏清墨",
-     "singers": [
-      {
-       "name": "苏清墨",
-       "mid": "000r4UUK0UpIRZ"
-      }
-     ],
-     "album": "你冷一分我就退一分",
-     "duration": 220,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003U3pbQ2CuRWf.jpg",
-     "mid": "004PY7W03ZO3TA",
-     "albummid": "003U3pbQ2CuRWf",
-     "vid": "",
-     "rank": "24948"
-    },
-    {
-     "title": "致亲爱的自己",
-     "singer": "梓渝",
-     "singers": [
-      {
-       "name": "梓渝",
-       "mid": "002Mp50T4HjMya"
-      }
-     ],
-     "album": "梓渝",
-     "duration": 273,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000035Y3b01o1BsG.jpg",
-     "mid": "004N5kMG0FFsS1",
-     "albummid": "0035Y3b01o1BsG",
-     "vid": "",
-     "rank": "49342"
-    },
-    {
-     "title": "酒作逍遥散",
-     "singer": "涂一乐er",
-     "singers": [
-      {
-       "name": "涂一乐er",
-       "mid": "003Xa50c2DL3Fy"
-      }
-     ],
-     "album": "酒作逍遥散",
-     "duration": 213,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000020Yu6D4UCsnX.jpg",
-     "mid": "0017lAUt0BgKRV",
-     "albummid": "0020Yu6D4UCsnX",
-     "vid": "",
-     "rank": "36011"
-    },
-    {
-     "title": "天外来物",
-     "singer": "薛之谦",
-     "singers": [
-      {
-       "name": "薛之谦",
-       "mid": "002J4UUk29y8BY"
-      }
-     ],
-     "album": "天外来物",
-     "duration": 257,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000K9Zp13TZp5s.jpg",
-     "mid": "0013WPvt4fQH2b",
-     "albummid": "000K9Zp13TZp5s",
-     "vid": "",
-     "rank": "253532"
-    },
-    {
-     "title": "续写",
-     "singer": "单依纯",
-     "singers": [
-      {
-       "name": "单依纯",
-       "mid": "002ug9Ha2zYM1y"
-      }
-     ],
-     "album": "一生一世 影视原声带",
-     "duration": 228,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003BuN5J1gZjpr.jpg",
-     "mid": "000BTy5F0TocRr",
-     "albummid": "003BuN5J1gZjpr",
-     "vid": "",
-     "rank": "33462"
-    },
-    {
-     "title": "Turn End (一转就是终章)",
-     "singer": "Vnriet/DarK Haye",
-     "singers": [
-      {
-       "name": "Vnriet",
-       "mid": "004fWMbc0qi8jj"
-      },
-      {
-       "name": "DarK Haye",
-       "mid": "000JJFcb4g3rHV"
-      }
-     ],
-     "album": "Every One You(后来看谁都像你)",
-     "duration": 122,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Y53JD3q3wxq.jpg",
-     "mid": "003X5nkD03h4gL",
-     "albummid": "001Y53JD3q3wxq",
-     "vid": "",
-     "rank": "30439"
-    },
-    {
-     "title": "我的歌声里 (remix：T.back)",
-     "singer": "邱霖BigL",
-     "singers": [
-      {
-       "name": "邱霖BigL",
-       "mid": "0009gOXH4KhwDa"
-      }
-     ],
-     "album": "诉",
-     "duration": 206,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003im0v94ALxbT.jpg",
-     "mid": "000FNLs10bOegr",
-     "albummid": "003im0v94ALxbT",
-     "vid": "",
-     "rank": "97670"
-    },
-    {
-     "title": "想看你笑想和你闹 (氛围版)",
-     "singer": "你的湘伦",
-     "singers": [
-      {
-       "name": "你的湘伦",
-       "mid": "002UiRK504pi0b"
-      }
-     ],
-     "album": "风已经有了冬天的味道",
-     "duration": 91,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003dz8K62rpr89.jpg",
-     "mid": "002vIT1N0tv68Z",
-     "albummid": "003dz8K62rpr89",
-     "vid": "",
-     "rank": "34133"
-    },
-    {
-     "title": "创业路上满身伤",
-     "singer": "华少",
-     "singers": [
-      {
-       "name": "华少",
-       "mid": "004QG5Lj3HRFPg"
-      }
-     ],
-     "album": "创业路上满身伤",
-     "duration": 250,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002weJta0V7URj.jpg",
-     "mid": "000waGht2AGqxh",
-     "albummid": "002weJta0V7URj",
-     "vid": "",
-     "rank": "33713"
-    },
-    {
-     "title": "小城",
-     "singer": "任素汐",
-     "singers": [
-      {
-       "name": "任素汐",
-       "mid": "001GAeOa0SeDvI"
-      }
-     ],
-     "album": "小城",
-     "duration": 270,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Zy47F4Kj5fy.jpg",
-     "mid": "002BqShi1NMhDz",
-     "albummid": "001Zy47F4Kj5fy",
-     "vid": "",
-     "rank": "72098"
-    },
-    {
-     "title": "只要你愿意 我就一直陪着你(感觉至上）",
-     "singer": "404Hz/旋律中转站",
-     "singers": [
-      {
-       "name": "404Hz",
-       "mid": "001Rar5R4YAjKN"
-      },
-      {
-       "name": "旋律中转站",
-       "mid": "0017rgxn3je6ZA"
-      }
-     ],
-     "album": "Here With Me",
-     "duration": 129,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003cAmlf1MzO3d.jpg",
-     "mid": "001ae04V2gHJK9",
-     "albummid": "003cAmlf1MzO3d",
-     "vid": "",
-     "rank": "33236"
-    },
-    {
-     "title": "Gasoline(LV Edit)",
-     "singer": "@LV",
-     "singers": [
-      {
-       "name": "@LV",
-       "mid": "002r5L810SxLCD"
-      }
-     ],
-     "album": "Gasoline(LV Edit)",
-     "duration": 224,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003sKnGN3zgG7E.jpg",
-     "mid": "001Q5TXI3jNB5d",
-     "albummid": "003sKnGN3zgG7E",
-     "vid": "",
-     "rank": "45051"
-    },
-    {
-     "title": "误会对白",
-     "singer": "鹭卓",
-     "singers": [
-      {
-       "name": "鹭卓",
-       "mid": "0034HhNB0CRhr5"
-      }
-     ],
-     "album": "ALL IN ALL",
-     "duration": 260,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001SAuEX2jsQ4o.jpg",
-     "mid": "001K2Giv1FHFgn",
-     "albummid": "001SAuEX2jsQ4o",
-     "vid": "",
-     "rank": "32166"
-    },
-    {
-     "title": "爱情太美又太伤",
-     "singer": "王欣心",
-     "singers": [
-      {
-       "name": "王欣心",
-       "mid": "000ffmNe0ZHvqO"
-      }
-     ],
-     "album": "爱情太美又太伤（温柔治愈版）",
-     "duration": 203,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003mZlhH3vOGJo.jpg",
-     "mid": "004AWHaZ3Odj1Y",
-     "albummid": "003mZlhH3vOGJo",
-     "vid": "",
-     "rank": "33202"
-    },
-    {
-     "title": "Die For You",
-     "singer": "The Weeknd",
-     "singers": [
-      {
-       "name": "The Weeknd",
-       "mid": "004YnseG2vQN7h"
-      }
-     ],
-     "album": "Starboy (Explicit)",
-     "duration": 259,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003VSTUM3si0tQ.jpg",
-     "mid": "004BdL7I39jc0f",
-     "albummid": "003VSTUM3si0tQ",
-     "vid": "",
-     "rank": "119009"
-    },
-    {
-     "title": "我听人说思念像风一样",
-     "singer": "顾叮当",
-     "singers": [
-      {
-       "name": "顾叮当",
-       "mid": "004EtiqY1EXuc3"
-      }
-     ],
-     "album": "我听人说思念像风一样",
-     "duration": 240,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000016mqjj1ZJ8HF.jpg",
-     "mid": "000y5DHt3fBUB8",
-     "albummid": "0016mqjj1ZJ8HF",
-     "vid": "",
-     "rank": "32533"
-    },
-    {
-     "title": "爱爱爱",
-     "singer": "颜小健",
-     "singers": [
-      {
-       "name": "颜小健",
-       "mid": "004X4ZOL3nV7YE"
-      }
-     ],
-     "album": "爱爱爱",
-     "duration": 213,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000iF0ZP2ni9Q6.jpg",
-     "mid": "002gFHq01i7DfB",
-     "albummid": "000iF0ZP2ni9Q6",
-     "vid": "",
-     "rank": "28535"
-    },
-    {
-     "title": "Waiting You",
-     "singer": "MIKS/MQL",
-     "singers": [
-      {
-       "name": "MIKS",
-       "mid": "0022CjbE0ztIMx"
-      },
-      {
-       "name": "MQL",
-       "mid": "000SQEil0Xpm75"
-      }
-     ],
-     "album": "Waiting You",
-     "duration": 111,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004eN1Ds05PJUq.jpg",
-     "mid": "0035euqZ2578qi",
-     "albummid": "004eN1Ds05PJUq",
-     "vid": "",
-     "rank": "30291"
-    },
-    {
-     "title": "抓紧你的手 (金玉良缘热门版)",
-     "singer": "DD小新",
-     "singers": [
-      {
-       "name": "DD小新",
-       "mid": "000t9qZF0hPPyv"
-      }
-     ],
-     "album": "抓紧你的手（金玉良缘热门版）",
-     "duration": 185,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000040c7aG1vCm7W.jpg",
-     "mid": "003gvu3n3oR95Y",
-     "albummid": "0040c7aG1vCm7W",
-     "vid": "",
-     "rank": "30430"
-    },
-    {
-     "title": "火山遥 (我是火一样的姑娘)",
-     "singer": "陈日春/袁心",
-     "singers": [
-      {
-       "name": "陈日春",
-       "mid": "001E58JR2YiY0j"
-      },
-      {
-       "name": "袁心",
-       "mid": "000piSka1DS33E"
-      }
-     ],
-     "album": "火山遥 (我是火一样的姑娘)",
-     "duration": 170,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002SikoW1V5Ero.jpg",
-     "mid": "003eebBf0HMsvu",
-     "albummid": "002SikoW1V5Ero",
-     "vid": "",
-     "rank": "34620"
-    },
-    {
-     "title": "耻辱柱",
-     "singer": "刘思鉴",
-     "singers": [
-      {
-       "name": "刘思鉴",
-       "mid": "002HNTfl3Wekat"
-      }
-     ],
-     "album": "耻辱柱",
-     "duration": 211,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000qHU6X0dpS2f.jpg",
-     "mid": "004YK7Ue0XEWqQ",
-     "albummid": "000qHU6X0dpS2f",
-     "vid": "",
-     "rank": "76049"
-    },
-    {
-     "title": "Love's Leftovers（爱之剩菜）",
-     "singer": "哇耶",
-     "singers": [
-      {
-       "name": "哇耶",
-       "mid": "001pIGlR4LIuBL"
-      }
-     ],
-     "album": "Love's Leftovers(爱之剩菜）",
-     "duration": 250,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001QBjz71YiiV1.jpg",
-     "mid": "004Lqrvo484Gde",
-     "albummid": "001QBjz71YiiV1",
-     "vid": "",
-     "rank": "32503"
-    },
-    {
-     "title": "幸福收场",
-     "singer": "高迪",
-     "singers": [
-      {
-       "name": "高迪",
-       "mid": "0032kD0i1ARTGM"
-      }
-     ],
-     "album": "幸福收场",
-     "duration": 208,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003euSkM1yxwGd.jpg",
-     "mid": "0027vbPQ3kda2e",
-     "albummid": "003euSkM1yxwGd",
-     "vid": "",
-     "rank": "26709"
-    },
-    {
-     "title": "若你看见花开",
-     "singer": "杨小壮",
-     "singers": [
-      {
-       "name": "杨小壮",
-       "mid": "0007gcR612qKgE"
-      }
-     ],
-     "album": "若你看见花开",
-     "duration": 162,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004aaPnx1izMbf.jpg",
-     "mid": "0035iCQe0mLHpf",
-     "albummid": "004aaPnx1izMbf",
-     "vid": "",
-     "rank": "52143"
-    },
-    {
-     "title": "请不要一时兴起",
-     "singer": "陆景钧",
-     "singers": [
-      {
-       "name": "陆景钧",
-       "mid": "001nm25n04D654"
-      }
-     ],
-     "album": "请不要一时兴起",
-     "duration": 161,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000p0s7I1LgDmv.jpg",
-     "mid": "001yqJtO4HVhSw",
-     "albummid": "000p0s7I1LgDmv",
-     "vid": "",
-     "rank": "29728"
-    },
-    {
-     "title": "Call of Silence (超燃版)",
-     "singer": "404Hz/Sova1",
-     "singers": [
-      {
-       "name": "404Hz",
-       "mid": "001Rar5R4YAjKN"
-      },
-      {
-       "name": "Sova1",
-       "mid": "003HREKd2po23Y"
-      }
-     ],
-     "album": "和旋行曲(在这里停就好)",
-     "duration": 139,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000PrTnx26XCTI.jpg",
-     "mid": "003gnNQ12RgD9s",
-     "albummid": "000PrTnx26XCTI",
-     "vid": "",
-     "rank": "28783"
-    },
-    {
-     "title": "红笔",
-     "singer": "林时LAMZz/邓乐怡",
-     "singers": [
-      {
-       "name": "林时LAMZz",
-       "mid": "000iKj7a2Vqx75"
-      },
-      {
-       "name": "邓乐怡",
-       "mid": "002twwZe3BbYwG"
-      }
-     ],
-     "album": "红笔（334424044）",
-     "duration": 189,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001s3TSe4JsM87.jpg",
-     "mid": "002Qju6Y3ip2Vs",
-     "albummid": "001s3TSe4JsM87",
-     "vid": "",
-     "rank": "22056"
-    },
-    {
-     "title": "像风一样",
-     "singer": "薛之谦",
-     "singers": [
-      {
-       "name": "薛之谦",
-       "mid": "002J4UUk29y8BY"
-      }
-     ],
-     "album": "渡 The Crossing",
-     "duration": 255,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001L7UIu3GXVtT.jpg",
-     "mid": "001uxKNp3a7Qkv",
-     "albummid": "001L7UIu3GXVtT",
-     "vid": "",
-     "rank": "176177"
-    },
-    {
-     "title": "演员",
-     "singer": "薛之谦",
-     "singers": [
-      {
-       "name": "薛之谦",
-       "mid": "002J4UUk29y8BY"
-      }
-     ],
-     "album": "绅士",
-     "duration": 261,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003y8dsH2wBHlo.jpg",
-     "mid": "001Qu4I30eVFYb",
-     "albummid": "003y8dsH2wBHlo",
-     "vid": "",
-     "rank": "321561"
-    },
-    {
-     "title": "你松开手我学会了放手",
-     "singer": "周书蔓",
-     "singers": [
-      {
-       "name": "周书蔓",
-       "mid": "002Ildyl3QHgeY"
-      }
-     ],
-     "album": "你松开手我学会了放手(深情版)",
-     "duration": 213,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002Msyxa2mduPd.jpg",
-     "mid": "003lN4eF30OlMo",
-     "albummid": "002Msyxa2mduPd",
-     "vid": "",
-     "rank": "28331"
-    },
-    {
-     "title": "一半（我把一半写给前缘）",
-     "singer": "加木措",
-     "singers": [
-      {
-       "name": "加木措",
-       "mid": "000g1Or11vwBNI"
-      }
-     ],
-     "album": "一半（我把一半写给前缘）",
-     "duration": 204,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000032bNud3n9tj0.jpg",
-     "mid": "003ZlDWv4EWdFr",
-     "albummid": "0032bNud3n9tj0",
-     "vid": "",
-     "rank": "28270"
-    },
-    {
-     "title": "认真的雪",
-     "singer": "薛之谦",
-     "singers": [
-      {
-       "name": "薛之谦",
-       "mid": "002J4UUk29y8BY"
-      }
-     ],
-     "album": "薛之谦",
-     "duration": 259,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003mUYW22JXKVK.jpg",
-     "mid": "001hUNRP0P8g7x",
-     "albummid": "003mUYW22JXKVK",
-     "vid": "",
-     "rank": "231355"
-    },
-    {
-     "title": "we never beat",
-     "singer": "秋落雨",
-     "singers": [
-      {
-       "name": "秋落雨",
-       "mid": "001OD5PF3SYNOn"
-      }
-     ],
-     "album": "we never beat",
-     "duration": 121,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004bSPT609lVk7.jpg",
-     "mid": "003OSdar2EG8ZP",
-     "albummid": "004bSPT609lVk7",
-     "vid": "",
-     "rank": "28537"
-    },
-    {
-     "title": "素颜",
-     "singer": "许嵩/何曼婷",
-     "singers": [
-      {
-       "name": "许嵩",
-       "mid": "000CK5xN3yZDJt"
-      },
-      {
-       "name": "何曼婷",
-       "mid": "000FI1360aGvjo"
-      }
-     ],
-     "album": "一路有你车载金唱盘 (男人篇)",
-     "duration": 238,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000vLKoe0let3q.jpg",
-     "mid": "000jVE8U3T61IG",
-     "albummid": "000vLKoe0let3q",
-     "vid": "",
-     "rank": "33528"
-    },
-    {
-     "title": "需要人陪",
-     "singer": "王力宏",
-     "singers": [
-      {
-       "name": "王力宏",
-       "mid": "001JDzPT3JdvqK"
-      }
-     ],
-     "album": "力宏二十 20周年唯一精选",
-     "duration": 249,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000032pucg2UepCT.jpg",
-     "mid": "004OpTcX3IKH4H",
-     "albummid": "0032pucg2UepCT",
-     "vid": "",
-     "rank": "21285"
-    },
-    {
-     "title": "山那头 (风刮着原上柳)",
-     "singer": "杨小东",
-     "singers": [
-      {
-       "name": "杨小东",
-       "mid": "004XZfwd3zcDaT"
-      }
-     ],
-     "album": "山那头 (风刮着原上柳)",
-     "duration": 235,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004WGyAy0udVjv.jpg",
-     "mid": "003LjyVL1OrkTU",
-     "albummid": "004WGyAy0udVjv",
-     "vid": "",
-     "rank": "28118"
-    },
-    {
-     "title": "人儿啊请慢下来",
-     "singer": "石满仓",
-     "singers": [
-      {
-       "name": "石满仓",
-       "mid": "004KFTRu0hpaVD"
-      }
-     ],
-     "album": "人儿啊请慢下来（就等风来 静待花开）",
-     "duration": 212,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000016yQUL3M7OWt.jpg",
-     "mid": "003mFi8i2jjHTN",
-     "albummid": "0016yQUL3M7OWt",
-     "vid": "",
-     "rank": "41741"
-    },
-    {
-     "title": "裹着心的光",
-     "singer": "林俊杰",
-     "singers": [
-      {
-       "name": "林俊杰",
-       "mid": "001BLpXF2DyJe2"
-      }
-     ],
-     "album": "裹着心的光",
-     "duration": 273,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004LFNMl1kvYuJ.jpg",
-     "mid": "003R10oC1w6vur",
-     "albummid": "004LFNMl1kvYuJ",
-     "vid": "",
-     "rank": "81142"
-    },
-    {
-     "title": "PAPI",
-     "singer": "EXVE/KVKS",
-     "singers": [
-      {
-       "name": "EXVE",
-       "mid": "000KJf6P0q1qgO"
-      },
-      {
-       "name": "KVKS",
-       "mid": "004eSOxN0JN38E"
-      }
-     ],
-     "album": "PAPI",
-     "duration": 143,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001iN8nX4QaffJ.jpg",
-     "mid": "003FtBSk32sPqB",
-     "albummid": "001iN8nX4QaffJ",
-     "vid": "",
-     "rank": "31635"
-    },
-    {
-     "title": "刚刚好",
-     "singer": "薛之谦",
-     "singers": [
-      {
-       "name": "薛之谦",
-       "mid": "002J4UUk29y8BY"
-      }
-     ],
-     "album": "初学者",
-     "duration": 250,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000dcZ9I1nzO62.jpg",
-     "mid": "001TXSYu1Gwuwv",
-     "albummid": "000dcZ9I1nzO62",
-     "vid": "",
-     "rank": "157048"
-    },
-    {
-     "title": "I Don't Car!",
-     "singer": "蒋敦豪",
-     "singers": [
-      {
-       "name": "蒋敦豪",
-       "mid": "001YS2uE1TV9qy"
-      }
-     ],
-     "album": "那就充分扎实地逐个拥抱 (Bug and hug)",
-     "duration": 203,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003mc32Z3FRTxC.jpg",
-     "mid": "0048K7jO2EzUjO",
-     "albummid": "003mc32Z3FRTxC",
-     "vid": "",
-     "rank": "25426"
-    },
-    {
-     "title": "秋风一吹又老一岁",
-     "singer": "洋澜一",
-     "singers": [
-      {
-       "name": "洋澜一",
-       "mid": "001aYgp53T8g8b"
-      }
-     ],
-     "album": "秋风一吹又老一岁",
-     "duration": 183,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004AwJPG1LVXqd.jpg",
-     "mid": "001pGNpO2Foqk8",
-     "albummid": "004AwJPG1LVXqd",
-     "vid": "",
-     "rank": "26252"
-    },
-    {
-     "title": "不分手的恋爱",
-     "singer": "汪苏泷",
-     "singers": [
-      {
-       "name": "汪苏泷",
-       "mid": "001z2JmX09LLgL"
-      }
-     ],
-     "album": "汪苏泷原创合集",
-     "duration": 205,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003LHL270LMLgx.jpg",
-     "mid": "0048hyit0fCNad",
-     "albummid": "003LHL270LMLgx",
-     "vid": "",
-     "rank": "41027"
-    },
-    {
-     "title": "May you be my light（光天使）",
-     "singer": "赵希予",
-     "singers": [
-      {
-       "name": "赵希予",
-       "mid": "002iqR7z2kK6vb"
-      }
-     ],
-     "album": "May you be my light（光天使）",
-     "duration": 174,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UJ3RY0coYeX.jpg",
-     "mid": "004DATRG10JfPH",
-     "albummid": "003UJ3RY0coYeX",
-     "vid": "",
-     "rank": "16817"
-    },
-    {
-     "title": "茉莉雨",
-     "singer": "林俊杰",
-     "singers": [
-      {
-       "name": "林俊杰",
-       "mid": "001BLpXF2DyJe2"
-      }
-     ],
-     "album": "新地球",
-     "duration": 256,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000033R2xQ2I0Uyf.jpg",
-     "mid": "003x5xTj20cLPX",
-     "albummid": "0033R2xQ2I0Uyf",
-     "vid": "",
-     "rank": "95523"
-    },
-    {
-     "title": "好想好想",
-     "singer": "古巨基",
-     "singers": [
-      {
-       "name": "古巨基",
-       "mid": "000NFT2p1GbnPB"
-      }
-     ],
-     "album": "新白娘子传奇+琼瑶八点档金曲CD2",
-     "duration": 215,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000031jc3244pKR9.jpg",
-     "mid": "003BoLEb0spYxL",
-     "albummid": "0031jc3244pKR9",
-     "vid": "",
-     "rank": "27526"
-    }
-   ]
-  },
-  {
-   "topid": "62",
-   "name": "飙升榜",
-   "count": 100,
-   "songs": [
-    {
-     "title": "Hong Kong (feat. 王菲季候风)",
-     "singer": "The Weeknd",
-     "singers": [
-      {
-       "name": "The Weeknd",
-       "mid": "004YnseG2vQN7h"
-      }
-     ],
-     "album": "Hong Kong (feat. 王菲季候风)",
-     "duration": 216,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003h24VO1pTh6K.jpg",
-     "mid": "00255MYE3GNkZF",
-     "albummid": "003h24VO1pTh6K",
-     "vid": "",
-     "rank": "644336"
-    },
-    {
-     "title": "연애의 조건 (LOVE OPTIONS) (恋爱的条件)",
-     "singer": "BESTie (베스티)",
-     "singers": [
-      {
-       "name": "BESTie (베스티)",
-       "mid": "003FtY7P4XArUx"
-      }
-     ],
-     "album": "연애의 조건 (Love Options)",
-     "duration": 194,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000034h3c72cswaP.jpg",
-     "mid": "0008rnAh3oSbcW",
-     "albummid": "0034h3c72cswaP",
-     "vid": "",
-     "rank": "163613"
-    },
-    {
-     "title": "Wish You Well",
-     "singer": "张智成",
-     "singers": [
-      {
-       "name": "张智成",
-       "mid": "000fLFlf0ycA4i"
-      }
-     ],
-     "album": "你爱上的...",
-     "duration": 257,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002RBVbE1ef8kW.jpg",
-     "mid": "000pXdIV2ysR3q",
-     "albummid": "002RBVbE1ef8kW",
-     "vid": "",
-     "rank": "63324"
-    },
-    {
-     "title": "想自由",
-     "singer": "王安宇",
-     "singers": [
-      {
-       "name": "王安宇",
-       "mid": "0040ArbM1VStYD"
-      }
-     ],
-     "album": "想自由",
-     "duration": 268,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000AhYdP3qzZKB.jpg",
-     "mid": "000s6qgD3srRhq",
-     "albummid": "000AhYdP3qzZKB",
-     "vid": "",
-     "rank": "54580"
-    },
-    {
-     "title": "怜悯 (Live)",
-     "singer": "周深",
-     "singers": [
-      {
-       "name": "周深",
-       "mid": "003fA5G40k6hKc"
-      }
-     ],
-     "album": "音乐缘计划2 第7期",
-     "duration": 276,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004S1vWd3qGSBb.jpg",
-     "mid": "004EKkP51s2BzK",
-     "albummid": "004S1vWd3qGSBb",
-     "vid": "",
-     "rank": "52649"
-    },
-    {
-     "title": "该死的温柔",
-     "singer": "马天宇",
-     "singers": [
-      {
-       "name": "马天宇",
-       "mid": "000FF56x1ZCWkB"
-      }
-     ],
-     "album": "靓点屋精选辑",
-     "duration": 224,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001SmMdu1gU6Nk.jpg",
-     "mid": "002qGlyg1HzgQu",
-     "albummid": "001SmMdu1gU6Nk",
-     "vid": "",
-     "rank": "38224"
-    },
-    {
-     "title": "隔岸 (女版)",
-     "singer": "可楼",
-     "singers": [
-      {
-       "name": "可楼",
-       "mid": "000msVPH0vPdfB"
-      }
-     ],
-     "album": "隔岸 (女版)",
-     "duration": 231,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000042uV2d3a2IjF.jpg",
-     "mid": "003ARPg02FVFFD",
-     "albummid": "0042uV2d3a2IjF",
-     "vid": "",
-     "rank": "264749"
-    },
-    {
-     "title": "随风而起 如花绽放",
-     "singer": "陈少熙",
-     "singers": [
-      {
-       "name": "陈少熙",
-       "mid": "002etZki3wIxo7"
-      }
-     ],
-     "album": "随风而起 如花绽放",
-     "duration": 199,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001iWS9b0Tk5WR.jpg",
-     "mid": "0048F5bJ4eu34i",
-     "albummid": "001iWS9b0Tk5WR",
-     "vid": "",
-     "rank": "16144"
-    },
-    {
-     "title": "time machine (feat. aren park)",
-     "singer": "mj apanay/aren park",
-     "singers": [
-      {
-       "name": "mj apanay",
-       "mid": "004c8MtG2z2khz"
-      },
-      {
-       "name": "aren park",
-       "mid": "001EalV43gPyVn"
-      }
-     ],
-     "album": "seen 11:23 pm",
-     "duration": 225,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003Afeki1RlQ0U.jpg",
-     "mid": "00100C6W12WCLL",
-     "albummid": "003Afeki1RlQ0U",
-     "vid": "",
-     "rank": "87167"
-    },
-    {
-     "title": "Die For You",
-     "singer": "The Weeknd",
-     "singers": [
-      {
-       "name": "The Weeknd",
-       "mid": "004YnseG2vQN7h"
-      }
-     ],
-     "album": "Starboy (Explicit)",
-     "duration": 259,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003VSTUM3si0tQ.jpg",
-     "mid": "004BdL7I39jc0f",
-     "albummid": "003VSTUM3si0tQ",
-     "vid": "",
-     "rank": "171572"
-    },
-    {
-     "title": "想自由",
-     "singer": "林宥嘉",
-     "singers": [
-      {
-       "name": "林宥嘉",
-       "mid": "001f0VyZ1hmWZ1"
-      }
-     ],
-     "album": "美妙生活",
-     "duration": 281,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000gTwDE3gj4DO.jpg",
-     "mid": "0008y2Nk0IEH0p",
-     "albummid": "000gTwDE3gj4DO",
-     "vid": "",
-     "rank": "101189"
-    },
-    {
-     "title": "发如雪",
-     "singer": "周杰伦",
-     "singers": [
-      {
-       "name": "周杰伦",
-       "mid": "0025NhlN2yWrP4"
-      }
-     ],
-     "album": "十一月的萧邦",
-     "duration": 299,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000024bjiL2aocxT.jpg",
-     "mid": "0027oMO61wWi55",
-     "albummid": "0024bjiL2aocxT",
-     "vid": "",
-     "rank": "708701"
-    },
-    {
-     "title": "November Rain",
-     "singer": "Guns N' Roses",
-     "singers": [
-      {
-       "name": "Guns N' Roses",
-       "mid": "000qDHsQ0HpNZW"
-      }
-     ],
-     "album": "Use Your Illusion I (Explicit)",
-     "duration": 536,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001fBrSo0UDNjE.jpg",
-     "mid": "0019BFTi4USXNL",
-     "albummid": "001fBrSo0UDNjE",
-     "vid": "",
-     "rank": "11803"
-    },
-    {
-     "title": "媚人",
-     "singer": "薛之谦",
-     "singers": [
-      {
-       "name": "薛之谦",
-       "mid": "002J4UUk29y8BY"
-      }
-     ],
-     "album": "媚人",
-     "duration": 226,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002vfBmm41fIRe.jpg",
-     "mid": "001Fk1hB2OWZYH",
-     "albummid": "002vfBmm41fIRe",
-     "vid": "",
-     "rank": "104652"
-    },
-    {
-     "title": "数年",
-     "singer": "队长",
-     "singers": [
-      {
-       "name": "队长",
-       "mid": "002rHyN14UyyaW"
-      }
-     ],
-     "album": "数年",
+     "album": "后来的我和你",
      "duration": 219,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001ifm9B2RBJQM.jpg",
-     "mid": "004O8O1D3JJiLH",
-     "albummid": "001ifm9B2RBJQM",
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004ad0ne3kVygo.jpg",
+     "mid": "003BSqzl0pc2Du",
+     "albummid": "004ad0ne3kVygo",
      "vid": "",
-     "rank": "17665"
+     "rank": "57618"
     },
     {
-     "title": "过渡期",
-     "singer": "小宇-宋念宇",
+     "title": "你我之间或许本该如此 (氛围旋律)",
+     "singer": "404Hz/DJ小西",
      "singers": [
       {
-       "name": "小宇-宋念宇",
-       "mid": "003Pt2380Q2EbF"
-      }
-     ],
-     "album": "再一次",
-     "duration": 275,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Uw5qE3Wjlo6.jpg",
-     "mid": "002GnkGs2TknvY",
-     "albummid": "001Uw5qE3Wjlo6",
-     "vid": "",
-     "rank": "111068"
-    },
-    {
-     "title": "世纪传说",
-     "singer": "苏醒AllenSu",
-     "singers": [
-      {
-       "name": "苏醒AllenSu",
-       "mid": "000b7B7h1fXzaM"
-      }
-     ],
-     "album": "世纪传说",
-     "duration": 210,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003n4ehI0Mdwzb.jpg",
-     "mid": "000pnPXe4eQvcU",
-     "albummid": "003n4ehI0Mdwzb",
-     "vid": "",
-     "rank": "21377"
-    },
-    {
-     "title": "无字句尾",
-     "singer": "鹭卓",
-     "singers": [
-      {
-       "name": "鹭卓",
-       "mid": "0034HhNB0CRhr5"
-      }
-     ],
-     "album": "ALL IN ALL",
-     "duration": 232,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001SAuEX2jsQ4o.jpg",
-     "mid": "000aeazU4Q6MGG",
-     "albummid": "001SAuEX2jsQ4o",
-     "vid": "",
-     "rank": "29472"
-    },
-    {
-     "title": "无 意",
-     "singer": "KAY AND",
-     "singers": [
-      {
-       "name": "KAY AND",
-       "mid": "001DsJbp2QwvuL"
-      }
-     ],
-     "album": "无  意(加 木)",
-     "duration": 174,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000M3epe26odUU.jpg",
-     "mid": "004RjCHW3uKYjD",
-     "albummid": "000M3epe26odUU",
-     "vid": "",
-     "rank": "13288"
-    },
-    {
-     "title": "我的歌声里 (remix：T.back)",
-     "singer": "邱霖BigL",
-     "singers": [
-      {
-       "name": "邱霖BigL",
-       "mid": "0009gOXH4KhwDa"
-      }
-     ],
-     "album": "诉",
-     "duration": 206,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003im0v94ALxbT.jpg",
-     "mid": "000FNLs10bOegr",
-     "albummid": "003im0v94ALxbT",
-     "vid": "",
-     "rank": "82749"
-    },
-    {
-     "title": "绿豆沙",
-     "singer": "周传雄",
-     "singers": [
-      {
-       "name": "周传雄",
-       "mid": "004NMZuf2BLjg8"
-      }
-     ],
-     "album": "绿豆沙",
-     "duration": 145,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002ngEJM0ouHOA.jpg",
-     "mid": "003X41em2f8XiJ",
-     "albummid": "002ngEJM0ouHOA",
-     "vid": "",
-     "rank": "9833"
-    },
-    {
-     "title": "泪海",
-     "singer": "许茹芸",
-     "singers": [
-      {
-       "name": "许茹芸",
-       "mid": "0031dOOZ1zyvZw"
-      }
-     ],
-     "album": "泪海",
-     "duration": 298,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Ugmj01giuzO.jpg",
-     "mid": "003Haf8k2E6fYX",
-     "albummid": "001Ugmj01giuzO",
-     "vid": "",
-     "rank": "275703"
-    },
-    {
-     "title": "创业路上满身伤",
-     "singer": "华少",
-     "singers": [
-      {
-       "name": "华少",
-       "mid": "004QG5Lj3HRFPg"
-      }
-     ],
-     "album": "创业路上满身伤",
-     "duration": 250,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002weJta0V7URj.jpg",
-     "mid": "000waGht2AGqxh",
-     "albummid": "002weJta0V7URj",
-     "vid": "",
-     "rank": "9484"
-    },
-    {
-     "title": "number one girl",
-     "singer": "ROSÉ (로제)",
-     "singers": [
-      {
-       "name": "ROSÉ (로제)",
-       "mid": "000rOzKc0NplcY"
-      }
-     ],
-     "album": "number one girl",
-     "duration": 216,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002IoS8a3ckxYE.jpg",
-     "mid": "001zNAJb0A5Yl0",
-     "albummid": "002IoS8a3ckxYE",
-     "vid": "",
-     "rank": "18199"
-    },
-    {
-     "title": "Feel Again",
-     "singer": "崔十八/听潮阁",
-     "singers": [
-      {
-       "name": "崔十八",
-       "mid": "000ytIce1Hnrob"
+       "name": "404Hz",
+       "mid": "001Rar5R4YAjKN"
       },
       {
-       "name": "听潮阁",
-       "mid": "001NtjFN2qNcoq"
+       "name": "DJ小西",
+       "mid": "001QS6fy0U6OZj"
       }
      ],
-     "album": "Human",
-     "duration": 164,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000p26BF45TSNn.jpg",
-     "mid": "000IOnmN3VX8o2",
-     "albummid": "000p26BF45TSNn",
+     "album": "只是擦肩而过",
+     "duration": 119,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003YJVGS10V8w5.jpg",
+     "mid": "001FWBb41vkJeM",
+     "albummid": "003YJVGS10V8w5",
      "vid": "",
-     "rank": "9253"
+     "rank": "57505"
     },
     {
-     "title": "一眼",
-     "singer": "徐来/听潮阁",
+     "title": "迟来的情话",
+     "singer": "张家旺",
      "singers": [
       {
-       "name": "徐来",
-       "mid": "002I7dag2Vjr7j"
-      },
-      {
-       "name": "听潮阁",
-       "mid": "001NtjFN2qNcoq"
+       "name": "张家旺",
+       "mid": "000NpEYi1G9R6r"
       }
      ],
-     "album": "Human",
-     "duration": 236,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000p26BF45TSNn.jpg",
-     "mid": "000h5PXR1luSXM",
-     "albummid": "000p26BF45TSNn",
-     "vid": "",
-     "rank": "9125"
-    },
-    {
-     "title": "时过境迁",
-     "singer": "苏艺馨Chency",
-     "singers": [
-      {
-       "name": "苏艺馨Chency",
-       "mid": "001ZbBj53vuU6J"
-      }
-     ],
-     "album": "时过境迁",
-     "duration": 236,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001zUnnV4T1qwb.jpg",
-     "mid": "002TTnfc13TkgO",
-     "albummid": "001zUnnV4T1qwb",
-     "vid": "",
-     "rank": "253960"
-    },
-    {
-     "title": "心湖",
-     "singer": "张靓颖",
-     "singers": [
-      {
-       "name": "张靓颖",
-       "mid": "000aw4WC2EQYTv"
-      }
-     ],
-     "album": "心湖",
-     "duration": 279,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000JVeSZ1Ikbsz.jpg",
-     "mid": "003xIl0w0kepGm",
-     "albummid": "000JVeSZ1Ikbsz",
-     "vid": "",
-     "rank": "36223"
-    },
-    {
-     "title": "耻辱柱",
-     "singer": "刘思鉴",
-     "singers": [
-      {
-       "name": "刘思鉴",
-       "mid": "002HNTfl3Wekat"
-      }
-     ],
-     "album": "耻辱柱",
-     "duration": 211,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000qHU6X0dpS2f.jpg",
-     "mid": "004YK7Ue0XEWqQ",
-     "albummid": "000qHU6X0dpS2f",
-     "vid": "",
-     "rank": "67854"
-    },
-    {
-     "title": "风吹过",
-     "singer": "张玮",
-     "singers": [
-      {
-       "name": "张玮",
-       "mid": "003Y98C04dlTYN"
-      }
-     ],
-     "album": "风吹过",
-     "duration": 267,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004HdMIu3BxTYc.jpg",
-     "mid": "003f3Wqk2yb5bB",
-     "albummid": "004HdMIu3BxTYc",
-     "vid": "",
-     "rank": "13486"
-    },
-    {
-     "title": "故乡的风在呼唤我",
-     "singer": "烟嗓船长",
-     "singers": [
-      {
-       "name": "烟嗓船长",
-       "mid": "003Ruf1l1ygYFm"
-      }
-     ],
-     "album": "故乡的风在呼唤我",
-     "duration": 197,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000019yGRC4f82Ja.jpg",
-     "mid": "002ngAqM4H5afq",
-     "albummid": "0019yGRC4f82Ja",
-     "vid": "",
-     "rank": "10634"
-    },
-    {
-     "title": "花开满篱院",
-     "singer": "谭松韵",
-     "singers": [
-      {
-       "name": "谭松韵",
-       "mid": "000r128p04xx96"
-      }
-     ],
-     "album": "兰香如故 影视剧原声带",
-     "duration": 185,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ZuQ5z05yCAP.jpg",
-     "mid": "0047Lo9712HRXc",
-     "albummid": "003ZuQ5z05yCAP",
-     "vid": "",
-     "rank": "59908"
-    },
-    {
-     "title": "潮汐引力",
-     "singer": "卓沅",
-     "singers": [
-      {
-       "name": "卓沅",
-       "mid": "0015wnsS4TgAar"
-      }
-     ],
-     "album": "潮汐引力",
-     "duration": 160,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004aDED72YXhSP.jpg",
-     "mid": "001KqebC2EAqzN",
-     "albummid": "004aDED72YXhSP",
-     "vid": "",
-     "rank": "6981"
-    },
-    {
-     "title": "新·与天齐",
-     "singer": "指尖笑",
-     "singers": [
-      {
-       "name": "指尖笑",
-       "mid": "003zW96B1Rt7sa"
-      }
-     ],
-     "album": "与天齐",
-     "duration": 139,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002PwVL14fG66d.jpg",
-     "mid": "004KaogL1rk4jT",
-     "albummid": "002PwVL14fG66d",
-     "vid": "",
-     "rank": "153652"
-    },
-    {
-     "title": "晚安以前",
-     "singer": "董思成",
-     "singers": [
-      {
-       "name": "董思成",
-       "mid": "002dzuFt0pHJ1d"
-      }
-     ],
-     "album": "RE-fresh",
-     "duration": 225,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001AxzGM4WAYIS.jpg",
-     "mid": "001Fo6Mv0Je5oo",
-     "albummid": "001AxzGM4WAYIS",
-     "vid": "",
-     "rank": "6248"
-    },
-    {
-     "title": "空空 (Live)",
-     "singer": "陈粒",
-     "singers": [
-      {
-       "name": "陈粒",
-       "mid": "004WgCsE3KBddt"
-      }
-     ],
-     "album": "空空 (Live)",
-     "duration": 223,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004XqnHa25FlrL.jpg",
-     "mid": "002gq0iy32KzNf",
-     "albummid": "004XqnHa25FlrL",
-     "vid": "",
-     "rank": "24305"
-    },
-    {
-     "title": "也会有人代替你",
-     "singer": "供销社乐队",
-     "singers": [
-      {
-       "name": "供销社乐队",
-       "mid": "001usCce3oZtkq"
-      }
-     ],
-     "album": "也会有人代替你",
-     "duration": 268,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000rxOlT0NzfM8.jpg",
-     "mid": "002X8hbg2EB3ft",
-     "albummid": "000rxOlT0NzfM8",
-     "vid": "",
-     "rank": "24963"
-    },
-    {
-     "title": "今夜让我带你高飞远走",
-     "singer": "五月天 阿信/言承旭/吴建豪/周渝民",
-     "singers": [
-      {
-       "name": "五月天 阿信",
-       "mid": "0040EhGd2lkffO"
-      },
-      {
-       "name": "言承旭",
-       "mid": "004VN9Ui1Omv94"
-      },
-      {
-       "name": "吴建豪",
-       "mid": "001Ue7bB0Bjbe8"
-      },
-      {
-       "name": "周渝民",
-       "mid": "000ICvx62mc19U"
-      }
-     ],
-     "album": "今夜让我带你高飞远走",
-     "duration": 246,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002bU34N4Erieg.jpg",
-     "mid": "0021l8uU2eRXT9",
-     "albummid": "002bU34N4Erieg",
-     "vid": "",
-     "rank": "33598"
-    },
-    {
-     "title": "生而为光",
-     "singer": "赵太阳/六月0451/萨满（Saman）/徐来",
-     "singers": [
-      {
-       "name": "赵太阳",
-       "mid": "004Pnaol0CFFKF"
-      },
-      {
-       "name": "六月0451",
-       "mid": "002ICiOa0HoQ8Z"
-      },
-      {
-       "name": "萨满（Saman）",
-       "mid": "0014cU9S0Hs8zm"
-      },
-      {
-       "name": "徐来",
-       "mid": "002I7dag2Vjr7j"
-      }
-     ],
-     "album": "Human",
-     "duration": 247,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000p26BF45TSNn.jpg",
-     "mid": "002ScIqa0bjFvM",
-     "albummid": "000p26BF45TSNn",
-     "vid": "",
-     "rank": "5707"
-    },
-    {
-     "title": "霸王别姬",
-     "singer": "薛之谦/张靓颖",
-     "singers": [
-      {
-       "name": "薛之谦",
-       "mid": "002J4UUk29y8BY"
-      },
-      {
-       "name": "张靓颖",
-       "mid": "000aw4WC2EQYTv"
-      }
-     ],
-     "album": "霸王别姬",
-     "duration": 230,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000026kVRP0O1FEf.jpg",
-     "mid": "000Onqdf4a3Azh",
-     "albummid": "0026kVRP0O1FEf",
-     "vid": "",
-     "rank": "61202"
-    },
-    {
-     "title": "Light & You",
-     "singer": "董思成",
-     "singers": [
-      {
-       "name": "董思成",
-       "mid": "002dzuFt0pHJ1d"
-      }
-     ],
-     "album": "RE-fresh",
-     "duration": 206,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001AxzGM4WAYIS.jpg",
-     "mid": "004BgSjr2YOTQb",
-     "albummid": "001AxzGM4WAYIS",
-     "vid": "",
-     "rank": "5293"
-    },
-    {
-     "title": "慢倍速",
-     "singer": "方了个木",
-     "singers": [
-      {
-       "name": "方了个木",
-       "mid": "002g2pCn3xaGm4"
-      }
-     ],
-     "album": "慢倍速",
+     "album": "迟来的情话",
      "duration": 202,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004b3M1x1MpQdc.jpg",
-     "mid": "003heQpc3Lve9E",
-     "albummid": "004b3M1x1MpQdc",
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000007qwpc1XDkXo.jpg",
+     "mid": "003ZbWC54Hyyxl",
+     "albummid": "0007qwpc1XDkXo",
      "vid": "",
-     "rank": "14792"
+     "rank": "53433"
     },
     {
-     "title": "不要说反话",
-     "singer": "王一烁/大烁",
+     "title": "You Are All I Need",
+     "singer": "FLY COAST/二宮愛 (にのみや あい)",
      "singers": [
       {
-       "name": "王一烁",
-       "mid": "001FE6fY1ZDjc7"
+       "name": "FLY COAST",
+       "mid": "003LbZPw0sitQK"
       },
       {
-       "name": "大烁",
-       "mid": "0043w2jb481jmd"
+       "name": "二宮愛 (にのみや あい)",
+       "mid": "001En8ME2TaxU9"
       }
      ],
-     "album": "不要说反话",
-     "duration": 185,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003WG13I0dGoNc.jpg",
-     "mid": "002achp40TFPOo",
-     "albummid": "003WG13I0dGoNc",
+     "album": "Flight Number 001",
+     "duration": 239,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000B8U3p19UV0b.jpg",
+     "mid": "002dG09F2B9jlJ",
+     "albummid": "000B8U3p19UV0b",
      "vid": "",
-     "rank": "6462"
-    },
-    {
-     "title": "Back at One",
-     "singer": "董思成",
-     "singers": [
-      {
-       "name": "董思成",
-       "mid": "002dzuFt0pHJ1d"
-      }
-     ],
-     "album": "RE-fresh",
-     "duration": 153,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001AxzGM4WAYIS.jpg",
-     "mid": "002bo2kA3Guszc",
-     "albummid": "001AxzGM4WAYIS",
-     "vid": "",
-     "rank": "4811"
-    },
-    {
-     "title": "像风一样 (Live)",
-     "singer": "单依纯",
-     "singers": [
-      {
-       "name": "单依纯",
-       "mid": "002ug9Ha2zYM1y"
-      }
-     ],
-     "album": "2020中国好声音 第3期",
-     "duration": 138,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003pPGDz4cbwj1.jpg",
-     "mid": "0034pmwQ05YPQT",
-     "albummid": "003pPGDz4cbwj1",
-     "vid": "",
-     "rank": "16461"
-    },
-    {
-     "title": "爱是难解的签",
-     "singer": "一只白羊",
-     "singers": [
-      {
-       "name": "一只白羊",
-       "mid": "00041KWG27QuVQ"
-      }
-     ],
-     "album": "爱是难解的签",
-     "duration": 179,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002ZeUy20FicrV.jpg",
-     "mid": "001wIDUc1SltKc",
-     "albummid": "002ZeUy20FicrV",
-     "vid": "",
-     "rank": "12899"
-    },
-    {
-     "title": "永不失联的爱 (Live)",
-     "singer": "单依纯",
-     "singers": [
-      {
-       "name": "单依纯",
-       "mid": "002ug9Ha2zYM1y"
-      }
-     ],
-     "album": "2020中国好声音 第3期",
-     "duration": 263,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003pPGDz4cbwj1.jpg",
-     "mid": "002GwAma2DGN2x",
-     "albummid": "003pPGDz4cbwj1",
-     "vid": "",
-     "rank": "77581"
-    },
-    {
-     "title": "隔岸",
-     "singer": "姚六一",
-     "singers": [
-      {
-       "name": "姚六一",
-       "mid": "000P8v78226j0Y"
-      }
-     ],
-     "album": "隔岸",
-     "duration": 273,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000001Q1543u6L5s.jpg",
-     "mid": "000KC8CR1B8enw",
-     "albummid": "0001Q1543u6L5s",
-     "vid": "",
-     "rank": "76948"
-    },
-    {
-     "title": "Cry For Me (feat. Ami) (为我哭泣)",
-     "singer": "Michita (ミチタ)",
-     "singers": [
-      {
-       "name": "Michita (ミチタ)",
-       "mid": "001fI9y71AfUY3"
-      }
-     ],
-     "album": "Pureness",
-     "duration": 302,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004Tm0RJ36QLOF.jpg",
-     "mid": "004Drt082CV5gf",
-     "albummid": "004Tm0RJ36QLOF",
-     "vid": "",
-     "rank": "110378"
-    },
-    {
-     "title": "空白",
-     "singer": "Pank/罗凯元（SUPER KY）",
-     "singers": [
-      {
-       "name": "Pank",
-       "mid": "004gKXOj0BDtQn"
-      },
-      {
-       "name": "罗凯元（SUPER KY）",
-       "mid": "002ySCpC4Q9G98"
-      }
-     ],
-     "album": "空白",
-     "duration": 171,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000xV6432OyjEv.jpg",
-     "mid": "0040Eaaf0i7bAs",
-     "albummid": "000xV6432OyjEv",
-     "vid": "",
-     "rank": "31698"
-    },
-    {
-     "title": "Call your name (Gv)",
-     "singer": "澤野弘之 (さわの ひろゆき)/R!N/Gemie",
-     "singers": [
-      {
-       "name": "澤野弘之 (さわの ひろゆき)",
-       "mid": "0023TUOS0vGD8C"
-      },
-      {
-       "name": "R!N/Gemie",
-       "mid": "003RIgq02Sg7vp"
-      }
-     ],
-     "album": "「進撃の巨人」Season3 オリジナル・サウンドトラック (进击的巨人第三季 动画原声带)",
-     "duration": 259,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000GHr773SppMX.jpg",
-     "mid": "002IsYoV4f9a3g",
-     "albummid": "000GHr773SppMX",
-     "vid": "",
-     "rank": "99092"
-    },
-    {
-     "title": "水泼落地难收回2009",
-     "singer": "纪佳松",
-     "singers": [
-      {
-       "name": "纪佳松",
-       "mid": "002HWYuY3ciaXu"
-      }
-     ],
-     "album": "Blue J",
-     "duration": 250,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003M72194Yojax.jpg",
-     "mid": "000WhIWw0hl7Fp",
-     "albummid": "003M72194Yojax",
-     "vid": "",
-     "rank": "21694"
-    },
-    {
-     "title": "逆向生长",
-     "singer": "七月/听潮阁",
-     "singers": [
-      {
-       "name": "七月",
-       "mid": "004NC2sr2WiPIy"
-      },
-      {
-       "name": "听潮阁",
-       "mid": "001NtjFN2qNcoq"
-      }
-     ],
-     "album": "Human",
-     "duration": 250,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000p26BF45TSNn.jpg",
-     "mid": "0011shEI46QqxM",
-     "albummid": "000p26BF45TSNn",
-     "vid": "",
-     "rank": "4169"
-    },
-    {
-     "title": "澎湃",
-     "singer": "虞书欣",
-     "singers": [
-      {
-       "name": "虞书欣",
-       "mid": "0031rIlo4Xka96"
-      }
-     ],
-     "album": "永夜星河 影视原声大碟",
-     "duration": 214,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Ui8d80TpacW.jpg",
-     "mid": "004XCNiw1wWTaX",
-     "albummid": "001Ui8d80TpacW",
-     "vid": "",
-     "rank": "23093"
-    },
-    {
-     "title": "最好的伴",
-     "singer": "宝石Gem",
-     "singers": [
-      {
-       "name": "宝石Gem",
-       "mid": "002RjVgP3sbc0f"
-      }
-     ],
-     "album": "最好的伴",
-     "duration": 351,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002CB6E03L4WUR.jpg",
-     "mid": "004D9b6511yPHT",
-     "albummid": "002CB6E03L4WUR",
-     "vid": "",
-     "rank": "9328"
-    },
-    {
-     "title": "危险节奏",
-     "singer": "六月0451/听潮阁",
-     "singers": [
-      {
-       "name": "六月0451",
-       "mid": "002ICiOa0HoQ8Z"
-      },
-      {
-       "name": "听潮阁",
-       "mid": "001NtjFN2qNcoq"
-      }
-     ],
-     "album": "Human",
-     "duration": 216,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000p26BF45TSNn.jpg",
-     "mid": "000IEpNQ2tZqHc",
-     "albummid": "000p26BF45TSNn",
-     "vid": "",
-     "rank": "3927"
-    },
-    {
-     "title": "秋风慢慢吹 (对唱版)",
-     "singer": "乌兰Ulan/寂寞阿图",
-     "singers": [
-      {
-       "name": "乌兰Ulan",
-       "mid": "0030X9d60QlJbk"
-      },
-      {
-       "name": "寂寞阿图",
-       "mid": "000tG6Zu0lsOia"
-      }
-     ],
-     "album": "秋风慢慢吹",
-     "duration": 229,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002foyq43KeWhP.jpg",
-     "mid": "001xoqbO1emXXB",
-     "albummid": "002foyq43KeWhP",
-     "vid": "",
-     "rank": "17023"
-    },
-    {
-     "title": "干杯时我会想起你",
-     "singer": "新学校合唱团",
-     "singers": [
-      {
-       "name": "新学校合唱团",
-       "mid": "000QFTMX2q8R2M"
-      }
-     ],
-     "album": "干杯时我会想起你",
-     "duration": 151,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Zm4LV0aWZXH.jpg",
-     "mid": "002Di7J22MbB8A",
-     "albummid": "000Zm4LV0aWZXH",
-     "vid": "",
-     "rank": "6621"
-    },
-    {
-     "title": "故乡的风在呼唤我",
-     "singer": "任夏",
-     "singers": [
-      {
-       "name": "任夏",
-       "mid": "001YdJLh3uP9Eq"
-      }
-     ],
-     "album": "故乡的风在呼唤我",
-     "duration": 196,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003qrDVQ31cHyN.jpg",
-     "mid": "003ZHfsY1bEhV4",
-     "albummid": "003qrDVQ31cHyN",
-     "vid": "",
-     "rank": "4982"
-    },
-    {
-     "title": "请不要一时兴起",
-     "singer": "陆景钧",
-     "singers": [
-      {
-       "name": "陆景钧",
-       "mid": "001nm25n04D654"
-      }
-     ],
-     "album": "请不要一时兴起",
-     "duration": 161,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000p0s7I1LgDmv.jpg",
-     "mid": "001yqJtO4HVhSw",
-     "albummid": "000p0s7I1LgDmv",
-     "vid": "",
-     "rank": "34688"
-    },
-    {
-     "title": "Shine",
-     "singer": "赵太阳/听潮阁",
-     "singers": [
-      {
-       "name": "赵太阳",
-       "mid": "004Pnaol0CFFKF"
-      },
-      {
-       "name": "听潮阁",
-       "mid": "001NtjFN2qNcoq"
-      }
-     ],
-     "album": "Human",
-     "duration": 223,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000p26BF45TSNn.jpg",
-     "mid": "000tuxAT3FRYpt",
-     "albummid": "000p26BF45TSNn",
-     "vid": "",
-     "rank": "3826"
-    },
-    {
-     "title": "첫 눈 (初雪)",
-     "singer": "EXO (엑소)",
-     "singers": [
-      {
-       "name": "EXO (엑소)",
-       "mid": "001QVwtq3l8cKC"
-      }
-     ],
-     "album": "Winter Special Album '12月的奇迹 (Miracles In December)' (十二月的奇迹)",
-     "duration": 209,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000020blxX0EAvHi.jpg",
-     "mid": "002qdLxg2sMxjJ",
-     "albummid": "0020blxX0EAvHi",
-     "vid": "",
-     "rank": "55933"
-    },
-    {
-     "title": "Ma Boy",
-     "singer": "SISTAR19 (씨스타 19)",
-     "singers": [
-      {
-       "name": "SISTAR19 (씨스타 19)",
-       "mid": "000Zyk3G03vyv3"
-      }
-     ],
-     "album": "Ma Boy",
-     "duration": 198,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003algrR1tx3Pi.jpg",
-     "mid": "000wG45z0tmSHN",
-     "albummid": "003algrR1tx3Pi",
-     "vid": "",
-     "rank": "10885"
-    },
-    {
-     "title": "茉茉",
-     "singer": "Nzwin 黄跃成",
-     "singers": [
-      {
-       "name": "Nzwin 黄跃成",
-       "mid": "0034KUvb1DZEYw"
-      }
-     ],
-     "album": "茉茉",
-     "duration": 120,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000vinRR01agny.jpg",
-     "mid": "000QRSae14GCA6",
-     "albummid": "000vinRR01agny",
-     "vid": "",
-     "rank": "21232"
-    },
-    {
-     "title": "以物易物",
-     "singer": "DYLAN尹海阳",
-     "singers": [
-      {
-       "name": "DYLAN尹海阳",
-       "mid": "003avqhq1xTH0O"
-      }
-     ],
-     "album": "INDIVIDUAL: 个体差异",
-     "duration": 206,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000aqlFL1ASSsd.jpg",
-     "mid": "004IyfD13rH1Oi",
-     "albummid": "000aqlFL1ASSsd",
-     "vid": "",
-     "rank": "21812"
-    },
-    {
-     "title": "I Wonder",
-     "singer": "BOYNEXTDOOR (보이넥스트도어)",
-     "singers": [
-      {
-       "name": "BOYNEXTDOOR (보이넥스트도어)",
-       "mid": "0045M1hV0HbDnE"
-      }
-     ],
-     "album": "HOME",
-     "duration": 197,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003xEA2W1jzeIG.jpg",
-     "mid": "003Ni4KJ3WSMeF",
-     "albummid": "003xEA2W1jzeIG",
-     "vid": "",
-     "rank": "5067"
-    },
-    {
-     "title": "末班",
-     "singer": "付豪",
-     "singers": [
-      {
-       "name": "付豪",
-       "mid": "0014Np4r2TcsXj"
-      }
-     ],
-     "album": "末班",
-     "duration": 205,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002At5AA2WXOL4.jpg",
-     "mid": "001MO9Z93l2nTS",
-     "albummid": "002At5AA2WXOL4",
-     "vid": "",
-     "rank": "26933"
-    },
-    {
-     "title": "如果累了就慢下来",
-     "singer": "卓吉拉姆",
-     "singers": [
-      {
-       "name": "卓吉拉姆",
-       "mid": "004EhOO73CTQB1"
-      }
-     ],
-     "album": "如果累了就慢下来",
-     "duration": 212,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002WoCFX1uIsSh.jpg",
-     "mid": "003EbEz30ObjJi",
-     "albummid": "002WoCFX1uIsSh",
-     "vid": "",
-     "rank": "4254"
-    },
-    {
-     "title": "一生土（孟婆孟婆你赊个账）",
-     "singer": "南歌",
-     "singers": [
-      {
-       "name": "南歌",
-       "mid": "001MZfuD4CBPXT"
-      }
-     ],
-     "album": "一生土",
-     "duration": 278,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004IDBOf151v53.jpg",
-     "mid": "004FwzlC1dV02I",
-     "albummid": "004IDBOf151v53",
-     "vid": "",
-     "rank": "6511"
-    },
-    {
-     "title": "Alright (Live)",
-     "singer": "鹭卓/陈卓璇",
-     "singers": [
-      {
-       "name": "鹭卓",
-       "mid": "0034HhNB0CRhr5"
-      },
-      {
-       "name": "陈卓璇",
-       "mid": "003Y4MC631LORe"
-      }
-     ],
-     "album": "听，谁在唱歌2 第4期",
-     "duration": 219,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001lSoDb34Z0bn.jpg",
-     "mid": "004ZrIJH2QVVws",
-     "albummid": "001lSoDb34Z0bn",
-     "vid": "",
-     "rank": "3449"
-    },
-    {
-     "title": "趁早",
-     "singer": "张惠妹",
-     "singers": [
-      {
-       "name": "张惠妹",
-       "mid": "003JGrNQ3RjelA"
-      }
-     ],
-     "album": "不顾一切",
-     "duration": 326,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000iHM083qltkN.jpg",
-     "mid": "002Wvw4J1bEUqe",
-     "albummid": "000iHM083qltkN",
-     "vid": "",
-     "rank": "90370"
-    },
-    {
-     "title": "谷底有花 (深情版)",
-     "singer": "糖小小",
-     "singers": [
-      {
-       "name": "糖小小",
-       "mid": "002JRDt215rcyz"
-      }
-     ],
-     "album": "谷底有花(深情版)",
-     "duration": 219,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004MbPyk2WmISK.jpg",
-     "mid": "003rkHSV2tAMCz",
-     "albummid": "004MbPyk2WmISK",
-     "vid": "",
-     "rank": "4582"
-    },
-    {
-     "title": "谁是我",
-     "singer": "尹妹/听潮阁",
-     "singers": [
-      {
-       "name": "尹妹",
-       "mid": "003gcBnZ1w2oVk"
-      },
-      {
-       "name": "听潮阁",
-       "mid": "001NtjFN2qNcoq"
-      }
-     ],
-     "album": "Human",
-     "duration": 174,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000p26BF45TSNn.jpg",
-     "mid": "000PhiaH0pry5C",
-     "albummid": "000p26BF45TSNn",
-     "vid": "",
-     "rank": "3304"
-    },
-    {
-     "title": "刻在我心底的名字",
-     "singer": "卢广仲",
-     "singers": [
-      {
-       "name": "卢广仲",
-       "mid": "003kXFVD30axaD"
-      }
-     ],
-     "album": "刻在我心底的名字",
-     "duration": 320,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004QG0W52P5GUq.jpg",
-     "mid": "001YneOf1NGnlH",
-     "albummid": "004QG0W52P5GUq",
-     "vid": "",
-     "rank": "223180"
-    },
-    {
-     "title": "这个班就上到这了",
-     "singer": "姚冠宇",
-     "singers": [
-      {
-       "name": "姚冠宇",
-       "mid": "004L673l3uAkHt"
-      }
-     ],
-     "album": "这个班就上到这了",
-     "duration": 214,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000d24rk3kW4XS.jpg",
-     "mid": "002H7W6S38sFy1",
-     "albummid": "000d24rk3kW4XS",
-     "vid": "",
-     "rank": "3140"
-    },
-    {
-     "title": "那年夏天 (Live)",
-     "singer": "许飞",
-     "singers": [
-      {
-       "name": "许飞",
-       "mid": "000ohzzi3esYiQ"
-      }
-     ],
-     "album": "乐人·Live：许飞专辑首唱会",
-     "duration": 287,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003mia9W0OUBRn.jpg",
-     "mid": "002FRLiF05fp4P",
-     "albummid": "003mia9W0OUBRn",
-     "vid": "",
-     "rank": "9801"
-    },
-    {
-     "title": "Move",
-     "singer": "北夜/听潮阁",
-     "singers": [
-      {
-       "name": "北夜",
-       "mid": "0032LKlb2yjTyV"
-      },
-      {
-       "name": "听潮阁",
-       "mid": "001NtjFN2qNcoq"
-      }
-     ],
-     "album": "Human",
-     "duration": 182,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000p26BF45TSNn.jpg",
-     "mid": "0006bRDE2oeSku",
-     "albummid": "000p26BF45TSNn",
-     "vid": "",
-     "rank": "3099"
-    },
-    {
-     "title": "接受",
-     "singer": "梁静茹",
-     "singers": [
-      {
-       "name": "梁静茹",
-       "mid": "000GGDys0yA0Nk"
-      }
-     ],
-     "album": "燕尾蝶",
-     "duration": 279,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003fXCg33QEqj2.jpg",
-     "mid": "000yR5UT1Zt0Ez",
-     "albummid": "003fXCg33QEqj2",
-     "vid": "",
-     "rank": "15712"
-    },
-    {
-     "title": "我要的飞翔 (Live)",
-     "singer": "许飞",
-     "singers": [
-      {
-       "name": "许飞",
-       "mid": "000ohzzi3esYiQ"
-      }
-     ],
-     "album": "乐人·Live：许飞专辑首唱会",
-     "duration": 262,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003mia9W0OUBRn.jpg",
-     "mid": "003qfKaw4aPQ3D",
-     "albummid": "003mia9W0OUBRn",
-     "vid": "",
-     "rank": "21779"
-    },
-    {
-     "title": "Cherry Candy",
-     "singer": "Lunak",
-     "singers": [
-      {
-       "name": "Lunak",
-       "mid": "000TRRMj1S9MHC"
-      }
-     ],
-     "album": "Cherry Candy",
-     "duration": 141,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001KsTdW3f3W9A.jpg",
-     "mid": "003KUOtt4LN4cW",
-     "albummid": "001KsTdW3f3W9A",
-     "vid": "",
-     "rank": "30992"
-    },
-    {
-     "title": "引力法则",
-     "singer": "萨满（Saman）/听潮阁",
-     "singers": [
-      {
-       "name": "萨满（Saman）",
-       "mid": "0014cU9S0Hs8zm"
-      },
-      {
-       "name": "听潮阁",
-       "mid": "001NtjFN2qNcoq"
-      }
-     ],
-     "album": "Human",
-     "duration": 219,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000p26BF45TSNn.jpg",
-     "mid": "0017jgGE1DhQCz",
-     "albummid": "000p26BF45TSNn",
-     "vid": "",
-     "rank": "2896"
-    },
-    {
-     "title": "鹿 be free",
-     "singer": "尚雯婕",
-     "singers": [
-      {
-       "name": "尚雯婕",
-       "mid": "002xqNxr0cVp0E"
-      }
-     ],
-     "album": "鹿 be free",
-     "duration": 223,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001JHuu01D8z9W.jpg",
-     "mid": "000KIXPJ3EO3me",
-     "albummid": "001JHuu01D8z9W",
-     "vid": "",
-     "rank": "36255"
-    },
-    {
-     "title": "秋风慢慢吹 (深情版)",
-     "singer": "玛依阿索",
-     "singers": [
-      {
-       "name": "玛依阿索",
-       "mid": "001BGa8v3KiWh1"
-      }
-     ],
-     "album": "秋风慢慢吹（深情版）",
-     "duration": 226,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004W0zxR0MBGCg.jpg",
-     "mid": "001ojWps2visW8",
-     "albummid": "004W0zxR0MBGCg",
-     "vid": "",
-     "rank": "3420"
-    },
-    {
-     "title": "Bruce Lee",
-     "singer": "梁博",
-     "singers": [
-      {
-       "name": "梁博",
-       "mid": "003CNC9D00CaVx"
-      }
-     ],
-     "album": "梁博",
-     "duration": 323,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001xokwI0UpvRA.jpg",
-     "mid": "002xOfIH2XEgLn",
-     "albummid": "001xokwI0UpvRA",
-     "vid": "",
-     "rank": "12284"
-    },
-    {
-     "title": "盼情郎（我望残阳一地秋黄）",
-     "singer": "秦婉风",
-     "singers": [
-      {
-       "name": "秦婉风",
-       "mid": "002RiMQt2UGrd3"
-      }
-     ],
-     "album": "盼情郎（我望残阳一地秋黄）",
-     "duration": 217,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002sZoM22OBQvD.jpg",
-     "mid": "000DjvwX10hZ8B",
-     "albummid": "002sZoM22OBQvD",
-     "vid": "",
-     "rank": "2828"
-    },
-    {
-     "title": "默",
-     "singer": "那英",
-     "singers": [
-      {
-       "name": "那英",
-       "mid": "003LCFXH0eodXv"
-      }
-     ],
-     "album": "默",
-     "duration": 325,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003YaJPm3IojAP.jpg",
-     "mid": "003sZvDE2mWkvD",
-     "albummid": "003YaJPm3IojAP",
-     "vid": "",
-     "rank": "59785"
-    },
-    {
-     "title": "짧은 치마 (MINISKIRT) (短裙)",
-     "singer": "AOA (에이오에이)",
-     "singers": [
-      {
-       "name": "AOA (에이오에이)",
-       "mid": "001Bq9sV19KmFD"
-      }
-     ],
-     "album": "짧은 치마 (短裙)",
-     "duration": 179,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000mzGe80mrXKx.jpg",
-     "mid": "0020E1oO27EI3L",
-     "albummid": "000mzGe80mrXKx",
-     "vid": "",
-     "rank": "57339"
-    },
-    {
-     "title": "EXCUSE ME",
-     "singer": "BESTie (베스티)",
-     "singers": [
-      {
-       "name": "BESTie (베스티)",
-       "mid": "003FtY7P4XArUx"
-      }
-     ],
-     "album": "Love Emotion",
-     "duration": 198,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000022nrFb2SKi84.jpg",
-     "mid": "004ebrwl09VQgf",
-     "albummid": "0022nrFb2SKi84",
-     "vid": "",
-     "rank": "2306"
-    },
-    {
-     "title": "我的华北",
-     "singer": "刘森",
-     "singers": [
-      {
-       "name": "刘森",
-       "mid": "0005Lrfc2on9lN"
-      }
-     ],
-     "album": "峨眉",
-     "duration": 242,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003yJQXZ3Wadlr.jpg",
-     "mid": "004dwDru3PtRCL",
-     "albummid": "003yJQXZ3Wadlr",
-     "vid": "",
-     "rank": "3523"
+     "rank": "182689"
     },
     {
      "title": "一颗糖的勇气",
@@ -8681,41 +5762,465 @@
      "mid": "002XXpTY1REpyT",
      "albummid": "001yGobS3qFua4",
      "vid": "",
-     "rank": "5162"
+     "rank": "55501"
     },
     {
-     "title": "茉莉",
-     "singer": "说唱先锋Official",
+     "title": "时间会回答",
+     "singer": "七元",
      "singers": [
       {
-       "name": "说唱先锋Official",
-       "mid": "002w94bk34saIo"
+       "name": "七元",
+       "mid": "003HUF9Z1kL0MU"
       }
      ],
-     "album": "茉莉（在吗 我家门口新开了一朵茉莉）",
-     "duration": 135,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002CHhGN3A7vKz.jpg",
-     "mid": "0025Nuse4GpPIe",
-     "albummid": "002CHhGN3A7vKz",
+     "album": "时间会回答",
+     "duration": 201,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004Nydxc3ReaDR.jpg",
+     "mid": "002eom782x5HrI",
+     "albummid": "004Nydxc3ReaDR",
      "vid": "",
-     "rank": "5742"
+     "rank": "78538"
     },
     {
-     "title": "凝眸",
-     "singer": "丁禹兮",
+     "title": "Gasoline(LV Edit)",
+     "singer": "@LV",
      "singers": [
       {
-       "name": "丁禹兮",
-       "mid": "004fOu5r1U3AJh"
+       "name": "@LV",
+       "mid": "002r5L810SxLCD"
       }
      ],
-     "album": "永夜星河 影视原声大碟",
-     "duration": 220,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Ui8d80TpacW.jpg",
-     "mid": "002t0xbC4DCGdE",
-     "albummid": "001Ui8d80TpacW",
+     "album": "Gasoline(LV Edit)",
+     "duration": 224,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003sKnGN3zgG7E.jpg",
+     "mid": "001Q5TXI3jNB5d",
+     "albummid": "003sKnGN3zgG7E",
      "vid": "",
-     "rank": "11629"
+     "rank": "57895"
+    },
+    {
+     "title": "ECHOES OF YOUR NAME",
+     "singer": "阿米toofu",
+     "singers": [
+      {
+       "name": "阿米toofu",
+       "mid": "004SsH872oEe4q"
+      }
+     ],
+     "album": "只需要拥有你就行了",
+     "duration": 194,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002obKip03ZXBo.jpg",
+     "mid": "001p2HSm3pQiq1",
+     "albummid": "002obKip03ZXBo",
+     "vid": "",
+     "rank": "64331"
+    },
+    {
+     "title": "放不下",
+     "singer": "羊羊",
+     "singers": [
+      {
+       "name": "羊羊",
+       "mid": "0021RwVb0FCFRN"
+      }
+     ],
+     "album": "放不下",
+     "duration": 195,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003DPeDp2LurQV.jpg",
+     "mid": "000ONghN2f9YzN",
+     "albummid": "003DPeDp2LurQV",
+     "vid": "",
+     "rank": "53798"
+    },
+    {
+     "title": "茉茉",
+     "singer": "Nzwin 黄跃成",
+     "singers": [
+      {
+       "name": "Nzwin 黄跃成",
+       "mid": "0034KUvb1DZEYw"
+      }
+     ],
+     "album": "茉茉",
+     "duration": 120,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000vinRR01agny.jpg",
+     "mid": "000QRSae14GCA6",
+     "albummid": "000vinRR01agny",
+     "vid": "",
+     "rank": "75960"
+    },
+    {
+     "title": "RUD3",
+     "singer": "王栎鑫",
+     "singers": [
+      {
+       "name": "王栎鑫",
+       "mid": "000TprbQ0R4aGb"
+      }
+     ],
+     "album": "RUD3",
+     "duration": 165,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001KlLNU04Xncb.jpg",
+     "mid": "003rhZCs46EDau",
+     "albummid": "001KlLNU04Xncb",
+     "vid": "",
+     "rank": "51015"
+    },
+    {
+     "title": "Bad Boy Club",
+     "singer": "刘宇",
+     "singers": [
+      {
+       "name": "刘宇",
+       "mid": "00255EBh1FcAEk"
+      }
+     ],
+     "album": "Bad Boy Club",
+     "duration": 169,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001gOdd60TDRhu.jpg",
+     "mid": "001KH2US3wjaMx",
+     "albummid": "001gOdd60TDRhu",
+     "vid": "",
+     "rank": "50311"
+    },
+    {
+     "title": "ANGEL (天使)",
+     "singer": "尹美莱 (윤미래)/Tiger JK/Bizzy (비지)",
+     "singers": [
+      {
+       "name": "尹美莱 (윤미래)",
+       "mid": "001msdYO3n34wZ"
+      },
+      {
+       "name": "Tiger JK",
+       "mid": "002Bl73E0Q5wZ7"
+      },
+      {
+       "name": "Bizzy (비지)",
+       "mid": "001AVoda3jMAxD"
+      }
+     ],
+     "album": "Angel",
+     "duration": 255,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000qiKcT05rSr9.jpg",
+     "mid": "004PjZLu3CjaYS",
+     "albummid": "000qiKcT05rSr9",
+     "vid": "",
+     "rank": "236919"
+    },
+    {
+     "title": "外面的世界",
+     "singer": "半吨兄弟",
+     "singers": [
+      {
+       "name": "半吨兄弟",
+       "mid": "000KBVw62Xyb2H"
+      }
+     ],
+     "album": "外面的世界",
+     "duration": 211,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003WH6L11V4zRN.jpg",
+     "mid": "002Im9pm0RuL4T",
+     "albummid": "003WH6L11V4zRN",
+     "vid": "",
+     "rank": "48901"
+    },
+    {
+     "title": "HOLDON",
+     "singer": "MKMS",
+     "singers": [
+      {
+       "name": "MKMS",
+       "mid": "001IHUH4422GJh"
+      }
+     ],
+     "album": "HOLDON",
+     "duration": 122,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002WUltD3RcpJo.jpg",
+     "mid": "000XsHRu0QZneh",
+     "albummid": "002WUltD3RcpJo",
+     "vid": "",
+     "rank": "48860"
+    },
+    {
+     "title": "Call your name (Gv)",
+     "singer": "澤野弘之 (さわの ひろゆき)/R!N/Gemie",
+     "singers": [
+      {
+       "name": "澤野弘之 (さわの ひろゆき)",
+       "mid": "0023TUOS0vGD8C"
+      },
+      {
+       "name": "R!N/Gemie",
+       "mid": "003RIgq02Sg7vp"
+      }
+     ],
+     "album": "「進撃の巨人」Season3 オリジナル・サウンドトラック (进击的巨人第三季 动画原声带)",
+     "duration": 259,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000GHr773SppMX.jpg",
+     "mid": "002IsYoV4f9a3g",
+     "albummid": "000GHr773SppMX",
+     "vid": "",
+     "rank": "124882"
+    },
+    {
+     "title": "The Storm Of Us",
+     "singer": "吕施其",
+     "singers": [
+      {
+       "name": "吕施其",
+       "mid": "003XwZjg4duhcd"
+      }
+     ],
+     "album": "The Storm Of Us",
+     "duration": 287,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002dUcEt3ZQx9G.jpg",
+     "mid": "000trWup2KKPCD",
+     "albummid": "002dUcEt3ZQx9G",
+     "vid": "",
+     "rank": "47006"
+    },
+    {
+     "title": "在你的世界迷路 (抒情版)",
+     "singer": "糖晓晓",
+     "singers": [
+      {
+       "name": "糖晓晓",
+       "mid": "0027wFD10rV7RZ"
+      }
+     ],
+     "album": "在你的世界迷路",
+     "duration": 231,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000v6G9a48jTpr.jpg",
+     "mid": "0013mfRK2LSm3h",
+     "albummid": "000v6G9a48jTpr",
+     "vid": "",
+     "rank": "47378"
+    },
+    {
+     "title": "那女孩对我说",
+     "singer": "赵乃吉",
+     "singers": [
+      {
+       "name": "赵乃吉",
+       "mid": "003jTY4I4f2ETE"
+      }
+     ],
+     "album": "那女孩对我说",
+     "duration": 237,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004FlVr11YthLN.jpg",
+     "mid": "004WveI800LATg",
+     "albummid": "004FlVr11YthLN",
+     "vid": "",
+     "rank": "45326"
+    },
+    {
+     "title": "别卿书 (纸太薄意难写)",
+     "singer": "文雯",
+     "singers": [
+      {
+       "name": "文雯",
+       "mid": "001V5tKO3TrNkS"
+      }
+     ],
+     "album": "别卿书 (纸太薄意难写)",
+     "duration": 192,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000049AquM0Hcj3m.jpg",
+     "mid": "002ocuGl3NQVpl",
+     "albummid": "0049AquM0Hcj3m",
+     "vid": "",
+     "rank": "46429"
+    },
+    {
+     "title": "Love's Leftovers（爱之剩菜）",
+     "singer": "哇耶",
+     "singers": [
+      {
+       "name": "哇耶",
+       "mid": "001pIGlR4LIuBL"
+      }
+     ],
+     "album": "Love's Leftovers(爱之剩菜）",
+     "duration": 250,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001QBjz71YiiV1.jpg",
+     "mid": "004Lqrvo484Gde",
+     "albummid": "001QBjz71YiiV1",
+     "vid": "",
+     "rank": "47884"
+    },
+    {
+     "title": "不懂事",
+     "singer": "吴炳文",
+     "singers": [
+      {
+       "name": "吴炳文",
+       "mid": "003Gcaom2Fqh6Y"
+      }
+     ],
+     "album": "不懂事",
+     "duration": 231,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000000VbgK0B6o2e.jpg",
+     "mid": "004e3QnK26YCrY",
+     "albummid": "0000VbgK0B6o2e",
+     "vid": "",
+     "rank": "60627"
+    },
+    {
+     "title": "Cherry Candy",
+     "singer": "Lunak",
+     "singers": [
+      {
+       "name": "Lunak",
+       "mid": "000TRRMj1S9MHC"
+      }
+     ],
+     "album": "Cherry Candy",
+     "duration": 141,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001KsTdW3f3W9A.jpg",
+     "mid": "003KUOtt4LN4cW",
+     "albummid": "001KsTdW3f3W9A",
+     "vid": "",
+     "rank": "47281"
+    },
+    {
+     "title": "无尽冬",
+     "singer": "周深",
+     "singers": [
+      {
+       "name": "周深",
+       "mid": "003fA5G40k6hKc"
+      }
+     ],
+     "album": "无尽冬",
+     "duration": 258,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002JkES13koV1w.jpg",
+     "mid": "000gMlKd3pj6KU",
+     "albummid": "002JkES13koV1w",
+     "vid": "",
+     "rank": "42834"
+    },
+    {
+     "title": "爱爱爱",
+     "singer": "颜小健",
+     "singers": [
+      {
+       "name": "颜小健",
+       "mid": "004X4ZOL3nV7YE"
+      }
+     ],
+     "album": "爱爱爱",
+     "duration": 213,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000iF0ZP2ni9Q6.jpg",
+     "mid": "002gFHq01i7DfB",
+     "albummid": "000iF0ZP2ni9Q6",
+     "vid": "",
+     "rank": "38331"
+    },
+    {
+     "title": "请不要一时兴起",
+     "singer": "陆景钧",
+     "singers": [
+      {
+       "name": "陆景钧",
+       "mid": "001nm25n04D654"
+      }
+     ],
+     "album": "请不要一时兴起",
+     "duration": 161,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000p0s7I1LgDmv.jpg",
+     "mid": "001yqJtO4HVhSw",
+     "albummid": "000p0s7I1LgDmv",
+     "vid": "",
+     "rank": "45670"
+    },
+    {
+     "title": "秋风一吹又老一岁",
+     "singer": "洋澜一",
+     "singers": [
+      {
+       "name": "洋澜一",
+       "mid": "001aYgp53T8g8b"
+      }
+     ],
+     "album": "秋风一吹又老一岁",
+     "duration": 183,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004AwJPG1LVXqd.jpg",
+     "mid": "001pGNpO2Foqk8",
+     "albummid": "004AwJPG1LVXqd",
+     "vid": "",
+     "rank": "43425"
+    },
+    {
+     "title": "红笔",
+     "singer": "林时LAMZz/邓乐怡",
+     "singers": [
+      {
+       "name": "林时LAMZz",
+       "mid": "000iKj7a2Vqx75"
+      },
+      {
+       "name": "邓乐怡",
+       "mid": "002twwZe3BbYwG"
+      }
+     ],
+     "album": "红笔（334424044）",
+     "duration": 189,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001s3TSe4JsM87.jpg",
+     "mid": "002Qju6Y3ip2Vs",
+     "albummid": "001s3TSe4JsM87",
+     "vid": "",
+     "rank": "30322"
+    },
+    {
+     "title": "我听人说思念像风一样",
+     "singer": "顾叮当",
+     "singers": [
+      {
+       "name": "顾叮当",
+       "mid": "004EtiqY1EXuc3"
+      }
+     ],
+     "album": "我听人说思念像风一样",
+     "duration": 240,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000016mqjj1ZJ8HF.jpg",
+     "mid": "000y5DHt3fBUB8",
+     "albummid": "0016mqjj1ZJ8HF",
+     "vid": "",
+     "rank": "46260"
+    },
+    {
+     "title": "也会有人代替你",
+     "singer": "供销社乐队",
+     "singers": [
+      {
+       "name": "供销社乐队",
+       "mid": "001usCce3oZtkq"
+      }
+     ],
+     "album": "也会有人代替你",
+     "duration": 268,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000rxOlT0NzfM8.jpg",
+     "mid": "002X8hbg2EB3ft",
+     "albummid": "000rxOlT0NzfM8",
+     "vid": "",
+     "rank": "56514"
+    },
+    {
+     "title": "小城",
+     "singer": "任素汐",
+     "singers": [
+      {
+       "name": "任素汐",
+       "mid": "001GAeOa0SeDvI"
+      }
+     ],
+     "album": "小城",
+     "duration": 270,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Zy47F4Kj5fy.jpg",
+     "mid": "002BqShi1NMhDz",
+     "albummid": "001Zy47F4Kj5fy",
+     "vid": "",
+     "rank": "91726"
     },
     {
      "title": "我们之间到底算什么呢（Bigger than us）",
@@ -8732,52 +6237,167 @@
      "mid": "003nPEAq0wKVrb",
      "albummid": "001G2jGq0YRWse",
      "vid": "",
-     "rank": "17115"
+     "rank": "48444"
     },
     {
-     "title": "我乘着风飞过来",
-     "singer": "洪辰/宁桓宇/熊出没",
+     "title": "你爱过我吗 (微醺版)",
+     "singer": "山月微醺",
      "singers": [
       {
-       "name": "洪辰",
-       "mid": "001a36VJ4bO5TR"
-      },
-      {
-       "name": "宁桓宇",
-       "mid": "002zFB0Y23R6bW"
-      },
-      {
-       "name": "熊出没",
-       "mid": "003Q35s21Ufz9h"
+       "name": "山月微醺",
+       "mid": "002SFdh91w6DIY"
       }
      ],
-     "album": "熊出没之熊心归来 动画电影原声带",
-     "duration": 232,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000035ouFw1zSuxS.jpg",
-     "mid": "003fOr4D2yCR2y",
-     "albummid": "0035ouFw1zSuxS",
+     "album": "你爱过我吗（微醺版）",
+     "duration": 231,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004WcPFe1TANZw.jpg",
+     "mid": "001wiC480pMbEe",
+     "albummid": "004WcPFe1TANZw",
      "vid": "",
-     "rank": "28469"
+     "rank": "38973"
     },
     {
-     "title": "大我年代",
-     "singer": "汪苏泷",
+     "title": "遗失的心跳",
+     "singer": "萧亚轩",
      "singers": [
       {
-       "name": "汪苏泷",
-       "mid": "001z2JmX09LLgL"
+       "name": "萧亚轩",
+       "mid": "002tkdEU4gLVqO"
       }
      ],
-     "album": "21世纪罗曼史",
-     "duration": 297,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003Nro73487YDO.jpg",
-     "mid": "002jBwTo0N9OOP",
-     "albummid": "003Nro73487YDO",
+     "album": "萧亚轩 (我爱我) 心跳100 (影音庆功版)",
+     "duration": 216,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000BR3b52Rd506.jpg",
+     "mid": "001VHwGU4JxReN",
+     "albummid": "000BR3b52Rd506",
      "vid": "",
-     "rank": "4400"
+     "rank": "164239"
     },
     {
-     "title": "怜悯 (Live)",
+     "title": "续写",
+     "singer": "单依纯",
+     "singers": [
+      {
+       "name": "单依纯",
+       "mid": "002ug9Ha2zYM1y"
+      }
+     ],
+     "album": "一生一世 影视原声带",
+     "duration": 228,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003BuN5J1gZjpr.jpg",
+     "mid": "000BTy5F0TocRr",
+     "albummid": "003BuN5J1gZjpr",
+     "vid": "",
+     "rank": "42258"
+    },
+    {
+     "title": "Waiting You",
+     "singer": "MIKS/MQL",
+     "singers": [
+      {
+       "name": "MIKS",
+       "mid": "0022CjbE0ztIMx"
+      },
+      {
+       "name": "MQL",
+       "mid": "000SQEil0Xpm75"
+      }
+     ],
+     "album": "Waiting You",
+     "duration": 111,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004eN1Ds05PJUq.jpg",
+     "mid": "0035euqZ2578qi",
+     "albummid": "004eN1Ds05PJUq",
+     "vid": "",
+     "rank": "35803"
+    },
+    {
+     "title": "想自由",
+     "singer": "王安宇",
+     "singers": [
+      {
+       "name": "王安宇",
+       "mid": "0040ArbM1VStYD"
+      }
+     ],
+     "album": "想自由",
+     "duration": 268,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000AhYdP3qzZKB.jpg",
+     "mid": "000s6qgD3srRhq",
+     "albummid": "000AhYdP3qzZKB",
+     "vid": "",
+     "rank": "52940"
+    },
+    {
+     "title": "数年",
+     "singer": "队长",
+     "singers": [
+      {
+       "name": "队长",
+       "mid": "002rHyN14UyyaW"
+      }
+     ],
+     "album": "数年",
+     "duration": 219,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001ifm9B2RBJQM.jpg",
+     "mid": "004O8O1D3JJiLH",
+     "albummid": "001ifm9B2RBJQM",
+     "vid": "",
+     "rank": "35144"
+    },
+    {
+     "title": "我听人说思念像风一样 (纯享版)",
+     "singer": "雪山阿木",
+     "singers": [
+      {
+       "name": "雪山阿木",
+       "mid": "003cv5JI2Ch9Mg"
+      }
+     ],
+     "album": "我听人说思念像风一样(纯享版)",
+     "duration": 187,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004elj0l2ZjU7Y.jpg",
+     "mid": "001VMm5Q0i2164",
+     "albummid": "004elj0l2ZjU7Y",
+     "vid": "",
+     "rank": "113598"
+    },
+    {
+     "title": "抓紧你的手 (金玉良缘热门版)",
+     "singer": "DD小新",
+     "singers": [
+      {
+       "name": "DD小新",
+       "mid": "000t9qZF0hPPyv"
+      }
+     ],
+     "album": "抓紧你的手（金玉良缘热门版）",
+     "duration": 185,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000040c7aG1vCm7W.jpg",
+     "mid": "003gvu3n3oR95Y",
+     "albummid": "0040c7aG1vCm7W",
+     "vid": "",
+     "rank": "34813"
+    },
+    {
+     "title": "내 이름을 불러줘 (Call My Name)",
+     "singer": "TWS (투어스)",
+     "singers": [
+      {
+       "name": "TWS (투어스)",
+       "mid": "003I3S3R24SlCK"
+      }
+     ],
+     "album": "TO US",
+     "duration": 158,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002yHto93jL6Ay.jpg",
+     "mid": "002mPAIi2D9RNT",
+     "albummid": "002yHto93jL6Ay",
+     "vid": "",
+     "rank": "34251"
+    },
+    {
+     "title": "心湖",
      "singer": "张靓颖",
      "singers": [
       {
@@ -8785,71 +6405,1046 @@
        "mid": "000aw4WC2EQYTv"
       }
      ],
-     "album": "音乐缘计划2 第7期",
-     "duration": 225,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004S1vWd3qGSBb.jpg",
-     "mid": "000pmTBZ07DjI1",
-     "albummid": "004S1vWd3qGSBb",
+     "album": "心湖",
+     "duration": 279,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000JVeSZ1Ikbsz.jpg",
+     "mid": "003xIl0w0kepGm",
+     "albummid": "000JVeSZ1Ikbsz",
      "vid": "",
-     "rank": "8381"
+     "rank": "34024"
     },
     {
-     "title": "体面",
-     "singer": "于文文",
+     "title": "MIX世界顶级重低音 (Explicit)",
+     "singer": "耳朵加油站/Jonice",
      "singers": [
       {
-       "name": "于文文",
-       "mid": "000poF8D027tPr"
-      }
-     ],
-     "album": "体面",
-     "duration": 282,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qYTzY2oyDyZ.jpg",
-     "mid": "000Md1wq0vnwzE",
-     "albummid": "001qYTzY2oyDyZ",
-     "vid": "",
-     "rank": "137933"
-    },
-    {
-     "title": "人海深处的岛屿",
-     "singer": "饶子/听潮阁",
-     "singers": [
-      {
-       "name": "饶子",
-       "mid": "004SOaOA37PDqZ"
+       "name": "耳朵加油站",
+       "mid": "002VJQo63EiVO8"
       },
       {
-       "name": "听潮阁",
-       "mid": "001NtjFN2qNcoq"
+       "name": "Jonice",
+       "mid": "001l33rL2hrDnt"
       }
      ],
-     "album": "Human",
-     "duration": 222,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000p26BF45TSNn.jpg",
-     "mid": "001BnTII0sF4yT",
-     "albummid": "000p26BF45TSNn",
+     "album": "开车必听劲爆重低音慢摇DJ",
+     "duration": 166,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003iiDqJ2fsj0i.jpg",
+     "mid": "001LUu3p2W2DUZ",
+     "albummid": "003iiDqJ2fsj0i",
      "vid": "",
-     "rank": "2506"
+     "rank": "36116"
     },
     {
-     "title": "Mystery of Love",
-     "singer": "Sufjan Stevens",
+     "title": "Do It Right",
+     "singer": "Butch U",
      "singers": [
       {
-       "name": "Sufjan Stevens",
-       "mid": "001tlnqA1W8BXm"
+       "name": "Butch U",
+       "mid": "002l3f973UhppY"
       }
      ],
-     "album": "Call Me By Your Name (Original Motion Picture Soundtrack)",
-     "duration": 248,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004K8wq32e2QO7.jpg",
-     "mid": "000QRcJD17dfEK",
-     "albummid": "004K8wq32e2QO7",
+     "album": "Do It Right",
+     "duration": 140,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Gcsvk1ITBnN.jpg",
+     "mid": "000O5MFF0dpEdH",
+     "albummid": "000Gcsvk1ITBnN",
      "vid": "",
-     "rank": "21840"
+     "rank": "57352"
     },
     {
-     "title": "夜夜夜夜",
+     "title": "酒作逍遥散",
+     "singer": "涂一乐er",
+     "singers": [
+      {
+       "name": "涂一乐er",
+       "mid": "003Xa50c2DL3Fy"
+      }
+     ],
+     "album": "酒作逍遥散",
+     "duration": 213,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000020Yu6D4UCsnX.jpg",
+     "mid": "0017lAUt0BgKRV",
+     "albummid": "0020Yu6D4UCsnX",
+     "vid": "",
+     "rank": "33560"
+    },
+    {
+     "title": "素颜",
+     "singer": "许嵩/何曼婷",
+     "singers": [
+      {
+       "name": "许嵩",
+       "mid": "000CK5xN3yZDJt"
+      },
+      {
+       "name": "何曼婷",
+       "mid": "000FI1360aGvjo"
+      }
+     ],
+     "album": "一路有你车载金唱盘 (男人篇)",
+     "duration": 238,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000vLKoe0let3q.jpg",
+     "mid": "000jVE8U3T61IG",
+     "albummid": "000vLKoe0let3q",
+     "vid": "",
+     "rank": "36089"
+    },
+    {
+     "title": "风吹过",
+     "singer": "张玮",
+     "singers": [
+      {
+       "name": "张玮",
+       "mid": "003Y98C04dlTYN"
+      }
+     ],
+     "album": "风吹过",
+     "duration": 267,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004HdMIu3BxTYc.jpg",
+     "mid": "003f3Wqk2yb5bB",
+     "albummid": "004HdMIu3BxTYc",
+     "vid": "",
+     "rank": "53431"
+    },
+    {
+     "title": "忧郁幻昼",
+     "singer": "Matrix Tone",
+     "singers": [
+      {
+       "name": "Matrix Tone",
+       "mid": "000MSKIR39HKjw"
+      }
+     ],
+     "album": "忧郁幻昼",
+     "duration": 129,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000tqYSc2qd212.jpg",
+     "mid": "002Mx7D00sifK2",
+     "albummid": "000tqYSc2qd212",
+     "vid": "",
+     "rank": "46496"
+    },
+    {
+     "title": "深宵秋别",
+     "singer": "张偲偲",
+     "singers": [
+      {
+       "name": "张偲偲",
+       "mid": "002wo2Wi3z7hRn"
+      }
+     ],
+     "album": "深宵秋别",
+     "duration": 283,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001ea5eD1ET0vZ.jpg",
+     "mid": "0018Bg8v0rlMDq",
+     "albummid": "001ea5eD1ET0vZ",
+     "vid": "",
+     "rank": "24288"
+    },
+    {
+     "title": "耻辱柱",
+     "singer": "刘思鉴",
+     "singers": [
+      {
+       "name": "刘思鉴",
+       "mid": "002HNTfl3Wekat"
+      }
+     ],
+     "album": "耻辱柱",
+     "duration": 211,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000qHU6X0dpS2f.jpg",
+     "mid": "004YK7Ue0XEWqQ",
+     "albummid": "000qHU6X0dpS2f",
+     "vid": "",
+     "rank": "82890"
+    },
+    {
+     "title": "幸福收场",
+     "singer": "高迪",
+     "singers": [
+      {
+       "name": "高迪",
+       "mid": "0032kD0i1ARTGM"
+      }
+     ],
+     "album": "幸福收场",
+     "duration": 208,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003euSkM1yxwGd.jpg",
+     "mid": "0027vbPQ3kda2e",
+     "albummid": "003euSkM1yxwGd",
+     "vid": "",
+     "rank": "27345"
+    },
+    {
+     "title": "月亮啊你莫走",
+     "singer": "黄英",
+     "singers": [
+      {
+       "name": "黄英",
+       "mid": "000HwXjC3iTyMK"
+      }
+     ],
+     "album": "月亮啊你莫走",
+     "duration": 199,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000NoaDG1QUxdj.jpg",
+     "mid": "000dGaPQ1krW2D",
+     "albummid": "000NoaDG1QUxdj",
+     "vid": "",
+     "rank": "33165"
+    },
+    {
+     "title": "你瞒我瞒",
+     "singer": "陈柏宇",
+     "singers": [
+      {
+       "name": "陈柏宇",
+       "mid": "003Z6Uiu1dvLv0"
+      }
+     ],
+     "album": "Can't Be Half",
+     "duration": 239,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000036NwU42xQeD2.jpg",
+     "mid": "001EgTUP43EmU2",
+     "albummid": "0036NwU42xQeD2",
+     "vid": "",
+     "rank": "36632"
+    },
+    {
+     "title": "我的歌声里 (remix：T.back)",
+     "singer": "邱霖BigL",
+     "singers": [
+      {
+       "name": "邱霖BigL",
+       "mid": "0009gOXH4KhwDa"
+      }
+     ],
+     "album": "诉",
+     "duration": 206,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003im0v94ALxbT.jpg",
+     "mid": "000FNLs10bOegr",
+     "albummid": "003im0v94ALxbT",
+     "vid": "",
+     "rank": "94259"
+    },
+    {
+     "title": "望月",
+     "singer": "z阿康",
+     "singers": [
+      {
+       "name": "z阿康",
+       "mid": "003sBlpT41LsjX"
+      }
+     ],
+     "album": "望月",
+     "duration": 211,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003S2BYz0OEQk9.jpg",
+     "mid": "004AlF8O1LWBoe",
+     "albummid": "003S2BYz0OEQk9",
+     "vid": "",
+     "rank": "41604"
+    },
+    {
+     "title": "若你看见花开",
+     "singer": "杨小壮",
+     "singers": [
+      {
+       "name": "杨小壮",
+       "mid": "0007gcR612qKgE"
+      }
+     ],
+     "album": "若你看见花开",
+     "duration": 162,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004aaPnx1izMbf.jpg",
+     "mid": "0035iCQe0mLHpf",
+     "albummid": "004aaPnx1izMbf",
+     "vid": "",
+     "rank": "54842"
+    },
+    {
+     "title": "我的一个道姑朋友(而你撑伞拥我入怀中)",
+     "singer": "晚月moon",
+     "singers": [
+      {
+       "name": "晚月moon",
+       "mid": "0027jfDn2srFZs"
+      }
+     ],
+     "album": "我的一个道姑朋友(而你撑伞拥我入怀中)",
+     "duration": 284,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004ePdhQ0UDqKi.jpg",
+     "mid": "0000IBee2qHubU",
+     "albummid": "004ePdhQ0UDqKi",
+     "vid": "",
+     "rank": "49454"
+    },
+    {
+     "title": "一身傲骨不认输 (深情版)",
+     "singer": "兴俊拔",
+     "singers": [
+      {
+       "name": "兴俊拔",
+       "mid": "000RRAuK2h0Kk2"
+      }
+     ],
+     "album": "一身傲骨不认输",
+     "duration": 202,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Pcioa2ud37T.jpg",
+     "mid": "001WCfPC2Iq92Z",
+     "albummid": "000Pcioa2ud37T",
+     "vid": "",
+     "rank": "46050"
+    },
+    {
+     "title": "你冷一分我就退一分",
+     "singer": "苏清墨",
+     "singers": [
+      {
+       "name": "苏清墨",
+       "mid": "000r4UUK0UpIRZ"
+      }
+     ],
+     "album": "你冷一分我就退一分",
+     "duration": 220,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003U3pbQ2CuRWf.jpg",
+     "mid": "004PY7W03ZO3TA",
+     "albummid": "003U3pbQ2CuRWf",
+     "vid": "",
+     "rank": "20420"
+    },
+    {
+     "title": "十年",
+     "singer": "陈奕迅",
+     "singers": [
+      {
+       "name": "陈奕迅",
+       "mid": "003Nz2So3XXYek"
+      }
+     ],
+     "album": "你的陈奕迅 国语精选",
+     "duration": 205,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003NWDmU4ROCil.jpg",
+     "mid": "000mNhQt1gVcrg",
+     "albummid": "003NWDmU4ROCil",
+     "vid": "",
+     "rank": "26881"
+    },
+    {
+     "title": "WE UP",
+     "singer": "TWS (투어스)",
+     "singers": [
+      {
+       "name": "TWS (투어스)",
+       "mid": "003I3S3R24SlCK"
+      }
+     ],
+     "album": "TO US",
+     "duration": 158,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002yHto93jL6Ay.jpg",
+     "mid": "004TkmhI41VziQ",
+     "albummid": "002yHto93jL6Ay",
+     "vid": "",
+     "rank": "29169"
+    },
+    {
+     "title": "无字句尾",
+     "singer": "鹭卓",
+     "singers": [
+      {
+       "name": "鹭卓",
+       "mid": "0034HhNB0CRhr5"
+      }
+     ],
+     "album": "ALL IN ALL",
+     "duration": 232,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001SAuEX2jsQ4o.jpg",
+     "mid": "000aeazU4Q6MGG",
+     "albummid": "001SAuEX2jsQ4o",
+     "vid": "",
+     "rank": "47587"
+    },
+    {
+     "title": "时过境迁",
+     "singer": "苏艺馨Chency",
+     "singers": [
+      {
+       "name": "苏艺馨Chency",
+       "mid": "001ZbBj53vuU6J"
+      }
+     ],
+     "album": "时过境迁",
+     "duration": 236,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001zUnnV4T1qwb.jpg",
+     "mid": "002TTnfc13TkgO",
+     "albummid": "001zUnnV4T1qwb",
+     "vid": "",
+     "rank": "327769"
+    },
+    {
+     "title": "老人与海",
+     "singer": "海鸣威",
+     "singers": [
+      {
+       "name": "海鸣威",
+       "mid": "0000QHSk0ruY3Y"
+      }
+     ],
+     "album": "老人与海",
+     "duration": 265,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002xkMav17d28o.jpg",
+     "mid": "004MA1MS0F8QAq",
+     "albummid": "002xkMav17d28o",
+     "vid": "",
+     "rank": "42265"
+    },
+    {
+     "title": "Gasolina",
+     "singer": "Daddy Yankee",
+     "singers": [
+      {
+       "name": "Daddy Yankee",
+       "mid": "003HwYe92CUYUQ"
+      }
+     ],
+     "album": "Barrio Fino",
+     "duration": 192,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000013Gc690OmPwR.jpg",
+     "mid": "000I2Dxe1dYg6X",
+     "albummid": "0013Gc690OmPwR",
+     "vid": "",
+     "rank": "27623"
+    },
+    {
+     "title": "秋风一吹又老一岁",
+     "singer": "周深深",
+     "singers": [
+      {
+       "name": "周深深",
+       "mid": "00352ilz0eBkEW"
+      }
+     ],
+     "album": "秋风一吹又老一岁",
+     "duration": 183,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000m01tJ0EPgzA.jpg",
+     "mid": "002JgZF33Uxq7f",
+     "albummid": "000m01tJ0EPgzA",
+     "vid": "",
+     "rank": "68609"
+    },
+    {
+     "title": "晚枫歌 (合唱版)",
+     "singer": "ycccc/葫芦童声",
+     "singers": [
+      {
+       "name": "ycccc",
+       "mid": "001Jnlli222xTo"
+      },
+      {
+       "name": "葫芦童声",
+       "mid": "0040j1o41mf6Dx"
+      }
+     ],
+     "album": "晚枫歌（合唱版）",
+     "duration": 232,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003s5Wpt1PRK2X.jpg",
+     "mid": "004E4CQe4enxy7",
+     "albummid": "003s5Wpt1PRK2X",
+     "vid": "",
+     "rank": "44628"
+    },
+    {
+     "title": "燕无歇",
+     "singer": "蒋雪儿Snow.J",
+     "singers": [
+      {
+       "name": "蒋雪儿Snow.J",
+       "mid": "001TgcTp2jHGOR"
+      }
+     ],
+     "album": "燕无歇",
+     "duration": 201,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000NoqvB0UzQlc.jpg",
+     "mid": "001vWmFz0T8O3F",
+     "albummid": "000NoqvB0UzQlc",
+     "vid": "",
+     "rank": "72165"
+    },
+    {
+     "title": "我的心事只有风懂 (抒情版)",
+     "singer": "赵柯珩",
+     "singers": [
+      {
+       "name": "赵柯珩",
+       "mid": "000gG7u740hEvS"
+      }
+     ],
+     "album": "我的心事只有风懂（抒情版）",
+     "duration": 227,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003MumSp2SizSL.jpg",
+     "mid": "000QE9Rs2HJeo6",
+     "albummid": "003MumSp2SizSL",
+     "vid": "",
+     "rank": "27425"
+    },
+    {
+     "title": "其实雨也没多大",
+     "singer": "正在进行石女士",
+     "singers": [
+      {
+       "name": "正在进行石女士",
+       "mid": "003Qrok80jMXLi"
+      }
+     ],
+     "album": "其实雨也没多大",
+     "duration": 198,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003tJKBC46d2uS.jpg",
+     "mid": "0025bkui0iLUP6",
+     "albummid": "003tJKBC46d2uS",
+     "vid": "",
+     "rank": "53660"
+    },
+    {
+     "title": "该死的温柔",
+     "singer": "马天宇",
+     "singers": [
+      {
+       "name": "马天宇",
+       "mid": "000FF56x1ZCWkB"
+      }
+     ],
+     "album": "靓点屋精选辑",
+     "duration": 224,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001SmMdu1gU6Nk.jpg",
+     "mid": "002qGlyg1HzgQu",
+     "albummid": "001SmMdu1gU6Nk",
+     "vid": "",
+     "rank": "44372"
+    },
+    {
+     "title": "一半（我把一半写给前缘）",
+     "singer": "加木措",
+     "singers": [
+      {
+       "name": "加木措",
+       "mid": "000g1Or11vwBNI"
+      }
+     ],
+     "album": "一半（我把一半写给前缘）",
+     "duration": 204,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000032bNud3n9tj0.jpg",
+     "mid": "003ZlDWv4EWdFr",
+     "albummid": "0032bNud3n9tj0",
+     "vid": "",
+     "rank": "26772"
+    },
+    {
+     "title": "让自己慢下来 (治愈版)",
+     "singer": "何金水",
+     "singers": [
+      {
+       "name": "何金水",
+       "mid": "002mUfNc1PXkSj"
+      }
+     ],
+     "album": "让自己慢下来",
+     "duration": 241,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004V8ewV4KEjJ7.jpg",
+     "mid": "000NOBEF3nE2pD",
+     "albummid": "004V8ewV4KEjJ7",
+     "vid": "",
+     "rank": "26155"
+    },
+    {
+     "title": "人间生死簿",
+     "singer": "阿哑",
+     "singers": [
+      {
+       "name": "阿哑",
+       "mid": "00267FkO3uO0ZD"
+      }
+     ],
+     "album": "人间生死簿",
+     "duration": 237,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001ChXFP1JCY3l.jpg",
+     "mid": "00230Ai407EbCe",
+     "albummid": "001ChXFP1JCY3l",
+     "vid": "",
+     "rank": "25915"
+    },
+    {
+     "title": "Die For You",
+     "singer": "The Weeknd",
+     "singers": [
+      {
+       "name": "The Weeknd",
+       "mid": "004YnseG2vQN7h"
+      }
+     ],
+     "album": "Starboy (Explicit)",
+     "duration": 259,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003VSTUM3si0tQ.jpg",
+     "mid": "004BdL7I39jc0f",
+     "albummid": "003VSTUM3si0tQ",
+     "vid": "",
+     "rank": "114215"
+    },
+    {
+     "title": "怜悯 (Live)",
+     "singer": "周深",
+     "singers": [
+      {
+       "name": "周深",
+       "mid": "003fA5G40k6hKc"
+      }
+     ],
+     "album": "音乐缘计划2 第7期",
+     "duration": 276,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004S1vWd3qGSBb.jpg",
+     "mid": "004EKkP51s2BzK",
+     "albummid": "004S1vWd3qGSBb",
+     "vid": "",
+     "rank": "39687"
+    },
+    {
+     "title": "我的美丽 (feat.海洋Bo)",
+     "singer": "海洋Bo/高睿",
+     "singers": [
+      {
+       "name": "海洋Bo",
+       "mid": "000NKtSL2bH3LO"
+      },
+      {
+       "name": "高睿",
+       "mid": "001NmJFU2IJdAj"
+      }
+     ],
+     "album": "我的美丽 (feat.海洋Bo)",
+     "duration": 244,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004CPZur1J9EnO.jpg",
+     "mid": "003H4Ctm1YPELn",
+     "albummid": "004CPZur1J9EnO",
+     "vid": "",
+     "rank": "62978"
+    },
+    {
+     "title": "I Don't Car!",
+     "singer": "蒋敦豪",
+     "singers": [
+      {
+       "name": "蒋敦豪",
+       "mid": "001YS2uE1TV9qy"
+      }
+     ],
+     "album": "那就充分扎实地逐个拥抱 (Bug and hug)",
+     "duration": 203,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003mc32Z3FRTxC.jpg",
+     "mid": "0048K7jO2EzUjO",
+     "albummid": "003mc32Z3FRTxC",
+     "vid": "",
+     "rank": "24239"
+    },
+    {
+     "title": "Kunio Warriors (Mashup)",
+     "singer": "ZsFlovexl",
+     "singers": [
+      {
+       "name": "ZsFlovexl",
+       "mid": "003Lsl1C0Xb1ZY"
+      }
+     ],
+     "album": "Kunio Warriors (国士无双)",
+     "duration": 140,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000IKdaY4fp1b7.jpg",
+     "mid": "002vbfYs3YtZ6w",
+     "albummid": "000IKdaY4fp1b7",
+     "vid": "",
+     "rank": "16867"
+    }
+   ]
+  },
+  {
+   "topid": "62",
+   "name": "飙升榜",
+   "count": 100,
+   "songs": [
+    {
+     "title": "연애의 조건 (LOVE OPTIONS) (恋爱的条件)",
+     "singer": "BESTie (베스티)",
+     "singers": [
+      {
+       "name": "BESTie (베스티)",
+       "mid": "003FtY7P4XArUx"
+      }
+     ],
+     "album": "연애의 조건 (Love Options)",
+     "duration": 194,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000034h3c72cswaP.jpg",
+     "mid": "0008rnAh3oSbcW",
+     "albummid": "0034h3c72cswaP",
+     "vid": "",
+     "rank": "280425"
+    },
+    {
+     "title": "내 이름을 불러줘 (Call My Name)",
+     "singer": "TWS (투어스)",
+     "singers": [
+      {
+       "name": "TWS (투어스)",
+       "mid": "003I3S3R24SlCK"
+      }
+     ],
+     "album": "TO US",
+     "duration": 158,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002yHto93jL6Ay.jpg",
+     "mid": "002mPAIi2D9RNT",
+     "albummid": "002yHto93jL6Ay",
+     "vid": "",
+     "rank": "93455"
+    },
+    {
+     "title": "WE UP",
+     "singer": "TWS (투어스)",
+     "singers": [
+      {
+       "name": "TWS (투어스)",
+       "mid": "003I3S3R24SlCK"
+      }
+     ],
+     "album": "TO US",
+     "duration": 158,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002yHto93jL6Ay.jpg",
+     "mid": "004TkmhI41VziQ",
+     "albummid": "002yHto93jL6Ay",
+     "vid": "",
+     "rank": "79918"
+    },
+    {
+     "title": "heavy",
+     "singer": "TWS (투어스)",
+     "singers": [
+      {
+       "name": "TWS (투어스)",
+       "mid": "003I3S3R24SlCK"
+      }
+     ],
+     "album": "TO US",
+     "duration": 180,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002yHto93jL6Ay.jpg",
+     "mid": "003gYmWZ0SKeXm",
+     "albummid": "002yHto93jL6Ay",
+     "vid": "",
+     "rank": "60089"
+    },
+    {
+     "title": "SHOCK",
+     "singer": "TREASURE (트레저)",
+     "singers": [
+      {
+       "name": "TREASURE (트레저)",
+       "mid": "003vyfn53Ir2gh"
+      }
+     ],
+     "album": "SHOCK",
+     "duration": 171,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003biDuK4TeJul.jpg",
+     "mid": "0023nJls2ZHtbq",
+     "albummid": "003biDuK4TeJul",
+     "vid": "",
+     "rank": "33162"
+    },
+    {
+     "title": "一阵风会突如其来",
+     "singer": "陈卓璇",
+     "singers": [
+      {
+       "name": "陈卓璇",
+       "mid": "003Y4MC631LORe"
+      }
+     ],
+     "album": "一阵风会突如其来",
+     "duration": 253,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000000mIm50RUFPP.jpg",
+     "mid": "002mYOHq0VQEON",
+     "albummid": "0000mIm50RUFPP",
+     "vid": "",
+     "rank": "38982"
+    },
+    {
+     "title": "心湖",
+     "singer": "张靓颖",
+     "singers": [
+      {
+       "name": "张靓颖",
+       "mid": "000aw4WC2EQYTv"
+      }
+     ],
+     "album": "心湖",
+     "duration": 279,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000JVeSZ1Ikbsz.jpg",
+     "mid": "003xIl0w0kepGm",
+     "albummid": "000JVeSZ1Ikbsz",
+     "vid": "",
+     "rank": "68465"
+    },
+    {
+     "title": "过渡期",
+     "singer": "小宇-宋念宇",
+     "singers": [
+      {
+       "name": "小宇-宋念宇",
+       "mid": "003Pt2380Q2EbF"
+      }
+     ],
+     "album": "再一次",
+     "duration": 275,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Uw5qE3Wjlo6.jpg",
+     "mid": "002GnkGs2TknvY",
+     "albummid": "001Uw5qE3Wjlo6",
+     "vid": "",
+     "rank": "134272"
+    },
+    {
+     "title": "父亲写的散文诗",
+     "singer": "许飞",
+     "singers": [
+      {
+       "name": "许飞",
+       "mid": "000ohzzi3esYiQ"
+      }
+     ],
+     "album": "父亲写的散文诗",
+     "duration": 228,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000019fEB249Kj98.jpg",
+     "mid": "001Z7M2S3GZVB0",
+     "albummid": "0019fEB249Kj98",
+     "vid": "",
+     "rank": "92138"
+    },
+    {
+     "title": "折月亮",
+     "singer": "刘宇宁",
+     "singers": [
+      {
+       "name": "刘宇宁",
+       "mid": "001Iu4Dv1NzRCD"
+      }
+     ],
+     "album": "折月亮",
+     "duration": 253,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000leKn20Yz2uf.jpg",
+     "mid": "003KHkP23qtKsA",
+     "albummid": "000leKn20Yz2uf",
+     "vid": "",
+     "rank": "27307"
+    },
+    {
+     "title": "Wish You Well",
+     "singer": "张智成",
+     "singers": [
+      {
+       "name": "张智成",
+       "mid": "000fLFlf0ycA4i"
+      }
+     ],
+     "album": "你爱上的...",
+     "duration": 257,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002RBVbE1ef8kW.jpg",
+     "mid": "000pXdIV2ysR3q",
+     "albummid": "002RBVbE1ef8kW",
+     "vid": "",
+     "rank": "80996"
+    },
+    {
+     "title": "小城",
+     "singer": "任素汐",
+     "singers": [
+      {
+       "name": "任素汐",
+       "mid": "001GAeOa0SeDvI"
+      }
+     ],
+     "album": "小城",
+     "duration": 270,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Zy47F4Kj5fy.jpg",
+     "mid": "002BqShi1NMhDz",
+     "albummid": "001Zy47F4Kj5fy",
+     "vid": "",
+     "rank": "90651"
+    },
+    {
+     "title": "怜悯 (Live)",
+     "singer": "周深",
+     "singers": [
+      {
+       "name": "周深",
+       "mid": "003fA5G40k6hKc"
+      }
+     ],
+     "album": "音乐缘计划2 第7期",
+     "duration": 276,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004S1vWd3qGSBb.jpg",
+     "mid": "004EKkP51s2BzK",
+     "albummid": "004S1vWd3qGSBb",
+     "vid": "",
+     "rank": "66571"
+    },
+    {
+     "title": "慢倍速",
+     "singer": "方了个木",
+     "singers": [
+      {
+       "name": "方了个木",
+       "mid": "002g2pCn3xaGm4"
+      }
+     ],
+     "album": "慢倍速",
+     "duration": 202,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004b3M1x1MpQdc.jpg",
+     "mid": "003heQpc3Lve9E",
+     "albummid": "004b3M1x1MpQdc",
+     "vid": "",
+     "rank": "31647"
+    },
+    {
+     "title": "轻轻",
+     "singer": "肖战",
+     "singers": [
+      {
+       "name": "肖战",
+       "mid": "0022eAG537I1bg"
+      }
+     ],
+     "album": "轻轻",
+     "duration": 220,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001zU1173lcnR3.jpg",
+     "mid": "000qgdMS2J7UZ9",
+     "albummid": "001zU1173lcnR3",
+     "vid": "",
+     "rank": "72442"
+    },
+    {
+     "title": "想自由",
+     "singer": "王安宇",
+     "singers": [
+      {
+       "name": "王安宇",
+       "mid": "0040ArbM1VStYD"
+      }
+     ],
+     "album": "想自由",
+     "duration": 268,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000AhYdP3qzZKB.jpg",
+     "mid": "000s6qgD3srRhq",
+     "albummid": "000AhYdP3qzZKB",
+     "vid": "",
+     "rank": "65628"
+    },
+    {
+     "title": "该死的温柔",
+     "singer": "马天宇",
+     "singers": [
+      {
+       "name": "马天宇",
+       "mid": "000FF56x1ZCWkB"
+      }
+     ],
+     "album": "靓点屋精选辑",
+     "duration": 224,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001SmMdu1gU6Nk.jpg",
+     "mid": "002qGlyg1HzgQu",
+     "albummid": "001SmMdu1gU6Nk",
+     "vid": "",
+     "rank": "48577"
+    },
+    {
+     "title": "花开满篱院",
+     "singer": "谭松韵",
+     "singers": [
+      {
+       "name": "谭松韵",
+       "mid": "000r128p04xx96"
+      }
+     ],
+     "album": "兰香如故 影视剧原声带",
+     "duration": 185,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ZuQ5z05yCAP.jpg",
+     "mid": "0047Lo9712HRXc",
+     "albummid": "003ZuQ5z05yCAP",
+     "vid": "",
+     "rank": "74559"
+    },
+    {
+     "title": "我想这样和你一起生活",
+     "singer": "许飞",
+     "singers": [
+      {
+       "name": "许飞",
+       "mid": "000ohzzi3esYiQ"
+      }
+     ],
+     "album": "每个春天我都会唱歌 (Explicit)",
+     "duration": 259,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003YANOp0Je7v1.jpg",
+     "mid": "001BirNT18l94Y",
+     "albummid": "003YANOp0Je7v1",
+     "vid": "",
+     "rank": "24272"
+    },
+    {
+     "title": "Until You",
+     "singer": "Bank Artit/Copter Nuntapong",
+     "singers": [
+      {
+       "name": "Bank Artit",
+       "mid": "001Aakgd1o9VtX"
+      },
+      {
+       "name": "Copter Nuntapong",
+       "mid": "004Z5oo54IE8Be"
+      }
+     ],
+     "album": "Fool in Love OST",
+     "duration": 221,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000ZO9BC1bIV3m.jpg",
+     "mid": "0015N5iK4RrulU",
+     "albummid": "000ZO9BC1bIV3m",
+     "vid": "",
+     "rank": "21082"
+    },
+    {
+     "title": "请不要一时兴起",
+     "singer": "陆景钧",
+     "singers": [
+      {
+       "name": "陆景钧",
+       "mid": "001nm25n04D654"
+      }
+     ],
+     "album": "请不要一时兴起",
+     "duration": 161,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000p0s7I1LgDmv.jpg",
+     "mid": "001yqJtO4HVhSw",
+     "albummid": "000p0s7I1LgDmv",
+     "vid": "",
+     "rank": "46465"
+    },
+    {
+     "title": "错的人",
+     "singer": "萧亚轩",
+     "singers": [
+      {
+       "name": "萧亚轩",
+       "mid": "002tkdEU4gLVqO"
+      }
+     ],
+     "album": "萧洒小姐",
+     "duration": 311,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001j1Ph32Kml7f.jpg",
+     "mid": "0049qx1M1HSU1g",
+     "albummid": "001j1Ph32Kml7f",
+     "vid": "",
+     "rank": "30263"
+    },
+    {
+     "title": "他真的对你好吗",
      "singer": "付豪",
      "singers": [
       {
@@ -8857,13 +7452,1354 @@
        "mid": "0014Np4r2TcsXj"
       }
      ],
-     "album": "夜夜夜夜",
-     "duration": 262,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002N7uVG2ul1HE.jpg",
-     "mid": "003MiXUv3zIpVB",
-     "albummid": "002N7uVG2ul1HE",
+     "album": "他真的对你好吗",
+     "duration": 257,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003dv7SZ4XFi8q.jpg",
+     "mid": "003gdb2X18ZL8X",
+     "albummid": "003dv7SZ4XFi8q",
      "vid": "",
-     "rank": "2962"
+     "rank": "56443"
+    },
+    {
+     "title": "我要的飞翔 (Live)",
+     "singer": "许飞",
+     "singers": [
+      {
+       "name": "许飞",
+       "mid": "000ohzzi3esYiQ"
+      }
+     ],
+     "album": "乐人·Live：许飞专辑首唱会",
+     "duration": 262,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003mia9W0OUBRn.jpg",
+     "mid": "003qfKaw4aPQ3D",
+     "albummid": "003mia9W0OUBRn",
+     "vid": "",
+     "rank": "32472"
+    },
+    {
+     "title": "SUPERSTAR",
+     "singer": "A2O SOUL/A2O",
+     "singers": [
+      {
+       "name": "A2O SOUL",
+       "mid": "001PaqIP4CMMOI"
+      },
+      {
+       "name": "A2O",
+       "mid": "000rmEay0gfWiA"
+      }
+     ],
+     "album": "SUPERSTAR",
+     "duration": 248,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001dHUST1Nfvsd.jpg",
+     "mid": "001LQ1lP2YNEYv",
+     "albummid": "001dHUST1Nfvsd",
+     "vid": "",
+     "rank": "132469"
+    },
+    {
+     "title": "泪海",
+     "singer": "许茹芸",
+     "singers": [
+      {
+       "name": "许茹芸",
+       "mid": "0031dOOZ1zyvZw"
+      }
+     ],
+     "album": "泪海",
+     "duration": 298,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Ugmj01giuzO.jpg",
+     "mid": "003Haf8k2E6fYX",
+     "albummid": "001Ugmj01giuzO",
+     "vid": "",
+     "rank": "285077"
+    },
+    {
+     "title": "接受",
+     "singer": "梁静茹",
+     "singers": [
+      {
+       "name": "梁静茹",
+       "mid": "000GGDys0yA0Nk"
+      }
+     ],
+     "album": "燕尾蝶",
+     "duration": 279,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003fXCg33QEqj2.jpg",
+     "mid": "000yR5UT1Zt0Ez",
+     "albummid": "003fXCg33QEqj2",
+     "vid": "",
+     "rank": "21873"
+    },
+    {
+     "title": "为你而来",
+     "singer": "萧泽x.z",
+     "singers": [
+      {
+       "name": "萧泽x.z",
+       "mid": "004KQOdD2jXgYk"
+      }
+     ],
+     "album": "为你而来",
+     "duration": 231,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001yoIz91AdIQl.jpg",
+     "mid": "002EK42o1S5Kh3",
+     "albummid": "001yoIz91AdIQl",
+     "vid": "",
+     "rank": "37808"
+    },
+    {
+     "title": "晴",
+     "singer": "汪苏泷",
+     "singers": [
+      {
+       "name": "汪苏泷",
+       "mid": "001z2JmX09LLgL"
+      }
+     ],
+     "album": "传世乐章",
+     "duration": 250,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000CMxvP3yRuvR.jpg",
+     "mid": "001ypoXf0qaYi6",
+     "albummid": "000CMxvP3yRuvR",
+     "vid": "",
+     "rank": "101551"
+    },
+    {
+     "title": "左半边翅膀 (Live)",
+     "singer": "许飞",
+     "singers": [
+      {
+       "name": "许飞",
+       "mid": "000ohzzi3esYiQ"
+      }
+     ],
+     "album": "乐人·Live：许飞专辑首唱会",
+     "duration": 124,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003mia9W0OUBRn.jpg",
+     "mid": "004QOG8n4NF3Op",
+     "albummid": "003mia9W0OUBRn",
+     "vid": "",
+     "rank": "21152"
+    },
+    {
+     "title": "茉茉",
+     "singer": "Nzwin 黄跃成",
+     "singers": [
+      {
+       "name": "Nzwin 黄跃成",
+       "mid": "0034KUvb1DZEYw"
+      }
+     ],
+     "album": "茉茉",
+     "duration": 120,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000vinRR01agny.jpg",
+     "mid": "000QRSae14GCA6",
+     "albummid": "000vinRR01agny",
+     "vid": "",
+     "rank": "29395"
+    },
+    {
+     "title": "等不到你",
+     "singer": "汪苏泷",
+     "singers": [
+      {
+       "name": "汪苏泷",
+       "mid": "001z2JmX09LLgL"
+      }
+     ],
+     "album": "弗斯特",
+     "duration": 207,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004KSI683hZM6q.jpg",
+     "mid": "002ozYZe3uHSrJ",
+     "albummid": "004KSI683hZM6q",
+     "vid": "",
+     "rank": "37253"
+    },
+    {
+     "title": "最美的期待",
+     "singer": "周笔畅",
+     "singers": [
+      {
+       "name": "周笔畅",
+       "mid": "004HlS192u9J5g"
+      }
+     ],
+     "album": "最美的期待",
+     "duration": 210,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Qn04n29RAmP.jpg",
+     "mid": "003YC3p31HyR96",
+     "albummid": "001Qn04n29RAmP",
+     "vid": "",
+     "rank": "60867"
+    },
+    {
+     "title": "何妨",
+     "singer": "李常超（Lao乾妈）",
+     "singers": [
+      {
+       "name": "李常超（Lao乾妈）",
+       "mid": "001jDBSD0zRhYh"
+      }
+     ],
+     "album": "玉簟秋 电视剧原声音乐专辑",
+     "duration": 239,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001hqNkn2NxFax.jpg",
+     "mid": "000CP1Ms4aczHw",
+     "albummid": "001hqNkn2NxFax",
+     "vid": "",
+     "rank": "16889"
+    },
+    {
+     "title": "Allez, aimez!",
+     "singer": "肖战",
+     "singers": [
+      {
+       "name": "肖战",
+       "mid": "0022eAG537I1bg"
+      }
+     ],
+     "album": "异想天开",
+     "duration": 202,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001HFlpf1NOEk1.jpg",
+     "mid": "003omXe93S1426",
+     "albummid": "001HFlpf1NOEk1",
+     "vid": "",
+     "rank": "63468"
+    },
+    {
+     "title": "石楠小札",
+     "singer": "丞磊",
+     "singers": [
+      {
+       "name": "丞磊",
+       "mid": "004Ijx542Kjp8a"
+      }
+     ],
+     "album": "玉簟秋 电视剧原声音乐专辑",
+     "duration": 247,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001hqNkn2NxFax.jpg",
+     "mid": "004WGXPD1pw4FW",
+     "albummid": "001hqNkn2NxFax",
+     "vid": "",
+     "rank": "17738"
+    },
+    {
+     "title": "数年",
+     "singer": "队长",
+     "singers": [
+      {
+       "name": "队长",
+       "mid": "002rHyN14UyyaW"
+      }
+     ],
+     "album": "数年",
+     "duration": 219,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001ifm9B2RBJQM.jpg",
+     "mid": "004O8O1D3JJiLH",
+     "albummid": "001ifm9B2RBJQM",
+     "vid": "",
+     "rank": "25579"
+    },
+    {
+     "title": "我恨明月不照我",
+     "singer": "阿YueYue",
+     "singers": [
+      {
+       "name": "阿YueYue",
+       "mid": "0009dWas0XxekN"
+      }
+     ],
+     "album": "我恨明月不照我",
+     "duration": 252,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002Arhu52Btq0z.jpg",
+     "mid": "001wCV5U01aLTy",
+     "albummid": "002Arhu52Btq0z",
+     "vid": "",
+     "rank": "57312"
+    },
+    {
+     "title": "Never Say Goodbye",
+     "singer": "姚琛",
+     "singers": [
+      {
+       "name": "姚琛",
+       "mid": "0007iys01TCxFf"
+      }
+     ],
+     "album": "WONDERFUL",
+     "duration": 167,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003HBx7l38WiXO.jpg",
+     "mid": "002cttW43cetZO",
+     "albummid": "003HBx7l38WiXO",
+     "vid": "",
+     "rank": "7469"
+    },
+    {
+     "title": "不合时宜",
+     "singer": "肖战",
+     "singers": [
+      {
+       "name": "肖战",
+       "mid": "0022eAG537I1bg"
+      }
+     ],
+     "album": "异想天开",
+     "duration": 225,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001HFlpf1NOEk1.jpg",
+     "mid": "000U7ztO08t2B7",
+     "albummid": "001HFlpf1NOEk1",
+     "vid": "",
+     "rank": "53297"
+    },
+    {
+     "title": "异想天开",
+     "singer": "肖战",
+     "singers": [
+      {
+       "name": "肖战",
+       "mid": "0022eAG537I1bg"
+      }
+     ],
+     "album": "异想天开",
+     "duration": 197,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001HFlpf1NOEk1.jpg",
+     "mid": "0031sbUK1c0Oav",
+     "albummid": "001HFlpf1NOEk1",
+     "vid": "",
+     "rank": "64464"
+    },
+    {
+     "title": "想到我们",
+     "singer": "汪苏泷",
+     "singers": [
+      {
+       "name": "汪苏泷",
+       "mid": "001z2JmX09LLgL"
+      }
+     ],
+     "album": "十万伏特",
+     "duration": 305,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000XailV0KWvDK.jpg",
+     "mid": "001sU27K3K10DL",
+     "albummid": "000XailV0KWvDK",
+     "vid": "",
+     "rank": "51079"
+    },
+    {
+     "title": "人间",
+     "singer": "许飞",
+     "singers": [
+      {
+       "name": "许飞",
+       "mid": "000ohzzi3esYiQ"
+      }
+     ],
+     "album": "每个春天我都会唱歌 (Explicit)",
+     "duration": 220,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003YANOp0Je7v1.jpg",
+     "mid": "004Y2f6c0Zeld1",
+     "albummid": "003YANOp0Je7v1",
+     "vid": "",
+     "rank": "13048"
+    },
+    {
+     "title": "像晴天像雨天",
+     "singer": "汪苏泷",
+     "singers": [
+      {
+       "name": "汪苏泷",
+       "mid": "001z2JmX09LLgL"
+      }
+     ],
+     "album": "电视剧《难哄》影视原声带·只喜欢你Love Moments",
+     "duration": 236,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001V8PDy1om05K.jpg",
+     "mid": "003sZs4P2hFUVQ",
+     "albummid": "001V8PDy1om05K",
+     "vid": "",
+     "rank": "99796"
+    },
+    {
+     "title": "爱上",
+     "singer": "刘宇宁",
+     "singers": [
+      {
+       "name": "刘宇宁",
+       "mid": "001Iu4Dv1NzRCD"
+      }
+     ],
+     "album": "玉簟秋 电视剧原声音乐专辑",
+     "duration": 264,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001hqNkn2NxFax.jpg",
+     "mid": "003bg3uB3s6Gkm",
+     "albummid": "001hqNkn2NxFax",
+     "vid": "",
+     "rank": "28155"
+    },
+    {
+     "title": "我来书写我的名",
+     "singer": "王铮亮",
+     "singers": [
+      {
+       "name": "王铮亮",
+       "mid": "001iaSfi07zuSE"
+      }
+     ],
+     "album": "兰香如故 影视剧原声带",
+     "duration": 177,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ZuQ5z05yCAP.jpg",
+     "mid": "000I7s312u5O9k",
+     "albummid": "003ZuQ5z05yCAP",
+     "vid": "",
+     "rank": "45868"
+    },
+    {
+     "title": "不要说反话",
+     "singer": "王一烁/大烁",
+     "singers": [
+      {
+       "name": "王一烁",
+       "mid": "001FE6fY1ZDjc7"
+      },
+      {
+       "name": "大烁",
+       "mid": "0043w2jb481jmd"
+      }
+     ],
+     "album": "不要说反话",
+     "duration": 185,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003WG13I0dGoNc.jpg",
+     "mid": "002achp40TFPOo",
+     "albummid": "003WG13I0dGoNc",
+     "vid": "",
+     "rank": "11177"
+    },
+    {
+     "title": "等你 (Live)",
+     "singer": "周深",
+     "singers": [
+      {
+       "name": "周深",
+       "mid": "003fA5G40k6hKc"
+      }
+     ],
+     "album": "音乐缘计划 第3期",
+     "duration": 245,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002uYWjb2nC7CY.jpg",
+     "mid": "000aKJrk0ZfVda",
+     "albummid": "002uYWjb2nC7CY",
+     "vid": "",
+     "rank": "7079"
+    },
+    {
+     "title": "同道",
+     "singer": "李佳薇",
+     "singers": [
+      {
+       "name": "李佳薇",
+       "mid": "0026IlCw2uKeZi"
+      }
+     ],
+     "album": "兰香如故 影视剧原声带",
+     "duration": 240,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ZuQ5z05yCAP.jpg",
+     "mid": "0002L0TO2M50HM",
+     "albummid": "003ZuQ5z05yCAP",
+     "vid": "",
+     "rank": "46799"
+    },
+    {
+     "title": "隔岸 (女版)",
+     "singer": "可楼",
+     "singers": [
+      {
+       "name": "可楼",
+       "mid": "000msVPH0vPdfB"
+      }
+     ],
+     "album": "隔岸 (女版)",
+     "duration": 231,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000042uV2d3a2IjF.jpg",
+     "mid": "003ARPg02FVFFD",
+     "albummid": "0042uV2d3a2IjF",
+     "vid": "",
+     "rank": "275010"
+    },
+    {
+     "title": "路过晴朗",
+     "singer": "汪苏泷",
+     "singers": [
+      {
+       "name": "汪苏泷",
+       "mid": "001z2JmX09LLgL"
+      }
+     ],
+     "album": "早春晴朗 影视原声带",
+     "duration": 285,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000009ERg64Rxwzu.jpg",
+     "mid": "001Mu0Lw3X3LnQ",
+     "albummid": "0009ERg64Rxwzu",
+     "vid": "",
+     "rank": "44750"
+    },
+    {
+     "title": "一曲微茫",
+     "singer": "郁可唯",
+     "singers": [
+      {
+       "name": "郁可唯",
+       "mid": "000NUoMp2WAEpO"
+      }
+     ],
+     "album": "兰香如故 影视剧原声带",
+     "duration": 181,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ZuQ5z05yCAP.jpg",
+     "mid": "002z3MJG1ogGjx",
+     "albummid": "003ZuQ5z05yCAP",
+     "vid": "",
+     "rank": "45513"
+    },
+    {
+     "title": "苦笑",
+     "singer": "汪苏泷",
+     "singers": [
+      {
+       "name": "汪苏泷",
+       "mid": "001z2JmX09LLgL"
+      }
+     ],
+     "album": "好安静",
+     "duration": 245,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004NXLBx4K0r87.jpg",
+     "mid": "003otAKD1TzKRA",
+     "albummid": "004NXLBx4K0r87",
+     "vid": "",
+     "rank": "40147"
+    },
+    {
+     "title": "深深的我们",
+     "singer": "刘惜君",
+     "singers": [
+      {
+       "name": "刘惜君",
+       "mid": "003x77MM2iIg6c"
+      }
+     ],
+     "album": "兰香如故 影视剧原声带",
+     "duration": 240,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ZuQ5z05yCAP.jpg",
+     "mid": "000otLj02Oo3VX",
+     "albummid": "003ZuQ5z05yCAP",
+     "vid": "",
+     "rank": "40980"
+    },
+    {
+     "title": "每个春天我都会唱歌",
+     "singer": "许飞",
+     "singers": [
+      {
+       "name": "许飞",
+       "mid": "000ohzzi3esYiQ"
+      }
+     ],
+     "album": "每个春天我都会唱歌 (Explicit)",
+     "duration": 269,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003YANOp0Je7v1.jpg",
+     "mid": "0019UO7V0dtGBK",
+     "albummid": "003YANOp0Je7v1",
+     "vid": "",
+     "rank": "10802"
+    },
+    {
+     "title": "幸福了 然后呢",
+     "singer": "A-Lin",
+     "singers": [
+      {
+       "name": "A-Lin",
+       "mid": "003ArN8Z0WpjTz"
+      }
+     ],
+     "album": "幸福了 然后呢",
+     "duration": 307,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004CzCOT4cRqqY.jpg",
+     "mid": "001tVx1m4RQlFr",
+     "albummid": "004CzCOT4cRqqY",
+     "vid": "",
+     "rank": "58031"
+    },
+    {
+     "title": "时光旅行者",
+     "singer": "许飞",
+     "singers": [
+      {
+       "name": "许飞",
+       "mid": "000ohzzi3esYiQ"
+      }
+     ],
+     "album": "时光旅行者",
+     "duration": 191,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000AFw5g3gJfHA.jpg",
+     "mid": "003a6E263xqJJF",
+     "albummid": "000AFw5g3gJfHA",
+     "vid": "",
+     "rank": "9748"
+    },
+    {
+     "title": "花开满篱院",
+     "singer": "刘学义",
+     "singers": [
+      {
+       "name": "刘学义",
+       "mid": "000ZbMhw2Msa9m"
+      }
+     ],
+     "album": "兰香如故 影视剧原声带",
+     "duration": 200,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ZuQ5z05yCAP.jpg",
+     "mid": "003e8Tax3XZNb7",
+     "albummid": "003ZuQ5z05yCAP",
+     "vid": "",
+     "rank": "28492"
+    },
+    {
+     "title": "旗帜上的中国",
+     "singer": "青士",
+     "singers": [
+      {
+       "name": "青士",
+       "mid": "004GL4mX01n3fC"
+      }
+     ],
+     "album": "旗帜上的中国",
+     "duration": 257,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002K5hr90URqbz.jpg",
+     "mid": "001d0FDC0n0bTM",
+     "albummid": "002K5hr90URqbz",
+     "vid": "",
+     "rank": "34480"
+    },
+    {
+     "title": "好不容易",
+     "singer": "告五人",
+     "singers": [
+      {
+       "name": "告五人",
+       "mid": "002pfVN53lKI7x"
+      }
+     ],
+     "album": "好不容易",
+     "duration": 295,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000MGxCZ0tGsrL.jpg",
+     "mid": "000k7Ita2MeJUq",
+     "albummid": "000MGxCZ0tGsrL",
+     "vid": "",
+     "rank": "10866"
+    },
+    {
+     "title": "遥远的不是爱",
+     "singer": "肖战",
+     "singers": [
+      {
+       "name": "肖战",
+       "mid": "0022eAG537I1bg"
+      }
+     ],
+     "album": "异想天开",
+     "duration": 182,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001HFlpf1NOEk1.jpg",
+     "mid": "001pijVh4It8Ny",
+     "albummid": "001HFlpf1NOEk1",
+     "vid": "",
+     "rank": "46884"
+    },
+    {
+     "title": "为你而来",
+     "singer": "袁娅维TIA RAY",
+     "singers": [
+      {
+       "name": "袁娅维TIA RAY",
+       "mid": "00472DR10Ytv83"
+      }
+     ],
+     "album": "为你而来",
+     "duration": 266,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003tv4PF3vu4H9.jpg",
+     "mid": "001gAfYO4XV6B8",
+     "albummid": "003tv4PF3vu4H9",
+     "vid": "",
+     "rank": "31446"
+    },
+    {
+     "title": "因为了解",
+     "singer": "汪苏泷",
+     "singers": [
+      {
+       "name": "汪苏泷",
+       "mid": "001z2JmX09LLgL"
+      }
+     ],
+     "album": "慢慢懂",
+     "duration": 248,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003cnv3z1IHcYt.jpg",
+     "mid": "000fj40R49vAlS",
+     "albummid": "003cnv3z1IHcYt",
+     "vid": "",
+     "rank": "52833"
+    },
+    {
+     "title": "十面埋伏",
+     "singer": "陈奕迅",
+     "singers": [
+      {
+       "name": "陈奕迅",
+       "mid": "003Nz2So3XXYek"
+      }
+     ],
+     "album": "Live For Today",
+     "duration": 232,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003Hjc6L1WajuE.jpg",
+     "mid": "000lVKbP3bCwxu",
+     "albummid": "003Hjc6L1WajuE",
+     "vid": "",
+     "rank": "168253"
+    },
+    {
+     "title": "风吹过",
+     "singer": "张玮",
+     "singers": [
+      {
+       "name": "张玮",
+       "mid": "003Y98C04dlTYN"
+      }
+     ],
+     "album": "风吹过",
+     "duration": 267,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004HdMIu3BxTYc.jpg",
+     "mid": "003f3Wqk2yb5bB",
+     "albummid": "004HdMIu3BxTYc",
+     "vid": "",
+     "rank": "19388"
+    },
+    {
+     "title": "那年夏天 (Live)",
+     "singer": "许飞",
+     "singers": [
+      {
+       "name": "许飞",
+       "mid": "000ohzzi3esYiQ"
+      }
+     ],
+     "album": "乐人·Live：许飞专辑首唱会",
+     "duration": 287,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003mia9W0OUBRn.jpg",
+     "mid": "002FRLiF05fp4P",
+     "albummid": "003mia9W0OUBRn",
+     "vid": "",
+     "rank": "15619"
+    },
+    {
+     "title": "不能成情人",
+     "singer": "丁家怡",
+     "singers": [
+      {
+       "name": "丁家怡",
+       "mid": "004XKDyy42UdSk"
+      }
+     ],
+     "album": "不能成情人",
+     "duration": 194,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002OqTUg0Iv7pB.jpg",
+     "mid": "0031n4eo1FKsTL",
+     "albummid": "002OqTUg0Iv7pB",
+     "vid": "",
+     "rank": "40932"
+    },
+    {
+     "title": "万有引力",
+     "singer": "汪苏泷",
+     "singers": [
+      {
+       "name": "汪苏泷",
+       "mid": "001z2JmX09LLgL"
+      }
+     ],
+     "album": "万有引力",
+     "duration": 245,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001HUiKw0QsiUb.jpg",
+     "mid": "0026MTtC4QJxxq",
+     "albummid": "001HUiKw0QsiUb",
+     "vid": "",
+     "rank": "50084"
+    },
+    {
+     "title": "再见青春",
+     "singer": "汪峰",
+     "singers": [
+      {
+       "name": "汪峰",
+       "mid": "001adLDR1SS40P"
+      }
+     ],
+     "album": "信仰在空中飘扬",
+     "duration": 426,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001JooFP2Yu9RI.jpg",
+     "mid": "002R7LZY3LnrDw",
+     "albummid": "001JooFP2Yu9RI",
+     "vid": "",
+     "rank": "10180"
+    },
+    {
+     "title": "问你一个人类梦寐以求的深奥问题",
+     "singer": "汪苏泷",
+     "singers": [
+      {
+       "name": "汪苏泷",
+       "mid": "001z2JmX09LLgL"
+      }
+     ],
+     "album": "明日世界ACT I",
+     "duration": 286,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000A1M903iHvyT.jpg",
+     "mid": "003O2jAx2Z8mad",
+     "albummid": "000A1M903iHvyT",
+     "vid": "",
+     "rank": "44333"
+    },
+    {
+     "title": "她",
+     "singer": "刘宇宁",
+     "singers": [
+      {
+       "name": "刘宇宁",
+       "mid": "001Iu4Dv1NzRCD"
+      }
+     ],
+     "album": "早春晴朗 影视原声带",
+     "duration": 221,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000009ERg64Rxwzu.jpg",
+     "mid": "001TBn1W4Wg2QM",
+     "albummid": "0009ERg64Rxwzu",
+     "vid": "",
+     "rank": "68437"
+    },
+    {
+     "title": "我不知道 (Live)",
+     "singer": "梁博",
+     "singers": [
+      {
+       "name": "梁博",
+       "mid": "003CNC9D00CaVx"
+      }
+     ],
+     "album": "我是唱作人 第12期",
+     "duration": 346,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002aEsPD26FHYD.jpg",
+     "mid": "000M61IC1JyhGq",
+     "albummid": "002aEsPD26FHYD",
+     "vid": "",
+     "rank": "37035"
+    },
+    {
+     "title": "也会有人代替你",
+     "singer": "供销社乐队",
+     "singers": [
+      {
+       "name": "供销社乐队",
+       "mid": "001usCce3oZtkq"
+      }
+     ],
+     "album": "也会有人代替你",
+     "duration": 268,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000rxOlT0NzfM8.jpg",
+     "mid": "002X8hbg2EB3ft",
+     "albummid": "000rxOlT0NzfM8",
+     "vid": "",
+     "rank": "30690"
+    },
+    {
+     "title": "静待清光",
+     "singer": "许明明",
+     "singers": [
+      {
+       "name": "许明明",
+       "mid": "000L0wgh29WxjI"
+      }
+     ],
+     "album": "兰香如故 影视剧原声带",
+     "duration": 204,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ZuQ5z05yCAP.jpg",
+     "mid": "001vwznf0JsDVQ",
+     "albummid": "003ZuQ5z05yCAP",
+     "vid": "",
+     "rank": "51791"
+    },
+    {
+     "title": "忘不了就别忘了",
+     "singer": "水木年华/许飞",
+     "singers": [
+      {
+       "name": "水木年华",
+       "mid": "001QY1cc2SIqpB"
+      },
+      {
+       "name": "许飞",
+       "mid": "000ohzzi3esYiQ"
+      }
+     ],
+     "album": "一生有你 电影原声带",
+     "duration": 287,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002MmTUr4EvOFB.jpg",
+     "mid": "000zHsSw2iak9d",
+     "albummid": "002MmTUr4EvOFB",
+     "vid": "",
+     "rank": "7875"
+    },
+    {
+     "title": "我们",
+     "singer": "肖战",
+     "singers": [
+      {
+       "name": "肖战",
+       "mid": "0022eAG537I1bg"
+      }
+     ],
+     "album": "我们",
+     "duration": 259,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001uMfF1098VRH.jpg",
+     "mid": "000n6W1E2RuAaG",
+     "albummid": "001uMfF1098VRH",
+     "vid": "",
+     "rank": "19481"
+    },
+    {
+     "title": "如果这就是爱情",
+     "singer": "张靓颖",
+     "singers": [
+      {
+       "name": "张靓颖",
+       "mid": "000aw4WC2EQYTv"
+      }
+     ],
+     "album": "我相信",
+     "duration": 282,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000458UNF0evQeN.jpg",
+     "mid": "002vghem1otEWQ",
+     "albummid": "00458UNF0evQeN",
+     "vid": "",
+     "rank": "78818"
+    },
+    {
+     "title": "一些规律",
+     "singer": "许飞/姚晨",
+     "singers": [
+      {
+       "name": "许飞",
+       "mid": "000ohzzi3esYiQ"
+      },
+      {
+       "name": "姚晨",
+       "mid": "003HYfIL2PX6ae"
+      }
+     ],
+     "album": "一些规律",
+     "duration": 200,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000040VcX51CBEsa.jpg",
+     "mid": "001B9jYa4cn5pj",
+     "albummid": "0040VcX51CBEsa",
+     "vid": "",
+     "rank": "7383"
+    },
+    {
+     "title": "违背的青春",
+     "singer": "薛之谦",
+     "singers": [
+      {
+       "name": "薛之谦",
+       "mid": "002J4UUk29y8BY"
+      }
+     ],
+     "album": "怪咖",
+     "duration": 336,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000015rUVB2OUdGA.jpg",
+     "mid": "0032ZOkm0LBgHW",
+     "albummid": "0015rUVB2OUdGA",
+     "vid": "",
+     "rank": "79380"
+    },
+    {
+     "title": "大梦归",
+     "singer": "周深",
+     "singers": [
+      {
+       "name": "周深",
+       "mid": "003fA5G40k6hKc"
+      }
+     ],
+     "album": "兰香如故 影视剧原声带",
+     "duration": 229,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ZuQ5z05yCAP.jpg",
+     "mid": "000EPEhY2os1I0",
+     "albummid": "003ZuQ5z05yCAP",
+     "vid": "",
+     "rank": "292708"
+    },
+    {
+     "title": "不分手的恋爱",
+     "singer": "汪苏泷",
+     "singers": [
+      {
+       "name": "汪苏泷",
+       "mid": "001z2JmX09LLgL"
+      }
+     ],
+     "album": "好安静",
+     "duration": 205,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004NXLBx4K0r87.jpg",
+     "mid": "000wkTbk3kaHCk",
+     "albummid": "004NXLBx4K0r87",
+     "vid": "",
+     "rank": "109956"
+    },
+    {
+     "title": "1424",
+     "singer": "汪苏泷",
+     "singers": [
+      {
+       "name": "汪苏泷",
+       "mid": "001z2JmX09LLgL"
+      }
+     ],
+     "album": "明日世界ACT I",
+     "duration": 232,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000A1M903iHvyT.jpg",
+     "mid": "002qlaIq3zBeYR",
+     "albummid": "000A1M903iHvyT",
+     "vid": "",
+     "rank": "36334"
+    },
+    {
+     "title": "BLUE (蓝色)",
+     "singer": "BIGBANG (빅뱅)",
+     "singers": [
+      {
+       "name": "BIGBANG (빅뱅)",
+       "mid": "004AlfUb0cVkN1"
+      }
+     ],
+     "album": "빅뱅 미니앨범 5집 'ALIVE' (BIGBANG迷你5辑 'ALIVE')",
+     "duration": 233,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001FFpMe09To1V.jpg",
+     "mid": "000tp7LK0ebcZv",
+     "albummid": "001FFpMe09To1V",
+     "vid": "",
+     "rank": "61044"
+    },
+    {
+     "title": "淡淡的歌 (Live)",
+     "singer": "许飞",
+     "singers": [
+      {
+       "name": "许飞",
+       "mid": "000ohzzi3esYiQ"
+      }
+     ],
+     "album": "乐人·Live：许飞专辑首唱会",
+     "duration": 225,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003mia9W0OUBRn.jpg",
+     "mid": "004HHwt749o6vt",
+     "albummid": "003mia9W0OUBRn",
+     "vid": "",
+     "rank": "13328"
+    },
+    {
+     "title": "后来的我和你",
+     "singer": "高冷",
+     "singers": [
+      {
+       "name": "高冷",
+       "mid": "004fYIvD3lWSRp"
+      }
+     ],
+     "album": "后来的我和你",
+     "duration": 219,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004ad0ne3kVygo.jpg",
+     "mid": "003BSqzl0pc2Du",
+     "albummid": "004ad0ne3kVygo",
+     "vid": "",
+     "rank": "16556"
+    },
+    {
+     "title": "时光遐想",
+     "singer": "许飞",
+     "singers": [
+      {
+       "name": "许飞",
+       "mid": "000ohzzi3esYiQ"
+      }
+     ],
+     "album": "你好，旧时光 连续剧原声带",
+     "duration": 234,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001wmoL43SVFjj.jpg",
+     "mid": "001yUejD0E34LN",
+     "albummid": "001wmoL43SVFjj",
+     "vid": "",
+     "rank": "6982"
+    },
+    {
+     "title": "最后是我开了口",
+     "singer": "小贱",
+     "singers": [
+      {
+       "name": "小贱",
+       "mid": "001ZRG9K1UUgk9"
+      }
+     ],
+     "album": "最后是我开了口",
+     "duration": 241,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000GuD0K26EU7L.jpg",
+     "mid": "003ZguTb14H2vl",
+     "albummid": "000GuD0K26EU7L",
+     "vid": "",
+     "rank": "12184"
+    },
+    {
+     "title": "越界 (加长版)",
+     "singer": "宋淮聿",
+     "singers": [
+      {
+       "name": "宋淮聿",
+       "mid": "0014K7tS0VsMaZ"
+      }
+     ],
+     "album": "越界（《备用联系人》影视原声带）",
+     "duration": 128,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000013jg8p12ySub.jpg",
+     "mid": "000Thuiq1OrMn9",
+     "albummid": "0013jg8p12ySub",
+     "vid": "",
+     "rank": "22154"
+    },
+    {
+     "title": "说爱你",
+     "singer": "蔡依林",
+     "singers": [
+      {
+       "name": "蔡依林",
+       "mid": "0027pdHE4STooO"
+      }
+     ],
+     "album": "看我72变",
+     "duration": 226,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000q5U9S2OLNg4.jpg",
+     "mid": "002UJg1T3tbCsK",
+     "albummid": "000q5U9S2OLNg4",
+     "vid": "",
+     "rank": "67615"
+    },
+    {
+     "title": "Training Season",
+     "singer": "Dua Lipa",
+     "singers": [
+      {
+       "name": "Dua Lipa",
+       "mid": "0015cdSZ1a29mg"
+      }
+     ],
+     "album": "Training Season",
+     "duration": 209,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000015ywFk46DMIL.jpg",
+     "mid": "001wqqDJ082pOG",
+     "albummid": "0015ywFk46DMIL",
+     "vid": "",
+     "rank": "43113"
+    },
+    {
+     "title": "一眼万年",
+     "singer": "林俊杰",
+     "singers": [
+      {
+       "name": "林俊杰",
+       "mid": "001BLpXF2DyJe2"
+      }
+     ],
+     "album": "她说 概念自选辑",
+     "duration": 258,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000TuW8h0AH2n4.jpg",
+     "mid": "000yg6pd41Ysc5",
+     "albummid": "000TuW8h0AH2n4",
+     "vid": "",
+     "rank": "61699"
+    },
+    {
+     "title": "那个男孩",
+     "singer": "汪苏泷",
+     "singers": [
+      {
+       "name": "汪苏泷",
+       "mid": "001z2JmX09LLgL"
+      }
+     ],
+     "album": "那个男孩",
+     "duration": 218,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ClOrj1VP7eg.jpg",
+     "mid": "001GhGcE1OGMXM",
+     "albummid": "003ClOrj1VP7eg",
+     "vid": "",
+     "rank": "41607"
+    },
+    {
+     "title": "两个人的荒岛",
+     "singer": "S.H.E/周定纬",
+     "singers": [
+      {
+       "name": "S.H.E",
+       "mid": "003u5H9x1vACGo"
+      },
+      {
+       "name": "周定纬",
+       "mid": "0004UBgR15jd6S"
+      }
+     ],
+     "album": "SHERO",
+     "duration": 245,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000047Yas83owaQU.jpg",
+     "mid": "0007KEmL2kFqmM",
+     "albummid": "0047Yas83owaQU",
+     "vid": "",
+     "rank": "6112"
+    },
+    {
+     "title": "SOBER (清醒)",
+     "singer": "BIGBANG (빅뱅)",
+     "singers": [
+      {
+       "name": "BIGBANG (빅뱅)",
+       "mid": "004AlfUb0cVkN1"
+      }
+     ],
+     "album": "MADE SERIES 《D》",
+     "duration": 237,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001xpUdt2jEjWu.jpg",
+     "mid": "003U8Ej82yXufm",
+     "albummid": "001xpUdt2jEjWu",
+     "vid": "",
+     "rank": "39571"
+    },
+    {
+     "title": "self doubt (自我怀疑)",
+     "singer": "Venoflame",
+     "singers": [
+      {
+       "name": "Venoflame",
+       "mid": "002GaVCm2KHglj"
+      }
+     ],
+     "album": "self doubt (自我怀疑)",
+     "duration": 125,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002Y6FeG0JweZ1.jpg",
+     "mid": "0017HFpC0hjg33",
+     "albummid": "002Y6FeG0JweZ1",
+     "vid": "",
+     "rank": "8031"
+    },
+    {
+     "title": "我听人说思念像风一样 (纯享版)",
+     "singer": "雪山阿木",
+     "singers": [
+      {
+       "name": "雪山阿木",
+       "mid": "003cv5JI2Ch9Mg"
+      }
+     ],
+     "album": "我听人说思念像风一样(纯享版)",
+     "duration": 187,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004elj0l2ZjU7Y.jpg",
+     "mid": "001VMm5Q0i2164",
+     "albummid": "004elj0l2ZjU7Y",
+     "vid": "",
+     "rank": "15981"
+    },
+    {
+     "title": "拿走了什么",
+     "singer": "A-Lin",
+     "singers": [
+      {
+       "name": "A-Lin",
+       "mid": "003ArN8Z0WpjTz"
+      }
+     ],
+     "album": "罪恶感",
+     "duration": 295,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000019d8J01VBzFE.jpg",
+     "mid": "002FrQ6p0N8PKC",
+     "albummid": "0019d8J01VBzFE",
+     "vid": "",
+     "rank": "31030"
+    },
+    {
+     "title": "FIRESTARTER",
+     "singer": "K/DA/英雄联盟/i-dle (아이들)/Mimi Webb",
+     "singers": [
+      {
+       "name": "K/DA",
+       "mid": "002KMsoL0LFEnp"
+      },
+      {
+       "name": "英雄联盟",
+       "mid": "0000RHdG1ukDqy"
+      },
+      {
+       "name": "i-dle (아이들)",
+       "mid": "003hcAVs1IB7c8"
+      },
+      {
+       "name": "Mimi Webb",
+       "mid": "0042tMqE2KxjWE"
+      }
+     ],
+     "album": "FIRESTARTER",
+     "duration": 187,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002jC1Kw0TVcxG.jpg",
+     "mid": "003zPqcA21yTZW",
+     "albummid": "002jC1Kw0TVcxG",
+     "vid": "",
+     "rank": "67333"
+    },
+    {
+     "title": "不要回头",
+     "singer": "肖战",
+     "singers": [
+      {
+       "name": "肖战",
+       "mid": "0022eAG537I1bg"
+      }
+     ],
+     "album": "我们",
+     "duration": 198,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001uMfF1098VRH.jpg",
+     "mid": "002miEiH2fFkD4",
+     "albummid": "001uMfF1098VRH",
+     "vid": "",
+     "rank": "16120"
+    },
+    {
+     "title": "没那么简单",
+     "singer": "黄小琥",
+     "singers": [
+      {
+       "name": "黄小琥",
+       "mid": "0003Aksc3Iisgq"
+      }
+     ],
+     "album": "简单不简单",
+     "duration": 308,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002Gbc9W0oOAS3.jpg",
+     "mid": "003Ue6Ia32q4gl",
+     "albummid": "002Gbc9W0oOAS3",
+     "vid": "",
+     "rank": "79114"
     }
    ]
   },
