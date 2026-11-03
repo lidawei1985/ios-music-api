@@ -1,92 +1,11 @@
 {
- "updated": "2026-11-03T16:18:39Z",
- "hotkeys": [
-  {
-   "k": "我们的歌",
-   "n": 765562
-  },
-  {
-   "k": "冰雪奇缘2",
-   "n": 587404
-  },
-  {
-   "k": "张杰",
-   "n": 323823
-  },
-  {
-   "k": "桥边姑娘",
-   "n": 287637
-  },
-  {
-   "k": "星辰大海",
-   "n": 202868
-  },
-  {
-   "k": "哪咤 李宇春",
-   "n": 192652
-  },
-  {
-   "k": "左手指月",
-   "n": 164609
-  },
-  {
-   "k": "邓紫棋",
-   "n": 155475
-  },
-  {
-   "k": "酒醉的蝴蝶",
-   "n": 154236
-  },
-  {
-   "k": "左肩",
-   "n": 139814
-  },
-  {
-   "k": "从前有座灵剑山",
-   "n": 133861
-  },
-  {
-   "k": "下山",
-   "n": 122423
-  },
-  {
-   "k": "肖战",
-   "n": 107837
-  },
-  {
-   "k": "DANCE MONKEY",
-   "n": 103401
-  },
-  {
-   "k": "句号",
-   "n": 76584
-  },
-  {
-   "k": "冰雪奇缘",
-   "n": 76530
-  },
-  {
-   "k": "心似烟火",
-   "n": 69945
-  },
-  {
-   "k": "酒醉的蝴蝶原唱",
-   "n": 69664
-  },
-  {
-   "k": "句号邓紫棋",
-   "n": 68767
-  },
-  {
-   "k": "IU",
-   "n": 67439
-  }
- ],
+ "updated": "2026-11-03T18:14:29Z",
+ "hotkeys": [],
  "lists": [
   {
    "topid": "26",
    "name": "热歌榜",
-   "count": 300,
+   "count": 298,
    "songs": [
     {
      "title": "Hong Kong (feat. 王菲季候风)",
@@ -4579,23 +4498,6 @@
      "rank": "258"
     },
     {
-     "title": "大漠长明",
-     "singer": "指南针",
-     "singers": [
-      {
-       "name": "指南针",
-       "mid": "000MYc0a3tQqs5"
-      }
-     ],
-     "album": "大漠长明",
-     "duration": 137,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000TRp300SL28e.jpg",
-     "mid": "0028OCLY4VYgRj",
-     "albummid": "000TRp300SL28e",
-     "vid": "",
-     "rank": "259"
-    },
-    {
      "title": "一身傲骨不认输 (深情版)",
      "singer": "兴俊拔",
      "singers": [
@@ -5109,23 +5011,6 @@
      "albummid": "003WG13I0dGoNc",
      "vid": "",
      "rank": "286"
-    },
-    {
-     "title": "大漠长明 (童声版)",
-     "singer": "张小果",
-     "singers": [
-      {
-       "name": "张小果",
-       "mid": "0019P8bv10Ujpz"
-      }
-     ],
-     "album": "大漠长明（童声版）",
-     "duration": 137,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004UpTWG2zpPHg.jpg",
-     "mid": "002vZM2s1n7C2A",
-     "albummid": "004UpTWG2zpPHg",
-     "vid": "",
-     "rank": "287"
     },
     {
      "title": "秋风一吹又老一岁",
@@ -8875,7 +8760,7 @@
   {
    "topid": "27",
    "name": "新歌榜",
-   "count": 100,
+   "count": 99,
    "songs": [
     {
      "title": "NEON",
@@ -9921,23 +9806,6 @@
      "rank": "59"
     },
     {
-     "title": "大漠长明",
-     "singer": "指南针",
-     "singers": [
-      {
-       "name": "指南针",
-       "mid": "000MYc0a3tQqs5"
-      }
-     ],
-     "album": "大漠长明",
-     "duration": 137,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000TRp300SL28e.jpg",
-     "mid": "0028OCLY4VYgRj",
-     "albummid": "000TRp300SL28e",
-     "vid": "",
-     "rank": "60"
-    },
-    {
      "title": "过了",
      "singer": "郁可唯",
      "singers": [
@@ -10648,23 +10516,6 @@
      "albummid": "001N3RGI2cH2sf",
      "vid": "",
      "rank": "1"
-    },
-    {
-     "title": "大漠长明",
-     "singer": "指南针",
-     "singers": [
-      {
-       "name": "指南针",
-       "mid": "000MYc0a3tQqs5"
-      }
-     ],
-     "album": "大漠长明",
-     "duration": 137,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000TRp300SL28e.jpg",
-     "mid": "0028OCLY4VYgRj",
-     "albummid": "000TRp300SL28e",
-     "vid": "",
-     "rank": "2"
     },
     {
      "title": "自己的灯自己点",
@@ -12387,6 +12238,23 @@
      "albummid": "003reTcF3DTM0C",
      "vid": "",
      "rank": "100"
+    },
+    {
+     "title": "孟婆劝我断尘缘",
+     "singer": "黑子",
+     "singers": [
+      {
+       "name": "黑子",
+       "mid": "002efzhV1Zt4mM"
+      }
+     ],
+     "album": "孟婆劝我断尘缘",
+     "duration": 226,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002jCzJ10cGcQp.jpg",
+     "mid": "002W2VUD1u6Rkl",
+     "albummid": "002jCzJ10cGcQp",
+     "vid": "",
+     "rank": "101"
     }
    ]
   },
@@ -12806,23 +12674,6 @@
      "albummid": "001bUSWQ3lnS13",
      "vid": "",
      "rank": "24"
-    },
-    {
-     "title": "大漠长明",
-     "singer": "指南针",
-     "singers": [
-      {
-       "name": "指南针",
-       "mid": "000MYc0a3tQqs5"
-      }
-     ],
-     "album": "大漠长明",
-     "duration": 137,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000TRp300SL28e.jpg",
-     "mid": "0028OCLY4VYgRj",
-     "albummid": "000TRp300SL28e",
-     "vid": "",
-     "rank": "25"
     },
     {
      "title": "前路有光",
@@ -14134,6 +13985,23 @@
      "albummid": "000eHoVi3tpNMZ",
      "vid": "",
      "rank": "100"
+    },
+    {
+     "title": "藏进风里的爱",
+     "singer": "赵乃吉",
+     "singers": [
+      {
+       "name": "赵乃吉",
+       "mid": "003jTY4I4f2ETE"
+      }
+     ],
+     "album": "藏进风里的爱",
+     "duration": 194,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002MlbNQ3hJUxg.jpg",
+     "mid": "003UsgR01M18q6",
+     "albummid": "002MlbNQ3hJUxg",
+     "vid": "",
+     "rank": "101"
     }
    ]
   },
@@ -16676,7 +16544,7 @@
      "rank": "34"
     },
     {
-     "title": "Hystérique",
+     "title": "Hystérique (Explicit)",
      "singer": "yeule",
      "singers": [
       {
@@ -16684,7 +16552,7 @@
        "mid": "002lVaj83PvTNe"
       }
      ],
-     "album": "Hystérique",
+     "album": "Hystérique (Explicit)",
      "duration": 229,
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000028QM2w2pkERX.jpg",
      "mid": "000cdUVI2nvrIA",
