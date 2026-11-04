@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-04T07:50:29Z",
+ "updated": "2026-11-04T16:45:29Z",
  "hotkeys": [],
  "lists": [
   {
    "topid": "26",
    "name": "热歌榜",
-   "count": 300,
+   "count": 299,
    "songs": [
     {
      "title": "Hong Kong (feat. 王菲季候风)",
@@ -5022,23 +5022,6 @@
      "albummid": "003DhpqU4YoEFB",
      "vid": "",
      "rank": "288"
-    },
-    {
-     "title": "无 意",
-     "singer": "KAY AND",
-     "singers": [
-      {
-       "name": "KAY AND",
-       "mid": "001DsJbp2QwvuL"
-      }
-     ],
-     "album": "无  意(加 木)",
-     "duration": 174,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000M3epe26odUU.jpg",
-     "mid": "004RjCHW3uKYjD",
-     "albummid": "000M3epe26odUU",
-     "vid": "",
-     "rank": "289"
     },
     {
      "title": "秋风一吹又老一岁",
