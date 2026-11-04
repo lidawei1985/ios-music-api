@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-03T17:56:43Z",
- "count": 3998,
+ "updated": "2026-11-04T02:11:57Z",
+ "count": 4002,
  "shardSize": 500,
  "shards": [
   {
@@ -13,42 +13,48 @@
    "file": "shard-0001.js",
    "count": 500,
    "from": "lonelyxmas|游客j6jsy",
-   "to": "ラブ・ストーリーは突然に|小田和正"
+   "to": "ヤラララfeat重音テト呀啦啦啦|かれたよつば"
   },
   {
    "file": "shard-0002.js",
    "count": 500,
-   "from": "リト・レイ|arcane",
-   "to": "冷夜|裤裤"
+   "from": "ラブ・ストーリーは突然に|小田和正",
+   "to": "冷冰冰|doublesr/一觉ysleep"
   },
   {
    "file": "shard-0003.js",
    "count": 500,
-   "from": "冷漠剧情|陆杰awr",
-   "to": "宿|李学仕"
+   "from": "冷冷的天|陈一豪clear/mosedontbesilly/indec",
+   "to": "害怕失去你|aioz/yangyang"
   },
   {
    "file": "shard-0004.js",
    "count": 500,
-   "from": "宿敌|顾砚舟i",
-   "to": "断电|h3r3/黄礼格"
+   "from": "家人|bobbynopeace/加木",
+   "to": "文案|小好14/陈奕楠/奕南"
   },
   {
    "file": "shard-0005.js",
    "count": 500,
-   "from": "新定军山|王朝1982/张曦匀",
-   "to": "爱止痛prodjpbeatz|jinjibewater隼"
+   "from": "斩鸭线|连麻swimming",
+   "to": "爱散场|xxxmiracle/苏艺馨chency"
   },
   {
    "file": "shard-0006.js",
    "count": 500,
-   "from": "爱渐变|隙子",
-   "to": "虚拟恋人|巫祝"
+   "from": "爱是浪漫刻在秒钟|邹沛沛",
+   "to": "藏式情歌|才昂仁增"
   },
   {
    "file": "shard-0007.js",
-   "count": 498,
-   "from": "虚无|冯子晨",
+   "count": 500,
+   "from": "藏意|冬子",
+   "to": "이봄이|선영"
+  },
+  {
+   "file": "shard-0008.js",
+   "count": 2,
+   "from": "퇴사할게여|小雪",
    "to": "퇴사할게여|饼饼有礼"
   }
  ]
