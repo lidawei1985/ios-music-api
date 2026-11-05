@@ -1,11 +1,92 @@
 {
- "updated": "2026-11-05T03:54:08Z",
- "hotkeys": [],
+ "updated": "2026-11-05T08:14:48Z",
+ "hotkeys": [
+  {
+   "k": "我们的歌",
+   "n": 765562
+  },
+  {
+   "k": "冰雪奇缘2",
+   "n": 587404
+  },
+  {
+   "k": "张杰",
+   "n": 323823
+  },
+  {
+   "k": "桥边姑娘",
+   "n": 287637
+  },
+  {
+   "k": "星辰大海",
+   "n": 202868
+  },
+  {
+   "k": "哪咤 李宇春",
+   "n": 192652
+  },
+  {
+   "k": "左手指月",
+   "n": 164609
+  },
+  {
+   "k": "邓紫棋",
+   "n": 155475
+  },
+  {
+   "k": "酒醉的蝴蝶",
+   "n": 154236
+  },
+  {
+   "k": "左肩",
+   "n": 139814
+  },
+  {
+   "k": "从前有座灵剑山",
+   "n": 133861
+  },
+  {
+   "k": "下山",
+   "n": 122423
+  },
+  {
+   "k": "肖战",
+   "n": 107837
+  },
+  {
+   "k": "DANCE MONKEY",
+   "n": 103401
+  },
+  {
+   "k": "句号",
+   "n": 76584
+  },
+  {
+   "k": "冰雪奇缘",
+   "n": 76530
+  },
+  {
+   "k": "心似烟火",
+   "n": 69945
+  },
+  {
+   "k": "酒醉的蝴蝶原唱",
+   "n": 69664
+  },
+  {
+   "k": "句号邓紫棋",
+   "n": 68767
+  },
+  {
+   "k": "IU",
+   "n": 67439
+  }
+ ],
  "lists": [
   {
    "topid": "26",
    "name": "热歌榜",
-   "count": 300,
+   "count": 299,
    "songs": [
     {
      "title": "Hong Kong (feat. 王菲季候风)",
@@ -4210,23 +4291,6 @@
      "rank": "242"
     },
     {
-     "title": "我是沙漠中的野草",
-     "singer": "念小婶",
-     "singers": [
-      {
-       "name": "念小婶",
-       "mid": "003OV3DF2lkbw2"
-      }
-     ],
-     "album": "我是沙漠中的野草",
-     "duration": 170,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002cUs2X1aswFG.jpg",
-     "mid": "0017ipu41SkiOP",
-     "albummid": "002cUs2X1aswFG",
-     "vid": "",
-     "rank": "243"
-    },
-    {
      "title": "最后是我开了口",
      "singer": "小贱",
      "singers": [
@@ -5268,7 +5332,7 @@
   {
    "topid": "4",
    "name": "流行指数",
-   "count": 100,
+   "count": 99,
    "songs": [
     {
      "title": "Hong Kong (feat. 王菲季候风)",
@@ -5668,23 +5732,6 @@
      "albummid": "0019fEB249Kj98",
      "vid": "",
      "rank": "105507"
-    },
-    {
-     "title": "我是沙漠中的野草",
-     "singer": "念小婶",
-     "singers": [
-      {
-       "name": "念小婶",
-       "mid": "003OV3DF2lkbw2"
-      }
-     ],
-     "album": "我是沙漠中的野草",
-     "duration": 170,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002cUs2X1aswFG.jpg",
-     "mid": "0017ipu41SkiOP",
-     "albummid": "002cUs2X1aswFG",
-     "vid": "",
-     "rank": "54095"
     },
     {
      "title": "ECHOES OF YOUR NAME",
@@ -8814,7 +8861,7 @@
   {
    "topid": "27",
    "name": "新歌榜",
-   "count": 100,
+   "count": 99,
    "songs": [
     {
      "title": "Hong Kong (feat. 王菲季候风)",
@@ -9197,23 +9244,6 @@
      "albummid": "000m01tJ0EPgzA",
      "vid": "",
      "rank": "22"
-    },
-    {
-     "title": "我是沙漠中的野草",
-     "singer": "念小婶",
-     "singers": [
-      {
-       "name": "念小婶",
-       "mid": "003OV3DF2lkbw2"
-      }
-     ],
-     "album": "我是沙漠中的野草",
-     "duration": 170,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002cUs2X1aswFG.jpg",
-     "mid": "0017ipu41SkiOP",
-     "albummid": "002cUs2X1aswFG",
-     "vid": "",
-     "rank": "23"
     },
     {
      "title": "Insomnia",
@@ -10771,23 +10801,6 @@
      "rank": "11"
     },
     {
-     "title": "我是沙漠中的野草",
-     "singer": "念小婶",
-     "singers": [
-      {
-       "name": "念小婶",
-       "mid": "003OV3DF2lkbw2"
-      }
-     ],
-     "album": "我是沙漠中的野草",
-     "duration": 170,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002cUs2X1aswFG.jpg",
-     "mid": "0017ipu41SkiOP",
-     "albummid": "002cUs2X1aswFG",
-     "vid": "",
-     "rank": "12"
-    },
-    {
      "title": "月亮替我望故乡",
      "singer": "烟嗓船长",
      "singers": [
@@ -12318,6 +12331,27 @@
      "albummid": "00387gDz3EF6aW",
      "vid": "",
      "rank": "100"
+    },
+    {
+     "title": "做恋人不可能 (合唱版)",
+     "singer": "杨友友/烟嗓船长",
+     "singers": [
+      {
+       "name": "杨友友",
+       "mid": "002ec9EL3fya1I"
+      },
+      {
+       "name": "烟嗓船长",
+       "mid": "003Ruf1l1ygYFm"
+      }
+     ],
+     "album": "做恋人不可能（合唱版）",
+     "duration": 147,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002t8ZM93iirak.jpg",
+     "mid": "001MPZpQ2Y1T1n",
+     "albummid": "002t8ZM93iirak",
+     "vid": "",
+     "rank": "101"
     }
    ]
   },
@@ -13439,23 +13473,6 @@
      "rank": "64"
     },
     {
-     "title": "我是沙漠中的野草",
-     "singer": "念小婶",
-     "singers": [
-      {
-       "name": "念小婶",
-       "mid": "003OV3DF2lkbw2"
-      }
-     ],
-     "album": "我是沙漠中的野草",
-     "duration": 170,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002cUs2X1aswFG.jpg",
-     "mid": "0017ipu41SkiOP",
-     "albummid": "002cUs2X1aswFG",
-     "vid": "",
-     "rank": "65"
-    },
-    {
      "title": "HOLDON",
      "singer": "MKMS",
      "singers": [
@@ -14077,13 +14094,30 @@
      "albummid": "0009ERg64Rxwzu",
      "vid": "",
      "rank": "100"
+    },
+    {
+     "title": "侧脸",
+     "singer": "黄霄雲",
+     "singers": [
+      {
+       "name": "黄霄雲",
+       "mid": "000oCQfT3kdonw"
+      }
+     ],
+     "album": "侧脸",
+     "duration": 217,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004HiigF0zht9R.jpg",
+     "mid": "001JiBb24YOwZW",
+     "albummid": "004HiigF0zht9R",
+     "vid": "",
+     "rank": "101"
     }
    ]
   },
   {
    "topid": "6",
    "name": "港台榜",
-   "count": 50,
+   "count": 100,
    "songs": [
     {
      "title": "歌颂者",
@@ -14986,6 +15020,916 @@
      "albummid": "000UU6UH28Fj3M",
      "vid": "",
      "rank": "50"
+    },
+    {
+     "title": "二十年后的歌 (10th Anniversary Version)",
+     "singer": "Dear Jane",
+     "singers": [
+      {
+       "name": "Dear Jane",
+       "mid": "0009Sxdz11sr24"
+      }
+     ],
+     "album": "二十年后的歌（10th Anniversary Version）",
+     "duration": 255,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002TBPwr3dJTgA.jpg",
+     "mid": "0003KyW84Er0jg",
+     "albummid": "002TBPwr3dJTgA",
+     "vid": "",
+     "rank": "51"
+    },
+    {
+     "title": "Intro",
+     "singer": "Dough-Boy",
+     "singers": [
+      {
+       "name": "Dough-Boy",
+       "mid": "003XWKQP2avTco"
+      }
+     ],
+     "album": "Good, Bad & Ugly",
+     "duration": 119,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002yOsjk2KtmZm.jpg",
+     "mid": "002WKusL0xcJz5",
+     "albummid": "002yOsjk2KtmZm",
+     "vid": "",
+     "rank": "52"
+    },
+    {
+     "title": "小句号",
+     "singer": "吴业坤",
+     "singers": [
+      {
+       "name": "吴业坤",
+       "mid": "0022MM7z3vPjwm"
+      }
+     ],
+     "album": "小句号",
+     "duration": 232,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001ZpFEj3vpHsE.jpg",
+     "mid": "002q68Hh46Bbtu",
+     "albummid": "001ZpFEj3vpHsE",
+     "vid": "",
+     "rank": "53"
+    },
+    {
+     "title": "MK Circus",
+     "singer": "Dough-Boy/王嘉尔",
+     "singers": [
+      {
+       "name": "Dough-Boy",
+       "mid": "003XWKQP2avTco"
+      },
+      {
+       "name": "王嘉尔",
+       "mid": "00216fJA496xQG"
+      }
+     ],
+     "album": "MK Circus",
+     "duration": 200,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002Uhoz62lguWN.jpg",
+     "mid": "0026GUpa3rzszd",
+     "albummid": "002Uhoz62lguWN",
+     "vid": "",
+     "rank": "54"
+    },
+    {
+     "title": "你朝我的方向走来",
+     "singer": "马念先/9m88",
+     "singers": [
+      {
+       "name": "马念先",
+       "mid": "002Ic6Ka3ACc5X"
+      },
+      {
+       "name": "9m88",
+       "mid": "004TE9Ps16U6Yv"
+      }
+     ],
+     "album": "你朝我的方向走来",
+     "duration": 210,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000h3cVF3klXhe.jpg",
+     "mid": "003o84om3A320v",
+     "albummid": "000h3cVF3klXhe",
+     "vid": "",
+     "rank": "55"
+    },
+    {
+     "title": "心有不甘",
+     "singer": "HANA菊梓乔",
+     "singers": [
+      {
+       "name": "HANA菊梓乔",
+       "mid": "004TZBsj4dQmjX"
+      }
+     ],
+     "album": "不能放手",
+     "duration": 260,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003jfPxA3QWoac.jpg",
+     "mid": "001F4Umd22oeiU",
+     "albummid": "003jfPxA3QWoac",
+     "vid": "",
+     "rank": "56"
+    },
+    {
+     "title": "无憾的生存",
+     "singer": "Dear Jane",
+     "singers": [
+      {
+       "name": "Dear Jane",
+       "mid": "0009Sxdz11sr24"
+      }
+     ],
+     "album": "Infinity & Eternity",
+     "duration": 207,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003oPAb64HhE10.jpg",
+     "mid": "002C4J8V3UPB9X",
+     "albummid": "003oPAb64HhE10",
+     "vid": "",
+     "rank": "57"
+    },
+    {
+     "title": "乱世情侣 (合唱版)",
+     "singer": "古巨基/胡定欣",
+     "singers": [
+      {
+       "name": "古巨基",
+       "mid": "000NFT2p1GbnPB"
+      },
+      {
+       "name": "胡定欣",
+       "mid": "001wdfIZ3A5Cj2"
+      }
+     ],
+     "album": "乱世情侣（合唱版）",
+     "duration": 249,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002dEUit1QRife.jpg",
+     "mid": "002Dopnu2Msztm",
+     "albummid": "002dEUit1QRife",
+     "vid": "",
+     "rank": "58"
+    },
+    {
+     "title": "天下乌鸦",
+     "singer": "吴浩康",
+     "singers": [
+      {
+       "name": "吴浩康",
+       "mid": "0005pQip42flOb"
+      }
+     ],
+     "album": "天下乌鸦",
+     "duration": 254,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000o2TBz3xnwaB.jpg",
+     "mid": "002R1h0h2ISnmq",
+     "albummid": "000o2TBz3xnwaB",
+     "vid": "",
+     "rank": "59"
+    },
+    {
+     "title": "光之外",
+     "singer": "卢凯彤",
+     "singers": [
+      {
+       "name": "卢凯彤",
+       "mid": "002vbAYi0xBan1"
+      }
+     ],
+     "album": "光之外",
+     "duration": 292,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003BWytW1xvFnO.jpg",
+     "mid": "001nbE5j0fwjJT",
+     "albummid": "003BWytW1xvFnO",
+     "vid": "",
+     "rank": "60"
+    },
+    {
+     "title": "买不到的快乐",
+     "singer": "林奕匡",
+     "singers": [
+      {
+       "name": "林奕匡",
+       "mid": "003Hk8ck2WMjKV"
+      }
+     ],
+     "album": "买不到的快乐",
+     "duration": 226,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000EIWI13phbxF.jpg",
+     "mid": "001yTeBp17wyNl",
+     "albummid": "000EIWI13phbxF",
+     "vid": "",
+     "rank": "61"
+    },
+    {
+     "title": "那女孩对我说",
+     "singer": "梁文音",
+     "singers": [
+      {
+       "name": "梁文音",
+       "mid": "002O1t2l2B2rz0"
+      }
+     ],
+     "album": "#2019还在听",
+     "duration": 268,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001NdwfR4R6JPC.jpg",
+     "mid": "002Pjrra14govM",
+     "albummid": "001NdwfR4R6JPC",
+     "vid": "",
+     "rank": "62"
+    },
+    {
+     "title": "不要命",
+     "singer": "丁当/J.Sheon",
+     "singers": [
+      {
+       "name": "丁当",
+       "mid": "0018jrV33Zv6WP"
+      },
+      {
+       "name": "J.Sheon",
+       "mid": "003u2HOX4OgQ2Q"
+      }
+     ],
+     "album": "不要命",
+     "duration": 201,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003XJzxp0Ven6B.jpg",
+     "mid": "003vEEwz1Ole3i",
+     "albummid": "003XJzxp0Ven6B",
+     "vid": "",
+     "rank": "63"
+    },
+    {
+     "title": "你没有错",
+     "singer": "孙嫣然",
+     "singers": [
+      {
+       "name": "孙嫣然",
+       "mid": "000IrF8Z3xyjAN"
+      }
+     ],
+     "album": "你没有错",
+     "duration": 242,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000043ZBYH2X6oAK.jpg",
+     "mid": "000ikATc0fdjNu",
+     "albummid": "0043ZBYH2X6oAK",
+     "vid": "",
+     "rank": "64"
+    },
+    {
+     "title": "除不尽的伤悲",
+     "singer": "毕书尽",
+     "singers": [
+      {
+       "name": "毕书尽",
+       "mid": "001wFKlU3ZNLKf"
+      }
+     ],
+     "album": "除不尽的伤悲",
+     "duration": 280,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000s2AR834wssm.jpg",
+     "mid": "000Uv0fe0vYg6l",
+     "albummid": "000s2AR834wssm",
+     "vid": "",
+     "rank": "65"
+    },
+    {
+     "title": "你要的爱 (心动版)",
+     "singer": "戴佩妮",
+     "singers": [
+      {
+       "name": "戴佩妮",
+       "mid": "0012mAqa27UcEi"
+      }
+     ],
+     "album": "你要的爱（心动版）",
+     "duration": 235,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002s9cGx3fdkft.jpg",
+     "mid": "000By7Jv3rb739",
+     "albummid": "002s9cGx3fdkft",
+     "vid": "",
+     "rank": "66"
+    },
+    {
+     "title": "暗中爱我",
+     "singer": "吴若希",
+     "singers": [
+      {
+       "name": "吴若希",
+       "mid": "001E7ELU1UeaEH"
+      }
+     ],
+     "album": "暗中爱我",
+     "duration": 213,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001yJUlP1IQPBo.jpg",
+     "mid": "002ya1ey2yGWRI",
+     "albummid": "001yJUlP1IQPBo",
+     "vid": "",
+     "rank": "67"
+    },
+    {
+     "title": "人中吕布",
+     "singer": "周华健/谢文德/戴荃/王思远",
+     "singers": [
+      {
+       "name": "周华健",
+       "mid": "003NThQh3ujqIo"
+      },
+      {
+       "name": "谢文德",
+       "mid": "002TYm1E21kPa9"
+      },
+      {
+       "name": "戴荃",
+       "mid": "001B26VQ39vxHS"
+      },
+      {
+       "name": "王思远",
+       "mid": "0007Awm24BDGns"
+      }
+     ],
+     "album": "周华健/张大春 原创音乐剧 赛貂蝉",
+     "duration": 255,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004QyQ6P0DFLlR.jpg",
+     "mid": "0014MIxL3HgU1J",
+     "albummid": "004QyQ6P0DFLlR",
+     "vid": "",
+     "rank": "68"
+    },
+    {
+     "title": "13楼的大笨象",
+     "singer": "郑融",
+     "singers": [
+      {
+       "name": "郑融",
+       "mid": "002F0fhn0UUMDG"
+      }
+     ],
+     "album": "13楼的大笨象",
+     "duration": 293,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002qz9240ImgjD.jpg",
+     "mid": "001GK50l2SwbVP",
+     "albummid": "002qz9240ImgjD",
+     "vid": "",
+     "rank": "69"
+    },
+    {
+     "title": "离境",
+     "singer": "黄安祖",
+     "singers": [
+      {
+       "name": "黄安祖",
+       "mid": "002yroQS32Nu5D"
+      }
+     ],
+     "album": "离境",
+     "duration": 39,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003E4UM03L9rZL.jpg",
+     "mid": "004DZHoN1wNYen",
+     "albummid": "003E4UM03L9rZL",
+     "vid": "",
+     "rank": "70"
+    },
+    {
+     "title": "梦中梦",
+     "singer": "熊仔/BOWZ 豹子胆/小宇-宋念宇",
+     "singers": [
+      {
+       "name": "熊仔",
+       "mid": "001nYuNX4SqhKE"
+      },
+      {
+       "name": "BOWZ 豹子胆",
+       "mid": "003N6dbz1oulyJ"
+      },
+      {
+       "name": "小宇-宋念宇",
+       "mid": "003Pt2380Q2EbF"
+      }
+     ],
+     "album": "梦想成真 (Explicit)",
+     "duration": 300,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002XwsTa4FYrhx.jpg",
+     "mid": "0035Ag6V219jYH",
+     "albummid": "002XwsTa4FYrhx",
+     "vid": "",
+     "rank": "71"
+    },
+    {
+     "title": "很久不见",
+     "singer": "黄淑蔓",
+     "singers": [
+      {
+       "name": "黄淑蔓",
+       "mid": "002732Uu2qN7lN"
+      }
+     ],
+     "album": "很久不见",
+     "duration": 248,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004NtZHQ1m3qSj.jpg",
+     "mid": "004Wn2S62dGpDN",
+     "albummid": "004NtZHQ1m3qSj",
+     "vid": "",
+     "rank": "72"
+    },
+    {
+     "title": "成瘾",
+     "singer": "丁当",
+     "singers": [
+      {
+       "name": "丁当",
+       "mid": "0018jrV33Zv6WP"
+      }
+     ],
+     "album": "爱到不要命",
+     "duration": 192,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000023vQlD34YUAa.jpg",
+     "mid": "002K1rjN1EvOWM",
+     "albummid": "0023vQlD34YUAa",
+     "vid": "",
+     "rank": "73"
+    },
+    {
+     "title": "和怀念讲再见",
+     "singer": "吴业坤",
+     "singers": [
+      {
+       "name": "吴业坤",
+       "mid": "0022MM7z3vPjwm"
+      }
+     ],
+     "album": "和怀念讲再见",
+     "duration": 267,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002gBryX1lS7et.jpg",
+     "mid": "000sR6HB0bUgNy",
+     "albummid": "002gBryX1lS7et",
+     "vid": "",
+     "rank": "74"
+    },
+    {
+     "title": "印象",
+     "singer": "钟舒祺",
+     "singers": [
+      {
+       "name": "钟舒祺",
+       "mid": "001lCe7V2ATr7N"
+      }
+     ],
+     "album": "印象",
+     "duration": 213,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000021PwAc3lzMOY.jpg",
+     "mid": "002DyWNf4JxYRa",
+     "albummid": "0021PwAc3lzMOY",
+     "vid": "",
+     "rank": "75"
+    },
+    {
+     "title": "挡箭牌",
+     "singer": "郭修彧",
+     "singers": [
+      {
+       "name": "郭修彧",
+       "mid": "0002aTzY3fLqTM"
+      }
+     ],
+     "album": "挡箭牌",
+     "duration": 301,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000L8bNC0sT90C.jpg",
+     "mid": "001sTnlO1aEAIg",
+     "albummid": "000L8bNC0sT90C",
+     "vid": "",
+     "rank": "76"
+    },
+    {
+     "title": "之后",
+     "singer": "Luji黄莉",
+     "singers": [
+      {
+       "name": "Luji黄莉",
+       "mid": "00183dAZ3Tm2Dk"
+      }
+     ],
+     "album": "之后",
+     "duration": 258,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003i4oKA336lVP.jpg",
+     "mid": "000d8djO1T2JQg",
+     "albummid": "003i4oKA336lVP",
+     "vid": "",
+     "rank": "77"
+    },
+    {
+     "title": "最后一次",
+     "singer": "高尔宣 OSN",
+     "singers": [
+      {
+       "name": "高尔宣 OSN",
+       "mid": "003bM3Bt0agHYU"
+      }
+     ],
+     "album": "最后一次",
+     "duration": 166,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Yb7Ag0XKLXI.jpg",
+     "mid": "0020TRBb1ALKLe",
+     "albummid": "000Yb7Ag0XKLXI",
+     "vid": "",
+     "rank": "78"
+    },
+    {
+     "title": "一种永远",
+     "singer": "容祖儿",
+     "singers": [
+      {
+       "name": "容祖儿",
+       "mid": "001uXFgt1kpLyI"
+      }
+     ],
+     "album": "一种永远",
+     "duration": 213,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003TCUZp0Eq1vj.jpg",
+     "mid": "004Pq87R4Yz0dh",
+     "albummid": "003TCUZp0Eq1vj",
+     "vid": "",
+     "rank": "79"
+    },
+    {
+     "title": "明日花",
+     "singer": "泳儿",
+     "singers": [
+      {
+       "name": "泳儿",
+       "mid": "002mbmmr4LL8Ef"
+      }
+     ],
+     "album": "明日花",
+     "duration": 292,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001oqfD407C4lT.jpg",
+     "mid": "003Y8WAb1Xiuw3",
+     "albummid": "001oqfD407C4lT",
+     "vid": "",
+     "rank": "80"
+    },
+    {
+     "title": "新年抖来咪",
+     "singer": "蔡依林/刘宇宁/抖音达人群星",
+     "singers": [
+      {
+       "name": "蔡依林",
+       "mid": "0027pdHE4STooO"
+      },
+      {
+       "name": "刘宇宁",
+       "mid": "001Iu4Dv1NzRCD"
+      },
+      {
+       "name": "抖音达人群星",
+       "mid": "002snb6X1pepxP"
+      }
+     ],
+     "album": "新年抖来咪",
+     "duration": 232,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000faMYn3Eaakj.jpg",
+     "mid": "001q63Hs1X7Ls9",
+     "albummid": "000faMYn3Eaakj",
+     "vid": "",
+     "rank": "81"
+    },
+    {
+     "title": "...梦中梦中梦中梦中…",
+     "singer": "熊仔/BOWZ 豹子胆",
+     "singers": [
+      {
+       "name": "熊仔",
+       "mid": "001nYuNX4SqhKE"
+      },
+      {
+       "name": "BOWZ 豹子胆",
+       "mid": "003N6dbz1oulyJ"
+      }
+     ],
+     "album": "梦想成真 (Explicit)",
+     "duration": 227,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002XwsTa4FYrhx.jpg",
+     "mid": "003f5xGk06TuUt",
+     "albummid": "002XwsTa4FYrhx",
+     "vid": "",
+     "rank": "82"
+    },
+    {
+     "title": "孤身走",
+     "singer": "连诗雅",
+     "singers": [
+      {
+       "name": "连诗雅",
+       "mid": "0018mI054LNj4a"
+      }
+     ],
+     "album": "孤身走",
+     "duration": 208,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001PsiIF2M5INF.jpg",
+     "mid": "0046iqli4JRAYa",
+     "albummid": "001PsiIF2M5INF",
+     "vid": "",
+     "rank": "83"
+    },
+    {
+     "title": "朋友圈",
+     "singer": "王笑文",
+     "singers": [
+      {
+       "name": "王笑文",
+       "mid": "004AgzAt2xT05E"
+      }
+     ],
+     "album": "丸子",
+     "duration": 214,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001yB8We2H42aL.jpg",
+     "mid": "001GaFoO23Dlaw",
+     "albummid": "001yB8We2H42aL",
+     "vid": "",
+     "rank": "84"
+    },
+    {
+     "title": "拾荒",
+     "singer": "余宪忠",
+     "singers": [
+      {
+       "name": "余宪忠",
+       "mid": "000tLZmB1v3RhI"
+      }
+     ],
+     "album": "拾荒",
+     "duration": 228,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000rZBzM2D05HS.jpg",
+     "mid": "000jh6b63ie9Ff",
+     "albummid": "000rZBzM2D05HS",
+     "vid": "",
+     "rank": "85"
+    },
+    {
+     "title": "日月存亡",
+     "singer": "吴若希",
+     "singers": [
+      {
+       "name": "吴若希",
+       "mid": "001E7ELU1UeaEH"
+      }
+     ],
+     "album": "日月存亡",
+     "duration": 176,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000bbLxs43gVG3.jpg",
+     "mid": "0027wVSy0NEfsH",
+     "albummid": "000bbLxs43gVG3",
+     "vid": "",
+     "rank": "86"
+    },
+    {
+     "title": "海的颜色",
+     "singer": "丁当",
+     "singers": [
+      {
+       "name": "丁当",
+       "mid": "0018jrV33Zv6WP"
+      }
+     ],
+     "album": "爱到不要命",
+     "duration": 270,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000023vQlD34YUAa.jpg",
+     "mid": "001u2xYk2Yo10d",
+     "albummid": "0023vQlD34YUAa",
+     "vid": "",
+     "rank": "87"
+    },
+    {
+     "title": "爱情最高指导原则",
+     "singer": "丁当",
+     "singers": [
+      {
+       "name": "丁当",
+       "mid": "0018jrV33Zv6WP"
+      }
+     ],
+     "album": "爱到不要命",
+     "duration": 199,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000023vQlD34YUAa.jpg",
+     "mid": "002eux0f1PCT2r",
+     "albummid": "0023vQlD34YUAa",
+     "vid": "",
+     "rank": "88"
+    },
+    {
+     "title": "声音导航",
+     "singer": "冯允谦",
+     "singers": [
+      {
+       "name": "冯允谦",
+       "mid": "002v7KTb0Gps9j"
+      }
+     ],
+     "album": "声音导航",
+     "duration": 250,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002nnluM3AS8RR.jpg",
+     "mid": "004fnB2F482Ucw",
+     "albummid": "002nnluM3AS8RR",
+     "vid": "",
+     "rank": "89"
+    },
+    {
+     "title": "我奋斗 我幸福 (Live)",
+     "singer": "成龙/陈伟霆/邓伦",
+     "singers": [
+      {
+       "name": "成龙",
+       "mid": "000nmQ1v0JGExN"
+      },
+      {
+       "name": "陈伟霆",
+       "mid": "000in2fg3O6W83"
+      },
+      {
+       "name": "邓伦",
+       "mid": "001H1sHq2FXFx2"
+      }
+     ],
+     "album": "2019春晚歌曲抢先听",
+     "duration": 216,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003zoait2IXw0D.jpg",
+     "mid": "002FZSgp2BfXC3",
+     "albummid": "003zoait2IXw0D",
+     "vid": "",
+     "rank": "90"
+    },
+    {
+     "title": "初恋",
+     "singer": "梁文音",
+     "singers": [
+      {
+       "name": "梁文音",
+       "mid": "002O1t2l2B2rz0"
+      }
+     ],
+     "album": "#2019还在听",
+     "duration": 224,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001NdwfR4R6JPC.jpg",
+     "mid": "001EwJjh0gNHzI",
+     "albummid": "001NdwfR4R6JPC",
+     "vid": "",
+     "rank": "91"
+    },
+    {
+     "title": "不问",
+     "singer": "信乐团/崔真真",
+     "singers": [
+      {
+       "name": "信乐团",
+       "mid": "002m2KUd0283YC"
+      },
+      {
+       "name": "崔真真",
+       "mid": "004YGTFJ044T7t"
+      }
+     ],
+     "album": "不问",
+     "duration": 290,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003tIkYN1oZKia.jpg",
+     "mid": "0043fsBf2cDhRC",
+     "albummid": "003tIkYN1oZKia",
+     "vid": "",
+     "rank": "92"
+    },
+    {
+     "title": "怎么办",
+     "singer": "黄明志Namewee",
+     "singers": [
+      {
+       "name": "黄明志Namewee",
+       "mid": "000UCOXZ4ZpIgg"
+      }
+     ],
+     "album": "   ",
+     "duration": 311,
+     "cover": "",
+     "mid": "000dGtiy0YvKhk",
+     "albummid": "",
+     "vid": "",
+     "rank": "93"
+    },
+    {
+     "title": "那些失眠的夜与难以忘怀的事",
+     "singer": "老王乐队",
+     "singers": [
+      {
+       "name": "老王乐队",
+       "mid": "004cmrKQ33bHV0"
+      }
+     ],
+     "album": "吾日三省吾身",
+     "duration": 238,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000008NFqf1IesxP.jpg",
+     "mid": "002IDUDk2LKdZ3",
+     "albummid": "0008NFqf1IesxP",
+     "vid": "",
+     "rank": "94"
+    },
+    {
+     "title": "云吞之 (母亲节特餐)",
+     "singer": "邓小巧",
+     "singers": [
+      {
+       "name": "邓小巧",
+       "mid": "004Dwn2p1doLF9"
+      }
+     ],
+     "album": "云吞之(母亲节特餐)",
+     "duration": 248,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ivcYX1ZLA08.jpg",
+     "mid": "000eCXDm0uKyIZ",
+     "albummid": "003ivcYX1ZLA08",
+     "vid": "",
+     "rank": "95"
+    },
+    {
+     "title": "怪可爱",
+     "singer": "成龙",
+     "singers": [
+      {
+       "name": "成龙",
+       "mid": "000nmQ1v0JGExN"
+      }
+     ],
+     "album": "怪可爱",
+     "duration": 217,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001jOPNz3fybyo.jpg",
+     "mid": "003IgNsm2seu1Z",
+     "albummid": "001jOPNz3fybyo",
+     "vid": "",
+     "rank": "96"
+    },
+    {
+     "title": "爱上你的我",
+     "singer": "丁当",
+     "singers": [
+      {
+       "name": "丁当",
+       "mid": "0018jrV33Zv6WP"
+      }
+     ],
+     "album": "爱到不要命",
+     "duration": 234,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000023vQlD34YUAa.jpg",
+     "mid": "003eTkNs0PTgE8",
+     "albummid": "0023vQlD34YUAa",
+     "vid": "",
+     "rank": "97"
+    },
+    {
+     "title": "都是月老惹的祸 (OT：Birthday Suit)",
+     "singer": "丁当",
+     "singers": [
+      {
+       "name": "丁当",
+       "mid": "0018jrV33Zv6WP"
+      }
+     ],
+     "album": "爱到不要命",
+     "duration": 183,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000023vQlD34YUAa.jpg",
+     "mid": "001pViU32tUGnY",
+     "albummid": "0023vQlD34YUAa",
+     "vid": "",
+     "rank": "98"
+    },
+    {
+     "title": "误区",
+     "singer": "丁当",
+     "singers": [
+      {
+       "name": "丁当",
+       "mid": "0018jrV33Zv6WP"
+      }
+     ],
+     "album": "爱到不要命",
+     "duration": 234,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000023vQlD34YUAa.jpg",
+     "mid": "003RkemM12sSzp",
+     "albummid": "0023vQlD34YUAa",
+     "vid": "",
+     "rank": "99"
+    },
+    {
+     "title": "江湖决",
+     "singer": "信乐团",
+     "singers": [
+      {
+       "name": "信乐团",
+       "mid": "002m2KUd0283YC"
+      }
+     ],
+     "album": "江湖决",
+     "duration": 257,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002212hM4R5UA1.jpg",
+     "mid": "001K6JXM15uxPK",
+     "albummid": "002212hM4R5UA1",
+     "vid": "",
+     "rank": "100"
     }
    ]
   },
@@ -14994,6 +15938,23 @@
    "name": "欧美榜",
    "count": 100,
    "songs": [
+    {
+     "title": "Hong Kong (feat. 王菲季候风)",
+     "singer": "The Weeknd",
+     "singers": [
+      {
+       "name": "The Weeknd",
+       "mid": "004YnseG2vQN7h"
+      }
+     ],
+     "album": "Hong Kong (feat. 王菲季候风)",
+     "duration": 216,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003h24VO1pTh6K.jpg",
+     "mid": "00255MYE3GNkZF",
+     "albummid": "003h24VO1pTh6K",
+     "vid": "",
+     "rank": "1"
+    },
     {
      "title": "FIRESTARTER",
      "singer": "K/DA/英雄联盟/i-dle (아이들)/Mimi Webb",
@@ -15021,80 +15982,43 @@
      "mid": "003zPqcA21yTZW",
      "albummid": "002jC1Kw0TVcxG",
      "vid": "",
-     "rank": "1"
-    },
-    {
-     "title": "FIRESTARTER (燃)",
-     "singer": "K/DA/英雄联盟/i-dle (아이들)/Mimi Webb",
-     "singers": [
-      {
-       "name": "K/DA",
-       "mid": "002KMsoL0LFEnp"
-      },
-      {
-       "name": "英雄联盟",
-       "mid": "0000RHdG1ukDqy"
-      },
-      {
-       "name": "i-dle (아이들)",
-       "mid": "003hcAVs1IB7c8"
-      },
-      {
-       "name": "Mimi Webb",
-       "mid": "0042tMqE2KxjWE"
-      }
-     ],
-     "album": "FIRESTARTER (燃)",
-     "duration": 187,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ovTeQ01zmyl.jpg",
-     "mid": "002BYqTG4Qa3gg",
-     "albummid": "003ovTeQ01zmyl",
-     "vid": "",
      "rank": "2"
     },
     {
-     "title": "NEVER GOING BACK (别回头)",
-     "singer": "K/DA/英雄联盟/i-dle (아이들)/田小娟 (SOYEON)",
+     "title": "her (boy version)",
+     "singer": "ZVC/JVKE",
      "singers": [
       {
-       "name": "K/DA",
-       "mid": "002KMsoL0LFEnp"
+       "name": "ZVC",
+       "mid": "000s8Sqp32G4A9"
       },
       {
-       "name": "英雄联盟",
-       "mid": "0000RHdG1ukDqy"
-      },
-      {
-       "name": "i-dle (아이들)",
-       "mid": "003hcAVs1IB7c8"
-      },
-      {
-       "name": "田小娟 (SOYEON)",
-       "mid": "001NaqB10BP4SB"
+       "name": "JVKE",
+       "mid": "002npDu54NXkj5"
       }
      ],
-     "album": "FIRESTARTER (燃)",
-     "duration": 189,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ovTeQ01zmyl.jpg",
-     "mid": "0045TvbY1mj0o5",
-     "albummid": "003ovTeQ01zmyl",
+     "album": "her (boy version)",
+     "duration": 115,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000008g2yO0nEh1t.jpg",
+     "mid": "003PBeEc1O3YS8",
+     "albummid": "0008g2yO0nEh1t",
      "vid": "",
      "rank": "3"
     },
     {
-     "title": "MISS ME",
-     "singer": "keshi",
+     "title": "The Station",
+     "singer": "Keenan Te",
      "singers": [
       {
-       "name": "keshi",
-       "mid": "001MptjX2RoF5s"
+       "name": "Keenan Te",
+       "mid": "001UHLgF2eVWKE"
       }
      ],
-     "album": "MISS ME",
-     "duration": 193,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001U1xNQ3UT0J4.jpg",
-     "mid": "004ZTT962DQE67",
-     "albummid": "001U1xNQ3UT0J4",
+     "album": "The Station",
+     "duration": 199,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004D3CKM4O1DX5.jpg",
+     "mid": "004dX7Rc21eQ6Y",
+     "albummid": "004D3CKM4O1DX5",
      "vid": "",
      "rank": "4"
     },
@@ -15114,6 +16038,23 @@
      "albummid": "003pOXRx4VYXGA",
      "vid": "",
      "rank": "5"
+    },
+    {
+     "title": "Lasso The Moon",
+     "singer": "Ashe",
+     "singers": [
+      {
+       "name": "Ashe",
+       "mid": "001Fw6BU1WNggV"
+      }
+     ],
+     "album": "The Girl Of Your Dreams (Explicit)",
+     "duration": 222,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001rTxZy00EllR.jpg",
+     "mid": "004cNt86424SZj",
+     "albummid": "001rTxZy00EllR",
+     "vid": "",
+     "rank": "6"
     },
     {
      "title": "WATCH ME (登场)",
@@ -15142,24 +16083,120 @@
      "mid": "003h83yO30b1Y1",
      "albummid": "003ovTeQ01zmyl",
      "vid": "",
-     "rank": "6"
+     "rank": "7"
     },
     {
-     "title": "Patient Zero",
-     "singer": "Taylor Swift",
+     "title": "NEVER GOING BACK (别回头)",
+     "singer": "K/DA/英雄联盟/i-dle (아이들)/田小娟 (SOYEON)",
      "singers": [
       {
-       "name": "Taylor Swift",
-       "mid": "000qrPik2w6lDr"
+       "name": "K/DA",
+       "mid": "002KMsoL0LFEnp"
+      },
+      {
+       "name": "英雄联盟",
+       "mid": "0000RHdG1ukDqy"
+      },
+      {
+       "name": "i-dle (아이들)",
+       "mid": "003hcAVs1IB7c8"
+      },
+      {
+       "name": "田小娟 (SOYEON)",
+       "mid": "001NaqB10BP4SB"
       }
      ],
-     "album": "Patient Zero",
-     "duration": 225,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001C8UWU2ytX8g.jpg",
-     "mid": "001sOMRi3VY42Q",
-     "albummid": "001C8UWU2ytX8g",
+     "album": "FIRESTARTER (燃)",
+     "duration": 189,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ovTeQ01zmyl.jpg",
+     "mid": "0045TvbY1mj0o5",
+     "albummid": "003ovTeQ01zmyl",
      "vid": "",
-     "rank": "7"
+     "rank": "8"
+    },
+    {
+     "title": "MISS ME",
+     "singer": "keshi",
+     "singers": [
+      {
+       "name": "keshi",
+       "mid": "001MptjX2RoF5s"
+      }
+     ],
+     "album": "MISS ME",
+     "duration": 193,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001U1xNQ3UT0J4.jpg",
+     "mid": "004ZTT962DQE67",
+     "albummid": "001U1xNQ3UT0J4",
+     "vid": "",
+     "rank": "9"
+    },
+    {
+     "title": "FIRESTARTER (燃)",
+     "singer": "K/DA/英雄联盟/i-dle (아이들)/Mimi Webb",
+     "singers": [
+      {
+       "name": "K/DA",
+       "mid": "002KMsoL0LFEnp"
+      },
+      {
+       "name": "英雄联盟",
+       "mid": "0000RHdG1ukDqy"
+      },
+      {
+       "name": "i-dle (아이들)",
+       "mid": "003hcAVs1IB7c8"
+      },
+      {
+       "name": "Mimi Webb",
+       "mid": "0042tMqE2KxjWE"
+      }
+     ],
+     "album": "FIRESTARTER (燃)",
+     "duration": 187,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ovTeQ01zmyl.jpg",
+     "mid": "002BYqTG4Qa3gg",
+     "albummid": "003ovTeQ01zmyl",
+     "vid": "",
+     "rank": "10"
+    },
+    {
+     "title": "Lies (feat. Lana Del Rey)",
+     "singer": "Zach Bryan/Lana Del Rey",
+     "singers": [
+      {
+       "name": "Zach Bryan",
+       "mid": "0045DHUY2M3iix"
+      },
+      {
+       "name": "Lana Del Rey",
+       "mid": "0040HbAd0HG7N5"
+      }
+     ],
+     "album": "Young Manhood and Other Donatable Organs (Explicit)",
+     "duration": 220,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002gHI1i30vhS0.jpg",
+     "mid": "0007ZKSJ29TGTz",
+     "albummid": "002gHI1i30vhS0",
+     "vid": "",
+     "rank": "11"
+    },
+    {
+     "title": "Here You Come, There You Go",
+     "singer": "Gracie Abrams",
+     "singers": [
+      {
+       "name": "Gracie Abrams",
+       "mid": "004aObBU1n5WYc"
+      }
+     ],
+     "album": "Here You Come, There You Go",
+     "duration": 170,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002zNuwn1PgC7g.jpg",
+     "mid": "0026L42c0xjKTv",
+     "albummid": "002zNuwn1PgC7g",
+     "vid": "",
+     "rank": "12"
     },
     {
      "title": "Know My Name (以我之名)",
@@ -15188,336 +16225,24 @@
      "mid": "002Vylat0rpIcN",
      "albummid": "000CGQ5I3ry29A",
      "vid": "",
-     "rank": "8"
-    },
-    {
-     "title": "Patient Zero (Piano Version)",
-     "singer": "Taylor Swift",
-     "singers": [
-      {
-       "name": "Taylor Swift",
-       "mid": "000qrPik2w6lDr"
-      }
-     ],
-     "album": "Patient Zero",
-     "duration": 226,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001C8UWU2ytX8g.jpg",
-     "mid": "001THjsi3qgvdv",
-     "albummid": "001C8UWU2ytX8g",
-     "vid": "",
-     "rank": "9"
-    },
-    {
-     "title": "Lies (feat. Lana Del Rey)",
-     "singer": "Zach Bryan/Lana Del Rey",
-     "singers": [
-      {
-       "name": "Zach Bryan",
-       "mid": "0045DHUY2M3iix"
-      },
-      {
-       "name": "Lana Del Rey",
-       "mid": "0040HbAd0HG7N5"
-      }
-     ],
-     "album": "Young Manhood and Other Donatable Organs (Explicit)",
-     "duration": 220,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002gHI1i30vhS0.jpg",
-     "mid": "0007ZKSJ29TGTz",
-     "albummid": "002gHI1i30vhS0",
-     "vid": "",
-     "rank": "10"
-    },
-    {
-     "title": "It's You",
-     "singer": "无畏契约/Karencici",
-     "singers": [
-      {
-       "name": "无畏契约",
-       "mid": "001nxwgq4FzoZV"
-      },
-      {
-       "name": "Karencici",
-       "mid": "0037xH9e345xX8"
-      }
-     ],
-     "album": "It's You",
-     "duration": 146,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002lwZzZ498vMO.jpg",
-     "mid": "002YQ35R4MJ9ju",
-     "albummid": "002lwZzZ498vMO",
-     "vid": "",
-     "rank": "11"
-    },
-    {
-     "title": "GIRLS (女孩儿)",
-     "singer": "K/DA/DJ Sona/英雄联盟/Sophie Powers",
-     "singers": [
-      {
-       "name": "K/DA",
-       "mid": "002KMsoL0LFEnp"
-      },
-      {
-       "name": "DJ Sona",
-       "mid": "003Uw9Tn2HUBig"
-      },
-      {
-       "name": "英雄联盟",
-       "mid": "0000RHdG1ukDqy"
-      },
-      {
-       "name": "Sophie Powers",
-       "mid": "000NrJuM4FvDI7"
-      }
-     ],
-     "album": "FIRESTARTER (燃)",
-     "duration": 124,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ovTeQ01zmyl.jpg",
-     "mid": "003k75eG3myILe",
-     "albummid": "003ovTeQ01zmyl",
-     "vid": "",
-     "rank": "12"
-    },
-    {
-     "title": "Holding Out For A Hero",
-     "singer": "Mentol",
-     "singers": [
-      {
-       "name": "Mentol",
-       "mid": "000Ap73N1geBqH"
-      }
-     ],
-     "album": "Holding Out For A Hero",
-     "duration": 200,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001quAaC1Bb3q3.jpg",
-     "mid": "003REt9N4UY2mx",
-     "albummid": "001quAaC1Bb3q3",
-     "vid": "",
      "rank": "13"
     },
     {
-     "title": "expectations (feat. Chappell Roan)",
-     "singer": "Olivia Rodrigo/Chappell Roan",
+     "title": "GROW ON TREES",
+     "singer": "Peder Elias",
      "singers": [
       {
-       "name": "Olivia Rodrigo",
-       "mid": "0006dHNu4UKZyl"
-      },
-      {
-       "name": "Chappell Roan",
-       "mid": "001QeUP643BjXS"
+       "name": "Peder Elias",
+       "mid": "000GxVxK0PdTDv"
       }
      ],
-     "album": "expectations",
-     "duration": 223,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002L1WWK1Kq0jT.jpg",
-     "mid": "002Wlmv80VhY6z",
-     "albummid": "002L1WWK1Kq0jT",
+     "album": "GROW ON TREES",
+     "duration": 152,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002NUsbZ0Cx4aq.jpg",
+     "mid": "004bLK1Z2wTUMG",
+     "albummid": "002NUsbZ0Cx4aq",
      "vid": "",
      "rank": "14"
-    },
-    {
-     "title": "Circles",
-     "singer": "James Blunt",
-     "singers": [
-      {
-       "name": "James Blunt",
-       "mid": "000OYo204PAGqw"
-      }
-     ],
-     "album": "Circles",
-     "duration": 232,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003lXPni0fyYPf.jpg",
-     "mid": "0027FRLW0r5xuH",
-     "albummid": "003lXPni0fyYPf",
-     "vid": "",
-     "rank": "15"
-    },
-    {
-     "title": "Love Me Like You Do (From \"Fifty Shades Of Grey\")",
-     "singer": "Ellie Goulding",
-     "singers": [
-      {
-       "name": "Ellie Goulding",
-       "mid": "001YMoro1NL5hU"
-      }
-     ],
-     "album": "relaxing girly shower (Explicit)",
-     "duration": 253,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000kiJ2Q2VDtPY.jpg",
-     "mid": "000s8qAS3JoCuD",
-     "albummid": "000kiJ2Q2VDtPY",
-     "vid": "",
-     "rank": "16"
-    },
-    {
-     "title": "Dance With Me",
-     "singer": "Bruno Mars",
-     "singers": [
-      {
-       "name": "Bruno Mars",
-       "mid": "001F1svH2tTpsC"
-      }
-     ],
-     "album": "Dance With Me",
-     "duration": 219,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000280MKd3Juw9E.jpg",
-     "mid": "003b23Cm03QFYN",
-     "albummid": "00280MKd3Juw9E",
-     "vid": "",
-     "rank": "17"
-    },
-    {
-     "title": "The Station",
-     "singer": "Keenan Te",
-     "singers": [
-      {
-       "name": "Keenan Te",
-       "mid": "001UHLgF2eVWKE"
-      }
-     ],
-     "album": "The Station",
-     "duration": 199,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004D3CKM4O1DX5.jpg",
-     "mid": "004dX7Rc21eQ6Y",
-     "albummid": "004D3CKM4O1DX5",
-     "vid": "",
-     "rank": "18"
-    },
-    {
-     "title": "missing person",
-     "singer": "girl in red",
-     "singers": [
-      {
-       "name": "girl in red",
-       "mid": "002YYg9p3QgFKh"
-      }
-     ],
-     "album": "BLUE",
-     "duration": 180,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004Iifcp2DYCw0.jpg",
-     "mid": "003wxijA2SMEgQ",
-     "albummid": "004Iifcp2DYCw0",
-     "vid": "",
-     "rank": "19"
-    },
-    {
-     "title": "Когда душе твоей больно (When Your Soul Hurts) (《明日方舟》印象曲)",
-     "singer": "Ploho/塞壬唱片-MSR",
-     "singers": [
-      {
-       "name": "Ploho",
-       "mid": "003RVoCA2gHSpY"
-      },
-      {
-       "name": "塞壬唱片-MSR",
-       "mid": "003ZH03w22J5ai"
-      }
-     ],
-     "album": "Когда душе твоей больно (When Your Soul Hurts)",
-     "duration": 254,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Kasms3a0qD2.jpg",
-     "mid": "000HifbG0As4rP",
-     "albummid": "000Kasms3a0qD2",
-     "vid": "",
-     "rank": "20"
-    },
-    {
-     "title": "Crimson Sky",
-     "singer": "Helluva Boss/Harvey Guillén/Bryce Pinkham",
-     "singers": [
-      {
-       "name": "Helluva Boss",
-       "mid": "002azsIi0dCNdp"
-      },
-      {
-       "name": "Harvey Guillén",
-       "mid": "004E4zoG1h3JU8"
-      },
-      {
-       "name": "Bryce Pinkham",
-       "mid": "000v0gVQ0GAeJK"
-      }
-     ],
-     "album": "Helluva Boss: Season Three, Part 1 (Episodes 4-5)",
-     "duration": 192,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000026dPzm25QKV0.jpg",
-     "mid": "003r4MhN1rEhV2",
-     "albummid": "0026dPzm25QKV0",
-     "vid": "",
-     "rank": "21"
-    },
-    {
-     "title": "Follow Me",
-     "singer": "Alec Benjamin",
-     "singers": [
-      {
-       "name": "Alec Benjamin",
-       "mid": "002HRSkP17GCwL"
-      }
-     ],
-     "album": "Follow Me",
-     "duration": 171,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000026Ja2k3z8d4n.jpg",
-     "mid": "003jNiO51fODTk",
-     "albummid": "0026Ja2k3z8d4n",
-     "vid": "",
-     "rank": "22"
-    },
-    {
-     "title": "He's Not Me",
-     "singer": "Anson Seabra",
-     "singers": [
-      {
-       "name": "Anson Seabra",
-       "mid": "001f0ufU3ddN8w"
-      }
-     ],
-     "album": "He's Not Me",
-     "duration": 186,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003MsT3j37yqxD.jpg",
-     "mid": "00179xMq1xAvS0",
-     "albummid": "003MsT3j37yqxD",
-     "vid": "",
-     "rank": "23"
-    },
-    {
-     "title": "Hear Me Now",
-     "singer": "Imazee/Davvi",
-     "singers": [
-      {
-       "name": "Imazee",
-       "mid": "001TlfHN1SJ0ld"
-      },
-      {
-       "name": "Davvi",
-       "mid": "001ATvhF4fOHxl"
-      }
-     ],
-     "album": "Hear Me Now",
-     "duration": 222,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004LtMvD0rsOOm.jpg",
-     "mid": "002KGiDc0ofIil",
-     "albummid": "004LtMvD0rsOOm",
-     "vid": "",
-     "rank": "24"
-    },
-    {
-     "title": "Let's Meet Again",
-     "singer": "Imazee",
-     "singers": [
-      {
-       "name": "Imazee",
-       "mid": "001TlfHN1SJ0ld"
-      }
-     ],
-     "album": "Let's Meet Again",
-     "duration": 212,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001toBek45Seh8.jpg",
-     "mid": "002esOzu45zzLL",
-     "albummid": "001toBek45Seh8",
-     "vid": "",
-     "rank": "25"
     },
     {
      "title": "Flower In A Hurricane (feat. Tame Impala, SZA, King Gizzard & the Lizard Wizard)",
@@ -15546,7 +16271,510 @@
      "mid": "000D12Rr2pTCxT",
      "albummid": "003UXrYG3rN3w0",
      "vid": "",
+     "rank": "15"
+    },
+    {
+     "title": "Patient Zero",
+     "singer": "Taylor Swift",
+     "singers": [
+      {
+       "name": "Taylor Swift",
+       "mid": "000qrPik2w6lDr"
+      }
+     ],
+     "album": "Patient Zero",
+     "duration": 225,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001C8UWU2ytX8g.jpg",
+     "mid": "001sOMRi3VY42Q",
+     "albummid": "001C8UWU2ytX8g",
+     "vid": "",
+     "rank": "16"
+    },
+    {
+     "title": "It's You",
+     "singer": "无畏契约/Karencici",
+     "singers": [
+      {
+       "name": "无畏契约",
+       "mid": "001nxwgq4FzoZV"
+      },
+      {
+       "name": "Karencici",
+       "mid": "0037xH9e345xX8"
+      }
+     ],
+     "album": "It's You",
+     "duration": 146,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002lwZzZ498vMO.jpg",
+     "mid": "002YQ35R4MJ9ju",
+     "albummid": "002lwZzZ498vMO",
+     "vid": "",
+     "rank": "17"
+    },
+    {
+     "title": "petal",
+     "singer": "Ariana Grande",
+     "singers": [
+      {
+       "name": "Ariana Grande",
+       "mid": "004eTCF03KvBOE"
+      }
+     ],
+     "album": "petal",
+     "duration": 184,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003NG91X30DsWi.jpg",
+     "mid": "003GxSsD3BDSHV",
+     "albummid": "003NG91X30DsWi",
+     "vid": "",
+     "rank": "18"
+    },
+    {
+     "title": "OKAY",
+     "singer": "Appleby",
+     "singers": [
+      {
+       "name": "Appleby",
+       "mid": "000u1WVv1VTXZT"
+      }
+     ],
+     "album": "i lied, i'm not okay (Explicit)",
+     "duration": 156,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Cvt8G4Fe3by.jpg",
+     "mid": "0027XjNt2fJt2M",
+     "albummid": "001Cvt8G4Fe3by",
+     "vid": "",
+     "rank": "19"
+    },
+    {
+     "title": "petal (Explicit)",
+     "singer": "Ariana Grande",
+     "singers": [
+      {
+       "name": "Ariana Grande",
+       "mid": "004eTCF03KvBOE"
+      }
+     ],
+     "album": "petal (Explicit)",
+     "duration": 184,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000037imbo2QFhJR.jpg",
+     "mid": "000Ey0sk3vjzOc",
+     "albummid": "0037imbo2QFhJR",
+     "vid": "",
+     "rank": "20"
+    },
+    {
+     "title": "GIRLS (女孩儿)",
+     "singer": "K/DA/DJ Sona/英雄联盟/Sophie Powers",
+     "singers": [
+      {
+       "name": "K/DA",
+       "mid": "002KMsoL0LFEnp"
+      },
+      {
+       "name": "DJ Sona",
+       "mid": "003Uw9Tn2HUBig"
+      },
+      {
+       "name": "英雄联盟",
+       "mid": "0000RHdG1ukDqy"
+      },
+      {
+       "name": "Sophie Powers",
+       "mid": "000NrJuM4FvDI7"
+      }
+     ],
+     "album": "FIRESTARTER (燃)",
+     "duration": 124,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ovTeQ01zmyl.jpg",
+     "mid": "003k75eG3myILe",
+     "albummid": "003ovTeQ01zmyl",
+     "vid": "",
+     "rank": "21"
+    },
+    {
+     "title": "Love Me Like You Do (From \"Fifty Shades Of Grey\")",
+     "singer": "Ellie Goulding",
+     "singers": [
+      {
+       "name": "Ellie Goulding",
+       "mid": "001YMoro1NL5hU"
+      }
+     ],
+     "album": "relaxing girly shower (Explicit)",
+     "duration": 253,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000kiJ2Q2VDtPY.jpg",
+     "mid": "000s8qAS3JoCuD",
+     "albummid": "000kiJ2Q2VDtPY",
+     "vid": "",
+     "rank": "22"
+    },
+    {
+     "title": "What it isn’t",
+     "singer": "Sasha Alex Sloan",
+     "singers": [
+      {
+       "name": "Sasha Alex Sloan",
+       "mid": "001B6mal3oslOR"
+      }
+     ],
+     "album": "And The Crowd Goes Mild (Explicit)",
+     "duration": 160,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
+     "mid": "002qycci2na3vh",
+     "albummid": "001qTlIH0dGQpv",
+     "vid": "",
+     "rank": "23"
+    },
+    {
+     "title": "over this time",
+     "singer": "Haley Smalls",
+     "singers": [
+      {
+       "name": "Haley Smalls",
+       "mid": "003LlIFu2KzVx6"
+      }
+     ],
+     "album": "over this time",
+     "duration": 196,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003T9cUv2nypwi.jpg",
+     "mid": "001ErOPS2C9j5h",
+     "albummid": "003T9cUv2nypwi",
+     "vid": "",
+     "rank": "24"
+    },
+    {
+     "title": "Когда душе твоей больно (When Your Soul Hurts) (《明日方舟》印象曲)",
+     "singer": "Ploho/塞壬唱片-MSR",
+     "singers": [
+      {
+       "name": "Ploho",
+       "mid": "003RVoCA2gHSpY"
+      },
+      {
+       "name": "塞壬唱片-MSR",
+       "mid": "003ZH03w22J5ai"
+      }
+     ],
+     "album": "Когда душе твоей больно (When Your Soul Hurts)",
+     "duration": 254,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Kasms3a0qD2.jpg",
+     "mid": "000HifbG0As4rP",
+     "albummid": "000Kasms3a0qD2",
+     "vid": "",
+     "rank": "25"
+    },
+    {
+     "title": "expectations (feat. Chappell Roan)",
+     "singer": "Olivia Rodrigo/Chappell Roan",
+     "singers": [
+      {
+       "name": "Olivia Rodrigo",
+       "mid": "0006dHNu4UKZyl"
+      },
+      {
+       "name": "Chappell Roan",
+       "mid": "001QeUP643BjXS"
+      }
+     ],
+     "album": "expectations",
+     "duration": 223,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002L1WWK1Kq0jT.jpg",
+     "mid": "002Wlmv80VhY6z",
+     "albummid": "002L1WWK1Kq0jT",
+     "vid": "",
      "rank": "26"
+    },
+    {
+     "title": "In The Shadow Of The Sun (氛围版)",
+     "singer": "DJ Daniel Kim",
+     "singers": [
+      {
+       "name": "DJ Daniel Kim",
+       "mid": "000HqAZV0NhZqg"
+      }
+     ],
+     "album": "MONTAGEM SNOW (DJ Slowed)",
+     "duration": 132,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002GWAAt1rUJhm.jpg",
+     "mid": "001vwnjP0Ud6ij",
+     "albummid": "002GWAAt1rUJhm",
+     "vid": "",
+     "rank": "27"
+    },
+    {
+     "title": "Follow Me",
+     "singer": "Alec Benjamin",
+     "singers": [
+      {
+       "name": "Alec Benjamin",
+       "mid": "002HRSkP17GCwL"
+      }
+     ],
+     "album": "Follow Me",
+     "duration": 171,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000026Ja2k3z8d4n.jpg",
+     "mid": "003jNiO51fODTk",
+     "albummid": "0026Ja2k3z8d4n",
+     "vid": "",
+     "rank": "28"
+    },
+    {
+     "title": "Patient Zero (Piano Version)",
+     "singer": "Taylor Swift",
+     "singers": [
+      {
+       "name": "Taylor Swift",
+       "mid": "000qrPik2w6lDr"
+      }
+     ],
+     "album": "Patient Zero",
+     "duration": 226,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001C8UWU2ytX8g.jpg",
+     "mid": "001THjsi3qgvdv",
+     "albummid": "001C8UWU2ytX8g",
+     "vid": "",
+     "rank": "29"
+    },
+    {
+     "title": "Hear Me Now",
+     "singer": "Imazee/Davvi",
+     "singers": [
+      {
+       "name": "Imazee",
+       "mid": "001TlfHN1SJ0ld"
+      },
+      {
+       "name": "Davvi",
+       "mid": "001ATvhF4fOHxl"
+      }
+     ],
+     "album": "Hear Me Now",
+     "duration": 222,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004LtMvD0rsOOm.jpg",
+     "mid": "002KGiDc0ofIil",
+     "albummid": "004LtMvD0rsOOm",
+     "vid": "",
+     "rank": "30"
+    },
+    {
+     "title": "Remember My Name",
+     "singer": "KEiiNO",
+     "singers": [
+      {
+       "name": "KEiiNO",
+       "mid": "000lVCev10pEya"
+      }
+     ],
+     "album": "Remember My Name",
+     "duration": 172,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003e0t1N2VKjor.jpg",
+     "mid": "000XJtYV15ZYf2",
+     "albummid": "003e0t1N2VKjor",
+     "vid": "",
+     "rank": "31"
+    },
+    {
+     "title": "Lonely（DJ2026）",
+     "singer": "Acreix/La Mer",
+     "singers": [
+      {
+       "name": "Acreix",
+       "mid": "0046tUuY0UhoZy"
+      },
+      {
+       "name": "La Mer",
+       "mid": "000IjThf0CevJv"
+      }
+     ],
+     "album": "You Are All I Need（唯一）",
+     "duration": 125,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004dn6Lz1DBvyh.jpg",
+     "mid": "003zvDQa1Sqnra",
+     "albummid": "004dn6Lz1DBvyh",
+     "vid": "",
+     "rank": "32"
+    },
+    {
+     "title": "2018",
+     "singer": "Sasha Alex Sloan",
+     "singers": [
+      {
+       "name": "Sasha Alex Sloan",
+       "mid": "001B6mal3oslOR"
+      }
+     ],
+     "album": "And The Crowd Goes Mild (Explicit)",
+     "duration": 165,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
+     "mid": "000ZIvRz2mZ5aL",
+     "albummid": "001qTlIH0dGQpv",
+     "vid": "",
+     "rank": "33"
+    },
+    {
+     "title": "QUEDATE",
+     "singer": "bxkq",
+     "singers": [
+      {
+       "name": "bxkq",
+       "mid": "001kgmeq3LYGit"
+      }
+     ],
+     "album": "QUEDATE",
+     "duration": 109,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001P6Co21HT61j.jpg",
+     "mid": "004BTT0n4I431P",
+     "albummid": "001P6Co21HT61j",
+     "vid": "",
+     "rank": "34"
+    },
+    {
+     "title": "clean slate",
+     "singer": "girl in red",
+     "singers": [
+      {
+       "name": "girl in red",
+       "mid": "002YYg9p3QgFKh"
+      }
+     ],
+     "album": "BLUE",
+     "duration": 190,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004Iifcp2DYCw0.jpg",
+     "mid": "001loHCN1iS4Bj",
+     "albummid": "004Iifcp2DYCw0",
+     "vid": "",
+     "rank": "35"
+    },
+    {
+     "title": "The Girl Of Your Dreams",
+     "singer": "Ashe",
+     "singers": [
+      {
+       "name": "Ashe",
+       "mid": "001Fw6BU1WNggV"
+      }
+     ],
+     "album": "The Girl Of Your Dreams (Explicit)",
+     "duration": 187,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001rTxZy00EllR.jpg",
+     "mid": "001sFXmO4AWbeF",
+     "albummid": "001rTxZy00EllR",
+     "vid": "",
+     "rank": "36"
+    },
+    {
+     "title": "Choosin' Texas",
+     "singer": "Mentol",
+     "singers": [
+      {
+       "name": "Mentol",
+       "mid": "000Ap73N1geBqH"
+      }
+     ],
+     "album": "Choosin' Texas",
+     "duration": 156,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002QhAty0R0q7q.jpg",
+     "mid": "000BP0Rb0Mfr7I",
+     "albummid": "002QhAty0R0q7q",
+     "vid": "",
+     "rank": "37"
+    },
+    {
+     "title": "Crimson Sky",
+     "singer": "Helluva Boss/Harvey Guillén/Bryce Pinkham",
+     "singers": [
+      {
+       "name": "Helluva Boss",
+       "mid": "002azsIi0dCNdp"
+      },
+      {
+       "name": "Harvey Guillén",
+       "mid": "004E4zoG1h3JU8"
+      },
+      {
+       "name": "Bryce Pinkham",
+       "mid": "000v0gVQ0GAeJK"
+      }
+     ],
+     "album": "Helluva Boss: Season Three, Part 1 (Episodes 4-5)",
+     "duration": 192,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000026dPzm25QKV0.jpg",
+     "mid": "003r4MhN1rEhV2",
+     "albummid": "0026dPzm25QKV0",
+     "vid": "",
+     "rank": "38"
+    },
+    {
+     "title": "INDIAN SUMMER",
+     "singer": "Alan Walker/KIDDO",
+     "singers": [
+      {
+       "name": "Alan Walker",
+       "mid": "0020PeOh4ZaCw1"
+      },
+      {
+       "name": "KIDDO",
+       "mid": "003y3BhU07qrcq"
+      }
+     ],
+     "album": "INDIAN SUMMER",
+     "duration": 198,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000qPsZp43S0ff.jpg",
+     "mid": "001ftgq416N0yp",
+     "albummid": "000qPsZp43S0ff",
+     "vid": "",
+     "rank": "39"
+    },
+    {
+     "title": "petal (a cappella)",
+     "singer": "Ariana Grande",
+     "singers": [
+      {
+       "name": "Ariana Grande",
+       "mid": "004eTCF03KvBOE"
+      }
+     ],
+     "album": "petal",
+     "duration": 174,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003NG91X30DsWi.jpg",
+     "mid": "0021TAux0AreMU",
+     "albummid": "003NG91X30DsWi",
+     "vid": "",
+     "rank": "40"
+    },
+    {
+     "title": "Love Bomb",
+     "singer": "Ashe",
+     "singers": [
+      {
+       "name": "Ashe",
+       "mid": "001Fw6BU1WNggV"
+      }
+     ],
+     "album": "The Girl Of Your Dreams (Explicit)",
+     "duration": 204,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001rTxZy00EllR.jpg",
+     "mid": "0042VR223IL2mp",
+     "albummid": "001rTxZy00EllR",
+     "vid": "",
+     "rank": "41"
+    },
+    {
+     "title": "I'M A BLACKHOLE (STAR) (Explicit)",
+     "singer": "Odetari",
+     "singers": [
+      {
+       "name": "Odetari",
+       "mid": "000wHZ564DisFv"
+      }
+     ],
+     "album": "PHAZON VARIA (Explicit)",
+     "duration": 198,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003IKV3t4QSDvf.jpg",
+     "mid": "003uySrw0SbjIk",
+     "albummid": "003IKV3t4QSDvf",
+     "vid": "",
+     "rank": "42"
     },
     {
      "title": "Flower In A Hurricane (feat. Tame Impala, SZA, King Gizzard & the Lizard Wizard) [from GTAVI]",
@@ -15575,104 +16803,32 @@
      "mid": "000BHOdJ1qneiP",
      "albummid": "003UWaLv0Th6GR",
      "vid": "",
-     "rank": "27"
+     "rank": "43"
     },
     {
-     "title": "Bye Bye Inhibitions",
-     "singer": "Alok/娜琏 (나연)/TWICE (트와이스)",
+     "title": "What Went Wrong",
+     "singer": "Helluva Boss/Barrett Wilbert Weed/Bryce Pinkham",
      "singers": [
       {
-       "name": "Alok",
-       "mid": "0034Quv21XbI9L"
+       "name": "Helluva Boss",
+       "mid": "002azsIi0dCNdp"
       },
       {
-       "name": "娜琏 (나연)",
-       "mid": "003bl58c4YGJis"
+       "name": "Barrett Wilbert Weed",
+       "mid": "000CWN4b1EHPYy"
       },
       {
-       "name": "TWICE (트와이스)",
-       "mid": "001p0vF44ewiwB"
+       "name": "Bryce Pinkham",
+       "mid": "000v0gVQ0GAeJK"
       }
      ],
-     "album": "Bye Bye Inhibitions",
-     "duration": 146,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002Xfmp41ALVyi.jpg",
-     "mid": "001IqQ762rXAcV",
-     "albummid": "002Xfmp41ALVyi",
+     "album": "Helluva Boss: Season Three, Part 1 (Original Soundtrack)",
+     "duration": 198,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000jIyos474Rft.jpg",
+     "mid": "001Psur32Ju8TZ",
+     "albummid": "000jIyos474Rft",
      "vid": "",
-     "rank": "28"
-    },
-    {
-     "title": "Lasso The Moon",
-     "singer": "Ashe",
-     "singers": [
-      {
-       "name": "Ashe",
-       "mid": "001Fw6BU1WNggV"
-      }
-     ],
-     "album": "The Girl Of Your Dreams (Explicit)",
-     "duration": 222,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001rTxZy00EllR.jpg",
-     "mid": "004cNt86424SZj",
-     "albummid": "001rTxZy00EllR",
-     "vid": "",
-     "rank": "29"
-    },
-    {
-     "title": "Lonely（DJ2026）",
-     "singer": "Acreix/La Mer",
-     "singers": [
-      {
-       "name": "Acreix",
-       "mid": "0046tUuY0UhoZy"
-      },
-      {
-       "name": "La Mer",
-       "mid": "000IjThf0CevJv"
-      }
-     ],
-     "album": "You Are All I Need（唯一）",
-     "duration": 125,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004dn6Lz1DBvyh.jpg",
-     "mid": "003zvDQa1Sqnra",
-     "albummid": "004dn6Lz1DBvyh",
-     "vid": "",
-     "rank": "30"
-    },
-    {
-     "title": "Baby",
-     "singer": "The Chainsmokers",
-     "singers": [
-      {
-       "name": "The Chainsmokers",
-       "mid": "004ABIFV1EZUAj"
-      }
-     ],
-     "album": "Baby",
-     "duration": 228,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001i6w9b4K1x96.jpg",
-     "mid": "002CJL1d2BojmI",
-     "albummid": "001i6w9b4K1x96",
-     "vid": "",
-     "rank": "31"
-    },
-    {
-     "title": "KEEP MOVING (Explicit)",
-     "singer": "NEFFEX",
-     "singers": [
-      {
-       "name": "NEFFEX",
-       "mid": "000aElNc2slB40"
-      }
-     ],
-     "album": "KEEP MOVING (Explicit)",
-     "duration": 150,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000022l7rB2HAoFp.jpg",
-     "mid": "000TkGwA12x958",
-     "albummid": "0022l7rB2HAoFp",
-     "vid": "",
-     "rank": "32"
+     "rank": "44"
     },
     {
      "title": "Unloveu (Explicit)",
@@ -15689,375 +16845,7 @@
      "mid": "000Ek2Tf1PMdou",
      "albummid": "000SrIOi4QrsLP",
      "vid": "",
-     "rank": "33"
-    },
-    {
-     "title": "FF (Explicit)",
-     "singer": "Troye Sivan",
-     "singers": [
-      {
-       "name": "Troye Sivan",
-       "mid": "004LhKMW2CWJox"
-      }
-     ],
-     "album": "She’s the Best (Explicit)",
-     "duration": 262,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
-     "mid": "001GjuRW4cAl1l",
-     "albummid": "002eygU92yDRl8",
-     "vid": "",
-     "rank": "34"
-    },
-    {
-     "title": "Hystérique (Explicit)",
-     "singer": "yeule",
-     "singers": [
-      {
-       "name": "yeule",
-       "mid": "002lVaj83PvTNe"
-      }
-     ],
-     "album": "Hystérique (Explicit)",
-     "duration": 229,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000028QM2w2pkERX.jpg",
-     "mid": "000cdUVI2nvrIA",
-     "albummid": "0028QM2w2pkERX",
-     "vid": "",
-     "rank": "35"
-    },
-    {
-     "title": "Tom and Jerry",
-     "singer": "John Mayer",
-     "singers": [
-      {
-       "name": "John Mayer",
-       "mid": "002a7qwy2WuP81"
-      }
-     ],
-     "album": "Tom and Jerry",
-     "duration": 231,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002hMMkA4965bI.jpg",
-     "mid": "002karzY2osFis",
-     "albummid": "002hMMkA4965bI",
-     "vid": "",
-     "rank": "36"
-    },
-    {
-     "title": "Canada Dry",
-     "singer": "Troye Sivan",
-     "singers": [
-      {
-       "name": "Troye Sivan",
-       "mid": "004LhKMW2CWJox"
-      }
-     ],
-     "album": "She’s the Best (Explicit)",
-     "duration": 201,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
-     "mid": "003jZtJm1WzYCm",
-     "albummid": "002eygU92yDRl8",
-     "vid": "",
-     "rank": "37"
-    },
-    {
-     "title": "Sweet Dreams",
-     "singer": "TommyMuzzic/Luke Muzzic",
-     "singers": [
-      {
-       "name": "TommyMuzzic",
-       "mid": "0009UBrt4Cf94n"
-      },
-      {
-       "name": "Luke Muzzic",
-       "mid": "0006POS31D0533"
-      }
-     ],
-     "album": "Sweet Dreams",
-     "duration": 211,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001pLcTK2YWOck.jpg",
-     "mid": "000VLjEk3XPta5",
-     "albummid": "001pLcTK2YWOck",
-     "vid": "",
-     "rank": "38"
-    },
-    {
-     "title": "Remember My Name",
-     "singer": "KEiiNO",
-     "singers": [
-      {
-       "name": "KEiiNO",
-       "mid": "000lVCev10pEya"
-      }
-     ],
-     "album": "Remember My Name",
-     "duration": 172,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003e0t1N2VKjor.jpg",
-     "mid": "000XJtYV15ZYf2",
-     "albummid": "003e0t1N2VKjor",
-     "vid": "",
-     "rank": "39"
-    },
-    {
-     "title": "All On You",
-     "singer": "Jack & Jack",
-     "singers": [
-      {
-       "name": "Jack & Jack",
-       "mid": "002EZ1cY29BTS3"
-      }
-     ],
-     "album": "All On You",
-     "duration": 129,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001uhaBs0RkEUK.jpg",
-     "mid": "000zND184GZLET",
-     "albummid": "001uhaBs0RkEUK",
-     "vid": "",
-     "rank": "40"
-    },
-    {
-     "title": "Muse",
-     "singer": "John Legend/Pharrell Williams",
-     "singers": [
-      {
-       "name": "John Legend",
-       "mid": "004KzHvS46zsGB"
-      },
-      {
-       "name": "Pharrell Williams",
-       "mid": "002hS4v82pFsLP"
-      }
-     ],
-     "album": "Muse (Explicit)",
-     "duration": 163,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003gGJD30POgn6.jpg",
-     "mid": "004aUCI00yZlTK",
-     "albummid": "003gGJD30POgn6",
-     "vid": "",
-     "rank": "41"
-    },
-    {
-     "title": "Dirty Bird",
-     "singer": "Helluva Boss/Bryce Pinkham/Brandon Rogers",
-     "singers": [
-      {
-       "name": "Helluva Boss",
-       "mid": "002azsIi0dCNdp"
-      },
-      {
-       "name": "Bryce Pinkham",
-       "mid": "000v0gVQ0GAeJK"
-      },
-      {
-       "name": "Brandon Rogers",
-       "mid": "004a0LkY0jQaAp"
-      }
-     ],
-     "album": "Helluva Boss: Season Three, Part 1 (Episodes 1-3)",
-     "duration": 109,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001DqMzy4SQe38.jpg",
-     "mid": "0025KXOw4DiLTL",
-     "albummid": "001DqMzy4SQe38",
-     "vid": "",
-     "rank": "42"
-    },
-    {
-     "title": "Patient Zero (Acoustic Version)",
-     "singer": "Taylor Swift",
-     "singers": [
-      {
-       "name": "Taylor Swift",
-       "mid": "000qrPik2w6lDr"
-      }
-     ],
-     "album": "Patient Zero",
-     "duration": 235,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001C8UWU2ytX8g.jpg",
-     "mid": "002YOJBU0xEMJY",
-     "albummid": "001C8UWU2ytX8g",
-     "vid": "",
-     "rank": "43"
-    },
-    {
-     "title": "Free",
-     "singer": "Umar Keyn",
-     "singers": [
-      {
-       "name": "Umar Keyn",
-       "mid": "000Bj4Tj08ypPb"
-      }
-     ],
-     "album": "Free",
-     "duration": 194,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000ghL3G3sl4AS.jpg",
-     "mid": "001OMJ8J1SDqT1",
-     "albummid": "000ghL3G3sl4AS",
-     "vid": "",
-     "rank": "44"
-    },
-    {
-     "title": "Solace Feat. Emily Vaughn",
-     "singer": "Vicetone/Emily Vaughn",
-     "singers": [
-      {
-       "name": "Vicetone",
-       "mid": "003AD17D4PYPFR"
-      },
-      {
-       "name": "Emily Vaughn",
-       "mid": "002C1P5U3cc1CO"
-      }
-     ],
-     "album": "Solace Feat. Emily Vaughn",
-     "duration": 166,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004GX8xd3jZRhi.jpg",
-     "mid": "002B9s1115OweP",
-     "albummid": "004GX8xd3jZRhi",
-     "vid": "",
      "rank": "45"
-    },
-    {
-     "title": "Momentum",
-     "singer": "Jake Miller",
-     "singers": [
-      {
-       "name": "Jake Miller",
-       "mid": "001dBswQ3gbvwT"
-      }
-     ],
-     "album": "Momentum",
-     "duration": 165,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002CU2cW0vha6o.jpg",
-     "mid": "002YmPqj16QXLt",
-     "albummid": "002CU2cW0vha6o",
-     "vid": "",
-     "rank": "46"
-    },
-    {
-     "title": "Love So Big It Hurts (Explicit)",
-     "singer": "Troye Sivan",
-     "singers": [
-      {
-       "name": "Troye Sivan",
-       "mid": "004LhKMW2CWJox"
-      }
-     ],
-     "album": "She’s the Best (Explicit)",
-     "duration": 167,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
-     "mid": "004cHeJW3ceKXp",
-     "albummid": "002eygU92yDRl8",
-     "vid": "",
-     "rank": "47"
-    },
-    {
-     "title": "C.R.E.A.M. (Call of Duty: Modern Warfare 4 Remix|Explicit)",
-     "singer": "Wu-Tang Clan/Jay Park/E SENS (이센스)",
-     "singers": [
-      {
-       "name": "Wu-Tang Clan",
-       "mid": "000I0MZL4cTYwJ"
-      },
-      {
-       "name": "Jay Park",
-       "mid": "003DuVMi2DpS6B"
-      },
-      {
-       "name": "E SENS (이센스)",
-       "mid": "000v4xeE2vHDCu"
-      }
-     ],
-     "album": "C.R.E.A.M. (Call of Duty: Modern Warfare 4 Remix) [Explicit]",
-     "duration": 205,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001aWriS1F0kRL.jpg",
-     "mid": "001XBOVK49sEV9",
-     "albummid": "001aWriS1F0kRL",
-     "vid": "",
-     "rank": "48"
-    },
-    {
-     "title": "Embarrassingly (Explicit)",
-     "singer": "Troye Sivan",
-     "singers": [
-      {
-       "name": "Troye Sivan",
-       "mid": "004LhKMW2CWJox"
-      }
-     ],
-     "album": "She’s the Best (Explicit)",
-     "duration": 211,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
-     "mid": "002s3SlW2QM2ax",
-     "albummid": "002eygU92yDRl8",
-     "vid": "",
-     "rank": "49"
-    },
-    {
-     "title": "i lied, i'm not okay",
-     "singer": "Appleby",
-     "singers": [
-      {
-       "name": "Appleby",
-       "mid": "000u1WVv1VTXZT"
-      }
-     ],
-     "album": "i lied, i'm not okay (Explicit)",
-     "duration": 182,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Cvt8G4Fe3by.jpg",
-     "mid": "003q1sCB3HRE5m",
-     "albummid": "001Cvt8G4Fe3by",
-     "vid": "",
-     "rank": "50"
-    },
-    {
-     "title": "OKAY",
-     "singer": "Appleby",
-     "singers": [
-      {
-       "name": "Appleby",
-       "mid": "000u1WVv1VTXZT"
-      }
-     ],
-     "album": "i lied, i'm not okay (Explicit)",
-     "duration": 156,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Cvt8G4Fe3by.jpg",
-     "mid": "0027XjNt2fJt2M",
-     "albummid": "001Cvt8G4Fe3by",
-     "vid": "",
-     "rank": "51"
-    },
-    {
-     "title": "Stay Close",
-     "singer": "Imazee",
-     "singers": [
-      {
-       "name": "Imazee",
-       "mid": "001TlfHN1SJ0ld"
-      }
-     ],
-     "album": "Stay Close",
-     "duration": 250,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004fGgNd0NoDWJ.jpg",
-     "mid": "001JJdsm2julBm",
-     "albummid": "004fGgNd0NoDWJ",
-     "vid": "",
-     "rank": "52"
-    },
-    {
-     "title": "Choosin' Texas",
-     "singer": "Mentol",
-     "singers": [
-      {
-       "name": "Mentol",
-       "mid": "000Ap73N1geBqH"
-      }
-     ],
-     "album": "Choosin' Texas",
-     "duration": 156,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002QhAty0R0q7q.jpg",
-     "mid": "000BP0Rb0Mfr7I",
-     "albummid": "002QhAty0R0q7q",
-     "vid": "",
-     "rank": "53"
     },
     {
      "title": "Icarus",
@@ -16078,7 +16866,104 @@
      "mid": "0034rPF24LTGks",
      "albummid": "004eZatY4NdMEW",
      "vid": "",
-     "rank": "54"
+     "rank": "46"
+    },
+    {
+     "title": "Crimson Sky",
+     "singer": "Helluva Boss/Harvey Guillén/Bryce Pinkham",
+     "singers": [
+      {
+       "name": "Helluva Boss",
+       "mid": "002azsIi0dCNdp"
+      },
+      {
+       "name": "Harvey Guillén",
+       "mid": "004E4zoG1h3JU8"
+      },
+      {
+       "name": "Bryce Pinkham",
+       "mid": "000v0gVQ0GAeJK"
+      }
+     ],
+     "album": "Helluva Boss: Season Three, Part 1 (Original Soundtrack)",
+     "duration": 192,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000jIyos474Rft.jpg",
+     "mid": "001nGanW3rilim",
+     "albummid": "000jIyos474Rft",
+     "vid": "",
+     "rank": "47"
+    },
+    {
+     "title": "Canada Dry",
+     "singer": "Troye Sivan",
+     "singers": [
+      {
+       "name": "Troye Sivan",
+       "mid": "004LhKMW2CWJox"
+      }
+     ],
+     "album": "She’s the Best (Explicit)",
+     "duration": 201,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
+     "mid": "003jZtJm1WzYCm",
+     "albummid": "002eygU92yDRl8",
+     "vid": "",
+     "rank": "48"
+    },
+    {
+     "title": "He's Not Me",
+     "singer": "Anson Seabra",
+     "singers": [
+      {
+       "name": "Anson Seabra",
+       "mid": "001f0ufU3ddN8w"
+      }
+     ],
+     "album": "He's Not Me",
+     "duration": 186,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003MsT3j37yqxD.jpg",
+     "mid": "00179xMq1xAvS0",
+     "albummid": "003MsT3j37yqxD",
+     "vid": "",
+     "rank": "49"
+    },
+    {
+     "title": "U Just A Lil",
+     "singer": "BEAUZ/OBS",
+     "singers": [
+      {
+       "name": "BEAUZ",
+       "mid": "002h7GUY01YCG9"
+      },
+      {
+       "name": "OBS",
+       "mid": "001Qo3jH1LxoSw"
+      }
+     ],
+     "album": "U Just A Lil",
+     "duration": 134,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003I0NFJ3aQZyG.jpg",
+     "mid": "001SHGVN3q7yHm",
+     "albummid": "003I0NFJ3aQZyG",
+     "vid": "",
+     "rank": "50"
+    },
+    {
+     "title": "Archangel",
+     "singer": "Besomorph",
+     "singers": [
+      {
+       "name": "Besomorph",
+       "mid": "000r4yx22lAcz0"
+      }
+     ],
+     "album": "Archangel",
+     "duration": 225,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002H5Nea2e1AEP.jpg",
+     "mid": "001uVBWl1kHBCM",
+     "albummid": "002H5Nea2e1AEP",
+     "vid": "",
+     "rank": "51"
     },
     {
      "title": "NO PUEDO PARAR",
@@ -16095,27 +16980,116 @@
      "mid": "004SkmHD0KXnzv",
      "albummid": "001VVhhK43TZOr",
      "vid": "",
+     "rank": "52"
+    },
+    {
+     "title": "Momentum",
+     "singer": "Jake Miller",
+     "singers": [
+      {
+       "name": "Jake Miller",
+       "mid": "001dBswQ3gbvwT"
+      }
+     ],
+     "album": "Momentum",
+     "duration": 165,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002CU2cW0vha6o.jpg",
+     "mid": "002YmPqj16QXLt",
+     "albummid": "002CU2cW0vha6o",
+     "vid": "",
+     "rank": "53"
+    },
+    {
+     "title": "Ringleader",
+     "singer": "Helluva Boss/Alex Brightman",
+     "singers": [
+      {
+       "name": "Helluva Boss",
+       "mid": "002azsIi0dCNdp"
+      },
+      {
+       "name": "Alex Brightman",
+       "mid": "000QTZLu1qrhrW"
+      }
+     ],
+     "album": "Helluva Boss: Season Three, Part 1 (Original Soundtrack)",
+     "duration": 241,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000jIyos474Rft.jpg",
+     "mid": "002YcjKY1r5P2R",
+     "albummid": "000jIyos474Rft",
+     "vid": "",
+     "rank": "54"
+    },
+    {
+     "title": "WHITE KEYS",
+     "singer": "Dominic Fike",
+     "singers": [
+      {
+       "name": "Dominic Fike",
+       "mid": "000gHvO93CGFZJ"
+      }
+     ],
+     "album": "HOW TO QUIT SMOKING (Explicit)",
+     "duration": 144,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003iOLZH0O3fa2.jpg",
+     "mid": "002XSPup0C3fpd",
+     "albummid": "003iOLZH0O3fa2",
+     "vid": "",
      "rank": "55"
     },
     {
-     "title": "The Girl Of Your Dreams",
-     "singer": "Ashe",
+     "title": "High Hopes",
+     "singer": "Chris James",
      "singers": [
       {
-       "name": "Ashe",
-       "mid": "001Fw6BU1WNggV"
+       "name": "Chris James",
+       "mid": "003LMmjH0IpWY8"
       }
      ],
-     "album": "The Girl Of Your Dreams (Explicit)",
-     "duration": 187,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001rTxZy00EllR.jpg",
-     "mid": "001sFXmO4AWbeF",
-     "albummid": "001rTxZy00EllR",
+     "album": "LET THE LIGHT IN!",
+     "duration": 160,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000yuhTW0fzEBl.jpg",
+     "mid": "000I3xCf2RJmlx",
+     "albummid": "000yuhTW0fzEBl",
      "vid": "",
      "rank": "56"
     },
     {
-     "title": "She’s the Best (Explicit)",
+     "title": "worst case",
+     "singer": "girl in red",
+     "singers": [
+      {
+       "name": "girl in red",
+       "mid": "002YYg9p3QgFKh"
+      }
+     ],
+     "album": "BLUE",
+     "duration": 98,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004Iifcp2DYCw0.jpg",
+     "mid": "000VMQuf3lLMzL",
+     "albummid": "004Iifcp2DYCw0",
+     "vid": "",
+     "rank": "57"
+    },
+    {
+     "title": "And the crowd goes mild",
+     "singer": "Sasha Alex Sloan",
+     "singers": [
+      {
+       "name": "Sasha Alex Sloan",
+       "mid": "001B6mal3oslOR"
+      }
+     ],
+     "album": "And The Crowd Goes Mild (Explicit)",
+     "duration": 208,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
+     "mid": "001zBJku0UNBsk",
+     "albummid": "001qTlIH0dGQpv",
+     "vid": "",
+     "rank": "58"
+    },
+    {
+     "title": "FF (Explicit)",
      "singer": "Troye Sivan",
      "singers": [
       {
@@ -16124,29 +17098,29 @@
       }
      ],
      "album": "She’s the Best (Explicit)",
-     "duration": 254,
+     "duration": 262,
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
-     "mid": "003KNDXT1A9Wtx",
+     "mid": "001GjuRW4cAl1l",
      "albummid": "002eygU92yDRl8",
      "vid": "",
-     "rank": "57"
+     "rank": "59"
     },
     {
-     "title": "I'M A BLACKHOLE (STAR) (Explicit)",
-     "singer": "Odetari",
+     "title": "Always September",
+     "singer": "Ashe",
      "singers": [
       {
-       "name": "Odetari",
-       "mid": "000wHZ564DisFv"
+       "name": "Ashe",
+       "mid": "001Fw6BU1WNggV"
       }
      ],
-     "album": "I'M A BLACKHOLE (STAR) [Explicit]",
-     "duration": 198,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002RMZo52BC9tu.jpg",
-     "mid": "003Rmx5y1GfkYP",
-     "albummid": "002RMZo52BC9tu",
+     "album": "The Girl Of Your Dreams (Explicit)",
+     "duration": 220,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001rTxZy00EllR.jpg",
+     "mid": "002FKJbo03WfVp",
+     "albummid": "001rTxZy00EllR",
      "vid": "",
-     "rank": "58"
+     "rank": "60"
     },
     {
      "title": "You Are My Home Tonight",
@@ -16171,7 +17145,227 @@
      "mid": "001W00dG13nYDx",
      "albummid": "000MBTol2gTCAq",
      "vid": "",
-     "rank": "59"
+     "rank": "61"
+    },
+    {
+     "title": "Dirty Bird",
+     "singer": "Helluva Boss/Bryce Pinkham/Brandon Rogers",
+     "singers": [
+      {
+       "name": "Helluva Boss",
+       "mid": "002azsIi0dCNdp"
+      },
+      {
+       "name": "Bryce Pinkham",
+       "mid": "000v0gVQ0GAeJK"
+      },
+      {
+       "name": "Brandon Rogers",
+       "mid": "004a0LkY0jQaAp"
+      }
+     ],
+     "album": "Helluva Boss: Season Three, Part 1 (Episodes 1-3)",
+     "duration": 109,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001DqMzy4SQe38.jpg",
+     "mid": "0025KXOw4DiLTL",
+     "albummid": "001DqMzy4SQe38",
+     "vid": "",
+     "rank": "62"
+    },
+    {
+     "title": "Jamie (Explicit)",
+     "singer": "Remi Wolf",
+     "singers": [
+      {
+       "name": "Remi Wolf",
+       "mid": "004Clo4a1UXSaQ"
+      }
+     ],
+     "album": "Mud (Explicit)",
+     "duration": 306,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000011AlqH099JXg.jpg",
+     "mid": "003gxeta2f1KPq",
+     "albummid": "0011AlqH099JXg",
+     "vid": "",
+     "rank": "63"
+    },
+    {
+     "title": "NOBODY'S HERO",
+     "singer": "Ari Abdul",
+     "singers": [
+      {
+       "name": "Ari Abdul",
+       "mid": "0030I0CA25XyAa"
+      }
+     ],
+     "album": "NOBODY'S HERO",
+     "duration": 199,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000007oEtI3XTnLx.jpg",
+     "mid": "000Uw5eF4e7fT8",
+     "albummid": "0007oEtI3XTnLx",
+     "vid": "",
+     "rank": "64"
+    },
+    {
+     "title": "Cowboy",
+     "singer": "Troye Sivan",
+     "singers": [
+      {
+       "name": "Troye Sivan",
+       "mid": "004LhKMW2CWJox"
+      }
+     ],
+     "album": "She’s the Best (Explicit)",
+     "duration": 204,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
+     "mid": "0000AXk60nxKcO",
+     "albummid": "002eygU92yDRl8",
+     "vid": "",
+     "rank": "65"
+    },
+    {
+     "title": "Love So Big It Hurts (Explicit)",
+     "singer": "Troye Sivan",
+     "singers": [
+      {
+       "name": "Troye Sivan",
+       "mid": "004LhKMW2CWJox"
+      }
+     ],
+     "album": "She’s the Best (Explicit)",
+     "duration": 167,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
+     "mid": "004cHeJW3ceKXp",
+     "albummid": "002eygU92yDRl8",
+     "vid": "",
+     "rank": "66"
+    },
+    {
+     "title": "petal (a cappella) (Explicit)",
+     "singer": "Ariana Grande",
+     "singers": [
+      {
+       "name": "Ariana Grande",
+       "mid": "004eTCF03KvBOE"
+      }
+     ],
+     "album": "petal (Explicit)",
+     "duration": 174,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000037imbo2QFhJR.jpg",
+     "mid": "000XQdJj4UimAP",
+     "albummid": "0037imbo2QFhJR",
+     "vid": "",
+     "rank": "67"
+    },
+    {
+     "title": "C.R.E.A.M. (Call of Duty: Modern Warfare 4 Remix|Explicit)",
+     "singer": "Wu-Tang Clan/Jay Park/E SENS (이센스)",
+     "singers": [
+      {
+       "name": "Wu-Tang Clan",
+       "mid": "000I0MZL4cTYwJ"
+      },
+      {
+       "name": "Jay Park",
+       "mid": "003DuVMi2DpS6B"
+      },
+      {
+       "name": "E SENS (이센스)",
+       "mid": "000v4xeE2vHDCu"
+      }
+     ],
+     "album": "C.R.E.A.M. (Call of Duty: Modern Warfare 4 Remix) [Explicit]",
+     "duration": 205,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001aWriS1F0kRL.jpg",
+     "mid": "001XBOVK49sEV9",
+     "albummid": "001aWriS1F0kRL",
+     "vid": "",
+     "rank": "68"
+    },
+    {
+     "title": "Lead The Way (1997 Version)",
+     "singer": "Mariah Carey",
+     "singers": [
+      {
+       "name": "Mariah Carey",
+       "mid": "000zzzra2D2Stn"
+      }
+     ],
+     "album": "Glitter (Deluxe Edition)",
+     "duration": 232,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000049f3Y408GdiI.jpg",
+     "mid": "000PwSbn4eeVa5",
+     "albummid": "0049f3Y408GdiI",
+     "vid": "",
+     "rank": "69"
+    },
+    {
+     "title": "Good Enough",
+     "singer": "Chris James",
+     "singers": [
+      {
+       "name": "Chris James",
+       "mid": "003LMmjH0IpWY8"
+      }
+     ],
+     "album": "LET THE LIGHT IN!",
+     "duration": 136,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000yuhTW0fzEBl.jpg",
+     "mid": "0048V2fV31Wrl5",
+     "albummid": "000yuhTW0fzEBl",
+     "vid": "",
+     "rank": "70"
+    },
+    {
+     "title": "i lied, i'm not okay",
+     "singer": "Appleby",
+     "singers": [
+      {
+       "name": "Appleby",
+       "mid": "000u1WVv1VTXZT"
+      }
+     ],
+     "album": "i lied, i'm not okay (Explicit)",
+     "duration": 182,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Cvt8G4Fe3by.jpg",
+     "mid": "003q1sCB3HRE5m",
+     "albummid": "001Cvt8G4Fe3by",
+     "vid": "",
+     "rank": "71"
+    },
+    {
+     "title": "Casual Crime",
+     "singer": "Lyn Lapid",
+     "singers": [
+      {
+       "name": "Lyn Lapid",
+       "mid": "003yQIuq2xnt25"
+      }
+     ],
+     "album": "Casual Crime",
+     "duration": 155,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000us7OS19y7cu.jpg",
+     "mid": "000XtjJk1n6pgA",
+     "albummid": "000us7OS19y7cu",
+     "vid": "",
+     "rank": "72"
+    },
+    {
+     "title": "Still be me",
+     "singer": "Sasha Alex Sloan",
+     "singers": [
+      {
+       "name": "Sasha Alex Sloan",
+       "mid": "001B6mal3oslOR"
+      }
+     ],
+     "album": "And The Crowd Goes Mild (Explicit)",
+     "duration": 202,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
+     "mid": "003geVNc3wkWmA",
+     "albummid": "001qTlIH0dGQpv",
+     "vid": "",
+     "rank": "73"
     },
     {
      "title": "All I Ask Of You (The Andrew Lloyd Webber 2026 Mix)",
@@ -16200,134 +17394,109 @@
      "mid": "002DELxP3Cyt84",
      "albummid": "001l10kW2M4FoY",
      "vid": "",
-     "rank": "60"
+     "rank": "74"
     },
     {
-     "title": "That's Why I Love You",
-     "singer": "Victoria Monét/Bruno Mars",
+     "title": "Patient Zero (Acoustic Version)",
+     "singer": "Taylor Swift",
      "singers": [
       {
-       "name": "Victoria Monét",
-       "mid": "004VM6II2gjUAJ"
-      },
-      {
-       "name": "Bruno Mars",
-       "mid": "001F1svH2tTpsC"
+       "name": "Taylor Swift",
+       "mid": "000qrPik2w6lDr"
       }
      ],
-     "album": "Frequency Of Love (Explicit)",
-     "duration": 278,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001gq4e43Iruv5.jpg",
-     "mid": "0048jiXk1UxN96",
-     "albummid": "001gq4e43Iruv5",
+     "album": "Patient Zero",
+     "duration": 235,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001C8UWU2ytX8g.jpg",
+     "mid": "002YOJBU0xEMJY",
+     "albummid": "001C8UWU2ytX8g",
      "vid": "",
-     "rank": "61"
+     "rank": "75"
     },
     {
-     "title": "Still Falling For You (From \"Bridget Jones's Baby\")",
-     "singer": "Ellie Goulding",
+     "title": "Stop The Wedding!",
+     "singer": "Ashe",
      "singers": [
       {
-       "name": "Ellie Goulding",
-       "mid": "001YMoro1NL5hU"
+       "name": "Ashe",
+       "mid": "001Fw6BU1WNggV"
       }
      ],
-     "album": "Happy Sad Songs (Explicit)",
-     "duration": 240,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001xhnax0UKzHk.jpg",
-     "mid": "002tOmzE0WhTI4",
-     "albummid": "001xhnax0UKzHk",
+     "album": "The Girl Of Your Dreams (Explicit)",
+     "duration": 199,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001rTxZy00EllR.jpg",
+     "mid": "000n2oze2UNXqt",
+     "albummid": "001rTxZy00EllR",
      "vid": "",
-     "rank": "62"
+     "rank": "76"
     },
     {
-     "title": "Love Never Left",
-     "singer": "Imazee",
+     "title": "Regularly Scheduled Program",
+     "singer": "Emei",
      "singers": [
       {
-       "name": "Imazee",
-       "mid": "001TlfHN1SJ0ld"
+       "name": "Emei",
+       "mid": "000kxHnP0s9ZPx"
       }
      ],
-     "album": "Love Never Left",
-     "duration": 258,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000028B5nV09dkbt.jpg",
-     "mid": "003Ssms523iCil",
-     "albummid": "0028B5nV09dkbt",
+     "album": "Night at the Opera: Intermission (Explicit)",
+     "duration": 129,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003plI6I2UoDvv.jpg",
+     "mid": "001uLYo10hd6N3",
+     "albummid": "003plI6I2UoDvv",
      "vid": "",
-     "rank": "63"
+     "rank": "77"
     },
     {
-     "title": "We Were Young",
-     "singer": "Umar Keyn",
+     "title": "missing person",
+     "singer": "girl in red",
      "singers": [
       {
-       "name": "Umar Keyn",
-       "mid": "000Bj4Tj08ypPb"
+       "name": "girl in red",
+       "mid": "002YYg9p3QgFKh"
       }
      ],
-     "album": "We Were Young",
+     "album": "BLUE",
+     "duration": 180,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004Iifcp2DYCw0.jpg",
+     "mid": "003wxijA2SMEgQ",
+     "albummid": "004Iifcp2DYCw0",
+     "vid": "",
+     "rank": "78"
+    },
+    {
+     "title": "On The Floor",
+     "singer": "Westwood",
+     "singers": [
+      {
+       "name": "Westwood",
+       "mid": "001mXhrN25GLpK"
+      }
+     ],
+     "album": "Luxury (Explicit)",
      "duration": 214,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001AFIZI3q1k0x.jpg",
-     "mid": "001qcm7l2UfyhL",
-     "albummid": "001AFIZI3q1k0x",
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000N5R0b2dfsUt.jpg",
+     "mid": "002jNLEz4XSgtb",
+     "albummid": "000N5R0b2dfsUt",
      "vid": "",
-     "rank": "64"
+     "rank": "79"
     },
     {
-     "title": "Cowboy",
-     "singer": "Troye Sivan",
+     "title": "Tom and Jerry",
+     "singer": "John Mayer",
      "singers": [
       {
-       "name": "Troye Sivan",
-       "mid": "004LhKMW2CWJox"
+       "name": "John Mayer",
+       "mid": "002a7qwy2WuP81"
       }
      ],
-     "album": "She’s the Best (Explicit)",
-     "duration": 204,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
-     "mid": "0000AXk60nxKcO",
-     "albummid": "002eygU92yDRl8",
+     "album": "Tom and Jerry",
+     "duration": 231,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002hMMkA4965bI.jpg",
+     "mid": "002karzY2osFis",
+     "albummid": "002hMMkA4965bI",
      "vid": "",
-     "rank": "65"
-    },
-    {
-     "title": "Learning How to Love",
-     "singer": "Hoang/KnownAsNat",
-     "singers": [
-      {
-       "name": "Hoang",
-       "mid": "002Pgc2N3OJ588"
-      },
-      {
-       "name": "KnownAsNat",
-       "mid": "002K8gZl0QPtM9"
-      }
-     ],
-     "album": "Learning How to Love",
-     "duration": 197,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001uO3AK2AEn3h.jpg",
-     "mid": "001FRoMj2Hb80F",
-     "albummid": "001uO3AK2AEn3h",
-     "vid": "",
-     "rank": "66"
-    },
-    {
-     "title": "You Can't Run From Me",
-     "singer": "Rico Nasty",
-     "singers": [
-      {
-       "name": "Rico Nasty",
-       "mid": "003Xw0D02ZEgl1"
-      }
-     ],
-     "album": "Cyberpunk: Edgerunners 2 (Original Series Soundtrack)",
-     "duration": 234,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001PzzDx242qOo.jpg",
-     "mid": "004RA6601qFM4V",
-     "albummid": "001PzzDx242qOo",
-     "vid": "",
-     "rank": "67"
+     "rank": "80"
     },
     {
      "title": "Keeping score",
@@ -16344,41 +17513,49 @@
      "mid": "0045Wqma16LLpt",
      "albummid": "001qTlIH0dGQpv",
      "vid": "",
-     "rank": "68"
+     "rank": "81"
     },
     {
-     "title": "blue",
-     "singer": "girl in red",
+     "title": "On This Christmas (It Only Gets Better)",
+     "singer": "Sufjan Stevens",
      "singers": [
       {
-       "name": "girl in red",
-       "mid": "002YYg9p3QgFKh"
+       "name": "Sufjan Stevens",
+       "mid": "001tlnqA1W8BXm"
       }
      ],
-     "album": "BLUE",
-     "duration": 250,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004Iifcp2DYCw0.jpg",
-     "mid": "0033nhBb2ETtLd",
-     "albummid": "004Iifcp2DYCw0",
+     "album": "On This Christmas (It Only Gets Better)",
+     "duration": 202,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000NaRfy4GR5gs.jpg",
+     "mid": "003uQu5e3y2ZTv",
+     "albummid": "000NaRfy4GR5gs",
      "vid": "",
-     "rank": "69"
+     "rank": "82"
     },
     {
-     "title": "over this time",
-     "singer": "Haley Smalls",
+     "title": "No Baile",
+     "singer": "BEAUZ/Fahjah/NOTXERIUS",
      "singers": [
       {
-       "name": "Haley Smalls",
-       "mid": "003LlIFu2KzVx6"
+       "name": "BEAUZ",
+       "mid": "002h7GUY01YCG9"
+      },
+      {
+       "name": "Fahjah",
+       "mid": "000l8WGA2hObha"
+      },
+      {
+       "name": "NOTXERIUS",
+       "mid": "004YAF0U1ES5Bx"
       }
      ],
-     "album": "over this time",
-     "duration": 196,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003T9cUv2nypwi.jpg",
-     "mid": "001ErOPS2C9j5h",
-     "albummid": "003T9cUv2nypwi",
+     "album": "No Baile",
+     "duration": 124,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004E6veq1jsSdg.jpg",
+     "mid": "004MGr3R323Qj0",
+     "albummid": "004E6veq1jsSdg",
      "vid": "",
-     "rank": "70"
+     "rank": "83"
     },
     {
      "title": "Before You Know",
@@ -16399,7 +17576,45 @@
      "mid": "002JSHG02sAiJF",
      "albummid": "002oE94Y3fAHtT",
      "vid": "",
-     "rank": "71"
+     "rank": "84"
+    },
+    {
+     "title": "Learning How to Love",
+     "singer": "Hoang/KnownAsNat",
+     "singers": [
+      {
+       "name": "Hoang",
+       "mid": "002Pgc2N3OJ588"
+      },
+      {
+       "name": "KnownAsNat",
+       "mid": "002K8gZl0QPtM9"
+      }
+     ],
+     "album": "Learning How to Love",
+     "duration": 197,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001uO3AK2AEn3h.jpg",
+     "mid": "001FRoMj2Hb80F",
+     "albummid": "001uO3AK2AEn3h",
+     "vid": "",
+     "rank": "85"
+    },
+    {
+     "title": "Embarrassingly (Explicit)",
+     "singer": "Troye Sivan",
+     "singers": [
+      {
+       "name": "Troye Sivan",
+       "mid": "004LhKMW2CWJox"
+      }
+     ],
+     "album": "She’s the Best (Explicit)",
+     "duration": 211,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
+     "mid": "002s3SlW2QM2ax",
+     "albummid": "002eygU92yDRl8",
+     "vid": "",
+     "rank": "86"
     },
     {
      "title": "Yes",
@@ -16416,438 +17631,109 @@
      "mid": "002fGc1i2d8KH6",
      "albummid": "000Nhnvd1WfsKc",
      "vid": "",
-     "rank": "72"
-    },
-    {
-     "title": "Still be me",
-     "singer": "Sasha Alex Sloan",
-     "singers": [
-      {
-       "name": "Sasha Alex Sloan",
-       "mid": "001B6mal3oslOR"
-      }
-     ],
-     "album": "And The Crowd Goes Mild (Explicit)",
-     "duration": 202,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
-     "mid": "003geVNc3wkWmA",
-     "albummid": "001qTlIH0dGQpv",
-     "vid": "",
-     "rank": "73"
-    },
-    {
-     "title": "Fades Away (2026 Remix|Explicit)",
-     "singer": "Saukrates/Drake/King Reign/The BLK LT$",
-     "singers": [
-      {
-       "name": "Saukrates",
-       "mid": "001Q9Tup3OGRyq"
-      },
-      {
-       "name": "Drake",
-       "mid": "001FAb1d02xUcH"
-      },
-      {
-       "name": "King Reign",
-       "mid": "0007OLH91ny3nQ"
-      },
-      {
-       "name": "The BLK LT$",
-       "mid": "0024IsVO19Ic7J"
-      }
-     ],
-     "album": "Fades Away (2026 Remix) [Explicit]",
-     "duration": 204,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002NPKnD4E2PTe.jpg",
-     "mid": "001K4vMd316kW7",
-     "albummid": "002NPKnD4E2PTe",
-     "vid": "",
-     "rank": "74"
-    },
-    {
-     "title": "Way Too Late",
-     "singer": "Leony",
-     "singers": [
-      {
-       "name": "Leony",
-       "mid": "0014sx1s0zNrqV"
-      }
-     ],
-     "album": "Way Too Late",
-     "duration": 185,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qoaDT1YvRlD.jpg",
-     "mid": "000QObU02kB0TF",
-     "albummid": "001qoaDT1YvRlD",
-     "vid": "",
-     "rank": "75"
-    },
-    {
-     "title": "She'll Never Be Me",
-     "singer": "Britney Spears",
-     "singers": [
-      {
-       "name": "Britney Spears",
-       "mid": "002EYdg22Ts0BV"
-      }
-     ],
-     "album": "She'll Never Be Me",
-     "duration": 185,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000W1Hrf3LRXoT.jpg",
-     "mid": "003VhSJ33xCORj",
-     "albummid": "000W1Hrf3LRXoT",
-     "vid": "",
-     "rank": "76"
-    },
-    {
-     "title": "See You In My Dreams",
-     "singer": "Victoria Monét/SZA",
-     "singers": [
-      {
-       "name": "Victoria Monét",
-       "mid": "004VM6II2gjUAJ"
-      },
-      {
-       "name": "SZA",
-       "mid": "000Y8Ox33WKXcW"
-      }
-     ],
-     "album": "Frequency Of Love (Explicit)",
-     "duration": 158,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001gq4e43Iruv5.jpg",
-     "mid": "003p8Pam0OlPmf",
-     "albummid": "001gq4e43Iruv5",
-     "vid": "",
-     "rank": "77"
-    },
-    {
-     "title": "Got To Do",
-     "singer": "Disco Lines",
-     "singers": [
-      {
-       "name": "Disco Lines",
-       "mid": "0028fNUi058c6U"
-      }
-     ],
-     "album": "Got To Do",
-     "duration": 169,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001GP10v1PDqr4.jpg",
-     "mid": "003C9FKx02YMaZ",
-     "albummid": "001GP10v1PDqr4",
-     "vid": "",
-     "rank": "78"
-    },
-    {
-     "title": "clean slate",
-     "singer": "girl in red",
-     "singers": [
-      {
-       "name": "girl in red",
-       "mid": "002YYg9p3QgFKh"
-      }
-     ],
-     "album": "BLUE",
-     "duration": 190,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004Iifcp2DYCw0.jpg",
-     "mid": "001loHCN1iS4Bj",
-     "albummid": "004Iifcp2DYCw0",
-     "vid": "",
-     "rank": "79"
-    },
-    {
-     "title": "100 Ways",
-     "singer": "Conor Matthews",
-     "singers": [
-      {
-       "name": "Conor Matthews",
-       "mid": "003WickQ2HCTkB"
-      }
-     ],
-     "album": "100 Ways",
-     "duration": 205,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000014i0eW1FrqlO.jpg",
-     "mid": "0006U1uu3gFp7Q",
-     "albummid": "0014i0eW1FrqlO",
-     "vid": "",
-     "rank": "80"
-    },
-    {
-     "title": "Delusional optimism",
-     "singer": "Sasha Alex Sloan",
-     "singers": [
-      {
-       "name": "Sasha Alex Sloan",
-       "mid": "001B6mal3oslOR"
-      }
-     ],
-     "album": "And The Crowd Goes Mild (Explicit)",
-     "duration": 212,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
-     "mid": "001Hux2F4gBa4Z",
-     "albummid": "001qTlIH0dGQpv",
-     "vid": "",
-     "rank": "81"
-    },
-    {
-     "title": "What it isn’t",
-     "singer": "Sasha Alex Sloan",
-     "singers": [
-      {
-       "name": "Sasha Alex Sloan",
-       "mid": "001B6mal3oslOR"
-      }
-     ],
-     "album": "And The Crowd Goes Mild (Explicit)",
-     "duration": 160,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
-     "mid": "002qycci2na3vh",
-     "albummid": "001qTlIH0dGQpv",
-     "vid": "",
-     "rank": "82"
-    },
-    {
-     "title": "worst case",
-     "singer": "girl in red",
-     "singers": [
-      {
-       "name": "girl in red",
-       "mid": "002YYg9p3QgFKh"
-      }
-     ],
-     "album": "BLUE",
-     "duration": 98,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004Iifcp2DYCw0.jpg",
-     "mid": "000VMQuf3lLMzL",
-     "albummid": "004Iifcp2DYCw0",
-     "vid": "",
-     "rank": "83"
-    },
-    {
-     "title": "Tina Tuesday (Explicit)",
-     "singer": "Megan Thee Stallion",
-     "singers": [
-      {
-       "name": "Megan Thee Stallion",
-       "mid": "002HeUXZ0qWn23"
-      }
-     ],
-     "album": "Tina Tuesday Freestyles (Explicit)",
-     "duration": 110,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002UZcFd1iktHq.jpg",
-     "mid": "0003PNYL11RqyO",
-     "albummid": "002UZcFd1iktHq",
-     "vid": "",
-     "rank": "84"
-    },
-    {
-     "title": "blue",
-     "singer": "girl in red",
-     "singers": [
-      {
-       "name": "girl in red",
-       "mid": "002YYg9p3QgFKh"
-      }
-     ],
-     "album": "blue",
-     "duration": 250,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002pXUPR1c1tNN.jpg",
-     "mid": "001Ysszp0aUqsJ",
-     "albummid": "002pXUPR1c1tNN",
-     "vid": "",
-     "rank": "85"
-    },
-    {
-     "title": "Lost Time (Explicit)",
-     "singer": "Troye Sivan/Lily-Rose Depp",
-     "singers": [
-      {
-       "name": "Troye Sivan",
-       "mid": "004LhKMW2CWJox"
-      },
-      {
-       "name": "Lily-Rose Depp",
-       "mid": "003yF5813NN0qC"
-      }
-     ],
-     "album": "She’s the Best (Explicit)",
-     "duration": 240,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
-     "mid": "003Oo3LG2VxAoN",
-     "albummid": "002eygU92yDRl8",
-     "vid": "",
-     "rank": "86"
-    },
-    {
-     "title": "Love Bomb",
-     "singer": "Ashe",
-     "singers": [
-      {
-       "name": "Ashe",
-       "mid": "001Fw6BU1WNggV"
-      }
-     ],
-     "album": "The Girl Of Your Dreams (Explicit)",
-     "duration": 204,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001rTxZy00EllR.jpg",
-     "mid": "0042VR223IL2mp",
-     "albummid": "001rTxZy00EllR",
-     "vid": "",
      "rank": "87"
     },
     {
-     "title": "Love Me Like I Loved You",
-     "singer": "Imazee",
+     "title": "24hrs in Shanghai",
+     "singer": "Connor Price",
      "singers": [
       {
-       "name": "Imazee",
-       "mid": "001TlfHN1SJ0ld"
+       "name": "Connor Price",
+       "mid": "002QYZ5e42GJwb"
       }
      ],
-     "album": "Love Me Like I Loved You",
-     "duration": 253,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001ijUUn0pKUO1.jpg",
-     "mid": "000687PE1fgzL8",
-     "albummid": "001ijUUn0pKUO1",
+     "album": "24hrs in Shanghai",
+     "duration": 156,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000XMZg5336I1p.jpg",
+     "mid": "000iDgX34LKhaC",
+     "albummid": "000XMZg5336I1p",
      "vid": "",
      "rank": "88"
     },
     {
-     "title": "QUEDATE",
-     "singer": "bxkq",
+     "title": "Baby",
+     "singer": "The Chainsmokers",
      "singers": [
       {
-       "name": "bxkq",
-       "mid": "001kgmeq3LYGit"
+       "name": "The Chainsmokers",
+       "mid": "004ABIFV1EZUAj"
       }
      ],
-     "album": "QUEDATE",
-     "duration": 109,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001P6Co21HT61j.jpg",
-     "mid": "004BTT0n4I431P",
-     "albummid": "001P6Co21HT61j",
+     "album": "Baby",
+     "duration": 228,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001i6w9b4K1x96.jpg",
+     "mid": "002CJL1d2BojmI",
+     "albummid": "001i6w9b4K1x96",
      "vid": "",
      "rank": "89"
     },
     {
-     "title": "her (boy version)",
-     "singer": "ZVC/JVKE",
+     "title": "ED",
+     "singer": "Sasha Alex Sloan",
      "singers": [
       {
-       "name": "ZVC",
-       "mid": "000s8Sqp32G4A9"
-      },
-      {
-       "name": "JVKE",
-       "mid": "002npDu54NXkj5"
+       "name": "Sasha Alex Sloan",
+       "mid": "001B6mal3oslOR"
       }
      ],
-     "album": "her (boy version)",
-     "duration": 115,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000008g2yO0nEh1t.jpg",
-     "mid": "003PBeEc1O3YS8",
-     "albummid": "0008g2yO0nEh1t",
+     "album": "And The Crowd Goes Mild (Explicit)",
+     "duration": 187,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
+     "mid": "003GNe5S2OXetk",
+     "albummid": "001qTlIH0dGQpv",
      "vid": "",
      "rank": "90"
     },
     {
-     "title": "Apple Pie",
-     "singer": "Devin Kennedy",
+     "title": "5432ON",
+     "singer": "Lolo Zouaï",
      "singers": [
       {
-       "name": "Devin Kennedy",
-       "mid": "003juZmu2Pp51G"
+       "name": "Lolo Zouaï",
+       "mid": "000rbYZX0gNFYR"
       }
      ],
-     "album": "Apple Pie",
-     "duration": 129,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002JuEYt17ONDn.jpg",
-     "mid": "003uQ4Ex02et9R",
-     "albummid": "002JuEYt17ONDn",
+     "album": "5432ON",
+     "duration": 136,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003BdRSu0Aax4b.jpg",
+     "mid": "0014kXQ40qmKwP",
+     "albummid": "003BdRSu0Aax4b",
      "vid": "",
      "rank": "91"
     },
     {
-     "title": "Knockin (feat. The Paradox) (Explicit)",
-     "singer": "Lucky Daye/Muni Long/The Paradox",
+     "title": "Meant to be (Between Steps : Original Television Soundtrack)",
+     "singer": "Rachael Yamagata",
      "singers": [
       {
-       "name": "Lucky Daye",
-       "mid": "001PoWU21yo705"
-      },
-      {
-       "name": "Muni Long",
-       "mid": "002M5IuP2j66wj"
-      },
-      {
-       "name": "The Paradox",
-       "mid": "003OenWj1KmWwm"
+       "name": "Rachael Yamagata",
+       "mid": "0006Gn0i0HQ4t2"
       }
      ],
-     "album": "Knockin (feat. The Paradox) [Explicit]",
-     "duration": 198,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000MjJt33dghI3.jpg",
-     "mid": "002gSsq02Lselo",
-     "albummid": "000MjJt33dghI3",
+     "album": "연애박사 OST Part.4 (Between Steps, Pt. 4 (Original Television Soundtrack))",
+     "duration": 202,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002NkL5B22Zgc6.jpg",
+     "mid": "002wyZ4w43QkQf",
+     "albummid": "002NkL5B22Zgc6",
      "vid": "",
      "rank": "92"
     },
     {
-     "title": "La Dolce Vita",
-     "singer": "Clean Bandit/TÄRA",
+     "title": "Me Holdin' On",
+     "singer": "Brett Young",
      "singers": [
       {
-       "name": "Clean Bandit",
-       "mid": "002aFRpO1dMtfw"
-      },
-      {
-       "name": "TÄRA",
-       "mid": "000zbkN50tru2y"
+       "name": "Brett Young",
+       "mid": "0023kui30VChgF"
       }
      ],
-     "album": "La Dolce Vita",
-     "duration": 192,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004X3ZHF24cIfk.jpg",
-     "mid": "002mLHsM3l1oAR",
-     "albummid": "004X3ZHF24cIfk",
+     "album": "Me Holdin' On",
+     "duration": 207,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002qiROj1IQpsu.jpg",
+     "mid": "000KU3No46pINw",
+     "albummid": "002qiROj1IQpsu",
      "vid": "",
      "rank": "93"
-    },
-    {
-     "title": "BUCK FIFTY (Explicit)",
-     "singer": "$atori Zoom/Adam the Shinobi",
-     "singers": [
-      {
-       "name": "$atori Zoom",
-       "mid": "001bdpWf0j09AF"
-      },
-      {
-       "name": "Adam the Shinobi",
-       "mid": "002Vk2sJ0bB4L8"
-      }
-     ],
-     "album": "BUCK FIFTY (Explicit)",
-     "duration": 145,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003sbcZA0FtoXy.jpg",
-     "mid": "0039JNW00lmRfi",
-     "albummid": "003sbcZA0FtoXy",
-     "vid": "",
-     "rank": "94"
-    },
-    {
-     "title": "58th Floor (Explicit)",
-     "singer": "Anderson .Paak",
-     "singers": [
-      {
-       "name": "Anderson .Paak",
-       "mid": "001Ua5Xq3E8SKX"
-      }
-     ],
-     "album": "Heavy Is The Crown (Explicit)",
-     "duration": 175,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003qdX2H1SesZm.jpg",
-     "mid": "001eEB2n26Ebrw",
-     "albummid": "003qdX2H1SesZm",
-     "vid": "",
-     "rank": "95"
     },
     {
      "title": "MONTAGEM VALKARO",
@@ -16872,81 +17758,115 @@
      "mid": "002U7Vcj07s5mO",
      "albummid": "002cRRGB2XScZM",
      "vid": "",
+     "rank": "94"
+    },
+    {
+     "title": "Chasin' Famous",
+     "singer": "Nickelback",
+     "singers": [
+      {
+       "name": "Nickelback",
+       "mid": "004XTJgo0dbZOx"
+      }
+     ],
+     "album": "Everything Under The Sun (Explicit)",
+     "duration": 192,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000yErop3VGkHF.jpg",
+     "mid": "002nk9Rz2zFOWX",
+     "albummid": "000yErop3VGkHF",
+     "vid": "",
+     "rank": "95"
+    },
+    {
+     "title": "HIGHWAY ROBBERY",
+     "singer": "Marian Hill/Amos Lee",
+     "singers": [
+      {
+       "name": "Marian Hill",
+       "mid": "003TQUZ70QHWuP"
+      },
+      {
+       "name": "Amos Lee",
+       "mid": "000BBP5p3E5hyH"
+      }
+     ],
+     "album": "ACT TWO",
+     "duration": 128,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000027HwVG2xgT9Z.jpg",
+     "mid": "003tc2ku1Bjyvf",
+     "albummid": "0027HwVG2xgT9Z",
+     "vid": "",
      "rank": "96"
     },
     {
-     "title": "BA",
-     "singer": "Quavo/Future",
+     "title": "She'll Never Be Me",
+     "singer": "Britney Spears",
      "singers": [
       {
-       "name": "Quavo",
-       "mid": "003ic9Il3jKbDl"
-      },
-      {
-       "name": "Future",
-       "mid": "003rLetL0AcGNH"
+       "name": "Britney Spears",
+       "mid": "002EYdg22Ts0BV"
       }
      ],
-     "album": "QRÖMELIFE",
-     "duration": 149,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004RNJ8P02EFA4.jpg",
-     "mid": "002PSmvR2u6vpC",
-     "albummid": "004RNJ8P02EFA4",
+     "album": "She'll Never Be Me",
+     "duration": 185,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000W1Hrf3LRXoT.jpg",
+     "mid": "003VhSJ33xCORj",
+     "albummid": "000W1Hrf3LRXoT",
      "vid": "",
      "rank": "97"
     },
     {
-     "title": "BAD PRESS (Explicit)",
-     "singer": "Odetari",
+     "title": "Flex",
+     "singer": "Eternxlkz",
      "singers": [
       {
-       "name": "Odetari",
-       "mid": "000wHZ564DisFv"
+       "name": "Eternxlkz",
+       "mid": "003o2voH4V7o6a"
       }
      ],
-     "album": "PHAZON VARIA (Explicit)",
-     "duration": 122,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000045DLUo1VgJPE.jpg",
-     "mid": "003hYPAp02eEjm",
-     "albummid": "0045DLUo1VgJPE",
+     "album": "Flex",
+     "duration": 116,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002mtmkU0U2p8v.jpg",
+     "mid": "002rWGHt2WXc4i",
+     "albummid": "002mtmkU0U2p8v",
      "vid": "",
      "rank": "98"
     },
     {
-     "title": "Troye Meets World",
-     "singer": "Troye Sivan",
+     "title": "Lost Time (Explicit)",
+     "singer": "Troye Sivan/Lily-Rose Depp",
      "singers": [
       {
        "name": "Troye Sivan",
        "mid": "004LhKMW2CWJox"
+      },
+      {
+       "name": "Lily-Rose Depp",
+       "mid": "003yF5813NN0qC"
       }
      ],
      "album": "She’s the Best (Explicit)",
-     "duration": 163,
+     "duration": 240,
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002eygU92yDRl8.jpg",
-     "mid": "003k2iIf3ENQHw",
+     "mid": "003Oo3LG2VxAoN",
      "albummid": "002eygU92yDRl8",
      "vid": "",
      "rank": "99"
     },
     {
-     "title": "Moon So High",
-     "singer": "Remi Wolf/John Mayer",
+     "title": "Love Me Like I Loved You",
+     "singer": "Imazee",
      "singers": [
       {
-       "name": "Remi Wolf",
-       "mid": "004Clo4a1UXSaQ"
-      },
-      {
-       "name": "John Mayer",
-       "mid": "002a7qwy2WuP81"
+       "name": "Imazee",
+       "mid": "001TlfHN1SJ0ld"
       }
      ],
-     "album": "Mud (Explicit)",
-     "duration": 226,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000011AlqH099JXg.jpg",
-     "mid": "000Jev9u1aXybS",
-     "albummid": "0011AlqH099JXg",
+     "album": "Love Me Like I Loved You",
+     "duration": 253,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001ijUUn0pKUO1.jpg",
+     "mid": "000687PE1fgzL8",
+     "albummid": "001ijUUn0pKUO1",
      "vid": "",
      "rank": "100"
     }
