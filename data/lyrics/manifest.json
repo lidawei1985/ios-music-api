@@ -1,60 +1,60 @@
 {
- "updated": "2026-11-05T18:16:18Z",
- "count": 4005,
+ "updated": "2026-11-06T17:34:35Z",
+ "count": 4023,
  "shardSize": 500,
  "shards": [
   {
    "file": "shard-0000.js",
    "count": 500,
    "from": "+*say*+|tree",
-   "to": "livingindapain|youngcashjason"
+   "to": "lipsonanangel|叶英俊saviour"
   },
   {
    "file": "shard-0001.js",
    "count": 500,
-   "from": "lonelyxmas|游客j6jsy",
-   "to": "メモリー|kyiku/可不/星界/ナースロボ＿タイプｔ"
+   "from": "livingindapain|youngcashjason",
+   "to": "マイ・ホーム・タウンmyhometown|雨宮天/高橋李依/茅野愛衣"
   },
   {
    "file": "shard-0002.js",
    "count": 500,
-   "from": "ヤラララfeat重音テト呀啦啦啦|かれたよつば",
-   "to": "冲动|印子月"
+   "from": "メズマライザ一|サツキ/初音ミク/重音テト",
+   "to": "冬至|七八点"
   },
   {
    "file": "shard-0003.js",
    "count": 500,
-   "from": "冲破迷雾|辉子",
-   "to": "宝船|doudou/燕云十六声"
+   "from": "冬雪落不到春天|任二三",
+   "to": "安全感|建坤young"
   },
   {
    "file": "shard-0004.js",
    "count": 500,
-   "from": "宝莲|刘烨溦",
-   "to": "整个城市都睡着了我们去看海|罗湘骏eiteen/emptiso"
+   "from": "安眠药|藤竹京/dy/冰心",
+   "to": "救水灾度母心咒|桑吉平措"
   },
   {
    "file": "shard-0005.js",
    "count": 500,
-   "from": "敷衍|tc",
-   "to": "爱情朋克|修龙"
+   "from": "敖嫩河畔/ononriverside|戈壁计划/海木",
+   "to": "爱你|汪昱名"
   },
   {
    "file": "shard-0006.js",
    "count": 500,
-   "from": "爱我就像爱生命genuinelove|鸭腩儿/谭禧龙",
-   "to": "薄荷|江泽伟"
+   "from": "爱你就像爱rb|max李玄",
+   "to": "落海|任然"
   },
   {
    "file": "shard-0007.js",
    "count": 500,
-   "from": "薄荷夏天|姚晓棠",
-   "to": "ꭾꮒꮧℵꮦꮼmꮛꮢꭷꮄꮛꮄፈꭷꮄꭹꭵꭵꭵ|sorrowcape/lainprofen"
+   "from": "落甲时|顾砚舟i",
+   "to": "麻醉师|胡睿"
   },
   {
    "file": "shard-0008.js",
-   "count": 5,
-   "from": "별이빛나는밤starrynight星星闪耀的夜晚|mamamoo",
+   "count": 23,
+   "from": "黄昏|落日微醺",
    "to": "퇴사할게여|饼饼有礼"
   }
  ]
