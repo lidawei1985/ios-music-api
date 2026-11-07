@@ -1,60 +1,60 @@
 {
- "updated": "2026-11-07T01:40:18Z",
- "count": 4024,
+ "updated": "2026-11-07T16:32:33Z",
+ "count": 4031,
  "shardSize": 500,
  "shards": [
   {
    "file": "shard-0000.js",
    "count": 500,
    "from": "+*say*+|tree",
-   "to": "lipsonanangel|叶英俊saviour"
+   "to": "lifestyle|richnomadic"
   },
   {
    "file": "shard-0001.js",
    "count": 500,
-   "from": "livingindapain|youngcashjason",
-   "to": "マイ・ホーム・タウンmyhometown|雨宮天/高橋李依/茅野愛衣"
+   "from": "linkhearts|astrodonuts",
+   "to": "フォーモfeat重音テト|東京真中"
   },
   {
    "file": "shard-0002.js",
    "count": 500,
-   "from": "メズマライザ一|サツキ/初音ミク/重音テト",
-   "to": "冬至|七八点"
+   "from": "プラズマサンダースーバーノウァ等离子雷霆超新星|稻",
+   "to": "冬与你|万乐体/鱼骨妹"
   },
   {
    "file": "shard-0003.js",
    "count": 500,
-   "from": "冬雪落不到春天|任二三",
-   "to": "安全感|建坤young"
+   "from": "冬日邮件|恒星/舂",
+   "to": "宇宙大爆炸|卦者灵风"
   },
   {
    "file": "shard-0004.js",
    "count": 500,
-   "from": "安眠药|藤竹京/dy/冰心",
-   "to": "救水灾度母心咒|桑吉平措"
+   "from": "宇舟烟渡|夙夜未歌",
+   "to": "故梦|橙翼"
   },
   {
    "file": "shard-0005.js",
    "count": 500,
-   "from": "敖嫩河畔/ononriverside|戈壁计划/海木",
-   "to": "爱你|汪昱名"
+   "from": "故犯|暴躁的兔子",
+   "to": "爱两难|tc/xxxmiracle"
   },
   {
    "file": "shard-0006.js",
    "count": 500,
-   "from": "爱你就像爱rb|max李玄",
-   "to": "落海|任然"
+   "from": "爱也不爱|刘思鉴",
+   "to": "落日与你|due"
   },
   {
    "file": "shard-0007.js",
    "count": 500,
-   "from": "落甲时|顾砚舟i",
-   "to": "麦当劳汉堡|小pa"
+   "from": "落日微风|张德伊玲",
+   "to": "鸣响|战双帕弥什"
   },
   {
    "file": "shard-0008.js",
-   "count": 24,
-   "from": "麻醉师|胡睿",
+   "count": 31,
+   "from": "鸭血粉丝汤|荣玮",
    "to": "퇴사할게여|饼饼有礼"
   }
  ]
