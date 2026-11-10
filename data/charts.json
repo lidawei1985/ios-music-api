@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10T09:46:35Z",
+ "updated": "2026-11-10T21:04:01Z",
  "hotkeys": [],
  "lists": [
   {
@@ -13084,11 +13084,11 @@
        "mid": "000b7B7h1fXzaM"
       }
      ],
-     "album": "世纪传说",
+     "album": "情歌而已",
      "duration": 210,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003n4ehI0Mdwzb.jpg",
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000007drvF0mBuFL.jpg",
      "mid": "000pnPXe4eQvcU",
-     "albummid": "003n4ehI0Mdwzb",
+     "albummid": "0007drvF0mBuFL",
      "vid": "",
      "rank": "42"
     },
@@ -17159,7 +17159,7 @@
     },
     {
      "title": "Dirty Bird",
-     "singer": "Helluva Boss/Bryce Pinkham/Brandon Rogers",
+     "singer": "Helluva Boss/Bryce Pinkham/Brandon Rogers/Sam Haft",
      "singers": [
       {
        "name": "Helluva Boss",
@@ -17172,6 +17172,10 @@
       {
        "name": "Brandon Rogers",
        "mid": "004a0LkY0jQaAp"
+      },
+      {
+       "name": "Sam Haft",
+       "mid": "002HCCq51aWa8z"
       }
      ],
      "album": "Helluva Boss: Season Three, Part 1 (Episodes 1-3)",
