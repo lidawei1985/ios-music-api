@@ -1,87 +1,6 @@
 {
- "updated": "2026-11-13T02:50:15Z",
- "hotkeys": [
-  {
-   "k": "我们的歌",
-   "n": 765562
-  },
-  {
-   "k": "冰雪奇缘2",
-   "n": 587404
-  },
-  {
-   "k": "张杰",
-   "n": 323823
-  },
-  {
-   "k": "桥边姑娘",
-   "n": 287637
-  },
-  {
-   "k": "星辰大海",
-   "n": 202868
-  },
-  {
-   "k": "哪咤 李宇春",
-   "n": 192652
-  },
-  {
-   "k": "左手指月",
-   "n": 164609
-  },
-  {
-   "k": "邓紫棋",
-   "n": 155475
-  },
-  {
-   "k": "酒醉的蝴蝶",
-   "n": 154236
-  },
-  {
-   "k": "左肩",
-   "n": 139814
-  },
-  {
-   "k": "从前有座灵剑山",
-   "n": 133861
-  },
-  {
-   "k": "下山",
-   "n": 122423
-  },
-  {
-   "k": "肖战",
-   "n": 107837
-  },
-  {
-   "k": "DANCE MONKEY",
-   "n": 103401
-  },
-  {
-   "k": "句号",
-   "n": 76584
-  },
-  {
-   "k": "冰雪奇缘",
-   "n": 76530
-  },
-  {
-   "k": "心似烟火",
-   "n": 69945
-  },
-  {
-   "k": "酒醉的蝴蝶原唱",
-   "n": 69664
-  },
-  {
-   "k": "句号邓紫棋",
-   "n": 68767
-  },
-  {
-   "k": "IU",
-   "n": 67439
-  }
- ],
+ "updated": "2026-11-13T07:59:11Z",
+ "hotkeys": [],
  "lists": [
   {
    "topid": "26",
@@ -12516,23 +12435,6 @@
      "rank": "4"
     },
     {
-     "title": "橘子酸sour orange",
-     "singer": "那艺娜",
-     "singers": [
-      {
-       "name": "那艺娜",
-       "mid": "000LbHfi1z5SY4"
-      }
-     ],
-     "album": "橘子酸",
-     "duration": 171,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003BhYeD0mahCv.jpg",
-     "mid": "003RsJLa2oAlx9",
-     "albummid": "003BhYeD0mahCv",
-     "vid": "",
-     "rank": "5"
-    },
-    {
      "title": "慢倍速",
      "singer": "方了个木",
      "singers": [
@@ -12547,7 +12449,7 @@
      "mid": "003heQpc3Lve9E",
      "albummid": "004b3M1x1MpQdc",
      "vid": "",
-     "rank": "6"
+     "rank": "5"
     },
     {
      "title": "我护我",
@@ -12564,7 +12466,7 @@
      "mid": "000vZbfe2HOCPt",
      "albummid": "000PfQlg0MeVbo",
      "vid": "",
-     "rank": "7"
+     "rank": "6"
     },
     {
      "title": "天下有情人",
@@ -12585,7 +12487,7 @@
      "mid": "001LD0pS2tnYih",
      "albummid": "0027XH4M3y6mgo",
      "vid": "",
-     "rank": "8"
+     "rank": "7"
     },
     {
      "title": "时过境迁",
@@ -12602,7 +12504,7 @@
      "mid": "002TTnfc13TkgO",
      "albummid": "001zUnnV4T1qwb",
      "vid": "",
-     "rank": "9"
+     "rank": "8"
     },
     {
      "title": "Mr.Right",
@@ -12619,7 +12521,7 @@
      "mid": "003yAhBQ2wiAom",
      "albummid": "001SAuEX2jsQ4o",
      "vid": "",
-     "rank": "10"
+     "rank": "9"
     },
     {
      "title": "The Moment You Saw Me（当我，在你的目光里）",
@@ -12636,7 +12538,7 @@
      "mid": "002R4Ah30dPiUR",
      "albummid": "000cQOlk4ddA7w",
      "vid": "",
-     "rank": "11"
+     "rank": "10"
     },
     {
      "title": "春日序曲",
@@ -12653,7 +12555,7 @@
      "mid": "0046nPYR296rmh",
      "albummid": "003RFuA61v4wCy",
      "vid": "",
-     "rank": "12"
+     "rank": "11"
     },
     {
      "title": "小城",
@@ -12670,7 +12572,7 @@
      "mid": "002BqShi1NMhDz",
      "albummid": "001Zy47F4Kj5fy",
      "vid": "",
-     "rank": "13"
+     "rank": "12"
     },
     {
      "title": "心湖",
@@ -12687,7 +12589,7 @@
      "mid": "003xIl0w0kepGm",
      "albummid": "000JVeSZ1Ikbsz",
      "vid": "",
-     "rank": "14"
+     "rank": "13"
     },
     {
      "title": "大梦归",
@@ -12704,7 +12606,7 @@
      "mid": "000EPEhY2os1I0",
      "albummid": "003ZuQ5z05yCAP",
      "vid": "",
-     "rank": "15"
+     "rank": "14"
     },
     {
      "title": "借名入局",
@@ -12721,7 +12623,7 @@
      "mid": "002gihn81Jop13",
      "albummid": "003es1jN0Fk1LD",
      "vid": "",
-     "rank": "16"
+     "rank": "15"
     },
     {
      "title": "嘴硬",
@@ -12738,7 +12640,7 @@
      "mid": "001PzZY10Sym2L",
      "albummid": "001SAuEX2jsQ4o",
      "vid": "",
-     "rank": "17"
+     "rank": "16"
     },
     {
      "title": "风吹过",
@@ -12755,7 +12657,7 @@
      "mid": "003f3Wqk2yb5bB",
      "albummid": "004HdMIu3BxTYc",
      "vid": "",
-     "rank": "18"
+     "rank": "17"
     },
     {
      "title": "秋风一吹又老一岁",
@@ -12772,7 +12674,7 @@
      "mid": "001pGNpO2Foqk8",
      "albummid": "004AwJPG1LVXqd",
      "vid": "",
-     "rank": "19"
+     "rank": "18"
     },
     {
      "title": "Cherry Candy",
@@ -12789,7 +12691,7 @@
      "mid": "003KUOtt4LN4cW",
      "albummid": "001KsTdW3f3W9A",
      "vid": "",
-     "rank": "20"
+     "rank": "19"
     },
     {
      "title": "时间会回答",
@@ -12806,7 +12708,7 @@
      "mid": "002eom782x5HrI",
      "albummid": "004Nydxc3ReaDR",
      "vid": "",
-     "rank": "21"
+     "rank": "20"
     },
     {
      "title": "无梦镇",
@@ -12823,7 +12725,7 @@
      "mid": "002lWavD2ISKAK",
      "albummid": "003xrwEI4FLigj",
      "vid": "",
-     "rank": "22"
+     "rank": "21"
     },
     {
      "title": "呆头鸟",
@@ -12840,7 +12742,7 @@
      "mid": "000cwv0w3FHevL",
      "albummid": "003bzaxA2iIaI3",
      "vid": "",
-     "rank": "23"
+     "rank": "22"
     },
     {
      "title": "茉莉",
@@ -12857,7 +12759,7 @@
      "mid": "0025Nuse4GpPIe",
      "albummid": "002CHhGN3A7vKz",
      "vid": "",
-     "rank": "24"
+     "rank": "23"
     },
     {
      "title": "如果累了就回故乡",
@@ -12874,7 +12776,7 @@
      "mid": "001ZYiHc0Dkaeh",
      "albummid": "004DerqM1Jd71A",
      "vid": "",
-     "rank": "25"
+     "rank": "24"
     },
     {
      "title": "时间会回答",
@@ -12891,7 +12793,7 @@
      "mid": "003CPtSk2UCwqw",
      "albummid": "002bbG3H3sNF46",
      "vid": "",
-     "rank": "26"
+     "rank": "25"
     },
     {
      "title": "秋风一吹又老一岁",
@@ -12908,7 +12810,7 @@
      "mid": "002JgZF33Uxq7f",
      "albummid": "000m01tJ0EPgzA",
      "vid": "",
-     "rank": "27"
+     "rank": "26"
     },
     {
      "title": "月亮替我望故乡",
@@ -12925,7 +12827,7 @@
      "mid": "003Fsgoy0kb2Xd",
      "albummid": "000wD3cw0llRzc",
      "vid": "",
-     "rank": "28"
+     "rank": "27"
     },
     {
      "title": "说好一辈子",
@@ -12942,7 +12844,7 @@
      "mid": "000jos5L4EuTMd",
      "albummid": "00174WgS3w1aOu",
      "vid": "",
-     "rank": "29"
+     "rank": "28"
     },
     {
      "title": "折月亮",
@@ -12959,7 +12861,7 @@
      "mid": "003KHkP23qtKsA",
      "albummid": "003w2M4C3pE6QH",
      "vid": "",
-     "rank": "30"
+     "rank": "29"
     },
     {
      "title": "喜月 (Moonglow)",
@@ -12976,7 +12878,7 @@
      "mid": "0044KUCJ4PHXs7",
      "albummid": "002h6Gq41GgaWa",
      "vid": "",
-     "rank": "31"
+     "rank": "30"
     },
     {
      "title": "20001106",
@@ -12993,7 +12895,7 @@
      "mid": "0009JD7a0mzkVt",
      "albummid": "002riKVF3M1VC8",
      "vid": "",
-     "rank": "32"
+     "rank": "31"
     },
     {
      "title": "其实雨也没多大",
@@ -13010,7 +12912,7 @@
      "mid": "0025bkui0iLUP6",
      "albummid": "003tJKBC46d2uS",
      "vid": "",
-     "rank": "33"
+     "rank": "32"
     },
     {
      "title": "命里留不住的人",
@@ -13027,7 +12929,7 @@
      "mid": "002KkhxP1jLQva",
      "albummid": "003fFdG329oEpB",
      "vid": "",
-     "rank": "34"
+     "rank": "33"
     },
     {
      "title": "睡前别想太多",
@@ -13044,7 +12946,7 @@
      "mid": "002Qnd9R0hnfXW",
      "albummid": "002Yb6tf0PAZyY",
      "vid": "",
-     "rank": "35"
+     "rank": "34"
     },
     {
      "title": "牡丹亭",
@@ -13061,7 +12963,7 @@
      "mid": "003qsUgr2lccyg",
      "albummid": "000UoDdp3ZqCQN",
      "vid": "",
-     "rank": "36"
+     "rank": "35"
     },
     {
      "title": "不知道说什么",
@@ -13078,7 +12980,7 @@
      "mid": "0016a5YS1wS8EE",
      "albummid": "002QkDR22Z9UzB",
      "vid": "",
-     "rank": "37"
+     "rank": "36"
     },
     {
      "title": "前行路上 (人生需要自强)",
@@ -13099,7 +13001,7 @@
      "mid": "00104DFb4GYXmz",
      "albummid": "003pt9bL2IMklz",
      "vid": "",
-     "rank": "38"
+     "rank": "37"
     },
     {
      "title": "山风山风等等我",
@@ -13116,7 +13018,7 @@
      "mid": "000xZ9Kn1W9w2Q",
      "albummid": "001QL1kM1bnTdf",
      "vid": "",
-     "rank": "39"
+     "rank": "38"
     },
     {
      "title": "泪海（你怎么舍得让我的泪流向海）",
@@ -13133,7 +13035,7 @@
      "mid": "004Bm3eU0GDneX",
      "albummid": "003uAYJQ0Z8CFL",
      "vid": "",
-     "rank": "40"
+     "rank": "39"
     },
     {
      "title": "轻轻",
@@ -13150,7 +13052,7 @@
      "mid": "000qgdMS2J7UZ9",
      "albummid": "001zU1173lcnR3",
      "vid": "",
-     "rank": "41"
+     "rank": "40"
     },
     {
      "title": "雪化作泪滴",
@@ -13175,7 +13077,7 @@
      "mid": "000PB9Ol2Em0Oa",
      "albummid": "000xxeA30ab0WQ",
      "vid": "",
-     "rank": "42"
+     "rank": "41"
     },
     {
      "title": "去云上",
@@ -13192,7 +13094,7 @@
      "mid": "002jre970hCSgT",
      "albummid": "000oFJQa1P3LqA",
      "vid": "",
-     "rank": "43"
+     "rank": "42"
     },
     {
      "title": "人生一晃又一秋 (难解宿命版)",
@@ -13213,7 +13115,7 @@
      "mid": "002yuAQi2OEsmH",
      "albummid": "002U07W01dFY03",
      "vid": "",
-     "rank": "44"
+     "rank": "43"
     },
     {
      "title": "大约在冬季",
@@ -13230,7 +13132,7 @@
      "mid": "004aS0fC00n82Z",
      "albummid": "001vcRgD0cdx5s",
      "vid": "",
-     "rank": "45"
+     "rank": "44"
     },
     {
      "title": "我听人说思念像风一样(难舍难分难解)",
@@ -13251,7 +13153,7 @@
      "mid": "000vdWO03vLN1o",
      "albummid": "002EbzDh1PDzWo",
      "vid": "",
-     "rank": "46"
+     "rank": "45"
     },
     {
      "title": "也会有人代替你",
@@ -13268,7 +13170,7 @@
      "mid": "002X8hbg2EB3ft",
      "albummid": "000rxOlT0NzfM8",
      "vid": "",
-     "rank": "47"
+     "rank": "46"
     },
     {
      "title": "Side By Side",
@@ -13285,7 +13187,7 @@
      "mid": "003hVi940fhVYl",
      "albummid": "0044qdTS4GpJAz",
      "vid": "",
-     "rank": "48"
+     "rank": "47"
     },
     {
      "title": "山那头 (风刮着原上柳)",
@@ -13302,7 +13204,7 @@
      "mid": "003LjyVL1OrkTU",
      "albummid": "004WGyAy0udVjv",
      "vid": "",
-     "rank": "49"
+     "rank": "48"
     },
     {
      "title": "The Storm Of Us",
@@ -13319,7 +13221,7 @@
      "mid": "000trWup2KKPCD",
      "albummid": "002dUcEt3ZQx9G",
      "vid": "",
-     "rank": "50"
+     "rank": "49"
     },
     {
      "title": "空余恨",
@@ -13336,7 +13238,7 @@
      "mid": "003iYjZr1fdtqM",
      "albummid": "0013jelJ4JWC39",
      "vid": "",
-     "rank": "51"
+     "rank": "50"
     },
     {
      "title": "我的心事只有风懂 (抒情版)",
@@ -13353,7 +13255,7 @@
      "mid": "000QE9Rs2HJeo6",
      "albummid": "003MumSp2SizSL",
      "vid": "",
-     "rank": "52"
+     "rank": "51"
     },
     {
      "title": "后会友期",
@@ -13382,7 +13284,7 @@
      "mid": "004HLkC42e527w",
      "albummid": "002qopT13t057Y",
      "vid": "",
-     "rank": "53"
+     "rank": "52"
     },
     {
      "title": "红笔",
@@ -13403,7 +13305,7 @@
      "mid": "002Qju6Y3ip2Vs",
      "albummid": "001s3TSe4JsM87",
      "vid": "",
-     "rank": "54"
+     "rank": "53"
     },
     {
      "title": "泪海（你怎么舍得让我的泪流向海）",
@@ -13420,7 +13322,7 @@
      "mid": "004K4iyO452hAj",
      "albummid": "002iMiac1n0gRx",
      "vid": "",
-     "rank": "55"
+     "rank": "54"
     },
     {
      "title": "不能成情人",
@@ -13437,7 +13339,7 @@
      "mid": "001cOeNX2IlNkY",
      "albummid": "0003mPqr0p66c0",
      "vid": "",
-     "rank": "56"
+     "rank": "55"
     },
     {
      "title": "我的一个道姑朋友(而你撑伞拥我入怀中)",
@@ -13454,7 +13356,7 @@
      "mid": "0000IBee2qHubU",
      "albummid": "004ePdhQ0UDqKi",
      "vid": "",
-     "rank": "57"
+     "rank": "56"
     },
     {
      "title": "数年",
@@ -13471,7 +13373,7 @@
      "mid": "004O8O1D3JJiLH",
      "albummid": "001ifm9B2RBJQM",
      "vid": "",
-     "rank": "58"
+     "rank": "57"
     },
     {
      "title": "复刻我的念",
@@ -13488,7 +13390,7 @@
      "mid": "001JAV9a2qFvjJ",
      "albummid": "000xHjok15agC3",
      "vid": "",
-     "rank": "59"
+     "rank": "58"
     },
     {
      "title": "你想要的都在路上",
@@ -13505,7 +13407,7 @@
      "mid": "003AjRPS12RKwE",
      "albummid": "003D2gr941gfpD",
      "vid": "",
-     "rank": "60"
+     "rank": "59"
     },
     {
      "title": "先别说爱我",
@@ -13522,7 +13424,7 @@
      "mid": "002i5VMi1MHNSO",
      "albummid": "001craqW3pnFUJ",
      "vid": "",
-     "rank": "61"
+     "rank": "60"
     },
     {
      "title": "秋风一吹又老一岁 (烟嗓版)",
@@ -13539,7 +13441,7 @@
      "mid": "003ju8Fk2vHIgK",
      "albummid": "001N3RGI2cH2sf",
      "vid": "",
-     "rank": "62"
+     "rank": "61"
     },
     {
      "title": "荒",
@@ -13556,7 +13458,7 @@
      "mid": "003UgSd12yrJvQ",
      "albummid": "004JGbzZ2V0xZz",
      "vid": "",
-     "rank": "63"
+     "rank": "62"
     },
     {
      "title": "红尘误此生",
@@ -13573,7 +13475,7 @@
      "mid": "004KRGmL0xqW7M",
      "albummid": "001ocw5v21QzBw",
      "vid": "",
-     "rank": "64"
+     "rank": "63"
     },
     {
      "title": "无尽冬",
@@ -13590,7 +13492,7 @@
      "mid": "000gMlKd3pj6KU",
      "albummid": "002JkES13koV1w",
      "vid": "",
-     "rank": "65"
+     "rank": "64"
     },
     {
      "title": "雨停之前",
@@ -13607,7 +13509,7 @@
      "mid": "0027yZaS26UQ1h",
      "albummid": "0024d9xx02Hkz3",
      "vid": "",
-     "rank": "66"
+     "rank": "65"
     },
     {
      "title": "牧马城市",
@@ -13624,7 +13526,7 @@
      "mid": "001g81i20uiZ3U",
      "albummid": "000dhvS13gZonC",
      "vid": "",
-     "rank": "67"
+     "rank": "66"
     },
     {
      "title": "人间",
@@ -13641,7 +13543,7 @@
      "mid": "004Y2f6c0Zeld1",
      "albummid": "003YANOp0Je7v1",
      "vid": "",
-     "rank": "68"
+     "rank": "67"
     },
     {
      "title": "外面的世界",
@@ -13658,7 +13560,7 @@
      "mid": "002Im9pm0RuL4T",
      "albummid": "003WH6L11V4zRN",
      "vid": "",
-     "rank": "69"
+     "rank": "68"
     },
     {
      "title": "特效药",
@@ -13675,7 +13577,7 @@
      "mid": "000KIyvE1Lsd6i",
      "albummid": "000VhR142L79K5",
      "vid": "",
-     "rank": "70"
+     "rank": "69"
     },
     {
      "title": "让泪化作相思雨",
@@ -13692,7 +13594,7 @@
      "mid": "003C4PE24B7FXJ",
      "albummid": "000KeKkg1SA7I8",
      "vid": "",
-     "rank": "71"
+     "rank": "70"
     },
     {
      "title": "命运齿轮",
@@ -13709,7 +13611,7 @@
      "mid": "003C7PQ10EVVe1",
      "albummid": "000xHjok15agC3",
      "vid": "",
-     "rank": "72"
+     "rank": "71"
     },
     {
      "title": "你不该权衡利弊",
@@ -13726,7 +13628,7 @@
      "mid": "0014e1Un0HjnxH",
      "albummid": "001OGJDj2CenSS",
      "vid": "",
-     "rank": "73"
+     "rank": "72"
     },
     {
      "title": "我们的爱 (眼泪啊永远不再哭泣)",
@@ -13743,7 +13645,7 @@
      "mid": "0009I0BF2ChVhl",
      "albummid": "002OPiZy0SR5Yv",
      "vid": "",
-     "rank": "74"
+     "rank": "73"
     },
     {
      "title": "执迷不悟",
@@ -13760,7 +13662,7 @@
      "mid": "004F0P6U3Ot7rI",
      "albummid": "0039VPeb1Lhe2u",
      "vid": "",
-     "rank": "75"
+     "rank": "74"
     },
     {
      "title": "他们总说要坚强要放下 (可情绪总是痛苦的温床)",
@@ -13777,7 +13679,7 @@
      "mid": "003qZYbT4EQ9j7",
      "albummid": "001d2PxQ19MkyR",
      "vid": "",
-     "rank": "76"
+     "rank": "75"
     },
     {
      "title": "山海不说话 (我路过山 山不说话)",
@@ -13794,7 +13696,7 @@
      "mid": "001zSAWj3lw9zp",
      "albummid": "002wTQGF40dcAF",
      "vid": "",
-     "rank": "77"
+     "rank": "76"
     },
     {
      "title": "若你看见花开",
@@ -13811,7 +13713,7 @@
      "mid": "0035iCQe0mLHpf",
      "albummid": "004aaPnx1izMbf",
      "vid": "",
-     "rank": "78"
+     "rank": "77"
     },
     {
      "title": "Boom Boom（只因有你）",
@@ -13828,7 +13730,7 @@
      "mid": "003CnESt2kjsd9",
      "albummid": "001rX3Lc0qsJz8",
      "vid": "",
-     "rank": "79"
+     "rank": "78"
     },
     {
      "title": "我是真的爱上你 (深情版)",
@@ -13845,7 +13747,7 @@
      "mid": "000wt8a92lJ9lH",
      "albummid": "0042eya742i8bx",
      "vid": "",
-     "rank": "80"
+     "rank": "79"
     },
     {
      "title": "沦陷",
@@ -13862,7 +13764,7 @@
      "mid": "0020Y5cp3XLg26",
      "albummid": "003a96BW2R9Ysv",
      "vid": "",
-     "rank": "81"
+     "rank": "80"
     },
     {
      "title": "如诗一般的形容妳",
@@ -13879,7 +13781,7 @@
      "mid": "003ZO8kI1Lougb",
      "albummid": "003koovr3NGa4R",
      "vid": "",
-     "rank": "82"
+     "rank": "81"
     },
     {
      "title": "现在的我",
@@ -13896,7 +13798,7 @@
      "mid": "000lgD1a3u9Rye",
      "albummid": "003bHnYi3qJFOB",
      "vid": "",
-     "rank": "83"
+     "rank": "82"
     },
     {
      "title": "忘了",
@@ -13913,7 +13815,7 @@
      "mid": "001cd1Sx1DN7hL",
      "albummid": "003TxZzI41jT7I",
      "vid": "",
-     "rank": "84"
+     "rank": "83"
     },
     {
      "title": "FALA SÉRIO",
@@ -13934,7 +13836,7 @@
      "mid": "000UVmJa13p5Xf",
      "albummid": "003gXkbr1KAqN8",
      "vid": "",
-     "rank": "85"
+     "rank": "84"
     },
     {
      "title": "别让我一个人醉",
@@ -13951,7 +13853,7 @@
      "mid": "003DoFAw1DW7Jr",
      "albummid": "0043ohOH3Nu8A4",
      "vid": "",
-     "rank": "86"
+     "rank": "85"
     },
     {
      "title": "戒断 (BAD HABITS TONITE)",
@@ -13972,7 +13874,7 @@
      "mid": "000JO2Y74N9mcH",
      "albummid": "003khFss2ipkup",
      "vid": "",
-     "rank": "87"
+     "rank": "86"
     },
     {
      "title": "山风山风等等我",
@@ -13989,7 +13891,7 @@
      "mid": "003b8oJL19X9nq",
      "albummid": "003kPd9I1ltiFR",
      "vid": "",
-     "rank": "88"
+     "rank": "87"
     },
     {
      "title": "情呀爱呀",
@@ -14006,7 +13908,7 @@
      "mid": "003tX7yH1eYnt9",
      "albummid": "002jFMvg1yb2Xb",
      "vid": "",
-     "rank": "89"
+     "rank": "88"
     },
     {
      "title": "无法被爱",
@@ -14027,7 +13929,7 @@
      "mid": "002MAaeD1eHHF7",
      "albummid": "002tRmMB0fUXsn",
      "vid": "",
-     "rank": "90"
+     "rank": "89"
     },
     {
      "title": "曾",
@@ -14044,7 +13946,7 @@
      "mid": "000yrCzK4EBZVX",
      "albummid": "003FPWpv0QMoFO",
      "vid": "",
-     "rank": "91"
+     "rank": "90"
     },
     {
      "title": "牡丹亭 (白九版)",
@@ -14061,7 +13963,7 @@
      "mid": "0040Wl2a1PxvZa",
      "albummid": "00279Ri44Z2h3V",
      "vid": "",
-     "rank": "92"
+     "rank": "91"
     },
     {
      "title": "Behind My Eyes",
@@ -14078,7 +13980,7 @@
      "mid": "002TnJR40WI07d",
      "albummid": "003dVjoU03TBFR",
      "vid": "",
-     "rank": "93"
+     "rank": "92"
     },
     {
      "title": "一篇往事",
@@ -14095,7 +13997,7 @@
      "mid": "001a3AtF0XZmnN",
      "albummid": "0038iylA17jxhv",
      "vid": "",
-     "rank": "94"
+     "rank": "93"
     },
     {
      "title": "夜夜夜夜",
@@ -14112,7 +14014,7 @@
      "mid": "003MiXUv3zIpVB",
      "albummid": "002N7uVG2ul1HE",
      "vid": "",
-     "rank": "95"
+     "rank": "94"
     },
     {
      "title": "无奈的思绪 (氛围版)",
@@ -14129,7 +14031,7 @@
      "mid": "004QqW4Z1OB6Ni",
      "albummid": "000fBFo10wo2H4",
      "vid": "",
-     "rank": "96"
+     "rank": "95"
     },
     {
      "title": "值得",
@@ -14146,7 +14048,7 @@
      "mid": "0024ZxJ12L7Fk4",
      "albummid": "000ttrv20Ry9Yg",
      "vid": "",
-     "rank": "97"
+     "rank": "96"
     },
     {
      "title": "自己的灯自己点",
@@ -14163,7 +14065,7 @@
      "mid": "001e5RAX2txVVr",
      "albummid": "003E1hgX0XIVRB",
      "vid": "",
-     "rank": "98"
+     "rank": "97"
     },
     {
      "title": "我听人说思念像风一样",
@@ -14180,7 +14082,7 @@
      "mid": "000BLzsQ0EB6Uj",
      "albummid": "0012NL7J3fR6Qz",
      "vid": "",
-     "rank": "99"
+     "rank": "98"
     },
     {
      "title": "爱谁都差不多",
@@ -14196,6 +14098,27 @@
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002EOmGi44OtqF.jpg",
      "mid": "004DouIc0MNqrn",
      "albummid": "002EOmGi44OtqF",
+     "vid": "",
+     "rank": "99"
+    },
+    {
+     "title": "如果累了就回故乡 (少年版)",
+     "singer": "酷酷里/面妹孔佳奇",
+     "singers": [
+      {
+       "name": "酷酷里",
+       "mid": "0022dsrB33nsjm"
+      },
+      {
+       "name": "面妹孔佳奇",
+       "mid": "003dRPJm43X8Sr"
+      }
+     ],
+     "album": "如果累了就回故乡",
+     "duration": 230,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000286d6v3Td13Y.jpg",
+     "mid": "003wtWfF1pXG8n",
+     "albummid": "00286d6v3Td13Y",
      "vid": "",
      "rank": "100"
     }
@@ -16106,23 +16029,6 @@
      "rank": "4"
     },
     {
-     "title": "The Station",
-     "singer": "Keenan Te",
-     "singers": [
-      {
-       "name": "Keenan Te",
-       "mid": "001UHLgF2eVWKE"
-      }
-     ],
-     "album": "The Station",
-     "duration": 199,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004D3CKM4O1DX5.jpg",
-     "mid": "004dX7Rc21eQ6Y",
-     "albummid": "004D3CKM4O1DX5",
-     "vid": "",
-     "rank": "5"
-    },
-    {
      "title": "her (boy version)",
      "singer": "ZVC/JVKE",
      "singers": [
@@ -17972,6 +17878,23 @@
      "albummid": "000guxEr2eHIQE",
      "vid": "",
      "rank": "100"
+    },
+    {
+     "title": "My Big Secret",
+     "singer": "Britney Spears",
+     "singers": [
+      {
+       "name": "Britney Spears",
+       "mid": "002EYdg22Ts0BV"
+      }
+     ],
+     "album": "Britney (25th Anniversary Edition)",
+     "duration": 271,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004WysUh2FoCfD.jpg",
+     "mid": "002MJ1PA1kBYzc",
+     "albummid": "004WysUh2FoCfD",
+     "vid": "",
+     "rank": "101"
     }
    ]
   }
