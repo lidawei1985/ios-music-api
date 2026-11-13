@@ -1,60 +1,60 @@
 {
- "updated": "2026-11-13T02:39:36Z",
- "count": 4069,
+ "updated": "2026-11-13T18:00:39Z",
+ "count": 4075,
  "shardSize": 500,
  "shards": [
   {
    "file": "shard-0000.js",
    "count": 500,
    "from": "+*say*+|tree",
-   "to": "liar|h3r3"
+   "to": "leyla|salimseper"
   },
   {
    "file": "shard-0001.js",
    "count": 500,
-   "from": "lifegoeson|7wiz",
-   "to": "はんぶんこ一人一半|forevereve"
+   "from": "lght|鸣潮先约电台/meredithbull",
+   "to": "あまく危険な香り强烈的危险气息|山下達郎"
   },
   {
    "file": "shard-0002.js",
    "count": 500,
-   "from": "アンチサイノウ反天赋论|世界补充计划/桃井愛莉×東雲彰人×草薙寧々×東雲絵名×mei",
-   "to": "再也不见|程致泽"
+   "from": "きゃぴ|宝鐘マリン",
+   "to": "其实雨也没多大万豹|包先森/圈圈菌"
   },
   {
    "file": "shard-0003.js",
    "count": 500,
-   "from": "再同游|冰洁",
-   "to": "子弹|舒灏orenda"
+   "from": "其实雨也没多大热播|大川/dj阿布",
+   "to": "娘娘我错了|邓超"
   },
   {
    "file": "shard-0004.js",
    "count": 500,
-   "from": "孔乙己|渡",
-   "to": "提示词prompt|坠一"
+   "from": "娘子|春",
+   "to": "探清水河|晓月老板"
   },
   {
    "file": "shard-0005.js",
    "count": 500,
-   "from": "插叙人生montage|yzh于哲浩/李晨曦chrisulous",
-   "to": "烂仔派对|侃迪kandi/aa/辉子"
+   "from": "接纳|陈睿",
+   "to": "灰色真空samzingver|samzing/熊子/kolaa/ank"
   },
   {
    "file": "shard-0006.js",
    "count": 500,
-   "from": "烂城堡|郑润泽",
-   "to": "茶|round2/早安/贰万/icepaper"
+   "from": "灰色童话|pearbae小梨/topbarry",
+   "to": "苹果香2合唱wav|狼戈"
   },
   {
    "file": "shard-0007.js",
    "count": 500,
-   "from": "茶仙|西瓜jun",
-   "to": "飞1999|99god"
+   "from": "范进中举|卦者灵风",
+   "to": "风铃雨|一颗狼星/庞图图/will逊"
   },
   {
    "file": "shard-0008.js",
-   "count": 69,
-   "from": "飞|王恩信est/二胖u王訫",
+   "count": 75,
+   "from": "风雪夜归人|firefoxl",
    "to": "퇴사할게여|饼饼有礼"
   }
  ]
