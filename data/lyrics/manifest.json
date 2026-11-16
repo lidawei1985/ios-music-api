@@ -1,60 +1,60 @@
 {
- "updated": "2026-11-15T17:11:50Z",
- "count": 4082,
+ "updated": "2026-11-16T01:52:59Z",
+ "count": 4085,
  "shardSize": 500,
  "shards": [
   {
    "file": "shard-0000.js",
    "count": 500,
    "from": "+*say*+|tree",
-   "to": "leyla|salimseper"
+   "to": "leyla|aymira"
   },
   {
    "file": "shard-0001.js",
    "count": 500,
-   "from": "lght|鸣潮先约电台/meredithbull",
-   "to": "《繁花落岸》赵锴羿开开|开开赵锴羿"
+   "from": "leyla|salimseper",
+   "to": "《布努瑶笑酒歌》|洋虫君"
   },
   {
    "file": "shard-0002.js",
    "count": 500,
-   "from": "「拉海洛」之心|鸣潮先约电台/baitian/victorborba/cas",
-   "to": "关山涧|夙夜未歌"
+   "from": "《繁花落岸》赵锴羿开开|开开赵锴羿",
+   "to": "关于那场雨|空罐子/zy"
   },
   {
    "file": "shard-0003.js",
    "count": 500,
-   "from": "关山酒天命轻狂应似孤鸿游|沈一风",
-   "to": "姑娘|原味"
+   "from": "关山涧|夙夜未歌",
+   "to": "妖怪町奇谭|平纱落雁"
   },
   {
    "file": "shard-0004.js",
    "count": 500,
-   "from": "姑娘|星杰宇",
-   "to": "挚友|checkyhon/火滚音乐"
+   "from": "姑娘|原味",
+   "to": "拿破仑进行曲|漂移的人driftingman"
   },
   {
    "file": "shard-0005.js",
    "count": 500,
-   "from": "捕鼠夹ft足立レイ|bk",
-   "to": "灯火|任灿"
+   "from": "挂断|冰冷端",
+   "to": "火棍|浮萍草/东北宣传队"
   },
   {
    "file": "shard-0006.js",
    "count": 500,
-   "from": "灰|h3r3",
-   "to": "苦尽甘来|翁梓铭"
+   "from": "灯与火|msz蓝/樱九",
+   "to": "若把你|kirsty刘瑾睿/icepaper"
   },
   {
    "file": "shard-0007.js",
    "count": 500,
-   "from": "苦昼短|燕池",
-   "to": "风吹过|深深/季夏"
+   "from": "若生如野草|张德伊玲",
+   "to": "风与叶|tc/暴躁的兔子"
   },
   {
    "file": "shard-0008.js",
-   "count": 82,
-   "from": "风吹过你来过|袁小葳/耳朵便利店",
+   "count": 85,
+   "from": "风中余烬|et/冯泳",
    "to": "퇴사할게여|饼饼有礼"
   }
  ]
