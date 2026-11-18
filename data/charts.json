@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T04:03:43Z",
+ "updated": "2026-11-18T14:00:43Z",
  "hotkeys": [
   {
    "k": "我们的歌",
@@ -5361,7 +5361,7 @@
   {
    "topid": "4",
    "name": "流行指数",
-   "count": 100,
+   "count": 99,
    "songs": [
     {
      "title": "慌啥子嘛 (赵本山版)",
@@ -5926,23 +5926,6 @@
      "albummid": "0011IIJE3XYf9L",
      "vid": "",
      "rank": "122533"
-    },
-    {
-     "title": "于是-陈怀安",
-     "singer": "陈怀安an",
-     "singers": [
-      {
-       "name": "陈怀安an",
-       "mid": "004dAE563EytJ7"
-      }
-     ],
-     "album": "于是",
-     "duration": 236,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001lZi4q0CEmYY.jpg",
-     "mid": "004OaHX80E7cYM",
-     "albummid": "001lZi4q0CEmYY",
-     "vid": "",
-     "rank": "48274"
     },
     {
      "title": "Know My Name (以我之名)",
@@ -8911,7 +8894,7 @@
   {
    "topid": "27",
    "name": "新歌榜",
-   "count": 100,
+   "count": 99,
    "songs": [
     {
      "title": "慌啥子嘛 (赵本山版)",
@@ -9598,23 +9581,6 @@
      "albummid": "003HBx7l38WiXO",
      "vid": "",
      "rank": "38"
-    },
-    {
-     "title": "于是-陈怀安",
-     "singer": "陈怀安an",
-     "singers": [
-      {
-       "name": "陈怀安an",
-       "mid": "004dAE563EytJ7"
-      }
-     ],
-     "album": "于是",
-     "duration": 236,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001lZi4q0CEmYY.jpg",
-     "mid": "004OaHX80E7cYM",
-     "albummid": "001lZi4q0CEmYY",
-     "vid": "",
-     "rank": "39"
     },
     {
      "title": "Very First Love (初恋)",
