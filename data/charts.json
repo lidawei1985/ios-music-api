@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-19T03:59:28Z",
+ "updated": "2026-11-19T10:16:27Z",
  "hotkeys": [],
  "lists": [
   {
    "topid": "26",
    "name": "热歌榜",
-   "count": 300,
+   "count": 299,
    "songs": [
     {
      "title": "慌啥子嘛 (赵本山版)",
@@ -16,7 +16,7 @@
        "mid": "003BQ5tR20tHEG"
       }
      ],
-     "album": "慌啥子嘛（赵本山版）",
+     "album": "慌啥子嘛 (赵本山版)",
      "duration": 189,
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003CuoS534m1aY.jpg",
      "mid": "002lzYCa14usQ5",
@@ -3649,23 +3649,6 @@
      "rank": "209"
     },
     {
-     "title": "5th（今天是太阳雨）",
-     "singer": "MAX VP",
-     "singers": [
-      {
-       "name": "MAX VP",
-       "mid": "004P9fDP1tOORX"
-      }
-     ],
-     "album": "想不到分开理由no why",
-     "duration": 191,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002OYXD23fxlCp.jpg",
-     "mid": "001Xpghw0mpzGO",
-     "albummid": "002OYXD23fxlCp",
-     "vid": "",
-     "rank": "210"
-    },
-    {
      "title": "冬天又来临",
      "singer": "罗言RollFlash",
      "singers": [
@@ -5264,7 +5247,7 @@
   {
    "topid": "4",
    "name": "流行指数",
-   "count": 100,
+   "count": 99,
    "songs": [
     {
      "title": "慌啥子嘛 (赵本山版)",
@@ -5275,7 +5258,7 @@
        "mid": "003BQ5tR20tHEG"
       }
      ],
-     "album": "慌啥子嘛（赵本山版）",
+     "album": "慌啥子嘛 (赵本山版)",
      "duration": 189,
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003CuoS534m1aY.jpg",
      "mid": "002lzYCa14usQ5",
@@ -5472,23 +5455,6 @@
      "albummid": "000Q25QZ0sr8os",
      "vid": "",
      "rank": "78272"
-    },
-    {
-     "title": "5th（今天是太阳雨）",
-     "singer": "MAX VP",
-     "singers": [
-      {
-       "name": "MAX VP",
-       "mid": "004P9fDP1tOORX"
-      }
-     ],
-     "album": "想不到分开理由no why",
-     "duration": 191,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002OYXD23fxlCp.jpg",
-     "mid": "001Xpghw0mpzGO",
-     "albummid": "002OYXD23fxlCp",
-     "vid": "",
-     "rank": "75557"
     },
     {
      "title": "世间",
@@ -7301,7 +7267,7 @@
        "mid": "0003UO5L1a9p63"
       }
      ],
-     "album": "慌啥子嘛（赵本山版）",
+     "album": "慌啥子嘛 (赵本山版)",
      "duration": 189,
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003CuoS534m1aY.jpg",
      "mid": "002RsKKv2Rd7Ih",
@@ -7656,23 +7622,6 @@
      "albummid": "000iw1DH0qI90n",
      "vid": "",
      "rank": "16855"
-    },
-    {
-     "title": "5th（今天是太阳雨）",
-     "singer": "MAX VP",
-     "singers": [
-      {
-       "name": "MAX VP",
-       "mid": "004P9fDP1tOORX"
-      }
-     ],
-     "album": "想不到分开理由no why",
-     "duration": 191,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002OYXD23fxlCp.jpg",
-     "mid": "001Xpghw0mpzGO",
-     "albummid": "002OYXD23fxlCp",
-     "vid": "",
-     "rank": "48233"
     },
     {
      "title": "就是爱你",
@@ -8409,7 +8358,7 @@
        "mid": "003BQ5tR20tHEG"
       }
      ],
-     "album": "慌啥子嘛（赵本山版）",
+     "album": "慌啥子嘛 (赵本山版)",
      "duration": 189,
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003CuoS534m1aY.jpg",
      "mid": "002lzYCa14usQ5",
@@ -8840,6 +8789,23 @@
      "albummid": "001uqejs3d6EID",
      "vid": "",
      "rank": "102403"
+    },
+    {
+     "title": "不死之身",
+     "singer": "林俊杰",
+     "singers": [
+      {
+       "name": "林俊杰",
+       "mid": "001BLpXF2DyJe2"
+      }
+     ],
+     "album": "曹操",
+     "duration": 227,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002aaUOS24kcwh.jpg",
+     "mid": "001p1Z5Z3lrPlu",
+     "albummid": "002aaUOS24kcwh",
+     "vid": "",
+     "rank": "85679"
     }
    ]
   },
@@ -8857,7 +8823,7 @@
        "mid": "003BQ5tR20tHEG"
       }
      ],
-     "album": "慌啥子嘛（赵本山版）",
+     "album": "慌啥子嘛 (赵本山版)",
      "duration": 189,
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003CuoS534m1aY.jpg",
      "mid": "002lzYCa14usQ5",
@@ -10664,7 +10630,7 @@
        "mid": "003BQ5tR20tHEG"
       }
      ],
-     "album": "慌啥子嘛（赵本山版）",
+     "album": "慌啥子嘛 (赵本山版)",
      "duration": 189,
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003CuoS534m1aY.jpg",
      "mid": "002lzYCa14usQ5",
@@ -12391,7 +12357,7 @@
        "mid": "003BQ5tR20tHEG"
       }
      ],
-     "album": "慌啥子嘛（赵本山版）",
+     "album": "慌啥子嘛 (赵本山版)",
      "duration": 189,
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003CuoS534m1aY.jpg",
      "mid": "002lzYCa14usQ5",
@@ -16695,19 +16661,15 @@
      "rank": "38"
     },
     {
-     "title": "Blood In Your Eyes (from GTAVI: The Album)",
-     "singer": "Tove Lo/Grand Theft Auto VI",
+     "title": "Blood In Your Eyes",
+     "singer": "Tove Lo",
      "singers": [
       {
        "name": "Tove Lo",
        "mid": "002lOe3K3G9oqe"
-      },
-      {
-       "name": "Grand Theft Auto VI",
-       "mid": "003CAurj2wVWSV"
       }
      ],
-     "album": "Grand Theft Auto VI: The Album",
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
      "duration": 161,
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
      "mid": "000tJNSm2obzvC",
