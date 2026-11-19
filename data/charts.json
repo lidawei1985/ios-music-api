@@ -1,6 +1,87 @@
 {
- "updated": "2026-11-19T10:16:27Z",
- "hotkeys": [],
+ "updated": "2026-11-19T14:47:45Z",
+ "hotkeys": [
+  {
+   "k": "我们的歌",
+   "n": 765562
+  },
+  {
+   "k": "冰雪奇缘2",
+   "n": 587404
+  },
+  {
+   "k": "张杰",
+   "n": 323823
+  },
+  {
+   "k": "桥边姑娘",
+   "n": 287637
+  },
+  {
+   "k": "星辰大海",
+   "n": 202868
+  },
+  {
+   "k": "哪咤 李宇春",
+   "n": 192652
+  },
+  {
+   "k": "左手指月",
+   "n": 164609
+  },
+  {
+   "k": "邓紫棋",
+   "n": 155475
+  },
+  {
+   "k": "酒醉的蝴蝶",
+   "n": 154236
+  },
+  {
+   "k": "左肩",
+   "n": 139814
+  },
+  {
+   "k": "从前有座灵剑山",
+   "n": 133861
+  },
+  {
+   "k": "下山",
+   "n": 122423
+  },
+  {
+   "k": "肖战",
+   "n": 107837
+  },
+  {
+   "k": "DANCE MONKEY",
+   "n": 103401
+  },
+  {
+   "k": "句号",
+   "n": 76584
+  },
+  {
+   "k": "冰雪奇缘",
+   "n": 76530
+  },
+  {
+   "k": "心似烟火",
+   "n": 69945
+  },
+  {
+   "k": "酒醉的蝴蝶原唱",
+   "n": 69664
+  },
+  {
+   "k": "句号邓紫棋",
+   "n": 68767
+  },
+  {
+   "k": "IU",
+   "n": 67439
+  }
+ ],
  "lists": [
   {
    "topid": "26",
@@ -7437,23 +7518,6 @@
      "rank": "11567"
     },
     {
-     "title": "明年依然好时节 (纵然我的相思有千千万万重)",
-     "singer": "晚安",
-     "singers": [
-      {
-       "name": "晚安",
-       "mid": "002OjFip3jUCax"
-      }
-     ],
-     "album": "明年依然好时节 (纵然我的相思有千千万万重)",
-     "duration": 235,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002mi1Q10LdAYN.jpg",
-     "mid": "000f0gnF4eRctn",
-     "albummid": "002mi1Q10LdAYN",
-     "vid": "",
-     "rank": "12803"
-    },
-    {
      "title": "Lies (谎言)",
      "singer": "BIGBANG (빅뱅)",
      "singers": [
@@ -7813,23 +7877,6 @@
      "albummid": "001FFpMe09To1V",
      "vid": "",
      "rank": "81149"
-    },
-    {
-     "title": "为什么你不在 (男版)",
-     "singer": "星律",
-     "singers": [
-      {
-       "name": "星律",
-       "mid": "004L1OJn1e2bjp"
-      }
-     ],
-     "album": "为什么你不在",
-     "duration": 172,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000fNLH13t0qbV.jpg",
-     "mid": "0045xkQX2cXK2H",
-     "albummid": "000fNLH13t0qbV",
-     "vid": "",
-     "rank": "14723"
     },
     {
      "title": "一眼万年",
@@ -8806,6 +8853,40 @@
      "albummid": "002aaUOS24kcwh",
      "vid": "",
      "rank": "85679"
+    },
+    {
+     "title": "你想要的",
+     "singer": "颜人中",
+     "singers": [
+      {
+       "name": "颜人中",
+       "mid": "0037vppH2drqM2"
+      }
+     ],
+     "album": "你想要的",
+     "duration": 232,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001JOXm63YMn4D.jpg",
+     "mid": "00396S5A06G6sB",
+     "albummid": "001JOXm63YMn4D",
+     "vid": "",
+     "rank": "108226"
+    },
+    {
+     "title": "说好的幸福呢",
+     "singer": "周杰伦",
+     "singers": [
+      {
+       "name": "周杰伦",
+       "mid": "0025NhlN2yWrP4"
+      }
+     ],
+     "album": "魔杰座",
+     "duration": 256,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002Neh8l0uciQZ.jpg",
+     "mid": "0042QMDR1VzSsx",
+     "albummid": "002Neh8l0uciQZ",
+     "vid": "",
+     "rank": "340373"
     }
    ]
   },
