@@ -1,6 +1,87 @@
 {
- "updated": "2026-11-24T04:54:36Z",
- "hotkeys": [],
+ "updated": "2026-11-24T11:04:35Z",
+ "hotkeys": [
+  {
+   "k": "我们的歌",
+   "n": 765562
+  },
+  {
+   "k": "冰雪奇缘2",
+   "n": 587404
+  },
+  {
+   "k": "张杰",
+   "n": 323823
+  },
+  {
+   "k": "桥边姑娘",
+   "n": 287637
+  },
+  {
+   "k": "星辰大海",
+   "n": 202868
+  },
+  {
+   "k": "哪咤 李宇春",
+   "n": 192652
+  },
+  {
+   "k": "左手指月",
+   "n": 164609
+  },
+  {
+   "k": "邓紫棋",
+   "n": 155475
+  },
+  {
+   "k": "酒醉的蝴蝶",
+   "n": 154236
+  },
+  {
+   "k": "左肩",
+   "n": 139814
+  },
+  {
+   "k": "从前有座灵剑山",
+   "n": 133861
+  },
+  {
+   "k": "下山",
+   "n": 122423
+  },
+  {
+   "k": "肖战",
+   "n": 107837
+  },
+  {
+   "k": "DANCE MONKEY",
+   "n": 103401
+  },
+  {
+   "k": "句号",
+   "n": 76584
+  },
+  {
+   "k": "冰雪奇缘",
+   "n": 76530
+  },
+  {
+   "k": "心似烟火",
+   "n": 69945
+  },
+  {
+   "k": "酒醉的蝴蝶原唱",
+   "n": 69664
+  },
+  {
+   "k": "句号邓紫棋",
+   "n": 68767
+  },
+  {
+   "k": "IU",
+   "n": 67439
+  }
+ ],
  "lists": [
   {
    "topid": "26",
@@ -8670,23 +8751,6 @@
      "rank": "4441"
     },
     {
-     "title": "我的楼兰",
-     "singer": "16end",
-     "singers": [
-      {
-       "name": "16end",
-       "mid": "000ktc0z0PuZCe"
-      }
-     ],
-     "album": "我的楼兰",
-     "duration": 325,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000DDcf73rr5c1.jpg",
-     "mid": "001MIEyZ26l7mU",
-     "albummid": "000DDcf73rr5c1",
-     "vid": "",
-     "rank": "9444"
-    },
-    {
      "title": "轻轻",
      "singer": "肖战",
      "singers": [
@@ -8736,6 +8800,23 @@
      "albummid": "000Ez12M0Fj0LT",
      "vid": "",
      "rank": "14923"
+    },
+    {
+     "title": "想你的雪花落满人间",
+     "singer": "阿哑",
+     "singers": [
+      {
+       "name": "阿哑",
+       "mid": "00267FkO3uO0ZD"
+      }
+     ],
+     "album": "想你的雪花落满人间",
+     "duration": 224,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000TWSYv2sin8i.jpg",
+     "mid": "003w37522ZiOR8",
+     "albummid": "000TWSYv2sin8i",
+     "vid": "",
+     "rank": "4709"
     }
    ]
   },
@@ -10837,11 +10918,11 @@
        "mid": "0014Np4r2TcsXj"
       }
      ],
-     "album": "值得",
+     "album": "生于1996",
      "duration": 244,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000EibLN2HLTPP.jpg",
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002ZyxEk1qPCk9.jpg",
      "mid": "001dnOlC2bI0lw",
-     "albummid": "000EibLN2HLTPP",
+     "albummid": "002ZyxEk1qPCk9",
      "vid": "",
      "rank": "18"
     },
