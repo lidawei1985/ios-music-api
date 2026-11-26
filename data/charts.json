@@ -1,6 +1,87 @@
 {
- "updated": "2026-11-26T10:52:49Z",
- "hotkeys": [],
+ "updated": "2026-11-26T15:58:19Z",
+ "hotkeys": [
+  {
+   "k": "我们的歌",
+   "n": 765562
+  },
+  {
+   "k": "冰雪奇缘2",
+   "n": 587404
+  },
+  {
+   "k": "张杰",
+   "n": 323823
+  },
+  {
+   "k": "桥边姑娘",
+   "n": 287637
+  },
+  {
+   "k": "星辰大海",
+   "n": 202868
+  },
+  {
+   "k": "哪咤 李宇春",
+   "n": 192652
+  },
+  {
+   "k": "左手指月",
+   "n": 164609
+  },
+  {
+   "k": "邓紫棋",
+   "n": 155475
+  },
+  {
+   "k": "酒醉的蝴蝶",
+   "n": 154236
+  },
+  {
+   "k": "左肩",
+   "n": 139814
+  },
+  {
+   "k": "从前有座灵剑山",
+   "n": 133861
+  },
+  {
+   "k": "下山",
+   "n": 122423
+  },
+  {
+   "k": "肖战",
+   "n": 107837
+  },
+  {
+   "k": "DANCE MONKEY",
+   "n": 103401
+  },
+  {
+   "k": "句号",
+   "n": 76584
+  },
+  {
+   "k": "冰雪奇缘",
+   "n": 76530
+  },
+  {
+   "k": "心似烟火",
+   "n": 69945
+  },
+  {
+   "k": "酒醉的蝴蝶原唱",
+   "n": 69664
+  },
+  {
+   "k": "句号邓紫棋",
+   "n": 68767
+  },
+  {
+   "k": "IU",
+   "n": 67439
+  }
+ ],
  "lists": [
   {
    "topid": "26",
@@ -15858,6 +15939,23 @@
      "rank": "1"
     },
     {
+     "title": "Go Easy",
+     "singer": "Dua Lipa",
+     "singers": [
+      {
+       "name": "Dua Lipa",
+       "mid": "0015cdSZ1a29mg"
+      }
+     ],
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
+     "duration": 191,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
+     "mid": "004ZbbXy0m3phA",
+     "albummid": "003UXrYG3rN3w0",
+     "vid": "",
+     "rank": "2"
+    },
+    {
      "title": "DEPENDS",
      "singer": "XG",
      "singers": [
@@ -15872,7 +15970,7 @@
      "mid": "001C5QWr4bvY1A",
      "albummid": "000fE6OB1bWCSk",
      "vid": "",
-     "rank": "2"
+     "rank": "3"
     },
     {
      "title": "Say My Name",
@@ -15889,125 +15987,91 @@
      "mid": "004JzQDk0atTvs",
      "albummid": "003aQDFI0dskN4",
      "vid": "",
-     "rank": "3"
-    },
-    {
-     "title": "S.A.D",
-     "singer": "XG",
-     "singers": [
-      {
-       "name": "XG",
-       "mid": "001SMJiK1x8lKY"
-      }
-     ],
-     "album": "DEPENDS",
-     "duration": 202,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000fE6OB1bWCSk.jpg",
-     "mid": "004UGHtr2eRTPg",
-     "albummid": "000fE6OB1bWCSk",
-     "vid": "",
      "rank": "4"
     },
     {
-     "title": "Good Enough",
-     "singer": "Chris James",
+     "title": "Crazy For You",
+     "singer": "Lana Del Rey",
      "singers": [
       {
-       "name": "Chris James",
-       "mid": "003LMmjH0IpWY8"
+       "name": "Lana Del Rey",
+       "mid": "0040HbAd0HG7N5"
       }
      ],
-     "album": "LET THE LIGHT IN!",
-     "duration": 136,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000yuhTW0fzEBl.jpg",
-     "mid": "0048V2fV31Wrl5",
-     "albummid": "000yuhTW0fzEBl",
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
+     "duration": 223,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
+     "mid": "004bvNVI1I5mpF",
+     "albummid": "003UXrYG3rN3w0",
      "vid": "",
      "rank": "5"
     },
     {
-     "title": "Ruthless (Arena Mix)",
-     "singer": "Kacey Musgraves/The Hunger Games",
+     "title": "Starting From Zero (feat. Michael McDonald)",
+     "singer": "Justice/Michael Mcdonald",
      "singers": [
       {
-       "name": "Kacey Musgraves",
-       "mid": "0010XNp02Rq25J"
+       "name": "Justice",
+       "mid": "002jTl5U0dQmfC"
       },
       {
-       "name": "The Hunger Games",
-       "mid": "001XxjTf3pZbQI"
+       "name": "Michael Mcdonald",
+       "mid": "0017wo1I0NgdrB"
       }
      ],
-     "album": "The Hunger Games: Sunrise on the Reaping - The Album",
-     "duration": 220,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003dC7R235FRzR.jpg",
-     "mid": "002t60us0QO2qj",
-     "albummid": "003dC7R235FRzR",
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
+     "duration": 189,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
+     "mid": "003HUtWg17DiNu",
+     "albummid": "003UXrYG3rN3w0",
      "vid": "",
      "rank": "6"
     },
     {
-     "title": "FIRESTARTER (燃)",
-     "singer": "K/DA/英雄联盟/i-dle (아이들)/Mimi Webb",
+     "title": "When the Lights Go Low",
+     "singer": "Gregory Porter",
      "singers": [
       {
-       "name": "K/DA",
-       "mid": "002KMsoL0LFEnp"
-      },
-      {
-       "name": "英雄联盟",
-       "mid": "0000RHdG1ukDqy"
-      },
-      {
-       "name": "i-dle (아이들)",
-       "mid": "003hcAVs1IB7c8"
-      },
-      {
-       "name": "Mimi Webb",
-       "mid": "0042tMqE2KxjWE"
+       "name": "Gregory Porter",
+       "mid": "002BSrMK3zPJ2S"
       }
      ],
-     "album": "FIRESTARTER (燃)",
-     "duration": 187,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ovTeQ01zmyl.jpg",
-     "mid": "002BYqTG4Qa3gg",
-     "albummid": "003ovTeQ01zmyl",
+     "album": "When the Lights Go Low",
+     "duration": 226,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003syVmz4A7teB.jpg",
+     "mid": "002wO05F2gRqCH",
+     "albummid": "003syVmz4A7teB",
      "vid": "",
      "rank": "7"
     },
     {
-     "title": "Sad King",
-     "singer": "Besomorph",
+     "title": "I Know When to Leave",
+     "singer": "VTSTYOY/AJIYEMA/阿吉野马/RANGE",
      "singers": [
       {
-       "name": "Besomorph",
-       "mid": "000r4yx22lAcz0"
+       "name": "VTSTYOY",
+       "mid": "000hgEis3IU4bW"
+      },
+      {
+       "name": "AJIYEMA",
+       "mid": "002yHy8v2obxv4"
+      },
+      {
+       "name": "阿吉野马",
+       "mid": "004IgE0H0aUARH"
+      },
+      {
+       "name": "RANGE",
+       "mid": "0044l0Zl3Ob8ui"
       }
      ],
-     "album": "Sad King",
-     "duration": 201,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004Ad6Pc4aBGWW.jpg",
-     "mid": "002fAWHS0WHhyA",
-     "albummid": "004Ad6Pc4aBGWW",
+     "album": "If You Could Feel This",
+     "duration": 127,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000035PuXg3Ro5Vv.jpg",
+     "mid": "001IBmYv1ar0Sl",
+     "albummid": "0035PuXg3Ro5Vv",
      "vid": "",
      "rank": "8"
-    },
-    {
-     "title": "What it isn’t",
-     "singer": "Sasha Alex Sloan",
-     "singers": [
-      {
-       "name": "Sasha Alex Sloan",
-       "mid": "001B6mal3oslOR"
-      }
-     ],
-     "album": "And The Crowd Goes Mild (Explicit)",
-     "duration": 160,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
-     "mid": "002qycci2na3vh",
-     "albummid": "001qTlIH0dGQpv",
-     "vid": "",
-     "rank": "9"
     },
     {
      "title": "SIN RETROCEDER",
@@ -16028,175 +16092,7 @@
      "mid": "002UXbu23CEZLs",
      "albummid": "004ZYlI83PG4KT",
      "vid": "",
-     "rank": "10"
-    },
-    {
-     "title": "Have Yourself A Merry Little Christmas (From \"Snoopy Presents: 12 Days of Snoopy\")",
-     "singer": "Laufey/Peanuts",
-     "singers": [
-      {
-       "name": "Laufey",
-       "mid": "003O9AXE2fz50u"
-      },
-      {
-       "name": "Peanuts",
-       "mid": "004IEGwl18wwEH"
-      }
-     ],
-     "album": "Have Yourself A Merry Little Christmas (From \"Snoopy Presents: 12 Days of Snoopy\")",
-     "duration": 194,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004L9bHH0CbmZY.jpg",
-     "mid": "002OjdH44NAnFN",
-     "albummid": "004L9bHH0CbmZY",
-     "vid": "",
-     "rank": "11"
-    },
-    {
-     "title": "her (boy version)",
-     "singer": "ZVC/JVKE",
-     "singers": [
-      {
-       "name": "ZVC",
-       "mid": "000s8Sqp32G4A9"
-      },
-      {
-       "name": "JVKE",
-       "mid": "002npDu54NXkj5"
-      }
-     ],
-     "album": "her (boy version)",
-     "duration": 115,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000008g2yO0nEh1t.jpg",
-     "mid": "003PBeEc1O3YS8",
-     "albummid": "0008g2yO0nEh1t",
-     "vid": "",
-     "rank": "12"
-    },
-    {
-     "title": "Take What You Need",
-     "singer": "The Chainsmokers",
-     "singers": [
-      {
-       "name": "The Chainsmokers",
-       "mid": "004ABIFV1EZUAj"
-      }
-     ],
-     "album": "Take What You Need",
-     "duration": 164,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004MlMem0WUEDk.jpg",
-     "mid": "002okuq3409pzp",
-     "albummid": "004MlMem0WUEDk",
-     "vid": "",
-     "rank": "13"
-    },
-    {
-     "title": "WATCH ME (登场)",
-     "singer": "K/DA/英雄联盟/Mimi Webb/Sophie Powers",
-     "singers": [
-      {
-       "name": "K/DA",
-       "mid": "002KMsoL0LFEnp"
-      },
-      {
-       "name": "英雄联盟",
-       "mid": "0000RHdG1ukDqy"
-      },
-      {
-       "name": "Mimi Webb",
-       "mid": "0042tMqE2KxjWE"
-      },
-      {
-       "name": "Sophie Powers",
-       "mid": "000NrJuM4FvDI7"
-      }
-     ],
-     "album": "FIRESTARTER (燃)",
-     "duration": 182,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ovTeQ01zmyl.jpg",
-     "mid": "003h83yO30b1Y1",
-     "albummid": "003ovTeQ01zmyl",
-     "vid": "",
-     "rank": "14"
-    },
-    {
-     "title": "NEVER GOING BACK (别回头)",
-     "singer": "K/DA/英雄联盟/i-dle (아이들)/田小娟 (SOYEON)",
-     "singers": [
-      {
-       "name": "K/DA",
-       "mid": "002KMsoL0LFEnp"
-      },
-      {
-       "name": "英雄联盟",
-       "mid": "0000RHdG1ukDqy"
-      },
-      {
-       "name": "i-dle (아이들)",
-       "mid": "003hcAVs1IB7c8"
-      },
-      {
-       "name": "田小娟 (SOYEON)",
-       "mid": "001NaqB10BP4SB"
-      }
-     ],
-     "album": "FIRESTARTER (燃)",
-     "duration": 189,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ovTeQ01zmyl.jpg",
-     "mid": "0045TvbY1mj0o5",
-     "albummid": "003ovTeQ01zmyl",
-     "vid": "",
-     "rank": "15"
-    },
-    {
-     "title": "over this time",
-     "singer": "Haley Smalls",
-     "singers": [
-      {
-       "name": "Haley Smalls",
-       "mid": "003LlIFu2KzVx6"
-      }
-     ],
-     "album": "over this time",
-     "duration": 196,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003T9cUv2nypwi.jpg",
-     "mid": "001ErOPS2C9j5h",
-     "albummid": "003T9cUv2nypwi",
-     "vid": "",
-     "rank": "16"
-    },
-    {
-     "title": "worst case",
-     "singer": "girl in red",
-     "singers": [
-      {
-       "name": "girl in red",
-       "mid": "002YYg9p3QgFKh"
-      }
-     ],
-     "album": "BLUE",
-     "duration": 98,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004Iifcp2DYCw0.jpg",
-     "mid": "000VMQuf3lLMzL",
-     "albummid": "004Iifcp2DYCw0",
-     "vid": "",
-     "rank": "17"
-    },
-    {
-     "title": "24hrs in Shanghai",
-     "singer": "Connor Price",
-     "singers": [
-      {
-       "name": "Connor Price",
-       "mid": "002QYZ5e42GJwb"
-      }
-     ],
-     "album": "24hrs in Shanghai",
-     "duration": 156,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000XMZg5336I1p.jpg",
-     "mid": "000iDgX34LKhaC",
-     "albummid": "000XMZg5336I1p",
-     "vid": "",
-     "rank": "18"
+     "rank": "9"
     },
     {
      "title": "There's No Goin' Back",
@@ -16217,155 +16113,24 @@
      "mid": "001JiwVN3RUme6",
      "albummid": "002NZD4B3uMWv8",
      "vid": "",
-     "rank": "19"
+     "rank": "10"
     },
     {
-     "title": "clean slate",
-     "singer": "girl in red",
+     "title": "An Hour With You",
+     "singer": "Gregory Porter",
      "singers": [
       {
-       "name": "girl in red",
-       "mid": "002YYg9p3QgFKh"
+       "name": "Gregory Porter",
+       "mid": "002BSrMK3zPJ2S"
       }
      ],
-     "album": "BLUE",
-     "duration": 190,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004Iifcp2DYCw0.jpg",
-     "mid": "001loHCN1iS4Bj",
-     "albummid": "004Iifcp2DYCw0",
+     "album": "An Hour With You",
+     "duration": 244,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000002KDed2ZdTdr.jpg",
+     "mid": "001UKdoq39KmMR",
+     "albummid": "0002KDed2ZdTdr",
      "vid": "",
-     "rank": "20"
-    },
-    {
-     "title": "MISS ME",
-     "singer": "keshi",
-     "singers": [
-      {
-       "name": "keshi",
-       "mid": "001MptjX2RoF5s"
-      }
-     ],
-     "album": "MISS ME",
-     "duration": 193,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001U1xNQ3UT0J4.jpg",
-     "mid": "004ZTT962DQE67",
-     "albummid": "001U1xNQ3UT0J4",
-     "vid": "",
-     "rank": "21"
-    },
-    {
-     "title": "take me home (4 christmas)",
-     "singer": "Olivia Rodrigo",
-     "singers": [
-      {
-       "name": "Olivia Rodrigo",
-       "mid": "0006dHNu4UKZyl"
-      }
-     ],
-     "album": "take me home (4 christmas)",
-     "duration": 177,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000224Wzr3tYYue.jpg",
-     "mid": "000DU5lv0XypdV",
-     "albummid": "00224Wzr3tYYue",
-     "vid": "",
-     "rank": "22"
-    },
-    {
-     "title": "Gaso Lina（高燃硬曲）",
-     "singer": "DJ Daniel Kim",
-     "singers": [
-      {
-       "name": "DJ Daniel Kim",
-       "mid": "000HqAZV0NhZqg"
-      }
-     ],
-     "album": "Baby 我很抱歉",
-     "duration": 205,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000SmWd80U7KVE.jpg",
-     "mid": "0033O4PU2DAUtf",
-     "albummid": "000SmWd80U7KVE",
-     "vid": "",
-     "rank": "23"
-    },
-    {
-     "title": "Guts (Explicit)",
-     "singer": "LAUV",
-     "singers": [
-      {
-       "name": "LAUV",
-       "mid": "004XSOkU0yCLih"
-      }
-     ],
-     "album": "Guts (Explicit)",
-     "duration": 172,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002VqnN94RwaqY.jpg",
-     "mid": "002YnObF3mkOru",
-     "albummid": "002VqnN94RwaqY",
-     "vid": "",
-     "rank": "24"
-    },
-    {
-     "title": "GIRLS (女孩儿)",
-     "singer": "K/DA/DJ Sona/英雄联盟/Sophie Powers",
-     "singers": [
-      {
-       "name": "K/DA",
-       "mid": "002KMsoL0LFEnp"
-      },
-      {
-       "name": "DJ Sona",
-       "mid": "003Uw9Tn2HUBig"
-      },
-      {
-       "name": "英雄联盟",
-       "mid": "0000RHdG1ukDqy"
-      },
-      {
-       "name": "Sophie Powers",
-       "mid": "000NrJuM4FvDI7"
-      }
-     ],
-     "album": "FIRESTARTER (燃)",
-     "duration": 124,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003ovTeQ01zmyl.jpg",
-     "mid": "003k75eG3myILe",
-     "albummid": "003ovTeQ01zmyl",
-     "vid": "",
-     "rank": "25"
-    },
-    {
-     "title": "I'M A BLACKHOLE (STAR) (Explicit)",
-     "singer": "Odetari",
-     "singers": [
-      {
-       "name": "Odetari",
-       "mid": "000wHZ564DisFv"
-      }
-     ],
-     "album": "PHAZON VARIA (Explicit)",
-     "duration": 198,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003IKV3t4QSDvf.jpg",
-     "mid": "003uySrw0SbjIk",
-     "albummid": "003IKV3t4QSDvf",
-     "vid": "",
-     "rank": "26"
-    },
-    {
-     "title": "GROW ON TREES",
-     "singer": "Peder Elias",
-     "singers": [
-      {
-       "name": "Peder Elias",
-       "mid": "000GxVxK0PdTDv"
-      }
-     ],
-     "album": "GROW ON TREES",
-     "duration": 152,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002NUsbZ0Cx4aq.jpg",
-     "mid": "004bLK1Z2wTUMG",
-     "albummid": "002NUsbZ0Cx4aq",
-     "vid": "",
-     "rank": "27"
+     "rank": "11"
     },
     {
      "title": "Public Figure (Explicit)",
@@ -16382,87 +16147,230 @@
      "mid": "0004GrP40eljYw",
      "albummid": "002lhU3K0FvNBg",
      "vid": "",
-     "rank": "28"
+     "rank": "12"
     },
     {
-     "title": "High Hopes",
-     "singer": "Chris James",
+     "title": "S.A.D",
+     "singer": "XG",
      "singers": [
       {
-       "name": "Chris James",
-       "mid": "003LMmjH0IpWY8"
+       "name": "XG",
+       "mid": "001SMJiK1x8lKY"
       }
      ],
-     "album": "LET THE LIGHT IN!",
-     "duration": 160,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000yuhTW0fzEBl.jpg",
-     "mid": "000I3xCf2RJmlx",
-     "albummid": "000yuhTW0fzEBl",
+     "album": "DEPENDS",
+     "duration": 202,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000fE6OB1bWCSk.jpg",
+     "mid": "004UGHtr2eRTPg",
+     "albummid": "000fE6OB1bWCSk",
      "vid": "",
-     "rank": "29"
+     "rank": "13"
     },
     {
-     "title": "5:42 (Explicit)",
-     "singer": "Westwood",
+     "title": "Change the Destination",
+     "singer": "VTSTYOY/AJIYEMA/阿吉野马/RANGE",
      "singers": [
       {
-       "name": "Westwood",
-       "mid": "001mXhrN25GLpK"
+       "name": "VTSTYOY",
+       "mid": "000hgEis3IU4bW"
+      },
+      {
+       "name": "AJIYEMA",
+       "mid": "002yHy8v2obxv4"
+      },
+      {
+       "name": "阿吉野马",
+       "mid": "004IgE0H0aUARH"
+      },
+      {
+       "name": "RANGE",
+       "mid": "0044l0Zl3Ob8ui"
       }
      ],
-     "album": "Luxury (Explicit)",
-     "duration": 138,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000N5R0b2dfsUt.jpg",
-     "mid": "000w3P6S2Qo0UE",
-     "albummid": "000N5R0b2dfsUt",
+     "album": "If You Could Feel This",
+     "duration": 129,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000035PuXg3Ro5Vv.jpg",
+     "mid": "001qAEcD169q7i",
+     "albummid": "0035PuXg3Ro5Vv",
      "vid": "",
-     "rank": "30"
+     "rank": "14"
     },
     {
-     "title": "Alfaaz (Alan Walker Relight)",
-     "singer": "Alan Walker/Hamza Malik/Zain Zohaib/James Arthur",
+     "title": "Morning Song of Love",
+     "singer": "Gregory Porter",
+     "singers": [
+      {
+       "name": "Gregory Porter",
+       "mid": "002BSrMK3zPJ2S"
+      }
+     ],
+     "album": "Morning Song of Love",
+     "duration": 348,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004L5Un00zLzpg.jpg",
+     "mid": "0047kDyW1di3V0",
+     "albummid": "004L5Un00zLzpg",
+     "vid": "",
+     "rank": "15"
+    },
+    {
+     "title": "YUME",
+     "singer": "Alan Walker/ラウール",
      "singers": [
       {
        "name": "Alan Walker",
        "mid": "0020PeOh4ZaCw1"
       },
       {
-       "name": "Hamza Malik",
-       "mid": "003N5cSA1zAInN"
-      },
-      {
-       "name": "Zain Zohaib",
-       "mid": "001bpWny293rnZ"
-      },
-      {
-       "name": "James Arthur",
-       "mid": "002KvWR041bdOz"
+       "name": "ラウール",
+       "mid": "002KZA7T2LLYMp"
       }
      ],
-     "album": "Alfaaz (Alan Walker Relight)",
-     "duration": 174,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000041RTHL2bZRRf.jpg",
-     "mid": "003G7Sjl1sAcRz",
-     "albummid": "0041RTHL2bZRRf",
+     "album": "YUME",
+     "duration": 212,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001dxrWo0ISfH9.jpg",
+     "mid": "000FfGmL0s8nEe",
+     "albummid": "001dxrWo0ISfH9",
      "vid": "",
-     "rank": "31"
+     "rank": "16"
     },
     {
-     "title": "2018",
-     "singer": "Sasha Alex Sloan",
+     "title": "stuck on you",
+     "singer": "Haley Smalls",
      "singers": [
       {
-       "name": "Sasha Alex Sloan",
-       "mid": "001B6mal3oslOR"
+       "name": "Haley Smalls",
+       "mid": "003LlIFu2KzVx6"
       }
      ],
-     "album": "And The Crowd Goes Mild (Explicit)",
-     "duration": 165,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
-     "mid": "000ZIvRz2mZ5aL",
-     "albummid": "001qTlIH0dGQpv",
+     "album": "stuck on you",
+     "duration": 207,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001YNko80A7sxx.jpg",
+     "mid": "001i2TD23OGhvH",
+     "albummid": "001YNko80A7sxx",
      "vid": "",
-     "rank": "32"
+     "rank": "17"
+    },
+    {
+     "title": "ORIGAMI (&TEAM)",
+     "singer": "SANTOS BRAVOS/&TEAM",
+     "singers": [
+      {
+       "name": "SANTOS BRAVOS",
+       "mid": "002Fr8zw4PlFOA"
+      },
+      {
+       "name": "&TEAM",
+       "mid": "0042gpL9421UGP"
+      }
+     ],
+     "album": "ORIGAMI",
+     "duration": 184,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001MNdgF2RZxVX.jpg",
+     "mid": "000V4K2c3meg78",
+     "albummid": "001MNdgF2RZxVX",
+     "vid": "",
+     "rank": "18"
+    },
+    {
+     "title": "MISS ME (Orchestral)",
+     "singer": "keshi",
+     "singers": [
+      {
+       "name": "keshi",
+       "mid": "001MptjX2RoF5s"
+      }
+     ],
+     "album": "MISS ME (Orchestral)",
+     "duration": 194,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000000XFF02v8PBC.jpg",
+     "mid": "001gwjl30GxX54",
+     "albummid": "0000XFF02v8PBC",
+     "vid": "",
+     "rank": "19"
+    },
+    {
+     "title": "Make It Count Tonight",
+     "singer": "VTSTYOY/AJIYEMA/阿吉野马/RANGE",
+     "singers": [
+      {
+       "name": "VTSTYOY",
+       "mid": "000hgEis3IU4bW"
+      },
+      {
+       "name": "AJIYEMA",
+       "mid": "002yHy8v2obxv4"
+      },
+      {
+       "name": "阿吉野马",
+       "mid": "004IgE0H0aUARH"
+      },
+      {
+       "name": "RANGE",
+       "mid": "0044l0Zl3Ob8ui"
+      }
+     ],
+     "album": "If You Could Feel This",
+     "duration": 158,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000035PuXg3Ro5Vv.jpg",
+     "mid": "001MST4w0DVAag",
+     "albummid": "0035PuXg3Ro5Vv",
+     "vid": "",
+     "rank": "20"
+    },
+    {
+     "title": "Dients",
+     "singer": "Nicholas Witt",
+     "singers": [
+      {
+       "name": "Nicholas Witt",
+       "mid": "003eco0E0pYPtk"
+      }
+     ],
+     "album": "Dients",
+     "duration": 124,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003j84cO17uN6R.jpg",
+     "mid": "0036C2Mm3RjeMd",
+     "albummid": "003j84cO17uN6R",
+     "vid": "",
+     "rank": "21"
+    },
+    {
+     "title": "Crashing Down",
+     "singer": "Au5/Diandra Faye",
+     "singers": [
+      {
+       "name": "Au5",
+       "mid": "002q9KvU00lCiB"
+      },
+      {
+       "name": "Diandra Faye",
+       "mid": "003EfESI2txXiB"
+      }
+     ],
+     "album": "Crashing Down",
+     "duration": 255,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001sEzKA2e0xy7.jpg",
+     "mid": "002gLPFC27ZJE6",
+     "albummid": "001sEzKA2e0xy7",
+     "vid": "",
+     "rank": "22"
+    },
+    {
+     "title": "Feel Only Love 2027",
+     "singer": "Klaas",
+     "singers": [
+      {
+       "name": "Klaas",
+       "mid": "00420lwO1IOHVx"
+      }
+     ],
+     "album": "Feel Only Love 2027",
+     "duration": 133,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002D12qA04AZQ1.jpg",
+     "mid": "002aytFt2OlyqC",
+     "albummid": "002D12qA04AZQ1",
+     "vid": "",
+     "rank": "23"
     },
     {
      "title": "Me Without U",
@@ -16487,555 +16395,27 @@
      "mid": "002nDjK61mLT1C",
      "albummid": "000BBY4822eOOn",
      "vid": "",
-     "rank": "33"
+     "rank": "24"
     },
     {
-     "title": "Until The Morning",
-     "singer": "J.Tajor",
+     "title": "Take What You Need",
+     "singer": "The Chainsmokers",
      "singers": [
       {
-       "name": "J.Tajor",
-       "mid": "002C26ij3cm9vh"
+       "name": "The Chainsmokers",
+       "mid": "004ABIFV1EZUAj"
       }
      ],
-     "album": "Until The Morning",
-     "duration": 160,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003DWG813t1XMN.jpg",
-     "mid": "001Fs9EA3GdEH1",
-     "albummid": "003DWG813t1XMN",
+     "album": "Take What You Need",
+     "duration": 164,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004MlMem0WUEDk.jpg",
+     "mid": "002okuq3409pzp",
+     "albummid": "004MlMem0WUEDk",
      "vid": "",
-     "rank": "34"
+     "rank": "25"
     },
     {
-     "title": "Everywhere",
-     "singer": "Dream Tunes",
-     "singers": [
-      {
-       "name": "Dream Tunes",
-       "mid": "001dUh8o1NHIlK"
-      }
-     ],
-     "album": "Everywhere",
-     "duration": 192,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001ebinA0I3kDF.jpg",
-     "mid": "004TfQSj0L4awO",
-     "albummid": "001ebinA0I3kDF",
-     "vid": "",
-     "rank": "35"
-    },
-    {
-     "title": "Here You Come, There You Go",
-     "singer": "Gracie Abrams",
-     "singers": [
-      {
-       "name": "Gracie Abrams",
-       "mid": "004aObBU1n5WYc"
-      }
-     ],
-     "album": "Here You Come, There You Go",
-     "duration": 170,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002zNuwn1PgC7g.jpg",
-     "mid": "0026L42c0xjKTv",
-     "albummid": "002zNuwn1PgC7g",
-     "vid": "",
-     "rank": "36"
-    },
-    {
-     "title": "Keeping score",
-     "singer": "Sasha Alex Sloan",
-     "singers": [
-      {
-       "name": "Sasha Alex Sloan",
-       "mid": "001B6mal3oslOR"
-      }
-     ],
-     "album": "And The Crowd Goes Mild (Explicit)",
-     "duration": 189,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
-     "mid": "0045Wqma16LLpt",
-     "albummid": "001qTlIH0dGQpv",
-     "vid": "",
-     "rank": "37"
-    },
-    {
-     "title": "Day After Day",
-     "singer": "Black Gryph0n/Baasik",
-     "singers": [
-      {
-       "name": "Black Gryph0n",
-       "mid": "000VabZv0riGjm"
-      },
-      {
-       "name": "Baasik",
-       "mid": "001d3fUd1o9P8p"
-      }
-     ],
-     "album": "The Amazing Digital Album",
-     "duration": 240,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002LeJKK3YBacv.jpg",
-     "mid": "001dsINa0e0Q07",
-     "albummid": "002LeJKK3YBacv",
-     "vid": "",
-     "rank": "38"
-    },
-    {
-     "title": "Blood In Your Eyes",
-     "singer": "Tove Lo",
-     "singers": [
-      {
-       "name": "Tove Lo",
-       "mid": "002lOe3K3G9oqe"
-      }
-     ],
-     "album": "Grand Theft Auto VI: The Album (Explicit)",
-     "duration": 161,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
-     "mid": "000tJNSm2obzvC",
-     "albummid": "003UXrYG3rN3w0",
-     "vid": "",
-     "rank": "39"
-    },
-    {
-     "title": "Which One",
-     "singer": "JYT",
-     "singers": [
-      {
-       "name": "JYT",
-       "mid": "003qKSZe3zP5y0"
-      }
-     ],
-     "album": "Just Your Type",
-     "duration": 193,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Uo0R719e7cp.jpg",
-     "mid": "004cV4d60v1W9Q",
-     "albummid": "001Uo0R719e7cp",
-     "vid": "",
-     "rank": "40"
-    },
-    {
-     "title": "Without My Strings",
-     "singer": "Alec Benjamin",
-     "singers": [
-      {
-       "name": "Alec Benjamin",
-       "mid": "002HRSkP17GCwL"
-      }
-     ],
-     "album": "Without My Strings",
-     "duration": 190,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000ppcaH0TAVkr.jpg",
-     "mid": "003JCsgm1T5gwJ",
-     "albummid": "000ppcaH0TAVkr",
-     "vid": "",
-     "rank": "41"
-    },
-    {
-     "title": "WELCOME (Explicit)",
-     "singer": "IDK/Eminem/J Dilla",
-     "singers": [
-      {
-       "name": "IDK",
-       "mid": "001Q7IRn3xrRE9"
-      },
-      {
-       "name": "Eminem",
-       "mid": "000yDAjj2TE9j8"
-      },
-      {
-       "name": "J Dilla",
-       "mid": "0001OPLJ3OIEFJ"
-      }
-     ],
-     "album": "WELCOME (Explicit)",
-     "duration": 162,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004aHRzk460MRO.jpg",
-     "mid": "002zftgH3rP81k",
-     "albummid": "004aHRzk460MRO",
-     "vid": "",
-     "rank": "42"
-    },
-    {
-     "title": "Party With The Boys (Explicit)",
-     "singer": "Don Toliver",
-     "singers": [
-      {
-       "name": "Don Toliver",
-       "mid": "003HsAIA1HndKS"
-      }
-     ],
-     "album": "Party With The Boys (Explicit)",
-     "duration": 155,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001T2W4r0QmVd4.jpg",
-     "mid": "001ehEv43vJslc",
-     "albummid": "001T2W4r0QmVd4",
-     "vid": "",
-     "rank": "43"
-    },
-    {
-     "title": "Ocean City",
-     "singer": "Klaas",
-     "singers": [
-      {
-       "name": "Klaas",
-       "mid": "00420lwO1IOHVx"
-      }
-     ],
-     "album": "Ocean City",
-     "duration": 141,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001nTwee3wx00S.jpg",
-     "mid": "000hbl472GjYyz",
-     "albummid": "001nTwee3wx00S",
-     "vid": "",
-     "rank": "44"
-    },
-    {
-     "title": "Sarah",
-     "singer": "Dionela/John Roa",
-     "singers": [
-      {
-       "name": "Dionela",
-       "mid": "002gN0Bh2n8izA"
-      },
-      {
-       "name": "John Roa",
-       "mid": "004Y2Gjp0b4xgy"
-      }
-     ],
-     "album": "Sarah",
-     "duration": 149,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002o2UcY4FY8WZ.jpg",
-     "mid": "000TkZH10Jm4qT",
-     "albummid": "002o2UcY4FY8WZ",
-     "vid": "",
-     "rank": "45"
-    },
-    {
-     "title": "Regularly Scheduled Program",
-     "singer": "Emei",
-     "singers": [
-      {
-       "name": "Emei",
-       "mid": "000kxHnP0s9ZPx"
-      }
-     ],
-     "album": "Night at the Opera: Intermission (Explicit)",
-     "duration": 129,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003plI6I2UoDvv.jpg",
-     "mid": "001uLYo10hd6N3",
-     "albummid": "003plI6I2UoDvv",
-     "vid": "",
-     "rank": "46"
-    },
-    {
-     "title": "i2i",
-     "singer": "2hollis",
-     "singers": [
-      {
-       "name": "2hollis",
-       "mid": "002RAwjH0RqDht"
-      }
-     ],
-     "album": "Pirouette (Explicit)",
-     "duration": 116,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003V78Fa2lainI.jpg",
-     "mid": "0005GvKm07WkP4",
-     "albummid": "003V78Fa2lainI",
-     "vid": "",
-     "rank": "47"
-    },
-    {
-     "title": "Crimson Sky",
-     "singer": "Helluva Boss/Harvey Guillén/Bryce Pinkham",
-     "singers": [
-      {
-       "name": "Helluva Boss",
-       "mid": "002azsIi0dCNdp"
-      },
-      {
-       "name": "Harvey Guillén",
-       "mid": "004E4zoG1h3JU8"
-      },
-      {
-       "name": "Bryce Pinkham",
-       "mid": "000v0gVQ0GAeJK"
-      }
-     ],
-     "album": "Helluva Boss: Season Three, Part 1 (Episodes 4-5)",
-     "duration": 192,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000026dPzm25QKV0.jpg",
-     "mid": "003r4MhN1rEhV2",
-     "albummid": "0026dPzm25QKV0",
-     "vid": "",
-     "rank": "48"
-    },
-    {
-     "title": "Ya Hit (Explicit)",
-     "singer": "Future/Drake/Travis Scott/Loe Shimmy",
-     "singers": [
-      {
-       "name": "Future",
-       "mid": "003rLetL0AcGNH"
-      },
-      {
-       "name": "Drake",
-       "mid": "001FAb1d02xUcH"
-      },
-      {
-       "name": "Travis Scott",
-       "mid": "0011N7Ui1DkEON"
-      },
-      {
-       "name": "Loe Shimmy",
-       "mid": "003IfAgY42p7nT"
-      }
-     ],
-     "album": "Ya Hit (Explicit)",
-     "duration": 214,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001H1p4g3uezAv.jpg",
-     "mid": "004UsmTa0RvziS",
-     "albummid": "001H1p4g3uezAv",
-     "vid": "",
-     "rank": "49"
-    },
-    {
-     "title": "petal (Explicit)",
-     "singer": "Ariana Grande",
-     "singers": [
-      {
-       "name": "Ariana Grande",
-       "mid": "004eTCF03KvBOE"
-      }
-     ],
-     "album": "petal (Explicit)",
-     "duration": 184,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000037imbo2QFhJR.jpg",
-     "mid": "000Ey0sk3vjzOc",
-     "albummid": "0037imbo2QFhJR",
-     "vid": "",
-     "rank": "50"
-    },
-    {
-     "title": "Casual Crime",
-     "singer": "Lyn Lapid",
-     "singers": [
-      {
-       "name": "Lyn Lapid",
-       "mid": "003yQIuq2xnt25"
-      }
-     ],
-     "album": "Casual Crime",
-     "duration": 155,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000us7OS19y7cu.jpg",
-     "mid": "000XtjJk1n6pgA",
-     "albummid": "000us7OS19y7cu",
-     "vid": "",
-     "rank": "51"
-    },
-    {
-     "title": "Feel Only Love 2027",
-     "singer": "Klaas",
-     "singers": [
-      {
-       "name": "Klaas",
-       "mid": "00420lwO1IOHVx"
-      }
-     ],
-     "album": "Feel Only Love 2027",
-     "duration": 133,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002D12qA04AZQ1.jpg",
-     "mid": "002aytFt2OlyqC",
-     "albummid": "002D12qA04AZQ1",
-     "vid": "",
-     "rank": "52"
-    },
-    {
-     "title": "Leave You (Never)",
-     "singer": "FLO",
-     "singers": [
-      {
-       "name": "FLO",
-       "mid": "004CDEfk2JjgEM"
-      }
-     ],
-     "album": "Leave You (Never)",
-     "duration": 168,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001XKnH81jf4EH.jpg",
-     "mid": "0030Eo2a2uXsow",
-     "albummid": "001XKnH81jf4EH",
-     "vid": "",
-     "rank": "53"
-    },
-    {
-     "title": "Lovepill",
-     "singer": "yeule",
-     "singers": [
-      {
-       "name": "yeule",
-       "mid": "002lVaj83PvTNe"
-      }
-     ],
-     "album": "Lovepill",
-     "duration": 190,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000033oykK4FPdxJ.jpg",
-     "mid": "004c6y9A2Roypx",
-     "albummid": "0033oykK4FPdxJ",
-     "vid": "",
-     "rank": "54"
-    },
-    {
-     "title": "Hey, People",
-     "singer": "James Blunt",
-     "singers": [
-      {
-       "name": "James Blunt",
-       "mid": "000OYo204PAGqw"
-      }
-     ],
-     "album": "Airplane Mode",
-     "duration": 220,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001cJxnb2zQfXJ.jpg",
-     "mid": "001LWNmZ1ix9S9",
-     "albummid": "001cJxnb2zQfXJ",
-     "vid": "",
-     "rank": "55"
-    },
-    {
-     "title": "QUEDATE",
-     "singer": "bxkq",
-     "singers": [
-      {
-       "name": "bxkq",
-       "mid": "001kgmeq3LYGit"
-      }
-     ],
-     "album": "QUEDATE",
-     "duration": 109,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001P6Co21HT61j.jpg",
-     "mid": "004BTT0n4I431P",
-     "albummid": "001P6Co21HT61j",
-     "vid": "",
-     "rank": "56"
-    },
-    {
-     "title": "Dancing In Dreams (feat. Zak Azoury)",
-     "singer": "John Michael Howell/Zak Azoury",
-     "singers": [
-      {
-       "name": "John Michael Howell",
-       "mid": "003b0Zsz3VzkYB"
-      },
-      {
-       "name": "Zak Azoury",
-       "mid": "004FTcl14OFaCJ"
-      }
-     ],
-     "album": "The Poet",
-     "duration": 132,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000194lNl0iIX96.jpg",
-     "mid": "0035K4Az3hcL5V",
-     "albummid": "00194lNl0iIX96",
-     "vid": "",
-     "rank": "57"
-    },
-    {
-     "title": "Wash",
-     "singer": "Tori Kelly/Hillari",
-     "singers": [
-      {
-       "name": "Tori Kelly",
-       "mid": "0033BEyG0rpzVP"
-      },
-      {
-       "name": "Hillari",
-       "mid": "003cQyvC15l3bH"
-      }
-     ],
-     "album": "Wash",
-     "duration": 193,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Oe8jM4DINOg.jpg",
-     "mid": "004bSinx2X6Ig0",
-     "albummid": "000Oe8jM4DINOg",
-     "vid": "",
-     "rank": "58"
-    },
-    {
-     "title": "Fun (Explicit)",
-     "singer": "Sasha Alex Sloan",
-     "singers": [
-      {
-       "name": "Sasha Alex Sloan",
-       "mid": "001B6mal3oslOR"
-      }
-     ],
-     "album": "And The Crowd Goes Mild (Explicit)",
-     "duration": 193,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
-     "mid": "000RXkRV0ktQTp",
-     "albummid": "001qTlIH0dGQpv",
-     "vid": "",
-     "rank": "59"
-    },
-    {
-     "title": "The Book (feat. JVKE & ZVC)",
-     "singer": "John Michael Howell/JVKE/ZVC",
-     "singers": [
-      {
-       "name": "John Michael Howell",
-       "mid": "003b0Zsz3VzkYB"
-      },
-      {
-       "name": "JVKE",
-       "mid": "002npDu54NXkj5"
-      },
-      {
-       "name": "ZVC",
-       "mid": "000s8Sqp32G4A9"
-      }
-     ],
-     "album": "The Poet",
-     "duration": 163,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000194lNl0iIX96.jpg",
-     "mid": "004V9Ded1Tkn2y",
-     "albummid": "00194lNl0iIX96",
-     "vid": "",
-     "rank": "60"
-    },
-    {
-     "title": "You Don't Feel The Way I Do",
-     "singer": "Chris James",
-     "singers": [
-      {
-       "name": "Chris James",
-       "mid": "003LMmjH0IpWY8"
-      }
-     ],
-     "album": "LET THE LIGHT IN!",
-     "duration": 162,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000yuhTW0fzEBl.jpg",
-     "mid": "004RBb9S0dCQYo",
-     "albummid": "000yuhTW0fzEBl",
-     "vid": "",
-     "rank": "61"
-    },
-    {
-     "title": "Fallen Angel",
-     "singer": "John Michael Howell",
-     "singers": [
-      {
-       "name": "John Michael Howell",
-       "mid": "003b0Zsz3VzkYB"
-      }
-     ],
-     "album": "The Poet",
-     "duration": 139,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000194lNl0iIX96.jpg",
-     "mid": "000WTicu3KFmOb",
-     "albummid": "00194lNl0iIX96",
-     "vid": "",
-     "rank": "62"
-    },
-    {
-     "title": "June",
+     "title": "Good Enough",
      "singer": "Chris James",
      "singers": [
       {
@@ -17046,48 +16426,301 @@
      "album": "LET THE LIGHT IN!",
      "duration": 136,
      "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000yuhTW0fzEBl.jpg",
-     "mid": "003cWnLT3aeqW2",
+     "mid": "0048V2fV31Wrl5",
      "albummid": "000yuhTW0fzEBl",
      "vid": "",
-     "rank": "63"
+     "rank": "26"
     },
     {
-     "title": "I Like You A Lot",
-     "singer": "Crash Adams/Walk off the Earth",
+     "title": "NEON ON MY SKIN",
+     "singer": "VTSTYOY/AJIYEMA/阿吉野马/L4NE",
      "singers": [
       {
-       "name": "Crash Adams",
-       "mid": "001kqThQ3Qy3Ip"
+       "name": "VTSTYOY",
+       "mid": "000hgEis3IU4bW"
       },
       {
-       "name": "Walk off the Earth",
-       "mid": "002RXUq04F4DHF"
+       "name": "AJIYEMA",
+       "mid": "002yHy8v2obxv4"
+      },
+      {
+       "name": "阿吉野马",
+       "mid": "004IgE0H0aUARH"
+      },
+      {
+       "name": "L4NE",
+       "mid": "003vAvh62inbES"
       }
      ],
-     "album": "I Like You A Lot",
-     "duration": 170,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000IQfEs06vNKJ.jpg",
-     "mid": "003PNri04D2e0T",
-     "albummid": "000IQfEs06vNKJ",
+     "album": "Almost Over You",
+     "duration": 211,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003s7WyN2eYgv9.jpg",
+     "mid": "002rD9CD2qFnvm",
+     "albummid": "003s7WyN2eYgv9",
      "vid": "",
-     "rank": "64"
+     "rank": "27"
     },
     {
-     "title": "Still be me",
-     "singer": "Sasha Alex Sloan",
+     "title": "Bigger",
+     "singer": "Burna Boy",
      "singers": [
       {
-       "name": "Sasha Alex Sloan",
-       "mid": "001B6mal3oslOR"
+       "name": "Burna Boy",
+       "mid": "000toPHW3otaSa"
       }
      ],
-     "album": "And The Crowd Goes Mild (Explicit)",
-     "duration": 202,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
-     "mid": "003geVNc3wkWmA",
-     "albummid": "001qTlIH0dGQpv",
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
+     "duration": 169,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
+     "mid": "003JyuIl2lZatC",
+     "albummid": "003UXrYG3rN3w0",
      "vid": "",
-     "rank": "65"
+     "rank": "28"
+    },
+    {
+     "title": "Call Me You Love",
+     "singer": "Imazee/Abekone",
+     "singers": [
+      {
+       "name": "Imazee",
+       "mid": "001TlfHN1SJ0ld"
+      },
+      {
+       "name": "Abekone",
+       "mid": "003zrNiz4Ehh8M"
+      }
+     ],
+     "album": "Call Me You Love",
+     "duration": 241,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003OruIe3ZzmYd.jpg",
+     "mid": "000QKkrW4czVF3",
+     "albummid": "003OruIe3ZzmYd",
+     "vid": "",
+     "rank": "29"
+    },
+    {
+     "title": "Guts (Explicit)",
+     "singer": "LAUV",
+     "singers": [
+      {
+       "name": "LAUV",
+       "mid": "004XSOkU0yCLih"
+      }
+     ],
+     "album": "Guts (Explicit)",
+     "duration": 172,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002VqnN94RwaqY.jpg",
+     "mid": "002YnObF3mkOru",
+     "albummid": "002VqnN94RwaqY",
+     "vid": "",
+     "rank": "30"
+    },
+    {
+     "title": "Out of Nowhere",
+     "singer": "Gracie Abrams",
+     "singers": [
+      {
+       "name": "Gracie Abrams",
+       "mid": "004aObBU1n5WYc"
+      }
+     ],
+     "album": "Daughter from Hell (Deluxe) [Explicit]",
+     "duration": 172,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004c2cdl1LzeEl.jpg",
+     "mid": "003UVrCH09pTVD",
+     "albummid": "004c2cdl1LzeEl",
+     "vid": "",
+     "rank": "31"
+    },
+    {
+     "title": "Good Karma (Explicit)",
+     "singer": "ARDN",
+     "singers": [
+      {
+       "name": "ARDN",
+       "mid": "000wuM4E1ceO0q"
+      }
+     ],
+     "album": "Good Karma (Explicit)",
+     "duration": 187,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000043G6Qv4830CN.jpg",
+     "mid": "000vYMcT08sJ8N",
+     "albummid": "0043G6Qv4830CN",
+     "vid": "",
+     "rank": "32"
+    },
+    {
+     "title": "her (boy version)",
+     "singer": "ZVC/JVKE",
+     "singers": [
+      {
+       "name": "ZVC",
+       "mid": "000s8Sqp32G4A9"
+      },
+      {
+       "name": "JVKE",
+       "mid": "002npDu54NXkj5"
+      }
+     ],
+     "album": "her (boy version)",
+     "duration": 115,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000008g2yO0nEh1t.jpg",
+     "mid": "003PBeEc1O3YS8",
+     "albummid": "0008g2yO0nEh1t",
+     "vid": "",
+     "rank": "33"
+    },
+    {
+     "title": "Fast Asleep",
+     "singer": "GIVĒON",
+     "singers": [
+      {
+       "name": "GIVĒON",
+       "mid": "001WIPL02muTyN"
+      }
+     ],
+     "album": "Fast Asleep",
+     "duration": 180,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000000uIBj1iI818.jpg",
+     "mid": "004TYwdq1B4sgX",
+     "albummid": "0000uIBj1iI818",
+     "vid": "",
+     "rank": "34"
+    },
+    {
+     "title": "Sweet Like Candy",
+     "singer": "Camila Cabello",
+     "singers": [
+      {
+       "name": "Camila Cabello",
+       "mid": "003Q2a8W21Zv1q"
+      }
+     ],
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
+     "duration": 184,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
+     "mid": "001uZHix4FN02k",
+     "albummid": "003UXrYG3rN3w0",
+     "vid": "",
+     "rank": "35"
+    },
+    {
+     "title": "Lost in It",
+     "singer": "Gracie Abrams",
+     "singers": [
+      {
+       "name": "Gracie Abrams",
+       "mid": "004aObBU1n5WYc"
+      }
+     ],
+     "album": "Daughter from Hell (Deluxe) [Explicit]",
+     "duration": 175,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004c2cdl1LzeEl.jpg",
+     "mid": "001UGxKg1Cxzfl",
+     "albummid": "004c2cdl1LzeEl",
+     "vid": "",
+     "rank": "36"
+    },
+    {
+     "title": "Hold (动感鼓点版)",
+     "singer": "Acreix/La Mer",
+     "singers": [
+      {
+       "name": "Acreix",
+       "mid": "0046tUuY0UhoZy"
+      },
+      {
+       "name": "La Mer",
+       "mid": "000IjThf0CevJv"
+      }
+     ],
+     "album": "LA LA LA LA LA",
+     "duration": 151,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004BKeoZ3fCF0y.jpg",
+     "mid": "002CTtdW29jNKH",
+     "albummid": "004BKeoZ3fCF0y",
+     "vid": "",
+     "rank": "37"
+    },
+    {
+     "title": "Preludeing（New Deep）",
+     "singer": "Acreix/La Mer",
+     "singers": [
+      {
+       "name": "Acreix",
+       "mid": "0046tUuY0UhoZy"
+      },
+      {
+       "name": "La Mer",
+       "mid": "000IjThf0CevJv"
+      }
+     ],
+     "album": "该来的总会来",
+     "duration": 93,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000036JBaH0jA2iT.jpg",
+     "mid": "001zDPcq4BpeFj",
+     "albummid": "0036JBaH0jA2iT",
+     "vid": "",
+     "rank": "38"
+    },
+    {
+     "title": "A PLACE TO GO",
+     "singer": "The Kid LAROI",
+     "singers": [
+      {
+       "name": "The Kid LAROI",
+       "mid": "002jJYY63gtMwS"
+      }
+     ],
+     "album": "A PLACE TO GO",
+     "duration": 212,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002K1YUu3ZTFqG.jpg",
+     "mid": "002ZaASw15xAWk",
+     "albummid": "002K1YUu3ZTFqG",
+     "vid": "",
+     "rank": "39"
+    },
+    {
+     "title": "INSECURITIES",
+     "singer": "bxkq/DJ MIETRA",
+     "singers": [
+      {
+       "name": "bxkq",
+       "mid": "001kgmeq3LYGit"
+      },
+      {
+       "name": "DJ MIETRA",
+       "mid": "001PCcXB0q6QtX"
+      }
+     ],
+     "album": "INSECURITIES",
+     "duration": 116,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001sesqw4T4AVA.jpg",
+     "mid": "000R544i1ej1v0",
+     "albummid": "001sesqw4T4AVA",
+     "vid": "",
+     "rank": "40"
+    },
+    {
+     "title": "Into You (高燃鼓点版)",
+     "singer": "Acreix/La Mer",
+     "singers": [
+      {
+       "name": "Acreix",
+       "mid": "0046tUuY0UhoZy"
+      },
+      {
+       "name": "La Mer",
+       "mid": "000IjThf0CevJv"
+      }
+     ],
+     "album": "Letter Beat",
+     "duration": 98,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003KLo9A1okTfH.jpg",
+     "mid": "002gvhPt1Zw1IC",
+     "albummid": "003KLo9A1okTfH",
+     "vid": "",
+     "rank": "41"
     },
     {
      "title": "Feel The Vibe (Dance Remix|Explicit)",
@@ -17112,197 +16745,252 @@
      "mid": "000rDMPp0MPfO3",
      "albummid": "002T7WHL47kbVk",
      "vid": "",
-     "rank": "66"
+     "rank": "42"
     },
     {
-     "title": "MONTAGEM IMPERIAL",
-     "singer": "NUEKI",
+     "title": "24hrs in Shanghai",
+     "singer": "Connor Price",
      "singers": [
       {
-       "name": "NUEKI",
-       "mid": "003zuKCs4JN087"
+       "name": "Connor Price",
+       "mid": "002QYZ5e42GJwb"
       }
      ],
-     "album": "MONTAGEM IMPERIAL",
-     "duration": 133,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000fUHx53lwHaF.jpg",
-     "mid": "00123yaZ0j1fuF",
-     "albummid": "000fUHx53lwHaF",
+     "album": "24hrs in Shanghai",
+     "duration": 156,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000XMZg5336I1p.jpg",
+     "mid": "000iDgX34LKhaC",
+     "albummid": "000XMZg5336I1p",
      "vid": "",
-     "rank": "67"
+     "rank": "43"
     },
     {
-     "title": "Pour Up (Explicit)",
-     "singer": "Westwood",
+     "title": "No Tears In Paradise",
+     "singer": "Klaas",
      "singers": [
       {
-       "name": "Westwood",
-       "mid": "001mXhrN25GLpK"
+       "name": "Klaas",
+       "mid": "00420lwO1IOHVx"
       }
      ],
-     "album": "Luxury (Explicit)",
+     "album": "No Tears In Paradise",
+     "duration": 169,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001WoJbH3ui88v.jpg",
+     "mid": "000eccTe14gFNo",
+     "albummid": "001WoJbH3ui88v",
+     "vid": "",
+     "rank": "44"
+    },
+    {
+     "title": "About You Now",
+     "singer": "Dream Tunes",
+     "singers": [
+      {
+       "name": "Dream Tunes",
+       "mid": "001dUh8o1NHIlK"
+      }
+     ],
+     "album": "About You Now",
+     "duration": 177,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004EpzGI3e8WVb.jpg",
+     "mid": "000PJK573vg1M1",
+     "albummid": "004EpzGI3e8WVb",
+     "vid": "",
+     "rank": "45"
+    },
+    {
+     "title": "put it on ice",
+     "singer": "Blue",
+     "singers": [
+      {
+       "name": "Blue",
+       "mid": "004Fol6s2uca3n"
+      }
+     ],
+     "album": "put it on ice",
      "duration": 139,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000N5R0b2dfsUt.jpg",
-     "mid": "002xAMtp0amsyG",
-     "albummid": "000N5R0b2dfsUt",
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000031njAH2GIeB6.jpg",
+     "mid": "002q1LCY31nLQe",
+     "albummid": "0031njAH2GIeB6",
      "vid": "",
-     "rank": "68"
+     "rank": "46"
     },
     {
-     "title": "Voodoo",
-     "singer": "Chisway/Jzyno/斯丹曼簇",
+     "title": "Before the Morning Comes",
+     "singer": "VTSTYOY/AJIYEMA/阿吉野马/RANGE",
      "singers": [
       {
-       "name": "Chisway",
-       "mid": ""
+       "name": "VTSTYOY",
+       "mid": "000hgEis3IU4bW"
       },
       {
-       "name": "Jzyno",
-       "mid": "003oJNKz3Gp0LB"
+       "name": "AJIYEMA",
+       "mid": "002yHy8v2obxv4"
       },
       {
-       "name": "斯丹曼簇",
-       "mid": "002hGeLc1OtB5k"
-      }
-     ],
-     "album": "Voodoo",
-     "duration": 191,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002yVWBy386nhR.jpg",
-     "mid": "001K9x2K3OpMSO",
-     "albummid": "002yVWBy386nhR",
-     "vid": "",
-     "rank": "69"
-    },
-    {
-     "title": "ACES",
-     "singer": "Fall Out Boy",
-     "singers": [
-      {
-       "name": "Fall Out Boy",
-       "mid": "003CKb192ggBqi"
-      }
-     ],
-     "album": "ACES",
-     "duration": 211,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000QueJr1alMum.jpg",
-     "mid": "000yngZH2XCaYA",
-     "albummid": "000QueJr1alMum",
-     "vid": "",
-     "rank": "70"
-    },
-    {
-     "title": "Balcony (Explicit)",
-     "singer": "Tyga",
-     "singers": [
-      {
-       "name": "Tyga",
-       "mid": "002XoSji1xjoJF"
-      }
-     ],
-     "album": "Balcony (Explicit)",
-     "duration": 116,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004UbnQn450fg7.jpg",
-     "mid": "00375N5O25U75l",
-     "albummid": "004UbnQn450fg7",
-     "vid": "",
-     "rank": "71"
-    },
-    {
-     "title": "Killing The Mood (Explicit)",
-     "singer": "Holly Humberstone",
-     "singers": [
-      {
-       "name": "Holly Humberstone",
-       "mid": "0029tv9A1hpXc1"
-      }
-     ],
-     "album": "Cruel World…So It Ends (Explicit)",
-     "duration": 203,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002LeoBj3oUQeZ.jpg",
-     "mid": "003L0drw03Qtpz",
-     "albummid": "002LeoBj3oUQeZ",
-     "vid": "",
-     "rank": "72"
-    },
-    {
-     "title": "U Just A Lil",
-     "singer": "BEAUZ/OBS",
-     "singers": [
-      {
-       "name": "BEAUZ",
-       "mid": "002h7GUY01YCG9"
+       "name": "阿吉野马",
+       "mid": "004IgE0H0aUARH"
       },
       {
-       "name": "OBS",
-       "mid": "001Qo3jH1LxoSw"
+       "name": "RANGE",
+       "mid": "0044l0Zl3Ob8ui"
       }
      ],
-     "album": "U Just A Lil",
-     "duration": 134,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003I0NFJ3aQZyG.jpg",
-     "mid": "001SHGVN3q7yHm",
-     "albummid": "003I0NFJ3aQZyG",
+     "album": "If You Could Feel This",
+     "duration": 130,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000035PuXg3Ro5Vv.jpg",
+     "mid": "000syrhi29mQq6",
+     "albummid": "0035PuXg3Ro5Vv",
      "vid": "",
-     "rank": "73"
+     "rank": "47"
     },
     {
-     "title": "Wait All Night",
-     "singer": "Lost Frequencies/Gryffin/Michael Marcagi",
+     "title": "Let's Rock (Explicit)",
+     "singer": "Kodak Black/Don Toliver",
      "singers": [
       {
-       "name": "Lost Frequencies",
-       "mid": "000B32Gi2wEXWq"
+       "name": "Kodak Black",
+       "mid": "000lvGyh0AYV8e"
       },
       {
-       "name": "Gryffin",
-       "mid": "001IK5H92OAJT0"
+       "name": "Don Toliver",
+       "mid": "003HsAIA1HndKS"
+      }
+     ],
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
+     "duration": 151,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
+     "mid": "002XW9XF1Nb2Io",
+     "albummid": "003UXrYG3rN3w0",
+     "vid": "",
+     "rank": "48"
+    },
+    {
+     "title": "Fast Emotion",
+     "singer": "Zara Larsson",
+     "singers": [
+      {
+       "name": "Zara Larsson",
+       "mid": "003bCOTr22eAyZ"
+      }
+     ],
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
+     "duration": 173,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
+     "mid": "003Por0V4KwqEX",
+     "albummid": "003UXrYG3rN3w0",
+     "vid": "",
+     "rank": "49"
+    },
+    {
+     "title": "Burn This Shit Down (from GTAVI: The Album) (Explicit)",
+     "singer": "Travis Scott/Grand Theft Auto VI",
+     "singers": [
+      {
+       "name": "Travis Scott",
+       "mid": "0011N7Ui1DkEON"
       },
       {
-       "name": "Michael Marcagi",
-       "mid": "003nwcMu1Mv5n7"
+       "name": "Grand Theft Auto VI",
+       "mid": "003CAurj2wVWSV"
       }
      ],
-     "album": "Wait All Night",
-     "duration": 207,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004ZkZuA4LvUuR.jpg",
-     "mid": "003Sbfw62qLS7k",
-     "albummid": "004ZkZuA4LvUuR",
+     "album": "Burn This Shit Down (from GTAVI: The Album) [Explicit]",
+     "duration": 260,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003k4ohF319Yps.jpg",
+     "mid": "002f3hNE28jbrl",
+     "albummid": "003k4ohF319Yps",
      "vid": "",
-     "rank": "74"
+     "rank": "50"
     },
     {
-     "title": "last call",
-     "singer": "charlieonnafriday",
+     "title": "TRDWFE",
+     "singer": "Rina Sawayama",
      "singers": [
       {
-       "name": "charlieonnafriday",
-       "mid": "003RlpSh39N2jW"
+       "name": "Rina Sawayama",
+       "mid": "001jvzTo0WjGPN"
       }
      ],
-     "album": "last call",
-     "duration": 155,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002j1Ml62WfnJA.jpg",
-     "mid": "003qzFms0v1O3P",
-     "albummid": "002j1Ml62WfnJA",
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
+     "duration": 156,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
+     "mid": "004CXiwq0ZgdC7",
+     "albummid": "003UXrYG3rN3w0",
      "vid": "",
-     "rank": "75"
+     "rank": "51"
     },
     {
-     "title": "I Think I'm Growing? (Explicit)",
-     "singer": "FLETCHER",
+     "title": "Once Upon a Christmas Eve",
+     "singer": "Anson Seabra",
      "singers": [
       {
-       "name": "FLETCHER",
-       "mid": "004DrKfU4PhHze"
+       "name": "Anson Seabra",
+       "mid": "001f0ufU3ddN8w"
       }
      ],
-     "album": "Academic Comeback (Explicit)",
-     "duration": 92,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004WdGnx3NTgv9.jpg",
-     "mid": "0019t8HS3QntMi",
-     "albummid": "004WdGnx3NTgv9",
+     "album": "Once Upon a Christmas Eve",
+     "duration": 245,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001ur2js0SuD5T.jpg",
+     "mid": "003eHkrX025QtB",
+     "albummid": "001ur2js0SuD5T",
      "vid": "",
-     "rank": "76"
+     "rank": "52"
+    },
+    {
+     "title": "Blood In Your Eyes",
+     "singer": "Tove Lo",
+     "singers": [
+      {
+       "name": "Tove Lo",
+       "mid": "002lOe3K3G9oqe"
+      }
+     ],
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
+     "duration": 161,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
+     "mid": "000tJNSm2obzvC",
+     "albummid": "003UXrYG3rN3w0",
+     "vid": "",
+     "rank": "53"
+    },
+    {
+     "title": "DJ Got Us Fallin' In Love",
+     "singer": "Mentol/Juliet",
+     "singers": [
+      {
+       "name": "Mentol",
+       "mid": "000Ap73N1geBqH"
+      },
+      {
+       "name": "Juliet",
+       "mid": "0006mND31S4yJq"
+      }
+     ],
+     "album": "DJ Got Us Fallin' In Love",
+     "duration": 192,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003I7a3e0UTKqg.jpg",
+     "mid": "000NZVmB0PDidc",
+     "albummid": "003I7a3e0UTKqg",
+     "vid": "",
+     "rank": "54"
+    },
+    {
+     "title": "TF? (Explicit)",
+     "singer": "Don Toliver",
+     "singers": [
+      {
+       "name": "Don Toliver",
+       "mid": "003HsAIA1HndKS"
+      }
+     ],
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
+     "duration": 162,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
+     "mid": "001cWNkU0NlvIi",
+     "albummid": "003UXrYG3rN3w0",
+     "vid": "",
+     "rank": "55"
     },
     {
      "title": "Heartbeat (From “Lyle, Lyle, Crocodile”  Soundtrack)",
@@ -17319,353 +17007,333 @@
      "mid": "000v76Qc1JHiZ9",
      "albummid": "000F36pv4amsGb",
      "vid": "",
-     "rank": "77"
+     "rank": "56"
     },
     {
-     "title": "Ya Hit",
-     "singer": "Future/Drake/Travis Scott/Loe Shimmy",
+     "title": "GROW ON TREES",
+     "singer": "Peder Elias",
      "singers": [
       {
-       "name": "Future",
-       "mid": "003rLetL0AcGNH"
+       "name": "Peder Elias",
+       "mid": "000GxVxK0PdTDv"
+      }
+     ],
+     "album": "GROW ON TREES",
+     "duration": 152,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002NUsbZ0Cx4aq.jpg",
+     "mid": "004bLK1Z2wTUMG",
+     "albummid": "002NUsbZ0Cx4aq",
+     "vid": "",
+     "rank": "57"
+    },
+    {
+     "title": "Leave You (Never)",
+     "singer": "FLO",
+     "singers": [
+      {
+       "name": "FLO",
+       "mid": "004CDEfk2JjgEM"
+      }
+     ],
+     "album": "Leave You (Never)",
+     "duration": 168,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001XKnH81jf4EH.jpg",
+     "mid": "0030Eo2a2uXsow",
+     "albummid": "001XKnH81jf4EH",
+     "vid": "",
+     "rank": "58"
+    },
+    {
+     "title": "Colors Of The Rainbow",
+     "singer": "BEAUZ/Robbe",
+     "singers": [
+      {
+       "name": "BEAUZ",
+       "mid": "002h7GUY01YCG9"
       },
       {
-       "name": "Drake",
-       "mid": "001FAb1d02xUcH"
+       "name": "Robbe",
+       "mid": "000jxsA20Ni8HF"
+      }
+     ],
+     "album": "Colors Of The Rainbow",
+     "duration": 157,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001aZ2bk2Cgg11.jpg",
+     "mid": "000aXLHO1DlmqG",
+     "albummid": "001aZ2bk2Cgg11",
+     "vid": "",
+     "rank": "59"
+    },
+    {
+     "title": "High Hopes",
+     "singer": "Chris James",
+     "singers": [
+      {
+       "name": "Chris James",
+       "mid": "003LMmjH0IpWY8"
+      }
+     ],
+     "album": "LET THE LIGHT IN!",
+     "duration": 160,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000yuhTW0fzEBl.jpg",
+     "mid": "000I3xCf2RJmlx",
+     "albummid": "000yuhTW0fzEBl",
+     "vid": "",
+     "rank": "60"
+    },
+    {
+     "title": "My Body Isn't Ready",
+     "singer": "Mentol/ADEN",
+     "singers": [
+      {
+       "name": "Mentol",
+       "mid": "000Ap73N1geBqH"
       },
       {
-       "name": "Travis Scott",
-       "mid": "0011N7Ui1DkEON"
-      },
-      {
-       "name": "Loe Shimmy",
-       "mid": "003IfAgY42p7nT"
+       "name": "ADEN",
+       "mid": "0000WBta4fwKPb"
       }
      ],
-     "album": "Ya Hit",
-     "duration": 213,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003MnsFT1NO7Fg.jpg",
-     "mid": "001YJnZF2hGxbD",
-     "albummid": "003MnsFT1NO7Fg",
-     "vid": "",
-     "rank": "78"
-    },
-    {
-     "title": "5432ON",
-     "singer": "Lolo Zouaï",
-     "singers": [
-      {
-       "name": "Lolo Zouaï",
-       "mid": "000rbYZX0gNFYR"
-      }
-     ],
-     "album": "5432ON",
-     "duration": 136,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003BdRSu0Aax4b.jpg",
-     "mid": "0014kXQ40qmKwP",
-     "albummid": "003BdRSu0Aax4b",
-     "vid": "",
-     "rank": "79"
-    },
-    {
-     "title": "Empty",
-     "singer": "Sasha Alex Sloan",
-     "singers": [
-      {
-       "name": "Sasha Alex Sloan",
-       "mid": "001B6mal3oslOR"
-      }
-     ],
-     "album": "And The Crowd Goes Mild (Explicit)",
-     "duration": 161,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
-     "mid": "00023GZT47hUFR",
-     "albummid": "001qTlIH0dGQpv",
-     "vid": "",
-     "rank": "80"
-    },
-    {
-     "title": "We Never Choose（Deep House）",
-     "singer": "DJ Daniel Kim",
-     "singers": [
-      {
-       "name": "DJ Daniel Kim",
-       "mid": "000HqAZV0NhZqg"
-      }
-     ],
-     "album": "PHUCK（艾斯达诺）",
-     "duration": 121,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000ed9pS1C33Kz.jpg",
-     "mid": "000U319d2DAZ8R",
-     "albummid": "000ed9pS1C33Kz",
-     "vid": "",
-     "rank": "81"
-    },
-    {
-     "title": "We’ll be togheter",
-     "singer": "Miani",
-     "singers": [
-      {
-       "name": "Miani",
-       "mid": "000YkBLk384BlC"
-      }
-     ],
-     "album": "We’ll be togheter",
-     "duration": 207,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000169PTe4T8tHY.jpg",
-     "mid": "000BcGRm49ETU1",
-     "albummid": "00169PTe4T8tHY",
-     "vid": "",
-     "rank": "82"
-    },
-    {
-     "title": "It's O.K.",
-     "singer": "Eminem",
-     "singers": [
-      {
-       "name": "Eminem",
-       "mid": "000yDAjj2TE9j8"
-      }
-     ],
-     "album": "Infinite EP",
-     "duration": 214,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004GzzAn2Ag9j4.jpg",
-     "mid": "003h1EcM1UZBR2",
-     "albummid": "004GzzAn2Ag9j4",
-     "vid": "",
-     "rank": "83"
-    },
-    {
-     "title": "Psychological (feat. CERES)",
-     "singer": "Kaaze/CERES",
-     "singers": [
-      {
-       "name": "Kaaze",
-       "mid": "003yBynv0lTmlS"
-      },
-      {
-       "name": "CERES",
-       "mid": "0031rbVD36YUFA"
-      }
-     ],
-     "album": "Dopamine (feat. CERES) [EP]",
-     "duration": 150,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000017s1121T09t2.jpg",
-     "mid": "001u5lrP1G5yXc",
-     "albummid": "0017s1121T09t2",
-     "vid": "",
-     "rank": "84"
-    },
-    {
-     "title": "Когда душе твоей больно (When Your Soul Hurts) (《明日方舟》印象曲)",
-     "singer": "Ploho/塞壬唱片-MSR",
-     "singers": [
-      {
-       "name": "Ploho",
-       "mid": "003RVoCA2gHSpY"
-      },
-      {
-       "name": "塞壬唱片-MSR",
-       "mid": "003ZH03w22J5ai"
-      }
-     ],
-     "album": "Когда душе твоей больно (When Your Soul Hurts)",
-     "duration": 254,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Kasms3a0qD2.jpg",
-     "mid": "000HifbG0As4rP",
-     "albummid": "000Kasms3a0qD2",
-     "vid": "",
-     "rank": "85"
-    },
-    {
-     "title": "Infinite",
-     "singer": "Eminem",
-     "singers": [
-      {
-       "name": "Eminem",
-       "mid": "000yDAjj2TE9j8"
-      }
-     ],
-     "album": "Infinite EP",
-     "duration": 251,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004GzzAn2Ag9j4.jpg",
-     "mid": "004R1lUy4B5E7d",
-     "albummid": "004GzzAn2Ag9j4",
-     "vid": "",
-     "rank": "86"
-    },
-    {
-     "title": "MONTAGEM EMPIRE",
-     "singer": "NUEKI",
-     "singers": [
-      {
-       "name": "NUEKI",
-       "mid": "003zuKCs4JN087"
-      }
-     ],
-     "album": "MONTAGEM EMPIRE",
-     "duration": 114,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001lP2d90Dm1WV.jpg",
-     "mid": "001LHsdf2sidu6",
-     "albummid": "001lP2d90Dm1WV",
-     "vid": "",
-     "rank": "87"
-    },
-    {
-     "title": "Shakespearean Games",
-     "singer": "John Michael Howell",
-     "singers": [
-      {
-       "name": "John Michael Howell",
-       "mid": "003b0Zsz3VzkYB"
-      }
-     ],
-     "album": "The Poet",
-     "duration": 156,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000194lNl0iIX96.jpg",
-     "mid": "0006xU510szQ1W",
-     "albummid": "00194lNl0iIX96",
-     "vid": "",
-     "rank": "88"
-    },
-    {
-     "title": "Doomsday Generation (Slacker For The Ages) [feat. Walter Schreifels]",
-     "singer": "Fall Out Boy/Walter Schreifels",
-     "singers": [
-      {
-       "name": "Fall Out Boy",
-       "mid": "003CKb192ggBqi"
-      },
-      {
-       "name": "Walter Schreifels",
-       "mid": "000aGTHl0F2mfX"
-      }
-     ],
-     "album": "Doomsday Generation (Slacker For The Ages) [feat. Walter Schreifels]",
-     "duration": 223,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003TjEPb00ZEPv.jpg",
-     "mid": "001JjniT1ZhGfh",
-     "albummid": "003TjEPb00ZEPv",
-     "vid": "",
-     "rank": "89"
-    },
-    {
-     "title": "TOO SOON (feat. Babyface) (Explicit)",
-     "singer": "Jack Harlow/Babyface",
-     "singers": [
-      {
-       "name": "Jack Harlow",
-       "mid": "001ySgA73xQ446"
-      },
-      {
-       "name": "Babyface",
-       "mid": "000E0fTr1Tnveq"
-      }
-     ],
-     "album": "Sweet Action II (Explicit)",
+     "album": "My Body Isn't Ready",
      "duration": 141,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001svAbY1CALNS.jpg",
-     "mid": "000RCGc84UwMK4",
-     "albummid": "001svAbY1CALNS",
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003RtkON0WgmF5.jpg",
+     "mid": "0015R5171Qyht3",
+     "albummid": "003RtkON0WgmF5",
      "vid": "",
-     "rank": "90"
+     "rank": "61"
     },
     {
-     "title": "In Love",
-     "singer": "Galdive/刘恋",
+     "title": "Potential",
+     "singer": "salem ilese",
      "singers": [
       {
-       "name": "Galdive",
-       "mid": "0046wTBM1TmgrU"
+       "name": "salem ilese",
+       "mid": "002NzmN34bNTLd"
+      }
+     ],
+     "album": "(I Should Probably Let You Go)",
+     "duration": 150,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000456V8V3KFbG3.jpg",
+     "mid": "004DjLko4O0Yzv",
+     "albummid": "00456V8V3KFbG3",
+     "vid": "",
+     "rank": "62"
+    },
+    {
+     "title": "take me home (4 christmas)",
+     "singer": "Olivia Rodrigo",
+     "singers": [
+      {
+       "name": "Olivia Rodrigo",
+       "mid": "0006dHNu4UKZyl"
+      }
+     ],
+     "album": "take me home (4 christmas)",
+     "duration": 177,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000224Wzr3tYYue.jpg",
+     "mid": "000DU5lv0XypdV",
+     "albummid": "00224Wzr3tYYue",
+     "vid": "",
+     "rank": "63"
+    },
+    {
+     "title": "I kinda wanna ask you out",
+     "singer": "Regina Song/Rhyu",
+     "singers": [
+      {
+       "name": "Regina Song",
+       "mid": "002ALSCc1sV4rR"
       },
       {
-       "name": "刘恋",
-       "mid": "002Qt6qH2I6Ezk"
+       "name": "Rhyu",
+       "mid": "000ZYQlV4TnzdL"
       }
      ],
-     "album": "In Love",
-     "duration": 163,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003cWfQC0XhDzN.jpg",
-     "mid": "000D6Yso3v2ViR",
-     "albummid": "003cWfQC0XhDzN",
+     "album": "Think twice",
+     "duration": 125,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002Dwn4P4f09vy.jpg",
+     "mid": "003PguLe3mOzvX",
+     "albummid": "002Dwn4P4f09vy",
      "vid": "",
-     "rank": "91"
+     "rank": "64"
     },
     {
-     "title": "What Went Wrong",
-     "singer": "Helluva Boss/Barrett Wilbert Weed/Bryce Pinkham",
+     "title": "KILLING GOD WITH COMPUTERS",
+     "singer": "Grimes",
      "singers": [
       {
-       "name": "Helluva Boss",
-       "mid": "002azsIi0dCNdp"
+       "name": "Grimes",
+       "mid": "003wzRS3358SX1"
+      }
+     ],
+     "album": "爱",
+     "duration": 197,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000k0OUZ3vtbsa.jpg",
+     "mid": "001PfGE52oIWVS",
+     "albummid": "000k0OUZ3vtbsa",
+     "vid": "",
+     "rank": "65"
+    },
+    {
+     "title": "Rather Be You",
+     "singer": "Charlie Jeer",
+     "singers": [
+      {
+       "name": "Charlie Jeer",
+       "mid": "000ONBNm2PwShq"
+      }
+     ],
+     "album": "Dance Away Your Problems",
+     "duration": 256,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004bGiq72VxoEM.jpg",
+     "mid": "001bvNxO11TewQ",
+     "albummid": "004bGiq72VxoEM",
+     "vid": "",
+     "rank": "66"
+    },
+    {
+     "title": "Counting Stars",
+     "singer": "TommyMuzzic/Luke Muzzic",
+     "singers": [
+      {
+       "name": "TommyMuzzic",
+       "mid": "0009UBrt4Cf94n"
       },
       {
-       "name": "Barrett Wilbert Weed",
-       "mid": "000CWN4b1EHPYy"
+       "name": "Luke Muzzic",
+       "mid": "0006POS31D0533"
+      }
+     ],
+     "album": "Counting Stars",
+     "duration": 255,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003nWPHl3hTynM.jpg",
+     "mid": "004U8f5w0BPtJM",
+     "albummid": "003nWPHl3hTynM",
+     "vid": "",
+     "rank": "67"
+    },
+    {
+     "title": "Be The One",
+     "singer": "Cascada",
+     "singers": [
+      {
+       "name": "Cascada",
+       "mid": "000NjTkt2UwAV9"
+      }
+     ],
+     "album": "Be The One",
+     "duration": 125,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000003E8Wt4Thwcz.jpg",
+     "mid": "004ZBkYW35tBKv",
+     "albummid": "0003E8Wt4Thwcz",
+     "vid": "",
+     "rank": "68"
+    },
+    {
+     "title": "No Punctuation",
+     "singer": "beabadoobee",
+     "singers": [
+      {
+       "name": "beabadoobee",
+       "mid": "003JmlJf3k3CWA"
+      }
+     ],
+     "album": "No Punctuation",
+     "duration": 197,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000ETxtE4UqjOr.jpg",
+     "mid": "000TnHLy297Ga0",
+     "albummid": "000ETxtE4UqjOr",
+     "vid": "",
+     "rank": "69"
+    },
+    {
+     "title": "Here You Come, There You Go",
+     "singer": "Gracie Abrams",
+     "singers": [
+      {
+       "name": "Gracie Abrams",
+       "mid": "004aObBU1n5WYc"
+      }
+     ],
+     "album": "Daughter from Hell (Deluxe) [Explicit]",
+     "duration": 170,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004c2cdl1LzeEl.jpg",
+     "mid": "0003cfRP3E2VAa",
+     "albummid": "004c2cdl1LzeEl",
+     "vid": "",
+     "rank": "70"
+    },
+    {
+     "title": "roi did i tell u that i miss u",
+     "singer": "TommyMuzzic/Luke Muzzic",
+     "singers": [
+      {
+       "name": "TommyMuzzic",
+       "mid": "0009UBrt4Cf94n"
       },
       {
-       "name": "Bryce Pinkham",
-       "mid": "000v0gVQ0GAeJK"
+       "name": "Luke Muzzic",
+       "mid": "0006POS31D0533"
       }
      ],
-     "album": "Helluva Boss: Season Three, Part 1 (Original Soundtrack)",
-     "duration": 198,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000jIyos474Rft.jpg",
-     "mid": "001Psur32Ju8TZ",
-     "albummid": "000jIyos474Rft",
+     "album": "roi did i tell u that i miss u",
+     "duration": 199,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004bXaxH2ZS6Qq.jpg",
+     "mid": "002lZkyc2zbLZM",
+     "albummid": "004bXaxH2ZS6Qq",
      "vid": "",
-     "rank": "92"
+     "rank": "71"
     },
     {
-     "title": "Good Karma (Explicit)",
-     "singer": "ARDN",
+     "title": "Everywhere",
+     "singer": "Dream Tunes",
      "singers": [
       {
-       "name": "ARDN",
-       "mid": "000wuM4E1ceO0q"
+       "name": "Dream Tunes",
+       "mid": "001dUh8o1NHIlK"
       }
      ],
-     "album": "Good Karma (Explicit)",
-     "duration": 187,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000043G6Qv4830CN.jpg",
-     "mid": "000vYMcT08sJ8N",
-     "albummid": "0043G6Qv4830CN",
+     "album": "Everywhere",
+     "duration": 192,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001ebinA0I3kDF.jpg",
+     "mid": "004TfQSj0L4awO",
+     "albummid": "001ebinA0I3kDF",
      "vid": "",
-     "rank": "93"
+     "rank": "72"
     },
     {
-     "title": "And the crowd goes mild",
-     "singer": "Sasha Alex Sloan",
+     "title": "Hit the Wall",
+     "singer": "Gracie Abrams",
      "singers": [
       {
-       "name": "Sasha Alex Sloan",
-       "mid": "001B6mal3oslOR"
+       "name": "Gracie Abrams",
+       "mid": "004aObBU1n5WYc"
       }
      ],
-     "album": "And The Crowd Goes Mild (Explicit)",
-     "duration": 208,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
-     "mid": "001zBJku0UNBsk",
-     "albummid": "001qTlIH0dGQpv",
+     "album": "Daughter from Hell (Deluxe) [Explicit]",
+     "duration": 194,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004c2cdl1LzeEl.jpg",
+     "mid": "0018EiPC2KNtVO",
+     "albummid": "004c2cdl1LzeEl",
      "vid": "",
-     "rank": "94"
+     "rank": "73"
     },
     {
-     "title": "Delusional optimism",
-     "singer": "Sasha Alex Sloan",
+     "title": "DEEPSEEK",
+     "singer": "Grimes",
      "singers": [
       {
-       "name": "Sasha Alex Sloan",
-       "mid": "001B6mal3oslOR"
+       "name": "Grimes",
+       "mid": "003wzRS3358SX1"
       }
      ],
-     "album": "And The Crowd Goes Mild (Explicit)",
-     "duration": 212,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001qTlIH0dGQpv.jpg",
-     "mid": "001Hux2F4gBa4Z",
-     "albummid": "001qTlIH0dGQpv",
+     "album": "爱",
+     "duration": 288,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000k0OUZ3vtbsa.jpg",
+     "mid": "002p11SS19jEYn",
+     "albummid": "000k0OUZ3vtbsa",
      "vid": "",
-     "rank": "95"
+     "rank": "74"
     },
     {
      "title": "WELCOME",
@@ -17690,77 +17358,490 @@
      "mid": "002OcYuc3TCupU",
      "albummid": "000KZ2t11PVRz0",
      "vid": "",
+     "rank": "75"
+    },
+    {
+     "title": "Sarah",
+     "singer": "Dionela/John Roa",
+     "singers": [
+      {
+       "name": "Dionela",
+       "mid": "002gN0Bh2n8izA"
+      },
+      {
+       "name": "John Roa",
+       "mid": "004Y2Gjp0b4xgy"
+      }
+     ],
+     "album": "Sarah",
+     "duration": 149,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002o2UcY4FY8WZ.jpg",
+     "mid": "000TkZH10Jm4qT",
+     "albummid": "002o2UcY4FY8WZ",
+     "vid": "",
+     "rank": "76"
+    },
+    {
+     "title": "If You Love Someone",
+     "singer": "Oh Wonder",
+     "singers": [
+      {
+       "name": "Oh Wonder",
+       "mid": "003C6o6j22VVQS"
+      }
+     ],
+     "album": "On Hope",
+     "duration": 178,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000434Q0s017pTM.jpg",
+     "mid": "001qWZm92Iq1XT",
+     "albummid": "00434Q0s017pTM",
+     "vid": "",
+     "rank": "77"
+    },
+    {
+     "title": "Dance With Me (feat. elkan) (Explicit)",
+     "singer": "A Boogie Wit Da Hoodie/Elkan",
+     "singers": [
+      {
+       "name": "A Boogie Wit Da Hoodie",
+       "mid": "002b7ocJ1OumzR"
+      },
+      {
+       "name": "Elkan",
+       "mid": "000DxNLi3a8qIn"
+      }
+     ],
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
+     "duration": 148,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
+     "mid": "001MfRfz39YaY3",
+     "albummid": "003UXrYG3rN3w0",
+     "vid": "",
+     "rank": "78"
+    },
+    {
+     "title": "No Stay (纯享氛围版)",
+     "singer": "Acreix/La Mer",
+     "singers": [
+      {
+       "name": "Acreix",
+       "mid": "0046tUuY0UhoZy"
+      },
+      {
+       "name": "La Mer",
+       "mid": "000IjThf0CevJv"
+      }
+     ],
+     "album": "Insincere",
+     "duration": 112,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000W3o8Q0pjqUf.jpg",
+     "mid": "0005tAg62u6UbO",
+     "albummid": "000W3o8Q0pjqUf",
+     "vid": "",
+     "rank": "79"
+    },
+    {
+     "title": "Don't Let the Morning Come",
+     "singer": "VTSTYOY/AJIYEMA/阿吉野马/RANGE",
+     "singers": [
+      {
+       "name": "VTSTYOY",
+       "mid": "000hgEis3IU4bW"
+      },
+      {
+       "name": "AJIYEMA",
+       "mid": "002yHy8v2obxv4"
+      },
+      {
+       "name": "阿吉野马",
+       "mid": "004IgE0H0aUARH"
+      },
+      {
+       "name": "RANGE",
+       "mid": "0044l0Zl3Ob8ui"
+      }
+     ],
+     "album": "If You Could Feel This",
+     "duration": 129,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000035PuXg3Ro5Vv.jpg",
+     "mid": "001uzGSV4cY2Sp",
+     "albummid": "0035PuXg3Ro5Vv",
+     "vid": "",
+     "rank": "80"
+    },
+    {
+     "title": "Wash",
+     "singer": "Tori Kelly/Hillari",
+     "singers": [
+      {
+       "name": "Tori Kelly",
+       "mid": "0033BEyG0rpzVP"
+      },
+      {
+       "name": "Hillari",
+       "mid": "003cQyvC15l3bH"
+      }
+     ],
+     "album": "Wash",
+     "duration": 193,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000Oe8jM4DINOg.jpg",
+     "mid": "004bSinx2X6Ig0",
+     "albummid": "000Oe8jM4DINOg",
+     "vid": "",
+     "rank": "81"
+    },
+    {
+     "title": "All Again",
+     "singer": "Rose Gray",
+     "singers": [
+      {
+       "name": "Rose Gray",
+       "mid": "001EY29L2z5LVP"
+      }
+     ],
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
+     "duration": 239,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
+     "mid": "0017M7k5133UXy",
+     "albummid": "003UXrYG3rN3w0",
+     "vid": "",
+     "rank": "82"
+    },
+    {
+     "title": "Run Away With Me",
+     "singer": "Carly Rae Jepsen",
+     "singers": [
+      {
+       "name": "Carly Rae Jepsen",
+       "mid": "004cnBXB1OBN7m"
+      }
+     ],
+     "album": "Run Away With Me",
+     "duration": 251,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003vh6MS2fUxkx.jpg",
+     "mid": "004d0UhG3Y5wiW",
+     "albummid": "003vh6MS2fUxkx",
+     "vid": "",
+     "rank": "83"
+    },
+    {
+     "title": "Hey, People",
+     "singer": "James Blunt",
+     "singers": [
+      {
+       "name": "James Blunt",
+       "mid": "000OYo204PAGqw"
+      }
+     ],
+     "album": "Airplane Mode",
+     "duration": 220,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001cJxnb2zQfXJ.jpg",
+     "mid": "001LWNmZ1ix9S9",
+     "albummid": "001cJxnb2zQfXJ",
+     "vid": "",
+     "rank": "84"
+    },
+    {
+     "title": "WAKIN UP FLEX (Explicit)",
+     "singer": "Young Thug",
+     "singers": [
+      {
+       "name": "Young Thug",
+       "mid": "003FLtGb2Otuyw"
+      }
+     ],
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
+     "duration": 116,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
+     "mid": "0016PrB13hHCQ1",
+     "albummid": "003UXrYG3rN3w0",
+     "vid": "",
+     "rank": "85"
+    },
+    {
+     "title": "Properly (Explicit)",
+     "singer": "Luh Kel",
+     "singers": [
+      {
+       "name": "Luh Kel",
+       "mid": "002r9rwq1Ia6Hn"
+      }
+     ],
+     "album": "Properly (Explicit)",
+     "duration": 129,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Rstvw2eFJwR.jpg",
+     "mid": "000KKzNK3OsJlg",
+     "albummid": "001Rstvw2eFJwR",
+     "vid": "",
+     "rank": "86"
+    },
+    {
+     "title": "Narcissist (feat. Viuta)",
+     "singer": "Tommy Richman/Viuta",
+     "singers": [
+      {
+       "name": "Tommy Richman",
+       "mid": "000eilIX0FQvse"
+      },
+      {
+       "name": "Viuta",
+       "mid": "003o6dbx3rw0XH"
+      }
+     ],
+     "album": "Narcissist (feat. Viuta)",
+     "duration": 178,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000009aBaB4QktT3.jpg",
+     "mid": "002I5smO0rSSBp",
+     "albummid": "0009aBaB4QktT3",
+     "vid": "",
+     "rank": "87"
+    },
+    {
+     "title": "Without My Strings",
+     "singer": "Alec Benjamin",
+     "singers": [
+      {
+       "name": "Alec Benjamin",
+       "mid": "002HRSkP17GCwL"
+      }
+     ],
+     "album": "Without My Strings",
+     "duration": 190,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000ppcaH0TAVkr.jpg",
+     "mid": "003JCsgm1T5gwJ",
+     "albummid": "000ppcaH0TAVkr",
+     "vid": "",
+     "rank": "88"
+    },
+    {
+     "title": "Have Yourself A Merry Little Christmas (From \"Snoopy Presents: 12 Days of Snoopy\")",
+     "singer": "Laufey/Peanuts",
+     "singers": [
+      {
+       "name": "Laufey",
+       "mid": "003O9AXE2fz50u"
+      },
+      {
+       "name": "Peanuts",
+       "mid": "004IEGwl18wwEH"
+      }
+     ],
+     "album": "Have Yourself A Merry Little Christmas (From \"Snoopy Presents: 12 Days of Snoopy\")",
+     "duration": 194,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004L9bHH0CbmZY.jpg",
+     "mid": "002OjdH44NAnFN",
+     "albummid": "004L9bHH0CbmZY",
+     "vid": "",
+     "rank": "89"
+    },
+    {
+     "title": "The Book (feat. JVKE & ZVC)",
+     "singer": "John Michael Howell/JVKE/ZVC",
+     "singers": [
+      {
+       "name": "John Michael Howell",
+       "mid": "003b0Zsz3VzkYB"
+      },
+      {
+       "name": "JVKE",
+       "mid": "002npDu54NXkj5"
+      },
+      {
+       "name": "ZVC",
+       "mid": "000s8Sqp32G4A9"
+      }
+     ],
+     "album": "The Poet",
+     "duration": 163,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000194lNl0iIX96.jpg",
+     "mid": "004V9Ded1Tkn2y",
+     "albummid": "00194lNl0iIX96",
+     "vid": "",
+     "rank": "90"
+    },
+    {
+     "title": "Crazy Girl",
+     "singer": "Gracie Abrams",
+     "singers": [
+      {
+       "name": "Gracie Abrams",
+       "mid": "004aObBU1n5WYc"
+      }
+     ],
+     "album": "Daughter from Hell (Deluxe) [Explicit]",
+     "duration": 174,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004c2cdl1LzeEl.jpg",
+     "mid": "000vR8iy4BKcJo",
+     "albummid": "004c2cdl1LzeEl",
+     "vid": "",
+     "rank": "91"
+    },
+    {
+     "title": "Starting From Zero (feat. Michael McDonald) [From GTAVI: Original Score]",
+     "singer": "Justice/Grand Theft Auto VI",
+     "singers": [
+      {
+       "name": "Justice",
+       "mid": "002jTl5U0dQmfC"
+      },
+      {
+       "name": "Grand Theft Auto VI",
+       "mid": "003CAurj2wVWSV"
+      }
+     ],
+     "album": "Starting From Zero (feat. Michael McDonald) [From GTAVI: Original Score]",
+     "duration": 190,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003QB1Vo0WYRCY.jpg",
+     "mid": "004Iur6V4PTUdt",
+     "albummid": "003QB1Vo0WYRCY",
+     "vid": "",
+     "rank": "92"
+    },
+    {
+     "title": "Largate",
+     "singer": "Kali Uchis/Helado Negro",
+     "singers": [
+      {
+       "name": "Kali Uchis",
+       "mid": "001INfbO3C2e8C"
+      },
+      {
+       "name": "Helado Negro",
+       "mid": "0011OYCi072Z1Z"
+      }
+     ],
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
+     "duration": 200,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
+     "mid": "004KZOiq0ZbVTY",
+     "albummid": "003UXrYG3rN3w0",
+     "vid": "",
+     "rank": "93"
+    },
+    {
+     "title": "Killing The Mood (Explicit)",
+     "singer": "Holly Humberstone",
+     "singers": [
+      {
+       "name": "Holly Humberstone",
+       "mid": "0029tv9A1hpXc1"
+      }
+     ],
+     "album": "Cruel World…So It Ends (Explicit)",
+     "duration": 203,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002LeoBj3oUQeZ.jpg",
+     "mid": "003L0drw03Qtpz",
+     "albummid": "002LeoBj3oUQeZ",
+     "vid": "",
+     "rank": "94"
+    },
+    {
+     "title": "Story Of A Warrior",
+     "singer": "John Michael Howell",
+     "singers": [
+      {
+       "name": "John Michael Howell",
+       "mid": "003b0Zsz3VzkYB"
+      }
+     ],
+     "album": "The Poet",
+     "duration": 129,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M00000194lNl0iIX96.jpg",
+     "mid": "001I0evo2U6AVV",
+     "albummid": "00194lNl0iIX96",
+     "vid": "",
+     "rank": "95"
+    },
+    {
+     "title": "Through Fire & Ashes",
+     "singer": "Within Temptation 诱惑本质/S10",
+     "singers": [
+      {
+       "name": "Within Temptation 诱惑本质",
+       "mid": "0023LTbh2CtHnV"
+      },
+      {
+       "name": "S10",
+       "mid": "002dq7Lb2RcGpV"
+      }
+     ],
+     "album": "Through Fire & Ashes",
+     "duration": 268,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000002pWapr2pzTLR.jpg",
+     "mid": "001SsHxw1Tuxs9",
+     "albummid": "002pWapr2pzTLR",
+     "vid": "",
      "rank": "96"
     },
     {
-     "title": "v 0 y a g e r",
-     "singer": "Starset",
+     "title": "NO ME BUSQUES",
+     "singer": "Omar Apollo",
      "singers": [
       {
-       "name": "Starset",
-       "mid": "002JgFDB0sn7qE"
+       "name": "Omar Apollo",
+       "mid": "002fanhs44MMgu"
       }
      ],
-     "album": "v 0 y a g e r",
-     "duration": 286,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000001jdtcZ4MFNXA.jpg",
-     "mid": "001y35sR0iWscI",
-     "albummid": "001jdtcZ4MFNXA",
+     "album": "Grand Theft Auto VI: The Album (Explicit)",
+     "duration": 131,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003UXrYG3rN3w0.jpg",
+     "mid": "004ItkUK0CfZTC",
+     "albummid": "003UXrYG3rN3w0",
      "vid": "",
      "rank": "97"
     },
     {
-     "title": "Found You!",
-     "singer": "Chris James",
+     "title": "INDIAN SUMMER",
+     "singer": "Alan Walker/KIDDO",
      "singers": [
       {
-       "name": "Chris James",
-       "mid": "003LMmjH0IpWY8"
+       "name": "Alan Walker",
+       "mid": "0020PeOh4ZaCw1"
+      },
+      {
+       "name": "KIDDO",
+       "mid": "003y3BhU07qrcq"
       }
      ],
-     "album": "LET THE LIGHT IN!",
-     "duration": 145,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000yuhTW0fzEBl.jpg",
-     "mid": "002f4YXj3seDJG",
-     "albummid": "000yuhTW0fzEBl",
+     "album": "INDIAN SUMMER",
+     "duration": 198,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000000qPsZp43S0ff.jpg",
+     "mid": "001ftgq416N0yp",
+     "albummid": "000qPsZp43S0ff",
      "vid": "",
      "rank": "98"
     },
     {
-     "title": "roi did i tell u that i miss u",
-     "singer": "TommyMuzzic/Luke Muzzic",
+     "title": "You're My Heart, You're My Soul",
+     "singer": "DJ Dark",
      "singers": [
       {
-       "name": "TommyMuzzic",
-       "mid": "0009UBrt4Cf94n"
-      },
-      {
-       "name": "Luke Muzzic",
-       "mid": "0006POS31D0533"
+       "name": "DJ Dark",
+       "mid": "001KBZ4O3csxHi"
       }
      ],
-     "album": "roi did i tell u that i miss u",
-     "duration": 199,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004bXaxH2ZS6Qq.jpg",
-     "mid": "002lZkyc2zbLZM",
-     "albummid": "004bXaxH2ZS6Qq",
+     "album": "You're My Heart, You're My Soul",
+     "duration": 161,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003e6neV1WOI8O.jpg",
+     "mid": "002yx6wp0oIxCJ",
+     "albummid": "003e6neV1WOI8O",
      "vid": "",
      "rank": "99"
     },
     {
-     "title": "Spring (Love Me)",
-     "singer": "2hollis",
+     "title": "Love Letter",
+     "singer": "Gracie Abrams",
      "singers": [
       {
-       "name": "2hollis",
-       "mid": "002RAwjH0RqDht"
+       "name": "Gracie Abrams",
+       "mid": "004aObBU1n5WYc"
       }
      ],
-     "album": "Pirouette (Explicit)",
-     "duration": 220,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003V78Fa2lainI.jpg",
-     "mid": "0023dKHf2YUzVy",
-     "albummid": "003V78Fa2lainI",
+     "album": "Daughter from Hell (Deluxe) [Explicit]",
+     "duration": 185,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004c2cdl1LzeEl.jpg",
+     "mid": "0011spEe4Tz2Ae",
+     "albummid": "004c2cdl1LzeEl",
      "vid": "",
      "rank": "100"
     }
