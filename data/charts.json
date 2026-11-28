@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T09:10:11Z",
+ "updated": "2026-11-28T17:36:39Z",
  "hotkeys": [],
  "lists": [
   {
@@ -11654,23 +11654,6 @@
      "rank": "62"
     },
     {
-     "title": "托明月捎个话 (催泪版)",
-     "singer": "梅度",
-     "singers": [
-      {
-       "name": "梅度",
-       "mid": "0024Iuqe1IM2YY"
-      }
-     ],
-     "album": "托明月捎个话 (催泪版)",
-     "duration": 227,
-     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M000004SKUvs0mBrHr.jpg",
-     "mid": "002jzpzZ3LfXxV",
-     "albummid": "004SKUvs0mBrHr",
-     "vid": "",
-     "rank": "63"
-    },
-    {
      "title": "故乡的客",
      "singer": "任夏",
      "singers": [
@@ -12318,6 +12301,23 @@
      "albummid": "003cp9PJ1jlJnd",
      "vid": "",
      "rank": "100"
+    },
+    {
+     "title": "动了情的人输得最狠",
+     "singer": "姜雨涵",
+     "singers": [
+      {
+       "name": "姜雨涵",
+       "mid": "003JFpf30MnAvS"
+      }
+     ],
+     "album": "动了情的人输得最狠",
+     "duration": 179,
+     "cover": "https://y.gtimg.cn/music/photo_new/T002R500x500M0000027IDwi0OItQU.jpg",
+     "mid": "001qknKF1ZAugJ",
+     "albummid": "0027IDwi0OItQU",
+     "vid": "",
+     "rank": "101"
     }
    ]
   },
